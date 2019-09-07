@@ -1,0 +1,18 @@
+---
+layout: post
+title: "Warning"
+date: 2013-08-07 14:19
+comments: true
+categories: Life
+---
+
+A couple of months ago, I transfered the website engine from wordpress into Octopress. A lot of errors were found in previous posts due to format incompatibility, especially some perl scripts.
+
+Please read carefully before using any code or script, and leave a comment if you find some "terrible" error.
+
+Thank you!
+
+
+\[update-2013-08-08\] now only perl howto related posts
+
+\[update-2015-01-01\] All format issues are (putatively) resolved.

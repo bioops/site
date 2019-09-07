@@ -1,0 +1,1257 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="A contig is a contiguous sequence of bases that has been constructed by aligning reads and building consensus. Contigs are strung together, with gaps &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/page12">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/contig/">Contig</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-07T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/contig/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A <strong>contig</strong> is a contiguous sequence of bases that has been constructed by aligning <a href="http://bioops.info/2011/03/shotgun-reads/" target="_blank">reads</a> and building consensus. Contigs are strung together, with gaps in between, to create a <a href="http://bioops.info/2011/03/scaffold-or-supercontig/" target="_blank">supercontig or scaffold</a>.</p>
+
+<p>Keep in mind: A supercontig or scaffold is typically comprised of hundreds of contigs, and a contig typically consists of thousands of reads.</p>
+
+<p><a href="http://bioops.info/images/uploads/2011/03/contigscaff2.gif"><img class="alignnone size-medium wp-image-207" title="contigscaff" src="http://bioops.info/images/uploads/2011/03/contigscaff2-300x189.gif" alt="" width="300" height="189" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/software-packages-for-whole-genome-alignment/">Software Packages for Whole Genome Alignment</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-23T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/02/software-packages-for-whole-genome-alignment/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><div>
+<div /></div></p>
+
+<p>More softwares and information will be added. (latest updated on 28/02/2011)</p>
+
+<p><strong>Several available tools for alignment of whole genomes.</strong></p>
+
+<p><a href="http://users.soe.ucsc.edu/~kent/xenoAli/index.html" target="_blank">WABA</a> (<a href="http://genome.cshlp.org/content/10/8/1115.long" target="_blank">Kent and Zahler 2000</a>) Wobble Aware Bulk Aligner for cross-species whole genome alignment</p>
+
+<p><a href="http://www.bx.psu.edu/~rsharris/lastz/" target="_blank">LASTZ</a> or BLASTZ <span style="color: #ff0000;">* recommended</span> (<a href="http://genome.cshlp.org/content/13/1/103.full" target="_blank">Schwartz et al. 2003</a>) LASTZ is a program for aligning DNA sequences, a pairwise aligner. Originally designed to handle sequences the size of human chromosomes and from different species, it is also useful for sequences produced by NGS sequencing technologies such as Roche 454.</p>
+
+<p><a href="http://lagan.stanford.edu/lagan_web/index.shtml" target="_blank">LAGAN</a> (<a href="http://genome.cshlp.org/content/13/4/721.full">Brudno et al. 2003</a>) The Lagan Tookit is a set of alignment programs for comparative genomics. The three main components are a pairwise aligner (LAGAN), a multiple aligner (M-LAGAN), and a glocal aligner (Shuffle-LAGAN). All three are based on the <a href="http://www.cs.toronto.edu/~brudno/chaos/" target="_blank">CHAOS</a> local alignment tool and combine speed (regions up to several megabases can be aligned in minutes) with high accuracy. The results of the alignment can be visualized using the <a href="http://modeling.water.ca.gov/delta/models/dsm2/tools/vista/index.html" target="_blank">VISTA</a> visualization tool.</p>
+
+<p><a href="http://mummer.sourceforge.net/" target="_blank">MUMMER</a> <span style="color: #ff0000;">*recommended</span> (3 papers for 3 versions <a href="http://mummer.sourceforge.net/MUMmer.pdf" target="_blank">1.0</a>, <a href="http://mummer.sourceforge.net/MUMmer2.pdf" target="_blank">2.1</a>, <a href="http://mummer.sourceforge.net/MUMmer3.pdf" target="_blank">3.0</a>) MUMmer is a system for rapidly aligning entire genomes, whether in complete or draft form. For example, MUMmer 3.0 can find all 20-basepair or longer exact matches between a pair of 5-megabase genomes in 13.7 seconds, using 78 MB of memory, on a 2.4 GHz Linux desktop computer. MUMmer can also align incomplete genomes; it can easily handle the 100s or 1000s of contigs from a shotgun sequencing project, and will align them to another set of contigs or a genome using the NUCmer program included with the system. If the species are too divergent for a DNA sequence alignment to detect similarity, then the PROmer program can generate alignments based upon the six-frame translations of both input sequences.</p>
+
+<p><a href="http://bio.math.berkeley.edu/avid/" target="_blank">AVID</a> (or <a href="http://genome.lbl.gov/vista/downloads.shtml" target="_blank">click here</a>)(<a href="http://genome.cshlp.org/content/13/1/97.full" target="_blank">Bray et al. 2002</a>) AVID is designed to be fast, memory efficient, and practical for sequence alignments of large genomic regions up to megabases long.</p>
+
+<p><a href="http://www.genome.ist.i.kyoto-u.ac.jp/~aln_user/cgaln/" target="_blank">Cgaln</a> (<a href="http://www.biomedcentral.com/1471-2105/11/224" target="_blank">Nakato and Gotoh et al. 2010</a>) Cgaln (Coarse grained alignment) is a program designed to align a pair of whole genomic sequences of not only bacteria but also entire chromosomes of vertebrates on a nominal desktop computer. Cgaln performs an alignment job in two steps, at the block level and then at the nucleotide level. The former &#8220;coarse-grained&#8221; alignment can explore genomic rearrangements and reduce the regions to be analyzed in the next step. The latter is devoted to detailed alignment within the limited regions found in the first stage. The output of Cgaln is &#8216;glocal&#8217; in the sense that rearrangements are taken into consideration while each alignable region is extended as long as possible. Thus, Cgaln is not only fast and memory-efficient, but also can filter noisy outputs without missing the most important homologous segment pairs.</p>
+
+<p><a href="http://last.cbrc.jp/" target="_blank">LAST</a> <span style="color: #ff0000;">**highly recommended</span> (<a href="http://genome.cshlp.org/content/early/2011/02/04/gr.113985.110" target="_blank">Kiełbasa et al. 2011</a>)
+<p style="margin-bottom: 0px; font-family: 'Times New Roman'; line-height: normal; font-size: medium;">LAST can:</p></p>
+
+<p><ul style="margin-top: 0px; font-family: 'Times New Roman'; line-height: normal; font-size: medium;">
+	<li>Handle <strong>big</strong>sequence data, e.g:
+<ul style="margin-top: 0px;">
+	<li>Compare two vertebrate genomes</li>
+	<li>Align billions of DNA reads to a genome</li>
+</ul>
+</li>
+	<li>Indicate the <a href="http://lastweb.cbrc.jp/about.html">reliability</a> of each aligned column.</li>
+	<li>Use sequence quality data <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkq010">properly</a>.</li>
+	<li>Compare DNA to proteins, with frameshifts.</li>
+	<li>Compare PSSMs to sequences</li>
+	<li>Calculate the likelihood of chance similarities between random sequences.</li>
+</ul>
+<a href="http://www.sanger.ac.uk/resources/software/alfresco/" target="_blank">Alfresco</a> (<a href="http://psb.stanford.edu/psb-online/proceedings/psb08/abstracts/2008_p3.html" target="_blank">Dalca and Brudno 2008</a>) A key feature of the program is to use available analysis programs relevant to comparative genome sequence analysis, combine the results of these, and graphically present them in an intuitive way, thereby facilitating the analysis of large genomic regions.</p>
+
+<p><strong>Softwares for finding nearly identical regions in whole genomes very fast</strong></p>
+
+<p>BLAT (read everything about it on <span style="color: #0000ee;"><a href="http://en.wikipedia.org/wiki/BLAT_(bioinformatics)" target="_blank">Wikipedia</a></span> or <a href="http://genome.ucsc.edu/cgi-bin/hgBlat" target="_blank">UCSC Genome Browser</a> and <a href="http://genome.ucsc.edu/FAQ/FAQblat.html" target="_blank">FAQ</a>) (<a href="http://genome.cshlp.org/content/12/4/656" target="_blank">Kent 2002</a>) BLAT (the BLAST-Like Alignment Tool) is a software program developed by Jim Kent at UCSC to identify similarities between DNA sequences and protein sequences.BLAT is much faster than older tools such as BLAST for nucleotide and protein alignments, and it can also perform spliced alignments of RNA to DNA.</p>
+
+<p><a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/LATEST">BLAST</a> (megablast) OK! Everyone knows it! Just click <a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/LATEST" target="_blank">it</a> for latest version of blast. (Please keep in mind it&#8217;s BLAST not BLAST+, for BLAST+, click <a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST" target="_blank">here</a>)</p>
+
+<p><a href="http://www.sanger.ac.uk/resources/software/ssaha2/" target="_blank">SSAHA2</a> (<a href="http://genome.cshlp.org/content/11/10/1725.long" target="_blank">Ning et al 2001</a> paper about SSAHA) (Sequence Search and Alignment by Hashing Algorithm) is a pairwise sequence alignment program designed for the efficient mapping of sequencing reads onto genomic reference sequences. SSAHA2 reads of most sequencing platforms (ABI-Sanger, Roche 454, Illumina-Solexa) and a range of output formats (SAM, CIGAR, PSL etc.) are supported. A pile-up pipeline for analysis and genotype calling is available as a separate package.</p>
+
+<p>
+</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/software-packages-for-discovering-structural-variation-with-next-generation-sequencing/">Software Packages for Discovering Structural Variation With Next-generation Sequencing</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-21T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/02/software-packages-for-discovering-structural-variation-with-next-generation-sequencing/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>More softwares and information will be added. (latest updated on 28/02/2011)</p>
+
+<p><strong>Highly recommended you to read this paper. Mapping copy number variation by population-scale genome sequencing (<a href="http://www.nature.com/nature/journal/v470/n7332/full/nature09708.html" target="_blank">Mills et al. 2011</a>)</strong></p>
+
+<p><a href="http://sv.gersteinlab.org/pemer/" target="_blank">PEMer</a> (<a href="http://w02.genomebiology.com/2009/10/2/R23/" target="_blank">Korbel et al. 2009</a>) It comprises an analysis pipeline, compatible with several next-generation sequencing platforms; simulation-based error models, yielding confidence-values for each structural variant; and a back-end database.</p>
+
+<p><a href="http://www.broadinstitute.org/cgi-bin/cancer/publications/pub_paper.cgi?mode=view&amp;paper_id=182" target="_blank">SegSeq</a> (<a href="http://www.nature.com/nmeth/journal/v6/n1/abs/nmeth.1276.html" target="_blank">Chiang et al. 2009</a>)  Detect and localize copy-number alterations from massively parallel sequence data. A simple approach would be to partition the genome into windows of fixed size, estimate the tumor-normal ratios for each window and use standard segmentation algorithms to decompose the genome into regions of equivalent copy number.</p>
+
+<p><a href="http://compbio.cs.sfu.ca/strvar.htm" target="_blank">VariationHunter</a> (<a href="http://genome.cshlp.org/content/19/7/1270.full" target="_blank">Hormozdiari et al. 2009</a>) Combinatorial algorithms for structural variation detection in high-throughput sequenced genomes. It&#8217;s based on maximum parsimony</p>
+
+<p><a href="http://compbio.cs.toronto.edu/modil/">MoDIL</a> (<a href="http://www.nature.com/nmeth/journal/v6/n7/full/nmeth.f.256.html">Lee et al.2009</a>) MoDIL, or Mixture of Distributions Indel Locator, a novel method for finding medium sized indels from high throughput sequencing datasets. The MoDIL algorithm compares the distribution of insert sizes in the sequenced library to the distribution of the observed mapped distances at a particular genomic location.</p>
+
+<p><a href="http://www.ebi.ac.uk/~kye/pindel/" target="_blank">Pindel</a> (<a href="http://bioinformatics.oxfordjournals.org/content/25/21/2865.full" target="_blank">Ye et al. 2009</a>) A pattern growth approach, to detect breakpoints of large deletions and medium-sized insertions from paired-end short reads.</p>
+
+<p><a href="http://breakdancer.sourceforge.net/" target="_blank">BreakDancer</a> (<a href="http://www.nature.com/nmeth/journal/v6/n9/abs/nmeth.1363.html" target="_blank">Chen et al. 2009</a>) BreakDancerMax predicts five types of structural variants: insertions, deletions, inversions, inter- and intra-chromosomal translocations from next-generation short paired-end sequencing reads using read pairs that are mapped with unexpected separation distances or orientation.</p>
+
+<p><a href="http://genome.wustl.edu/software/cnvhmm" target="_blank">cnvHMM</a> copy number analysis using Hidden Markov algorithm</p>
+
+<p>Geometric Analysis of Structural Variants (<a href="http://cs.brown.edu/people/braphael/software.html" target="_blank">GASV</a>) (<a href="http://bioinformatics.oxfordjournals.org/content/25/12/i222" target="_blank">Sindi et al 2009</a>) A geometric approach for identification, classification and comparison of structural variants. The software is for analysis of structural variation from paired-end sequencing and/or array-CGH data.</p>
+
+<p>Sequence Variant Analyzer (<a href="http://people.chgv.lsrc.duke.edu/~dg48//sva/index.php" target="_blank">SVA</a>) SVA is a computer software project designed to annotate, visualize, and analyze the genetic variants identified through next-generation sequencing studies, including whole-genome sequencing (WGS) and exome sequencing studies.</p>
+
+<p><a href="http://genome.wustl.edu/software/swt" target="_blank">SWT</a> It is a collection of R functions for statistical analysisof genome-wide data, by Qunyuan Zhang (qunyuan@wustl.edu), DSG.</p>
+
+<p><a href="http://varscan.sourceforge.net/" target="_blank">VarScan</a> (<a href="http://bioinformatics.oxfordjournals.org/content/25/17/2283" target="_blank">Koboldt et al. 2009</a>) VarScan is a platform-independent, technology-independent software tool for identifying SNPs and indels in massively parallel sequencing of individual and pooled samples. (not actually structural variation)</p>
+
+<p><a href="http://tiger.dbs.nus.edu.sg/CNV-seq/" target="_blank">CNV-seq</a> (<a href="http://www.biomedcentral.com/1471-2105/10/80" target="_blank">Xie and Tammi. 2009</a>) The method is based on a robust statistical model that describes the complete analysis procedure and allows the computation of essential confidence values for detection of CNV.</p>
+
+<p><a href="http://sv.gersteinlab.org/breakseq/" target="_blank">BreakSeq</a> (<a href="http://www.nature.com/nbt/journal/v28/n1/abs/nbt.1600.html" target="_blank">Lam et al. 2010</a>) a pipeline for annotation, classification and analysis of SVs at single nucleotide resolution.</p>
+
+<p><a href="http://bioinformatics.oxfordjournals.org/content/26/21/2776.full" target="_blank">CopyMap</a> (<a href="http://bioinformatics.oxfordjournals.org/content/26/21/2776.full" target="_blank">Zöllner 2010</a>) The program package CopyMap identifies copy number variation from oligo-hybridization and CGH data. Using a time-dependent hidden Markov model to combine evidence of copy number variants (CNVs) across multiple carriers, CopyMap is substantially more accurate than standard hidden Markov methods in identifying CNVs and calling CNV-carriers. Moreover, CopyMap provides more precise estimates of CNV-boundaries.</p>
+
+<p><a href="http://www-genepi.med.utah.edu/suppl/SLOPE/index.html" target="_blank">SLOPE</a> (<a href="http://bioinformatics.oxfordjournals.org/content/early/2010/09/27/bioinformatics.btq528" target="_blank">Abel et al. 2010</a>) A quick and accurate method for locating non-SNP structural variation from targeted next-generation sequence data.<br />
+By focusing on a small (a few kb to a few Mb) target reference sequence, SLOPE can perform fast and ﬂexible split-read alignments and determine ‘chimeric’ sequences with single-base resolution.<br />
+SLOPE aims to detect sequence breakpoints from only one side of a split read, and therefore does not rely on the insert size for detection.</p>
+
+<p><a href="http://code.google.com/p/hydra-sv/" target="_blank">HYDRA</a> (<a href="http://genome.cshlp.org/content/20/5/623.full" target="_blank">Quinlan et al. 2010</a>) Hydra detects structural variation (SV) breakpoints by clustering discordant paired-end alignments whose &#8220;signatures&#8221; corroborate the same putative breakpoint. Hydra can detect breakpoints caused by all classes of structural variation. Moreover, it was designed to detect variation in both unique and duplicated genomic regions; therefore, it will examine paired-end reads having multiple discordant alignments.</p>
+
+<p><a href="http://www.sanger.ac.uk/resources/software/cnd/" target="_blank">CnD</a> (<a href="http://bioinformatics.oxfordjournals.org/content/26/4/565.full" target="_blank">Simpson et al. 2010</a>) A copy number variant caller for inbred strains.<br />
+The target organism is assumed to be inbred, and therefore homozygous, so regions of apparent heterozygous SNPs (as called by MAQ) can be used to detect copy number gains. cnD uses both the rate of these paralogous sequence variants, and the raw sequence depth, to call copy number gains and losses using a hidden markov model.</p>
+
+<p><a href="http://sv.gersteinlab.org/age/" target="_blank">AGE</a> (<a href="http://bioinformatics.oxfordjournals.org/content/27/5/595.full" target="_blank">Abyzov and Gerstein 2011</a>) defining breakpoints of genomic structural variants at single-nucleotide resolution, through optimal alignments with gap excision.</p>
+
+<p><a href="http://sv.gersteinlab.org/cnvnator/" target="_blank">CNVnator</a> (<a href="http://genome.cshlp.org/content/early/2011/02/04/gr.114876.110.abstract" target="_blank">Abyzov et al. 2011</a>) An approach to discover, genotype and characterize typical and atypical CNVs from family and population genome sequencing.</p>
+
+<p><strong>
+</strong><strong> Other relevant softwares</strong></p>
+
+<p><a href="http://samtools.sourceforge.net/" target="_blank">SAMtools</a> SAM Tools provide various utilities for manipulating alignments in the SAM format, including sorting, merging, indexing and generating alignments in a per-position format.</p>
+
+<p><a href="http://maq.sourceforge.net/" target="_blank">Maq</a> Maq stands for Mapping and Assembly with Quality It builds assembly by mapping short reads to reference sequences.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/words-of-food-translate/">Words of Food 几乎所有食物的英文翻译</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/02/words-of-food-translate/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>水果类（fruits）：</p>
+
+<p>西红柿tomato 菠萝pineapple 西瓜watermelon 香蕉banana 柚子shaddock（pomelo） 橙子orange 苹果apple 柠檬lemon 樱桃cherry 桃子peach 梨pear 枣Chinese date （去核枣 pitted date ） 椰子coconut  草莓strawberry 树莓raspberry 蓝莓blueberry 黑莓blackberry 葡萄grape 甘蔗sugar cane 芒果mango 木瓜 pawpaw或者papaya 杏子apricot 油桃nectarine 柿子persimmon 石榴pomegranate 榴莲jackfruit 槟榔果areca nut （西班牙产苦橙）bitter orange 猕猴桃kiwi fruit or Chinese gooseberry 金橘cumquat 蟠桃flat peach 荔枝litchi 青梅greengage 山楂果haw 水蜜桃honey peach 香瓜，甜瓜musk melon 李子plum 杨梅waxberry red bayberry 桂圆longan 沙果crab apple  杨桃starfruit 枇杷loquat 柑橘tangerine 莲雾wax-apple  番石榴guava</p>
+
+<p>肉、蔬菜类（livestock家畜）：</p>
+
+<p>南瓜（倭瓜）pumpkin cushaw 甜玉米Sweet corn 牛肉beef 猪肉pork 羊肉mutton 羔羊肉lamb 鸡肉chicken 生菜 莴苣lettuce 白菜Chinese cabbage （celery cabbage）（甘蓝）卷心菜cabbage 萝卜radish 胡萝卜carrot 韭菜leek 木耳agarics 豌豆pea 马铃薯（土豆）potato 黄瓜cucumber 苦瓜balsam pear 秋葵okra 洋葱onion 芹菜celery 芹菜杆celery sticks 地瓜sweet potato 蘑菇mushroom 橄榄olive 菠菜spinach 冬瓜（Chinese）wax gourd 莲藕lotus root 紫菜laver 油菜cole rape 茄子eggplant 香菜caraway 枇杷loquat 青椒green pepper 四季豆 青刀豆garden bean 银耳silvery fungi 腱子肉tendon 肘子pork joint 茴香fennel（茴香油fennel oil 药用） 鲤鱼carp 咸猪肉bacon 金针蘑needle mushroom 扁豆lentil 槟榔areca 牛蒡great burdock 水萝卜summer radish 竹笋bamboo shoot 艾蒿Chinese mugwort 绿豆mung bean 毛豆green soy bean 瘦肉lean meat 肥肉speck 黄花菜day lily （day lily bud） 豆芽菜bean sprout 丝瓜towel gourd (注：在美国丝瓜或用来做丝瓜茎loofah洗澡的，不是食用的)</p>
+
+<p>海鲜类（sea food）：</p>
+
+<p>虾仁Peeled Prawns 龙虾lobster 小龙虾crayfish（退缩者） 蟹crab 蟹足crab claws 小虾（虾米）shrimp 对虾、大虾prawn （烤）鱿鱼（toast）squid 海参sea cucumber 扇贝scallop 鲍鱼sea-ear abalone 小贝肉cockles 牡蛎oyster 鱼鳞scale 海蜇jellyfish鳖 海龟turtle 蚬蛤clam 鲅鱼culter 鲳鱼butterfish 虾籽shrimp egg 鲢鱼 银鲤鱼chub silver carp 黄花鱼yellow croaker</p>
+
+<p>调料类（seasonings）：</p>
+
+<p>醋vinegar 酱油soy 盐salt 加碘盐iodized salt 糖sugar 白糖refined sugar 酱soy sauce 沙拉salad 辣椒hot（red）pepper 胡椒 （black）pepper 花椒wild pepper Chinese prickly ash powder 色拉油salad oil 调料fixing sauce seasoning 砂糖granulated sugar 红糖brown sugar 冰糖Rock Sugar 芝麻Sesame 芝麻酱Sesame paste 芝麻油Sesame oil 咖喱粉curry 番茄酱（汁）ketchup redeye 辣根horseradish 葱shallot （Spring onions） 姜ginger 蒜garlic 料酒cooking wine 蚝油oyster sauce 枸杞（枇杷,欧查果 ）medlar 八角aniseed 酵母粉yeast barm Yellow pepper 黄椒 肉桂cinnamon (在美国十分受欢迎，很多事物都有肉桂料) 黄油butter 香草精vanilla extract(甜点必备) 面粉flour 洋葱onion</p>
+
+<p>主食类（staple food）：</p>
+
+<p>三文治sandwich 米饭rice 粥congee （rice soup） 汤soup 饺子dumpling 面条noodle 比萨饼pizza 方便面instant noodle 香肠sausage 面包bread 黄油 （白塔油）butter 茶叶蛋Tea eggs 油菜rape 饼干cookies 咸菜（泡菜）pickle 馒头steamed bread 饼（蛋糕）cake 汉堡hamburger 火腿ham 奶酪cheese 馄饨皮wonton skin 高筋面粉Strong flour 小麦wheat 大麦barley 青稞highland barley 高粱broomcorn （kaoliang ）春卷Spring rolls 芋头Taro 山药yam 鱼翅shark fin 黄花daylily 松花蛋 皮蛋preserved eggs 春卷spring roll 肉馅饼minced pie 糙米Brown rice 玉米corn 馅儿stuffing 开胃菜appetizer 面粉flour 燕麦oat 白薯 甘薯sweet potato 牛排steak 里脊肉fillet 凉粉bean jelly 糯米 江米sticky rice 燕窝bird&#8217;s nest 粟Chinese corn 肉丸子meat balls 枳橙citrange 点心（中式）dim sum 淀粉starch 蛋挞egg tart</p>
+
+<p>干果类（dry fruits） ：</p>
+
+<p>腰果Cashew nuts 花生peanut 无花果fig 榛子filbert hazel 栗子chestnut 核桃walnut 杏仁almond 果脯preserved fruit 芋头taro 葡萄干raisin cordial 开心果pistachion 巴西果brazil nut 菱角,荸荠water chestnut (和国内食用法不同，做坚果食用)</p>
+
+<p>酒水类（beverage）：</p>
+
+<p>红酒red wine 白酒white wine 白兰地brandy 葡萄酒sherry 汽水(软饮料)soda （盐）汽水sparkling water 果汁juice 冰棒Ice-lolly 啤酒beer 酸奶yoghurt 伏特加酒vodka 鸡尾酒cocktail 豆奶soy milk 豆浆soybean milk 七喜 7 UP 麒麟（日本啤酒kirin） 凉开水cold boiled water 汉斯啤酒Hans beer 浓缩果汁concentrated juice 冰镇啤酒iced(chilled ) beer 札幌（日本啤酒）Sapporo 爱尔啤酒（美国）ale A级牛奶grand A milk 班图酒bantu beer 半干雪利dry sark 参水牛奶blue milk 日本粗茶bancha 生啤酒draft beer 白啤酒white beer 大麦酒barley-bree 咖啡伴侣coffee mate</p>
+
+<p>零食类（snack）:</p>
+
+<p>薄荷糖mint 薄脆饼干cracker 饼干biscuit 棒棒糖bonbon 茶tea（沏茶 make the tea） 话梅prune candied plum 锅巴rice crust 瓜子melon seed 冰棒（冰果）ice（frozen） sucker 冰淇凌ice cream 防腐剂preservative 圣代冰淇淋sundae 巧克力豆marble chocolate barley 布丁pudding</p>
+
+<p>与食品有关的词语（some words about food）:</p>
+
+<p>炸fired 炝quick boiled 烩braise（烩牛舌 braised ox tongue） 烤roast 饱嗝burp 饱了 饱的full stuffed 解渴quench thirst （形容食物变坏spoil spoilage） 防腐剂preservative 产品有效期expiration date （形容酒品好： a good strong brew 绝味酿 ）</p>
+
+<p>应各位要求补充的中式西式食物</p>
+
+<p>中式早點：</p>
+
+<p>烧饼Clay oven rolls 油条Fried bread stick 韭菜盒Fried leek dumplings 水饺Boiled dumplings 蒸饺Steamed dumplings 馒头Steamed buns 割包Steamed sandwich 饭团Rice and vegetable roll 蛋饼Egg cakes 皮蛋100-year egg 咸鸭蛋Salted duck egg 豆浆Soybean milk</p>
+
+<p>饭 类：</p>
+
+<p>稀饭Rice porridge 白饭Plain white rice 油饭Glutinous oil rice 糯米饭Glutinous rice 卤肉饭Braised pork rice  蛋炒饭Fried rice with egg 地瓜粥Sweet potato congee</p>
+
+<p>面 类：</p>
+
+<p>馄饨面Wonton noodles 刀削面Sliced noodles 麻辣面Spicy hot noodles 麻酱面Sesame paste noodles 鴨肉面Duck with noodles  鱔魚面Eel noodles 乌龙面Seafood noodles 榨菜肉丝面Pork , pickled mustard green noodles 牡蛎细面Oyster thin noodles 板条Flat noodles 米粉Rice noodles 炒米粉Fried rice noodles 冬粉Green bean noodle</p>
+
+<p>汤 类：</p>
+
+<p>鱼丸汤Fish ball soup 貢丸汤Meat ball soup 蛋花汤Egg &amp; vegetable soup 蛤蜊汤Clams soup 牡蛎汤Oyster soup 紫菜汤Seaweed soup 酸辣汤Sweet sour soup 馄饨汤Wonton soup 猪肠汤Pork intestine soup 肉羹汤Pork thick soup 鱿鱼汤Squid soup 花枝羹Squid thick soup</p>
+
+<p>中餐：</p>
+
+<p>bear&#8217;s paw熊掌 * of deer鹿脯 beche-de-mer; sea cucumber海参 sea sturgeon海鳝 salted jelly fish海蜇皮kelp,seaweed 海带 abalone鲍鱼shark fin鱼翅scallops干贝lobster龙虾 bird&#8217;s nest 燕窝 roast suckling pig 考乳猪pig&#8217;s knuckle 猪脚 boiled salted duck 盐水鸭 preserved meat腊肉 barbecued pork 叉烧 sausage 香肠 fried pork flakes 肉松 BAR-B-Q 烤肉meat diet 荤菜 vegetables 素菜 meat broth 肉羹 local dish 地方菜 Cantonese cuisine 广东菜 set meal 客饭 curry rice 咖喱饭fried rice 炒饭 plain rice 白饭 crispy rice 锅巴gruel, soft rice , porridge 粥 —noodles with gravy 打卤面plain noodle 阳春面 casserole 砂锅 chafing dish,fire pot火锅 meat bun肉包子shao-mai烧麦preserved bean curd 腐乳bean curd 豆腐fermented blank bean 豆豉 pickled cucumbers 酱瓜preserved egg 皮蛋 salted duck egg 咸鸭蛋 dried turnip 萝卜干</p>
+
+<p>西餐与日本料理：</p>
+
+<p>menu菜单 French cuisine法国菜 today&#8217;s special 今日特餐 chef&#8217;s special 主厨特餐 buffet 自助餐 fast food 快餐 specialty 招牌菜 continental cuisine 欧式西餐 aperitif 饭前酒 dim sum 点心 French fires炸薯条baked potato烘马铃薯 mashed potatoes马铃薯泥omelette 简蛋卷 pudding 布丁 pastries 甜点 pickled vegetables 泡菜 kimchi 韩国泡菜 crab meat 蟹肉 prawn 明虾 conch 海螺 escargots 田螺braised beef 炖牛肉 bacon 熏肉 poached egg 荷包蛋 sunny side up 煎一面荷包蛋 over 煎两面荷包蛋 fried egg 煎蛋over easy 煎半熟蛋 over hard 煎全熟蛋 scramble eggs 炒蛋boiled egg 煮蛋 stone fire pot 石头火锅 sashi 日本竹筷 sake 日本米酒miso shiru 味噌汤 roast meat 铁板烤肉 sashimi 生鱼片 butter 奶油</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/windows-perl-blast/">本地blast</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/02/windows-perl-blast/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><div /></p>
+
+<p><strong><span style="text-decoration: underline;">1.Blast程序下载和安装</span></strong>
+<a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/LATEST" target="_blank">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/LATEST</a>在该目录中选择需要的blast程序，下载.<br />
+windows用户: 双击，在该文件所在目录下会生成一系列文件。在c:windows下创建名为NCBI.ini的配置文件，用记事本写入：</p>
+
+<pre>[NCBI]
+Data ="pathdata"</pre>
+<p>（注意：path代表你电脑上blast的安装目录）</p>
+
+<p>Linux 用户:直接解压</p>
+
+<p><strong><span style="text-decoration: underline;">2.下载数据库
+</span></strong><a href="ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/">ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/</a>
+也可以用fasta文件创建自己的数据库</p>
+
+<p><strong><span style="text-decoration: underline;">3.格式化数据库
+</span></strong>windows用户: 进入cmd，使用cd /d 命令打开blast程序所在文件夹。<br />
+linux用户，也需要在终端内进入/blast/bin/ 文件夹, 也可使用export PATH=$PATH:/path/to/blast/bin/ 省去进入blast文件夹<br />
+输入：formatdb -i databasename -p F -o T<br />
+databasename表示自己选择的数据库（最好使用绝对路径）<br />
+-i input file 参数用于指定需要格式的数据库<br />
+-p type of file 用于指定文件类型，T 为蛋白质，F为核酸，默认为 T<br />
+-o parse options 用于指定是否解析序列ID并创建索引 T 为创建，F为不创建，默认为F。如果不用T，会提示[NULL_Caption] WARNING: &#8220;inputseq&#8221;: Could not find index files for database &#8220;databasename&#8221;<br />
+可以输入formatdb &#8211;help 来获取相关参数的解释和帮助。</p>
+
+<p><strong><span style="text-decoration: underline;">4.blastall</span></strong>
+windows用户: 进入cmd，使用cd /d 命令打开blast程序所在文件夹。<br />
+linux用户，也需要在终端内进入/blast/bin/ 文件夹。<br />
+输入：blastall -p blastn -d databasename -i inputfile -o outputfile<br />
+-p program name 为需要使用的程序名<br />
+blastn 为核酸序列对比搜索<br />
+blastp 为蛋白质序列对比搜索<br />
+blastx 为用被翻译的核酸序列在蛋白质数据库中搜索<br />
+tblastn 为 用蛋白质序列在 [核酸序列翻译后数据库] 中搜索<br />
+tblastx 为用翻译后的核酸序列 在 核酸序列翻译后数据库中搜索<br />
+可以输入blastall - 来获取相关参数的解释和帮助。<br />
+-d databasename 指定所使用的数据库名称<br />
+-i inputfile 待搜索的序列文件（最好使用绝对路径）<br />
+-o outputfile 指定保存结果的文件（最好使用绝对路径）</p>
+
+<p><strong>注：通过Perl 脚本实现本地化运行BLAST</strong></p>
+
+<figure class='code'><figcaption><span>local_blast.pl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl -w</span>
+</span><span class='line'><span class="nv">$formatdb</span> <span class="o">=</span> <span class="s">&quot;blastpath/formatdb&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$blastall</span><span class="o">=</span><span class="s">&quot;blastpath/blastall&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$database</span><span class="o">=</span><span class="s">&quot;database path&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$input</span><span class="o">=</span><span class="s">&quot;inputfile path&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$output</span><span class="o">=</span><span class="s">&quot;outputfile path&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$system_check</span><span class="o">=</span><span class="nb">system</span><span class="p">(</span><span class="s">&quot;$formatdb -i $database -p F -o T&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nv">$system_check</span><span class="o">=</span><span class="nb">system</span><span class="p">(</span><span class="s">&quot;$blastall -p blastn -d $database -i $input -o $output&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">#windows用户注意：路径中目录必须用“/”，而不是widows常用的“”;</span>
+</span><span class='line'><span class="c1">#前面所说的文件路径一律用“”。linux用户无视.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/synteny-relevant-links/">Synteny Relevant Links</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/02/synteny-relevant-links/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Copy from <a href="http://www.symapdb.org/docs/links.html" target="_blank">http://www.symapdb.org/docs/links.html</a></p>
+
+<p><strong>Contents:</strong>
+<ul>
+	<li>Information</li>
+	<li>On-line comparative sequenced genome databases</li>
+	<li>Synteny downloadable programs</li>
+	<li>A few multiple alignment programs</li>
+</ul>
+<a name="info"></a>
+<h3>Information</h3>
+<table border="1" cellpadding="5" width="95%">
+<tbody>
+<tr>
+<td><strong>Information</strong></td>
+<td><strong>Comments</strong></td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/Homology_(biology)" target="_blank">Homology</a></td>
+<td>Wiki</td>
+</tr>
+<tr>
+<td><a href="http://www.nature.com/nrg/journal/v5/n10/glossary/nrg1449.html#df11" target="_blank">Useful definitions</a></td>
+<td>Nature Reviews Genetics</td>
+</tr>
+<tr>
+<td><a href="http://en.wikipedia.org/wiki/List_of_sequence_alignment_softwaretarget=%22_blank%22" target="_blank">Alignment software</a></td>
+<td>Wiki</td>
+</tr>
+<tr>
+<td><a href="http://www.plants.usda.gov/" target="_blank">Plant database</a></td>
+<td>USDA</td>
+</tr>
+<tr>
+<td><a href="http://www.ncbi.nlm.nih.gov/sites/entrez?cmd=Search&amp;db=genomeprj&amp;term=%22Viridiplantae%22[Organism]" target="_blank">Plant genomes</a></td>
+<td>GenBanks</td>
+</tr>
+<tr>
+<td><a href="http://www.mobot.org/MOBOT/research/APweb/welcome.html" target="_blank">Angliosperm Phylogeny</a></td>
+<td>Missouri Botanical Garden</td>
+</tr>
+<tr>
+<td><a href="http://tolweb.org/" target="_blank">Tree of Life</a></td>
+<td>Collaborative effort to provide information about biodiversity</td>
+</tr>
+</tbody>
+</table>
+<a name="databases"></a>
+<h3>On-line comparative sequenced genomes databases</h3>
+<table border="1" cellpadding="5" width="95%">
+<tbody>
+<tr>
+<td><strong>Database</strong></td>
+<td><strong>Species;graphics;computation</strong></td>
+<td><strong>Publication</strong></td>
+</tr>
+<tr>
+<td><a href="http://www.phytozome.org/" target="_blank">Phytozome</a></td>
+<td>Plants; Genome browsers;</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1347408/?tool=pubmed" target="_blank">Hartmann et al. 2006</a></td>
+</tr>
+<tr>
+<td><a href="http://bioinformatics.psb.ugent.be/plaza/" target="_blank">PLAZA</a></td>
+<td>Plants; Gene region alignments, Dotplot, Chromosome alignment, Multiplicon; blastp &amp; OrthoMCL method</td>
+<td><a href="http://www.plantcell.org/cgi/content/full/21/12/3718" target="_blank">Proost et al. 2009</a><a></a></td>
+</tr>
+<tr>
+<td><a href="http://chibba.agtec.uga.edu/duplication" target="_blank">Plant Genome Duplication</a></td>
+<td>Plants; Dotplots and detail; blastp &amp; MCSCAN</td>
+<td><a href="http://genome.cshlp.org/content/18/12/1944.long" target="_blank">Tang et al. 2008</a><a></a></td>
+</tr>
+<tr>
+<td><a href="http://www.gramene.org/" target="_blank">Gramene</a></td>
+<td>Grasses; Ensembl;</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2238951/?tool=pubmed" target="_blank">Liang et al. 2008</a></td>
+</tr>
+<tr>
+<td><a href="http://www.comparative-legumes.org/" target="_blank">Legume Information System</a></td>
+<td>Legumes; CMap;</td>
+<td>&#8211;</td>
+</tr>
+<tr>
+<td><a href="http://www.jgi.doe.gov/genome-projects" target="_blank">JGI genome projects</a></td>
+<td>Various; Vista and links to Phytozome;</td>
+<td>&#8211;</td>
+</tr>
+<tr>
+<td><a href="http://genome.lbl.gov/vista/index.shtml" target="_blank">Vista</a></td>
+<td>Various; Java display of regions; Shuffle-LAGAN &amp; BLAT in pipeline, allows user input.</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC441596/?tool=pubmed" target="_blank">Frazer et al. 2004</a></td>
+</tr>
+<tr>
+<td><a href="http://narcisse.toulouse.inra.fr/" target="_blank">Narcisse</a></td>
+<td>Various; Dotplots, circos, chromosome-based gene alignment; blastp &amp; custom script.</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2238891/?tool=pubmed" target="_blank">Courcelle et al. 2008</a></td>
+</tr>
+<tr>
+<td><a href="http://cinteny.cchmc.org/" target="_blank">Cinteny</a></td>
+<td>Various; Genome/chromosome view; custom algorithm</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1821339/?tool=pubmed" target="_blank">Sinha &amp; Meller 2007</a></td>
+</tr>
+<tr>
+<td><a href="http://synteny.cnr.berkeley.edu/CoGe/" target="_blank">CoGe</a></td>
+<td>Various; Dotplot (SynMap) and ajax Genome Browser; DAGchainer, Blast</td>
+<td><a href="http://www3.interscience.wiley.com/journal/119410740/abstract?CRETRY=1&amp;SRETRY=0" target="_blank">Lyons &amp; Freeling 2008</a></td>
+</tr>
+<tr>
+<td><a href="http://genome.sfu.ca/orthoclusterdb/" target="_blank">OrthoClusterDB</a></td>
+<td>No plants; Genome chromosome view, link to Gbrowse; OrthoCluster, allows user input.</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2711082/?tool=pubmed" target="_blank">Ng et al. 2009</a></td>
+</tr>
+<tr>
+<td><a href="http://teleost.cs.uoregon.edu/synteny_db" target="_blank">The Synteny Database</a></td>
+<td>No plants; Various views; Blastp &amp; custom pipeline, emphasis on duplications and ohnologs.</td>
+<td><a href="http://genome.cshlp.org/content/19/8/1497.long" target="_blank">Catchen et al. 2009</a></td>
+</tr>
+<tr>
+<td><a href="http://www.ensembl.org/" target="_blank">Ensembl</a></td>
+<td>No plants; ComparaMart, DAS visualization; TreeBeST, Pecan.</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2686571/?tool=pubmed" target="_blank">Hubbard et al. 2009</a></td>
+</tr>
+<tr>
+<td><a href="http://genome.ucsc.edu/" target="_blank">UCSC Genome Browser</a></td>
+<td>No plants;</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2099589/?tool=pubmed" target="_blank">Miller et. al. 2007</a></td>
+</tr>
+<tr>
+<td><a href="http://inparanoid.sbc.su.se/">Inparanoid</a></td>
+<td>Various, produce lists of orthologs</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2808972/?tool=pubmed">Ostlund et al. 2009</a></td>
+</tr>
+<tr>
+<td><a href="http://www.cbil.upenn.edu/gene-family/">OrthoMCL</a></td>
+<td>Various, produce lists of orthologs</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/12952885?dopt=Citation">Li et al. 2003</a></td>
+</tr>
+</tbody>
+</table>
+<h3>Synteny Computation and/or Display Software</h3>
+<strong>Key</strong>: Perfect - conserved order in block, Imperfect - allows micro-rearrangments in block, Duplications - allows duplicated regions, Multiplicon - mutually homologous segment between &gt;2 genomes.
+<table border="1" cellpadding="5" width="95%">
+<tbody>
+<tr>
+<td><strong>Software</strong></td>
+<td><strong>Input</strong></td>
+<td><strong>Synteny</strong></td>
+<td><strong>Graphics</strong></td>
+<td><strong>Publication</strong></td>
+</tr>
+<tr>
+<td><a href="http://bioops.info/2011/03/i-adhore-detect-synteny-regions/" target="_blank">i-ADHoRe</a></td>
+<td>N gene lists</td>
+<td>Perfect, duplications, multiplicon</td>
+<td>Generates plots using Perl GD</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/12421767?dopt=Citation" target="_blank">Vandepoele et al. 2002</a> <a href="http://bioinformatics.oxfordjournals.org/content/24/1/127.long" target="_blank">Simmillion et al. 2007</a></td>
+</tr>
+<tr>
+<td><a href="http://users.soe.ucsc.edu/~kent/">AXTCHAIN</a></td>
+<td>BLASTZ alignments</td>
+<td></td>
+<td></td>
+<td><a href="http://www.pnas.org/content/100/20/11484.full">Kent et al. 2003</a></td>
+</tr>
+<tr>
+<td><a href="http://www.tc.umn.edu/~cann0010/Software.html">DiagHunter</a></td>
+<td>Similarity file</td>
+<td>Imperfect</td>
+<td><a href="http://www.atgc.org/GenoPix_2D_Plotter/GenoPix_2D_Plotter_Download.html" target="_blank">GenoPix</a> Tcl/Tk</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/14519203?dopt=Citation" target="_blank">Cannon et al. 2003</a></td>
+</tr>
+<tr>
+<td><a href="http://www-cse.ucsd.edu/groups/bioinformatics/GRIMM" target="_blank">GRIMM-synteny</a></td>
+<td>Similarity file</td>
+<td>Imperfect, breakpoints</td>
+<td>Web</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/11934753?dopt=Citation" target="_blank">Tessler 2002</a> and<a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC164646/?tool=pubmed" target="_blank">Pevzner and Tessler 2003</a></td>
+</tr>
+<tr>
+<td><a href="http://www.bio.unc.edu/faculty/vision/lab/FISH/" target="_blank">FISH</a></td>
+<td>Ordered marker file per contig and pairs files</td>
+<td>Imperfect</td>
+<td>no</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/12855440?dopt=Citation" target="_blank">Calabrese et al. 2003</a></td>
+</tr>
+<tr>
+<td><a href="http://dagchainer.sourceforge.net/" target="_blank">DAGchainer</a></td>
+<td>Gene pairs with chromosome positions</td>
+<td>Perfect</td>
+<td>Dot plot</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/15247098?dopt=Citation" target="_blank">Haas et al. 2004</a></td>
+</tr>
+<tr>
+<td><a href="http://colinear.cbi.pku.edu.cn/" target="_blank">ColinearScan</a></td>
+<td>Protein sequences with positions and pairs file</td>
+<td>Perfect, estimates gap parameters.</td>
+<td>no</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1626491/?tool=pubmed" target="_blank">Wang et al. 2006</a><a></a></td>
+</tr>
+<tr>
+<td><a href="http://osfinder.dna.bio.keio.ac.jp/" target="_blank">OSfinder</a></td>
+<td>Homologous markers with locations (provide scripts to generate this file from different sources)</td>
+<td>Perfect, estimates all parameters, no duplication</td>
+<td>PNG file of blocks and of dotplot</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/19188192?dopt=Citation" target="_blank">Hachiya et al. 2009</a></td>
+</tr>
+<tr>
+<td><a href="http://krono.act.uji.es/noticias/orthocluster-a-new-tool-for-mining-syntenic-blocks" target="_blank">OrthoCluster</a></td>
+<td>Imperfect</td>
+<td></td>
+<td></td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/19728289?dopt=Citation" target="_blank">Vergara &amp; CHen 2009</a></td>
+</tr>
+<tr>
+<td><a href="http://www.bioinformatics.org/cyntenator/wiki/">Cyntenator</a></td>
+<td>guided tree &amp; similarity files</td>
+<td>Conserved synteny between n genomes</td>
+<td>no</td>
+<td><a href="http://www.plosone.org/article/info:doi%2F10.1371%2Fjournal.pone.0008861" target="_blank">Rodelsperger &amp; Dieterich 2010</a></td>
+</tr>
+<tr>
+<td><a href="http://asap.ahabs.wisc.edu/mauve" target="_blank">Mauve</a></td>
+<td>Multiple sequences (small genomes or regions)</td>
+<td>Conserved, aligns multiple sequences, computes synteny &amp; breakpoints</td>
+<td>Java graphics &amp; manager</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/15231754?dopt=Citation" target="_blank">Darling et al. 2004</a></td>
+</tr>
+<tr>
+<td><a href="http://ews.uiuc.edu/~xuling/mcmusec/" target="_blank">MCMuSeC</a></td>
+<td>Homologs for multiple genomes &amp; phylogenetic tree</td>
+<td>Detects gene clusters</td>
+<td>no</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/19158161?dopt=Citation" target="_blank">Ling et al. 2009</a></td>
+</tr>
+<tr>
+<td><a href="http://chibba.agtec.uga.edu/duplication/mcscan/" target="_blank">MCscan</a><a></a></td>
+<td>blast &amp; gff file</td>
+<td>DAGchainer + consensus sequence builder</td>
+<td>no</td>
+<td><a href="http://genome.cshlp.org/content/18/12/1944.long" target="_blank">Tang et al. 2008</a><a></a></td>
+</tr>
+<tr>
+<td><a href="http://titus.bio.uci.edu/lineup/" target="_blank">LineUp</a></td>
+<td>Genetic maps</td>
+<td></td>
+<td>no</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/12695327?dopt=Citation" target="_blank">Hampson et al. 2003</a></td>
+</tr>
+<tr>
+<td><a href="http://www.ige.tohoku.ac.jp/joho/gmProject/gmdownload.html" target="_blank">GenomeMatcher</a></td>
+<td>BLAST, MUMmer</td>
+<td>no</td>
+<td>Dotplots and closeup (see<a href="http://www.ige.tohoku.ac.jp/joho/gmProject/gallery.html" target="_blank">gallery</a>)</td>
+<td><a href="http://www.biomedcentral.com/1471-2105/9/376" target="_blank">Ohtsubo et al. 2008</a></td>
+</tr>
+<tr>
+<td><a href="http://gmod.org/wiki/CMap" target="_blank">CMap</a><a></a></td>
+<td>Maps (genetic, FPC, sequence)</td>
+<td>no</td>
+<td>Perl/CGI (see<a href="http://gmod.org/wiki/CMap#Screenshots" target="_blank">screen shots</a>)</td>
+<td><a href="http://www.symapdb.org/docs/%3Ca" target="_blank">Youens-Clark et al. 2009</a></td>
+</tr>
+<tr>
+<td><a href="http://gmod.org/wiki/GBrowse_syn" target="_blank">GBrowse_syn</a><a></a></td>
+<td>Alignments</td>
+<td>no</td>
+<td>Perl/CGI GBrowse-based</td>
+<td>-</td>
+</tr>
+<tr>
+<td><a href="http://mkweb.bcgsc.ca/circos" target="_blank">Circos</a></td>
+<td>GFF files</td>
+<td>no</td>
+<td>Perl/CGI</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pubmed/19541911?dopt=Citation" target="_blank">Krzywinski et al. 2009</a></td>
+</tr>
+</tbody>
+</table>
+<h4>A few alignment programs</h4>
+<table border="1" cellpadding="5" width="95%">
+<tbody>
+<tr>
+<td><strong>Software</strong></td>
+<td><strong>Input</strong></td>
+<td><strong>Computation</strong></td>
+<td><strong>Graphics</strong></td>
+<td><strong>Publications</strong></td>
+</tr>
+<tr>
+<td><a href="http://mummer.sourceforge.net/">Mummer</a></td>
+<td>Genome sequence</td>
+<td>Anchors</td>
+<td>Java graphical interface</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;dopt=Citation&amp;list_uids=14759262">Kurtz et al. 2004</a></td>
+</tr>
+<tr>
+<td><a href="http://lagan.stanford.edu/lagan_web/index.shtml" target="_blank">LAGAN</a></td>
+<td>Genome Sequence</td>
+<td></td>
+<td>Vista</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC430967/?tool=pubmed" target="_blank">Brudno et al. 2007</a></td>
+</tr>
+<tr>
+<td><a href="http://www.lbl.gov/Tech-Transfer/techs/lbnl1690.html" target="_blank">AVID</a></td>
+<td>Genome sequence</td>
+<td>Aligns and orders</td>
+<td>Vista</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;dopt=Citation&amp;list_uids=12529311">Bray et al. 2003</a></td>
+</tr>
+<tr>
+<td><a href="http://genome.lbl.gov/vista/index.shtml" target="_blank">Vista</a></td>
+<td>Alignments</td>
+<td>LAGAN or AVID</td>
+<td>Java (see <a href="http://pipeline.lbl.gov/vgb2help.shtml" target="_blank">screenshot</a>)</td>
+<td><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC441596/?tool=pubmed" target="_blank">Frazer et al. 2004</a></td>
+</tr>
+</tbody>
+</table>
+<a name="details"></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/software-packages-for-next-generation-sequence-analysis-from-seqanswers-com/">Software Packages for Next Generation Sequence Analysis (From seqanswers.com)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/02/software-packages-for-next-generation-sequence-analysis-from-seqanswers-com/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Thank those guys on seqanswers.com</p>
+
+<p><span style="text-decoration:underline;"><strong>A reasonably thorough table of next-gen-seq software available in the commercial and public domain</strong></span></p>
+
+<p><strong>Integrated solutions</strong>
+* <a href="http://www.clcbio.com/index.php?id=1240" target="_blank">CLCbio Genomics Workbench</a> - <em>de novo</em> and reference assembly of Sanger, Roche FLX, Illumina, Helicos, and SOLiD data. Commercial next-gen-seq software that extends the CLCbio Main Workbench software. Includes SNP detection, CHiP-seq, browser and other features. Commercial. Windows, Mac OS X and Linux.<br />
+* <a href="http://g2.trac.bx.psu.edu/" target="_blank">Galaxy</a> - Galaxy = interactive and reproducible genomics. A job webportal.<br />
+* <a href="http://www.genomatix.de/products/index.html" target="_blank">Genomatix</a> - Integrated Solutions for Next Generation Sequencing data analysis.<br />
+* <a href="http://www.jmp.com/software/genomics/" target="_blank">JMP Genomics</a> - Next gen visualization and statistics tool from SAS. They are <a href="http://www.marketwatch.com/news/story/JMPR-Genomics-NCGR-Partnership-Foster/story.aspx?guid=%7B7AC9DE36-B6AA-4EDE-9CD5-633B29FE6154%7D" target="_blank">working with NCGR</a> to refine this tool and produce others.<br />
+* <a href="http://softgenetics.com/NextGENe.html" target="_blank">NextGENe</a> - <em>de novo</em> and reference assembly of Illumina, SOLiD and Roche FLX data. Uses a novel Condensation Assembly Tool approach where reads are joined via &#8220;anchors&#8221; into mini-contigs before assembly. Includes SNP detection, CHiP-seq, browser and other features. Commercial. Win or MacOS.<br />
+* <a href="http://www.dnastar.com/products/SMGA.php" target="_blank">SeqMan Genome Analyser</a> - Software for Next Generation sequence assembly of Illumina, Roche FLX and Sanger data integrating with Lasergene Sequence Analysis software for additional analysis and visualization capabilities. Can use a hybrid templated/de novo approach. Commercial. Win or Mac OS X.<br />
+* <a href="http://1001genomes.org/downloads/shore.html" target="_blank">SHORE</a> - SHORE, for Short Read, is a mapping and analysis pipeline for short DNA sequences produced on a Illumina Genome Analyzer. A suite created by the 1001 Genomes project. Source for POSIX.<br />
+* <a href="http://www.realtimegenomics.com/" target="_blank">SlimSearch</a> - Fledgling commercial product.</p>
+
+<p><strong>Align/Assemble to a reference</strong>
+* <a href="https://secure.genome.ucla.edu/index.php/BFAST" target="_blank">BFAST</a> - Blat-like Fast Accurate Search Tool. Written by Nils Homer, Stanley F. Nelson and Barry Merriman at UCLA.<br />
+* <a href="http://bowtie-bio.sourceforge.net/" target="_blank">Bowtie</a> - Ultrafast, memory-efficient short read aligner. It aligns short DNA sequences (reads) to the human genome at a rate of 25 million reads per hour on a typical workstation with 2 gigabytes of memory. Uses a Burrows-Wheeler-Transformed (BWT) index. <a href="http://seqanswers.com/forums/showthread.php?t=706" target="_blank">Link to discussion thread here</a>. Written by Ben Langmead and Cole Trapnell. Linux, Windows, and Mac OS X.<br />
+* <a href="http://maq.sourceforge.net/" target="_blank">BWA</a> - Heng Lee&#8217;s BWT Alignment program - a progression from Maq. BWA is a fast light-weighted tool that aligns short sequences to a sequence database, such as the human reference genome. By default, BWA finds an alignment within edit distance 2 to the query sequence. C++ source.<br />
+* <a href="http://bioinfo.cgrb.oregonstate.edu/docs/solexa/" target="_blank">ELAND</a> - Efficient Large-Scale Alignment of Nucleotide Databases. Whole genome alignments to a reference genome. Written by Illumina author Anthony J. Cox for the Solexa 1G machine.<br />
+* <a href="http://www.ebi.ac.uk/~guy/exonerate/" target="_blank">Exonerate</a> - Various forms of pairwise alignment (including Smith-Waterman-Gotoh) of DNA/protein against a reference. Authors are Guy St C Slater and Ewan Birney from EMBL. C for POSIX.<br />
+* <a href="http://1001genomes.org/downloads/genomemapper.html" target="_blank">GenomeMapper</a> - GenomeMapper is a short read mapping tool designed for accurate read alignments. It quickly aligns millions of reads either with ungapped or gapped alignments. A tool created by the 1001 Genomes project. Source for POSIX.<br />
+* <a href="http://www.gene.com/share/gmap/" target="_blank">GMAP</a> - GMAP (Genomic Mapping and Alignment Program) for mRNA and EST Sequences. Developed by Thomas Wu and Colin Watanabe at Genentec. C/Perl for Unix.<br />
+* <a href="http://dna.cs.byu.edu/gnumap/" target="_blank">gnumap</a> - The Genomic Next-generation Universal MAPper (gnumap) is a program designed to accurately map sequence data obtained from next-generation sequencing machines (specifically that of Solexa/Illumina) back to a genome of any size. It seeks to align reads from nonunique repeats using statistics. From authors at Brigham Young University. C source/Unix.<br />
+* <a href="http://sourceforge.net/projects/maq/" target="_blank">MAQ</a> - Mapping and Assembly with Qualities (renamed from MAPASS2). Particularly designed for Illumina with preliminary functions to handle ABI SOLiD data. Written by Heng Li from the Sanger Centre. Features extensive supporting tools for DIP/SNP detection, etc. C++ source<br />
+* <a href="http://bioinformatics.bc.edu/marthlab/Mosaik" target="_blank">MOSAIK</a> - MOSAIK produces gapped alignments using the Smith-Waterman algorithm. Features a number of support tools. Support for Roche FLX, Illumina, SOLiD, and Helicos. Written by Michael Strömberg at Boston College. Win/Linux/MacOSX<br />
+* <a href="http://mrfast.sourceforge.net/" target="_blank">MrFAST and MrsFAST</a> - mrFAST &amp; mrsFAST are designed to map short reads generated with the Illumina platform to reference genome assemblies; in a fast and memory-efficient manner. Robust to INDELs and MrsFAST has a bisulphite mode. Authors are from the University of Washington. C as source.<br />
+* <a href="http://mummer.sourceforge.net/" target="_blank">MUMmer</a> - MUMmer is a modular system for the rapid whole genome alignment of finished or draft sequence. Released as a package providing an efficient suffix tree library, seed-and-extend alignment, SNP detection, repeat detection, and visualization tools. Version 3.0 was developed by Stefan Kurtz, Adam Phillippy, Arthur L Delcher, Michael Smoot, Martin Shumway, Corina Antonescu and Steven L Salzberg - most of whom are at The Institute for Genomic Research in Maryland, USA. POSIX OS required.<br />
+* <a href="http://www.novocraft.com/index.html" target="_blank">Novocraft</a> - Tools for reference alignment of paired-end and single-end Illumina reads. Uses a Needleman-Wunsch algorithm. Can support Bis-Seq. Commercial. Available free for evaluation, educational use and for use on open not-for-profit projects. Requires Linux or Mac OS X.<br />
+* <a href="http://pass.cribi.unipd.it/cgi-bin/pass.pl" target="_blank">PASS</a> - It supports Illumina, SOLiD and Roche-FLX data formats and allows the user to modulate very finely the sensitivity of the alignments. Spaced seed intial filter, then NW dynamic algorithm to a SW(like) local alignment. Authors are from CRIBI in Italy. Win/Linux.<br />
+* <a href="http://rulai.cshl.edu/rmap/" target="_blank">RMAP</a> - Assembles 20 - 64 bp Illumina reads to a FASTA reference genome. By Andrew D. Smith and Zhenyu Xuan at CSHL. (published in BMC Bioinformatics). POSIX OS required.<br />
+* <a href="http://biogibbs.stanford.edu/~jiangh/SeqMap/" target="_blank">SeqMap</a> - Supports up to 5 or more bp mismatches/INDELs. Highly tunable. Written by Hui Jiang from the Wong lab at Stanford. Builds available for most OS&#8217;s.<br />
+* <a href="http://compbio.cs.toronto.edu/shrimp/" target="_blank">SHRiMP</a> - Assembles to a reference sequence. Developed with Applied Biosystem&#8217;s colourspace genomic representation in mind. Authors are Michael Brudno and Stephen Rumble at the University of Toronto. POSIX.<br />
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/slider" target="_blank"><span style="text-decoration:underline;">Slider</span></a>- An application for the Illumina Sequence Analyzer output that uses the probability files instead of the sequence files as an input for alignment to a reference sequence or a set of reference sequences. Authors are from BCGSC. Paper is <a href="http://seqanswers.com/forums/showthread.php?t=740" target="_blank">here</a>.<br />
+* <a href="http://soap.genomics.org.cn/" target="_blank">SOAP</a> - SOAP (Short Oligonucleotide Alignment Program). A program for efficient gapped and ungapped alignment of short oligonucleotides onto reference sequences. The updated version uses a BWT. Can call SNPs and INDELs. Author is Ruiqiang Li at the Beijing Genomics Institute. C++, POSIX.<br />
+* <a href="http://www.sanger.ac.uk/Software/analysis/SSAHA/" target="_blank">SSAHA</a> - SSAHA (Sequence Search and Alignment by Hashing Algorithm) is a tool for rapidly finding near exact matches in DNA or protein databases using a hash table. Developed at the Sanger Centre by Zemin Ning, Anthony Cox and James Mullikin. C++ for Linux/Alpha.<br />
+* <a href="http://socs.biology.gatech.edu/" target="_blank">SOCS</a> - Aligns SOLiD data. SOCS is built on an iterative variation of the Rabin-Karp string search algorithm, which uses hashing to reduce the set of possible matches, drastically increasing search speed. Authors are Ondov B, Varadarajan A, Passalacqua KD and Bergman NH.<br />
+* <a href="http://bibiserv.techfak.uni-bielefeld.de/swift/welcome.html" target="_blank">SWIFT</a> - The SWIFT suit is a software collection for fast index-based sequence comparison. It contains: SWIFT — fast local alignment search, guaranteeing to find epsilon-matches between two sequences. SWIFT BALSAM — a very fast program to find semiglobal non-gapped alignments based on k-mer seeds. Authors are Kim Rasmussen (SWIFT) and Wolfgang Gerlach (SWIFT BALSAM)<br />
+* <a href="http://synasite.mgrc.com.my:8080/sxog/NewSXOligoSearch.php" target="_blank">SXOligoSearch</a> - SXOligoSearch is a commercial platform offered by the Malaysian based <a href="http://www.synamatix.com/" target="_blank">Synamatix</a>. Will align Illumina reads against a range of Refseq RNA or NCBI genome builds for a number of organisms. Web Portal. OS independent.<br />
+* <a href="http://www.vmatch.de/" target="_blank">Vmatch</a> - A versatile software tool for efficiently solving large scale sequence matching tasks. Vmatch subsumes the software tool REPuter, but is much more general, with a very flexible user interface, and improved space and time requirements. Essentially a large string matching toolbox. POSIX.<br />
+* <a href="http://www.bioinformaticssolutions.com/products/zoom/index.php" target="_blank">Zoom</a> - ZOOM (Zillions Of Oligos Mapped) is designed to map millions of short reads, emerged by next-generation sequencing technology, back to the reference genomes, and carry out post-analysis. ZOOM is developed to be highly accurate, flexible, and user-friendly with speed being a critical priority. Commercial. Supports Illumina and SOLiD data.</p>
+
+<p><strong><em>De novo</em> Align/Assemble</strong>
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/abyss" target="_blank">ABySS</a> - Assembly By Short Sequences. ABySS is a de novo sequence assembler that is designed for very short reads. The single-processor version is useful for assembling genomes up to 40-50 Mbases in size. The parallel version is implemented using MPI and is capable of assembling larger genomes. By Simpson JT and others at the Canada&#8217;s Michael Smith Genome Sciences Centre. C++ as source.<br />
+* <a href="http://www.broad.mit.edu/science/programs/genome-biology/computational-rd/computational-research-and-development" target="_blank">ALLPATHS</a> - ALLPATHS: De novo assembly of whole-genome shotgun microreads. ALLPATHS is a whole genome shotgun assembler that can generate high quality assemblies from short reads. Assemblies are presented in a graph form that retains ambiguities, such as those arising from polymorphism, thereby providing information that has been absent from previous genome assemblies. Broad Institute.<br />
+* <a href="http://www.genomic.ch/edena.php" target="_blank">Edena</a> - Edena (Exact DE Novo Assembler) is an assembler dedicated to process the millions of very short reads produced by the Illumina Genome Analyzer. Edena is based on the traditional overlap layout paradigm. By D. Hernandez, P. François, L. Farinelli, M. Osteras, and J. Schrenzel. Linux/Win.<br />
+* <a href="http://euler-assembler.ucsd.edu/portal/" target="_blank">EULER-SR</a> - Short read <em>de novo</em> assembly. By Mark J. Chaisson and Pavel A. Pevzner from UCSD (published in Genome Research). Uses a de Bruijn graph approach.<br />
+* <a href="http://chevreux.org/projects_mira.html" target="_blank">MIRA2</a> - MIRA (Mimicking Intelligent Read Assembly) is able to perform true hybrid de-novo assemblies using reads gathered through 454 sequencing technology (GS20 or GS FLX). Compatible with 454, Solexa and Sanger data. Linux OS required.<br />
+* <a href="http://www.seqan.de/projects/consensus.html" target="_blank">SEQAN</a> - A Consistency-based Consensus Algorithm for De Novo and Reference-guided Sequence Assembly of Short Reads. By Tobias Rausch and others. C++, Linux/Win.<br />
+* <a href="http://sharcgs.molgen.mpg.de/" target="_blank">SHARCGS</a> - De novo assembly of short reads. Authors are Dohm JC, Lottaz C, Borodina T and Himmelbauer H. from the Max-Planck-Institute for Molecular Genetics.<br />
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/ssake" target="_blank">SSAKE</a> - The Short Sequence Assembly by K-mer search and 3&#8217; read Extension (SSAKE) is a genomics application for aggressively assembling millions of short nucleotide sequences by progressively searching for perfect 3&#8217;-most k-mers using a DNA prefix tree. Authors are René Warren, Granger Sutton, Steven Jones and Robert Holt from the Canada&#8217;s Michael Smith Genome Sciences Centre. Perl/Linux.<br />
+* <a href="http://soap.genomics.org.cn/" target="_blank">SOAPdenovo</a> - Part of the SOAP suite. See above.<br />
+* <a href="https://sourceforge.net/projects/vcake" target="_blank">VCAKE</a> - De novo assembly of short reads with robust error correction. An improvement on early versions of SSAKE.<br />
+* <a href="http://www.ebi.ac.uk/~zerbino/velvet/" target="_blank">Velvet</a> - Velvet is a de novo genomic assembler specially designed for short read sequencing technologies, such as Solexa or 454. Need about 20-25X coverage and paired reads. Developed by Daniel Zerbino and Ewan Birney at the European Bioinformatics Institute (EMBL-EBI).</p>
+
+<p><strong>SNP/Indel Discovery</strong>
+* <a href="http://www.sanger.ac.uk/Software/analysis/ssahaSNP/" target="_blank">ssahaSNP</a> - ssahaSNP is a polymorphism detection tool. It detects homozygous SNPs and indels by aligning shotgun reads to the finished genome sequence. Highly repetitive elements are filtered out by ignoring those kmer words with high occurrence numbers. More tuned for ABI Sanger reads. Developers are Adam Spargo and Zemin Ning from the Sanger Centre. Compaq Alpha, Linux-64, Linux-32, Solaris and Mac<br />
+* <a href="http://bioinformatics.bc.edu/marthlab/PbShort" target="_blank">PolyBayesShort</a> - A re-incarnation of the PolyBayes SNP discovery tool developed by Gabor Marth at Washington University. This version is specifically optimized for the analysis of large numbers (millions) of high-throughput next-generation sequencer reads, aligned to whole chromosomes of model organism or mammalian genomes. Developers at Boston College. Linux-64 and Linux-32.<br />
+* <a href="http://bioinformatics.bc.edu/marthlab/PyroBayes" target="_blank">PyroBayes</a> - PyroBayes is a novel base caller for pyrosequences from the 454 Life Sciences sequencing machines. It was designed to assign more accurate base quality estimates to the 454 pyrosequences. Developers at Boston College.</p>
+
+<p><strong>Genome Annotation/Genome Browser/Alignment Viewer/Assembly Database</strong>
+* <a href="http://bioinformatics.bc.edu/marthlab/EagleView" target="_blank">EagleView</a> - An information-rich genome assembler viewer. EagleView can display a dozen different types of information including base quality and flowgram signal. Developers at Boston College.<br />
+* <a href="http://www.sanger.ac.uk/Software/analysis/lookseq/" target="_blank">LookSeq</a> - LookSeq is a web-based application for alignment visualization, browsing and analysis of genome sequence data. LookSeq supports multiple sequencing technologies, alignment sources, and viewing modes; low or high-depth read pileups; and easy visualization of putative single nucleotide and structural variation. From the Sanger Centre.<br />
+* <a href="http://evolution.sysu.edu.cn/mapview/" target="_blank">MapView</a> - MapView: visualization of short reads alignment on desktop computer. From the Evolutionary Genomics Lab at Sun-Yat Sen University, China. Linux.<br />
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/sam" target="_blank">SAM</a> - Sequence Assembly Manager. Whole Genome Assembly (WGA) Management and Visualization Tool. It provides a generic platform for manipulating, analyzing and viewing WGA data, regardless of input type. Developers are Rene Warren, Yaron Butterfield, Asim Siddiqui and Steven Jones at Canada&#8217;s Michael Smith Genome Sciences Centre. MySQL backend and Perl-CGI web-based frontend/Linux.<br />
+* <a href="http://staden.sourceforge.net/" target="_blank">STADEN</a> - Includes GAP4. GAP5 once completed will handle next-gen sequencing data. A partially implemented test version is available <a href="https://sourceforge.net/project/show...kage_id=256957" target="_blank">here</a>
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/xmatchview" target="_blank">XMatchView</a> - A visual tool for analyzing cross_match alignments. Developed by Rene Warren and Steven Jones at Canada&#8217;s Michael Smith Genome Sciences Centre. Python/Win or Linux.</p>
+
+<p><strong>Counting e.g. CHiP-Seq, Bis-Seq, CNV-Seq</strong>
+* <a href="http://epigenomics.mcdb.ucla.edu/BS-Seq/download.html" target="_blank">BS-Seq</a> - The source code and data for the &#8220;Shotgun Bisulphite Sequencing of the Arabidopsis Genome Reveals DNA Methylation Patterning&#8221; Nature paper by <a href="http://www.ncbi.nlm.nih.gov/sites/entrez?holding=&amp;db=pubmed&amp;cmd=search&amp;term=Shotgun%20Bisulphite%20Sequencing" target="_blank">Cokus et al.</a> (Steve Jacobsen&#8217;s lab at UCLA). POSIX.<br />
+* <a href="http://woldlab.caltech.edu/chipseq/" target="_blank">CHiPSeq</a> - Program used by Johnson et al. (2007) in their Science publication<br />
+* <a href="http://tiger.dbs.nus.edu.sg/cnv-seq/" target="_blank">CNV-Seq</a> - CNV-seq, a new method to detect copy number variation using high-throughput sequencing. Chao Xie and Martti T Tammi at the National University of Singapore. Perl/R.<br />
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/findpeaks" target="_blank">FindPeaks</a> - perform analysis of ChIP-Seq experiments. It uses a naive algorithm for identifying regions of high coverage, which represent Chromatin Immunoprecipitation enrichment of sequence fragments, indicating the location of a bound protein of interest. Original algorithm by Matthew Bainbridge, in collaboration with Gordon Robertson. Current code and implementation by Anthony Fejes. Authors are from the Canada&#8217;s Michael Smith Genome Sciences Centre. JAVA/OS independent. Latest versions available as part of the <a href="http://vancouvershortr.sourceforge.net/" target="_blank">Vancouver Short Read Analysis Package</a>
+* <a href="http://liulab.dfci.harvard.edu/MACS/" target="_blank">MACS</a> - Model-based Analysis for ChIP-Seq. MACS empirically models the length of the sequenced ChIP fragments, which tends to be shorter than sonication or library construction size estimates, and uses it to improve the spatial resolution of predicted binding sites. MACS also uses a dynamic Poisson distribution to effectively capture local biases in the genome sequence, allowing for more sensitive and robust prediction. Written by Yong Zhang and Tao Liu from Xiaole Shirley Liu&#8217;s Lab.<br />
+* <a href="http://www.gersteinlab.org/proj/PeakSeq/" target="_blank">PeakSeq</a> - PeakSeq: Systematic Scoring of ChIP-Seq Experiments Relative to Controls. a two-pass approach for scoring ChIP-Seq data relative to controls. The first pass identifies putative binding sites and compensates for variation in the mappability of sequences across the genome. The second pass filters out sites that are not significantly enriched compared to the normalized input DNA and computes a precise enrichment and significance. By Rozowsky J et al. C/Perl.<br />
+* <a href="http://mendel.stanford.edu/sidowlab/downloads/quest/" target="_blank">QuEST</a> - Quantitative Enrichment of Sequence Tags. Sidow and Myers Labs at Stanford. From the 2008 publication <a href="http://www.ncbi.nlm.nih.gov/pubmed/18711362" target="_blank">Genome-wide analysis of transcription factor binding sites based on ChIP-Seq data</a>. (C++)<br />
+* <a href="http://dir.nhlbi.nih.gov/papers/lmi/epigenomes/sissrs/" target="_blank">SISSRs</a> - Site Identification from Short Sequence Reads. BED file input. Raja Jothi @ NIH. Perl.<br />
+**See also <a href="http://seqanswers.com/forums/showthread.php?t=742" target="_blank">this thread</a> for ChIP-Seq, until I get time to update this list.</p>
+
+<p><strong>Alternate Base Calling</strong>
+* <a href="http://svitsrv25.epfl.ch/R-doc/library/Rolexa/html/00Index.html" target="_blank">Rolexa</a> - R-based framework for base calling of Solexa data. Project <a href="http://www.biomedcentral.com/1471-2105/9/431" target="_blank">publication</a>
+* <a href="http://hannonlab.cshl.edu/Alta-Cyclic/main.html" target="_blank">Alta-cyclic</a> - &#8220;a novel Illumina Genome-Analyzer (Solexa) base caller&#8221;</p>
+
+<p><strong>Transcriptomics</strong>
+* <a href="http://woldlab.caltech.edu/rnaseq/" target="_blank">ERANGE</a> - Mapping and Quantifying Mammalian Transcriptomes by RNA-Seq. Supports Bowtie, BLAT and ELAND. From the Wold lab.<br />
+* <a href="http://www.genoscope.cns.fr/externe/gmorse/" target="_blank">G-Mo.R-Se</a> - G-Mo.R-Se is a method aimed at using RNA-Seq short reads to build de novo gene models. First, candidate exons are built directly from the positions of the reads mapped on the genome (without any ab initio assembly of the reads), and all the possible splice junctions between those exons are tested against unmapped reads. From CNS in France.<br />
+* <a href="http://evolution.sysu.edu.cn/english/software/mapnext.htm" target="_blank">MapNext</a> - MapNext: A software tool for spliced and unspliced alignments and SNP detection of short sequence reads. From the Evolutionary Genomics Lab at Sun-Yat Sen University, China.<br />
+* <a href="http://www.fml.tuebingen.mpg.de/raetsch/suppl/qpalma" target="_blank">QPalma</a> - Optimal Spliced Alignments of Short Sequence Reads. Authors are Fabio De Bona, Stephan Ossowski, Korbinian Schneeberger, and Gunnar Rätsch. A paper is <a href="http://www.fml.tuebingen.mpg.de/raetsch/suppl/qpalma/qpalma-final.pdf" target="_blank">available</a>.<br />
+* <a href="http://biogibbs.stanford.edu/~jiangh/rsat/" target="_blank">RSAT</a> - RSAT: RNA-Seq Analysis Tools. RNASAT is developed and maintained by Hui Jiang at Stanford University.<br />
+* <a href="http://tophat.cbcb.umd.edu/" target="_blank">TopHat</a> - TopHat is a fast splice junction mapper for RNA-Seq reads. It aligns RNA-Seq reads to mammalian-sized genomes using the ultra high-throughput short read aligner Bowtie, and then analyzes the mapping results to identify splice junctions between exons. TopHat is a collaborative effort between the University of Maryland and the University of California, Berkeley</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/perl-sorting-a-two-dimensional-array/">Perl: Sorting a Two-Dimensional Array</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/02/perl-sorting-a-two-dimensional-array/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>copy from <a href="http://www.devx.com/tips/Tip/5283">http://www.devx.com/tips/Tip/5283</a></p>
+
+<p>The Perl sort function is useful for alphabetically sorting lists. However, you can&#8217;t use it on a list of lists, because once a list starts listing other lists, they cease to be lists and become references instead. By sorting arrays within arrays, it&#8217;s possible to gain relational database-like control over data grids.<br />
+For example, let&#8217;s say I have a list of lists called @biglist. To print all of its unsorted contents, I would write:</p>
+
+<pre>for $list_ref ( @biglist ) {
+print "@$list_ref\n";
+}</pre>
+
+<p>To sort @biglist by the first element in each list, I would write:</p>
+
+<pre>for $list_ref ( sort { $a->[0] <=> $b->[0] } @biglist ) {
+print "@$list_ref\n";
+}</pre>
+
+<p>If the array element that you wish to sort is not numeric then change the &#8221; to &#8216;cmp&#8217; to sort asciibetically:</p>
+
+<pre>for $list_ref ( sort { $a->[0] cmp $b->[0] } @biglist ) {
+print "@$list_ref\n";
+}</pre>
+
+<p>also, should you wish to not sort in a case-sensitive way:</p>
+
+<pre>for $list_ref ( sort { lc($a->[0]) cmp lc($b->[0]) } @biglist ) {
+print "@$list_ref\n";
+}</pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/perl-clustalw/">用perl操作Clustalw进行多序列比对</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/02/perl-clustalw/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>#multiple sequences alignment (using Clustalw)</p>
+
+<p>Windows下用perl来操作ClustalW进行多序列比对并读取分析其结果<br />
+首先要下载clustalw
+<a href="ftp://ftp.ebi.ac.uk/pub/software/clustalw2/2.0.11/clustalw-2.0.11-win.msi">ftp://ftp.ebi.ac.uk/pub/software/clustalw2/2.0.11/clustalw-2.0.11-win.msi</a>
+安装后，可以直接运行，通过命令行格式的输入来进行多序列比对，具体实现过程可参见其帮助文件。<br />
+这里重点描述在windows下，如何用perl来操作ClustalW。<br />
+代码如下</p>
+
+<figure class='code'><figcaption><span>run_clustalw.pl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">my</span> <span class="nv">$aln</span><span class="o">=</span><span class="s">&#39;s1.fa&#39;</span><span class="p">;</span> <span class="c1">#需要输入的序列文件，多个序列必须在一个文件中。</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$clustalw</span> <span class="o">=</span> <span class="s">&quot;d:/ClustalW2/clustalw2&quot;</span><span class="p">;</span> <span class="c1">#clustalw的安装路径</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$tempoutput</span><span class="o">=</span><span class="s">&#39;aa.aln&#39;</span><span class="p">;</span> <span class="c1">#输出文件</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$system_check</span><span class="o">=</span><span class="nb">system</span><span class="p">(</span><span class="s">&quot;$clustalw -KTUPLE=2 -INFILE=$aln -OUTFILE=$tempoutput&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">#实现比对，具体参数设置可参考clustalw的帮助文件中的help 9</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/02/perl-bl2seq/">Windows下用perl操作bl2seq进行两序列比对</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/02/perl-bl2seq/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>run_bl2seq.pl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#bl2seq是本地blast中的一个程序，用于两序列比对。</span>
+</span><span class='line'><span class="c1"># Two sequence alignment (using bl2seq)</span>
+</span><span class='line'><span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SearchIO</span><span class="p">;</span>
+</span><span class='line'><span class="c1">#############################</span>
+</span><span class='line'><span class="c1">#两个输入文件</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq1</span><span class="o">=</span><span class="s">&quot;m16.fa&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq2</span><span class="o">=</span><span class="s">&quot;s11.fa&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="c1">#输出文件</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$tempoutput</span><span class="o">=</span><span class="s">&quot;bl2seq.txt&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="c1">#设置bl2seq的安装路径</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$bl2seq</span><span class="o">=</span><span class="s">&quot;D:/blast/bin/bl2seq&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="c1">#############################</span>
+</span><span class='line'><span class="nb">system</span><span class="p">(</span><span class="s">&quot;$bl2seq -i $seq1 -j $seq2 -p blastn -F F -o $tempoutput -g T&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">#具体参数设置可以参考blast的帮助文件</span>
+</span><span class='line'><span class="k">my</span> <span class="p">(</span><span class="nv">$result</span><span class="p">,</span><span class="nv">$hit</span><span class="p">,</span><span class="nv">$hsp</span><span class="p">);</span>
+</span><span class='line'><span class="c1">#实现对比对结果的分析和提取</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$in</span> <span class="o">=</span> <span class="k">new</span> <span class="nn">Bio::</span><span class="n">SearchIO</span><span class="p">(</span><span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;blast&#39;</span><span class="p">,</span>
+</span><span class='line'>                           <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;$tempoutput&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span> <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$in</span><span class="o">-&gt;</span><span class="n">next_result</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">while</span><span class="p">(</span> <span class="nv">$hit</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="n">next_hit</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">while</span><span class="p">(</span> <span class="nv">$hsp</span> <span class="o">=</span> <span class="nv">$hit</span><span class="o">-&gt;</span><span class="n">next_hsp</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span><span class="p">(</span> <span class="nv">$hsp</span><span class="o">-&gt;</span><span class="nb">length</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1500</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="c1">#这里可以做很多相关分析，具体可以参考Bio::SearchIO的document</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span> <span class="nv">$hsp</span><span class="o">-&gt;</span><span class="n">percent_identity</span> <span class="o">&gt;=</span> <span class="mi">80</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">print</span> <span class="s">&quot;Hit= &quot;</span><span class="p">,</span>       <span class="nv">$hit</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span>
+</span><span class='line'>                <span class="s">&quot;,Length=&quot;</span><span class="p">,</span>     <span class="nv">$hsp</span><span class="o">-&gt;</span><span class="nb">length</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">),</span>
+</span><span class='line'>                <span class="s">&quot;,Percent_id=&quot;</span><span class="p">,</span> <span class="nv">$hsp</span><span class="o">-&gt;</span><span class="n">percent_identity</span><span class="p">,</span> <span class="s">&quot;n&quot;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page13">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page11">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

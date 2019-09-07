@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ngs | Bioops]]></title>
+  <link href="http://bioops.info/category/ngs/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CFDA Approved BGI's Next Generation Sequencing Diagnostic Products]]></title>
+    <link href="http://bioops.info/2014/07/cfda-approved-bgis-next-generation-sequencing-diagnostic-products/"/>
+    <updated>2014-07-04T14:32:11+00:00</updated>
+    <id>http://bioops.info/2014/07/cfda-approved-bgis-next-generation-sequencing-diagnostic-products</id>
+    <content type="html"><![CDATA[<p>只收集一些相关资料，不评论。
+<a href="http://www.sda.gov.cn/WS01/CL0051/102239.html">http://www.sda.gov.cn/WS01/CL0051/102239.html</a>
+2014年6月30日，国家食品药品监督管理总局经审查，批准了BGISEQ-1000基因测序仪、BGISEQ-100基因测序仪和胎儿染色体非整倍体（T21、T18、T13）检测试剂盒（联合探针锚定连接测序法）、胎儿染色体非整倍体（T21、T18、T13）检测试剂盒（半导体测序法）医疗器械注册。这是国家食品药品监督管理总局首次批准注册的第二代基因测序诊断产品。</p>
+
+<p>该批产品可通过对孕周12周以上的高危孕妇外周血血浆中的游离基因片段进行基因测序，对胎儿染色体非整倍体疾病21-三体综合征、18-三体综合征和13-三体综合征进行无创产前检查和辅助诊断。</p>
+
+<p><a href="http://www.knowgene.com/question/677">http://www.knowgene.com/question/677</a>
+BGISEQ-1000基因测序仪基于Complete Genomics平台，配套的试剂盒为胎儿染色体非整倍体（T21、T18、T13）检测试剂盒（联合探针锚定连接测序法）。CG平台的特点是通量高，但周期较长，因此BGISEQ-1000应该主要会应用于全国范围内的样品，集中测序分析；</p>
+
+<p>BGISEQ-100基因测序仪基于Ion Torrent平台，配套的试剂盒为胎儿染色体非整倍体（T21、T18、T13）检测试剂盒（半导体测序法）。Ion Torrent平台的特点是测序周期短，可灵活部署，BGISEQ-100有很大可能会被部署到有一定业务量的大中型医院，就地采样、测序、分析并出具报告.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sequencing Cost (2013 Feb)]]></title>
+    <link href="http://bioops.info/2013/02/sequencing-cost/"/>
+    <updated>2013-02-20T00:00:00+00:00</updated>
+    <id>http://bioops.info/2013/02/sequencing-cost</id>
+    <content type="html"><![CDATA[<p><div><section>
+<h2><a href="http://www.nature.com/news/gene-sequencing-leaves-the-laboratory-1.12454" target="_blank">Reasonably priced genomes</a></h2>
+<section></section><section>Although no reports of big innovations in DNA sequencing are expected at a major conference this week, the current cost and capabilities of the technology now make medical applications worthwhile.</section>
+<table>
+<thead>
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Machine cost</th>
+<th scope="col">Read length (bases)</th>
+<th scope="col">Cost per megabase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Illumina MiSeq</td>
+<td>US$125,000</td>
+<td>500</td>
+<td>14–70 cents</td>
+</tr>
+<tr>
+<td>Illumina HiSeq</td>
+<td>US$690,000</td>
+<td>300</td>
+<td>4–5 cents</td>
+</tr>
+<tr>
+<td>PacBio RS</td>
+<td>US$695,000</td>
+<td>4,575</td>
+<td>$2–17</td>
+</tr>
+<tr>
+<td>Ion Torrent PGM</td>
+<td>US$49,000</td>
+<td>400</td>
+<td>60 cents–$5</td>
+</tr>
+<tr>
+<td>Ion Torrent Proton</td>
+<td>US$224,000</td>
+<td>200</td>
+<td>1–9 cents</td>
+</tr>
+</tbody>
+</table>
+Source: The companies; Travis Glenn</section></div></p>
+
+<p>
+<div></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Next-generation Sequencing Quality Control Tools]]></title>
+    <link href="http://bioops.info/2012/08/ngs-qc-tools/"/>
+    <updated>2012-08-21T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/08/ngs-qc-tools</id>
+    <content type="html"><![CDATA[<p><a href="http://hannonlab.cshl.edu/fastx_toolkit/" target="_blank"><strong>FASTX-Toolkit</strong></a>: The FASTX-Toolkit is a collection of command line tools for Short-Reads FASTA/ FASTQ files preprocessing, including:
+<ul>
+	<li>FASTQ-to-FASTA converter
+<div>Convert FASTQ files to FASTA files.</div></li>
+	<li>FASTQ Information
+<div>Chart Quality Statistics and Nucleotide Distribution</div></li>
+	<li>FASTQ/A Collapser
+<div>Collapsing identical sequences in a FASTQ/A file into a single sequence (while maintaining reads counts)</div></li>
+	<li>FASTQ/A Trimmer
+<div>Shortening reads in a FASTQ or FASTQ files (removing barcodes or noise).</div></li>
+	<li>FASTQ/A Renamer
+<div>Renames the sequence identifiers in FASTQ/A file.</div></li>
+	<li>FASTQ/A Clipper
+<div>Removing sequencing adapters / linkers</div></li>
+	<li>FASTQ/A Reverse-Complement
+<div>Producing the Reverse-complement of each sequence in a FASTQ/FASTA file.</div></li>
+	<li>FASTQ/A Barcode splitter
+<div>Splitting a FASTQ/FASTA files containning multiple samples</div></li>
+	<li>FASTA Formatter
+<div>changes the width of sequences line in a FASTA file</div></li>
+	<li>FASTA Nucleotide Changer
+<div>Convets FASTA sequences from/to RNA/DNA</div></li>
+	<li>FASTQ Quality Filter
+<div>Filters sequences based on quality</div></li>
+	<li>FASTQ Quality Trimmer
+<div>Trims (cuts) sequences based on quality</div></li>
+	<li>FASTQ Masker
+<div>Masks nucleotides with &#8216;N&#8217; (or other character) based on quality</div></li>
+</ul>
+<strong><a href="https://main.g2.bx.psu.edu/" target="_blank">Galaxy NGS QC and manipulation tools</a> (<a href="http://bioinformatics.oxfordjournals.org/content/26/14/1783.short" target="_blank">citation</a>)</strong>: Galaxy provides a tool suite that functions on all of the commonly known FASTQ format variants and provides a pipeline for manipulating next generation sequencing data taken from a sequencing machine all the way through the quality filtering steps.</p>
+
+<p><strong><a href="http://brainarray.mbni.med.umich.edu/brainarray/ngsqc/" target="_blank">NGSQC</a> (<a href="http://www.biomedcentral.com/1471-2164/11/S4/S7/" target="_blank">citation</a>)</strong>:The NGSQC pipeline provides a set of novel quality control measures for quickly detecting a wide variety of quality issues in deep sequencing data derived from two dimensional surfaces, regardless of the assay technology used. It also enables researchers to determine whether sequencing data related to their most interesting biological discoveries are caused by sequencing quality issues. NGSQC can help to ensure that biological conclusions, in particular those based on relatively rare sequences, are not caused by low quality sequencing.</p>
+
+<p><strong><a href="http://www.nipgr.res.in/ngsqctoolkit.html" target="_blank">NGS QC Toolkit</a> (<a href="http://www.plosone.org/article/info:doi/10.1371/journal.pone.0030619#abstract0" target="_blank">citation</a>)</strong>: A toolkit for the quality control (QC) of next generation sequencing (NGS) data. The toolkit comprises of user-friendly stand alone tools for quality control of the sequence data generated using Illumina and Roche 454 platforms with detailed results in the form of tables and graphs, and filtering of high-quality sequence data. It also includes few other tools, which are helpful in NGS data quality control and analysis.</p>
+
+<p><strong><a href="http://prinseq.sourceforge.net/" target="_blank">PRINSEQ</a> (<a href="http://bioinformatics.oxfordjournals.org/content/27/6/863" target="_blank">citation</a>)</strong>: PRINSEQ can be used to filter, reformat, or trim your genomic and metagenomic sequence data. It generates summary statistics of your sequences in graphical and tabular format. It is easily configurable and provides a user-friendly interface.</p>
+
+<p><strong><a href="http://solexaqa.sourceforge.net/" target="_blank">SolexaQA</a> (<a href="http://www.biomedcentral.com/1471-2105/11/485" target="_blank">citation</a>)</strong>: SolexaQA is a Perl-based software package that calculates quality statistics and creates visual representations of data quality from FASTQ files generated by Illumina second-generation sequencing technology (“Solexa”).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[String-graph Based Next-generation Sequencing Assemblers]]></title>
+    <link href="http://bioops.info/2012/05/string-graph-based-next-generation-sequencing-assembler/"/>
+    <updated>2012-05-08T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/05/string-graph-based-next-generation-sequencing-assembler</id>
+    <content type="html"><![CDATA[<p>Please read <a href="http://www.homolog.us/blogs/2012/02/11/string-graph-assembler/" target="_blank">this article</a> or the following linked papers for the reason using <a href="http://en.wikipedia.org/wiki/String_graph">string-graph</a> algorithm.</p>
+
+<p><a href="http://www.zbh.uni-hamburg.de/?id=349" target="_blank">Readjoiner</a> (<a href="http://www.biomedcentral.com/1471-2105/13/82/abstract" target="_blank">Gonnella and Kurtz 2012</a>) Readjoiner is a sequence assembler based on the assembly string graph framework (<a href="http://bioinformatics.oxfordjournals.org/content/21/suppl_2/ii79.abstract" target="_blank">Myers 2005</a>). It is faster and uses less memory than previous string graph-based assemblers.</p>
+
+<p><a href="https://github.com/jts/sga" target="_blank">SGA</a> (<a href="http://genome.cshlp.org/content/22/3/549" target="_blank">Simpson and Durbin 2012</a>) SGA is a de novo genome assembler based on the concept of string graphs. The major goal of SGA is to be very memory efficient, which is achieved by using a compressed representation of DNA sequence reads.</p>
+
+<p><a href="http://www.genomic.ch/edena.php" target="_blank">Edena</a> (<a href="http://genome.cshlp.org/content/18/5/802" target="_blank">Hernandez et al 2008</a>) The program is under development. Edena is based on the classical overlap layout assembly framework. In addition, it includes two features to improve the assembly of very short sequences: exact matching and detection of spurious reads.</p>
+
+<p><a href="http://www.engr.uconn.edu/~htd06001/assembler/" target="_blank">LEAP</a> (<a href="http://bioinformatics.oxfordjournals.org/content/27/14/1901.long" target="_blank">Dinh and Rajasekaran 2011</a>) LEAP incorporates a memory-efficient data structure for the overlap graph. This data structure requires only linear time to construct and and linear memory to store.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[上了火的RNA-seq]]></title>
+    <link href="http://bioops.info/2012/04/rna-studies-under-fire/"/>
+    <updated>2012-04-25T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/04/rna-studies-under-fire</id>
+    <content type="html"><![CDATA[<p>Nature News今天的一篇<a href="http://www.nature.com/news/rna-studies-under-fire-1.10502" target="_blank">评论</a>，说是现在越来越多人使用高通量的RNA数据，但忽略了统计分析的严密性和重要性，而得到了一些值得怀疑的结论。</p>
+
+<p>举了两个例子。</p>
+
+<p>第一个，2010年，Harvard的<a href="http://www.hms.harvard.edu/dms/neuroscience/fac/dulac.php">Catherine Dulac</a>和<a href="http://www.neuro.utah.edu/people/faculty/gregg.html">Christopher Gregg</a>在Science上发了一篇<a href="http://www.sciencemag.org/content/329/5992/643.long" target="_blank">文章</a>，号称1300多个小鼠的基因都属于烙印基因（<a href="http://en.wikipedia.org/wiki/Genomic_imprinting" target="_blank">imprinted gene</a>：两个等位基因，一个表达一个沉默）。但是Standford的Tomas Babak用同样的数据得到了不同的结果，并于2012年3月将其<a href="http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1002600" target="_blank">分析结果</a>发表在PLoS  Genetics上。Babak认为原文章所用的统计方法会有很高的假阳性。</p>
+
+<p>另一个例子就是前段时间引起巨大争议的关于RNA编辑广泛存在的那篇<a href="http://www.sciencemag.org/content/333/6038/53" target="_blank">文章</a>。后来又有多篇评论发表在Science上，强烈置疑该文章分析方法的可靠性。</p>
+
+<p>造成这种争议的原因是什么呢？</p>
+
+<p>一是RNA-Seq还没有像DNA测序一样建立起一个标准化的、错误偏差少的分析方法。</p>
+
+<p>二是这些文章一般号称在生物学上某一点上取得了突破，所以一般是搞生物的来审核，缺少搞数学和统计的人把关。</p>
+
+<p>个人觉得：很少有懂统计的人把生物理解的很清楚，更少有搞生物的把统计学好的，现在生物大数据时代，都需要补补课了。这两篇文章因为是有了“突破性的发现”，所以很多双眼睛在盯着，引起了怀疑。至于其他灌水文章，也不知道能有多少篇把统计方法用对的。这算是方法论的问题，只要提出来了，多探索一般能有个定论。更可怕的是搞科研的为了发文章，不惜更改数据或忽略负面数据，前几天不是有人<a href="http://online.wsj.com/article/SB10001424052970204571404577257513760102538.html" target="_blank">抱怨</a>癌症治疗的研究大部分都是在骗人么？！</p>
+
+<p>希望以后有所改观，至少做到自重吧。</p>
+]]></content>
+  </entry>
+  
+</feed>

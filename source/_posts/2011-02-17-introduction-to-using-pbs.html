@@ -1,0 +1,124 @@
+---
+layout: post
+title: Introduction to Using PBS
+categories:
+- Linux
+- OS
+tags:
+- Cluster
+- Linux
+- MPI
+- Note
+- PBS
+published: true
+comments: true
+---
+<p><h1>Introduction to Using PBS</h1>
+<h2>Introduction</h2>
+PBS is the batch scheduler running on the Sun Opteron cluster, midnight. Unlike interactive jobs, batch jobs are controlled via scripts. These scripts tell the system which resources a job will require and how long they will be needed.
+<h2>Command Interface to PBS</h2>
+<p>Frequently used PBS commands:</p>
+<pre>
+Command	Purpose
+qmap	Displays a grid of current jobs along with a list of queued and running jobs.(ARSC Only) (see qmap -h for additional job and queue information)
+qsub	Submits a job to the PBS batch scheduler. (see also man qsub)
+qdel	Removes a job from the queue. This includes all running, waiting, and held jobs.(also see man qdel)
+qstat -f	Displays more information about a particular job (also see man qstat)
+</pre>
+
+<h2>Queues</h2>
+A user's job is submitted to the queue with the "qsub" command. The user must be certain that the specific resources requested (such as number of nodes and walltime hours) are within the ranges offered by the particular queue.</p>
+
+<p>The command "qmap -r" shows the names of the queues available and their maximum walltimes. For a more verbose narrative on queue usage, type the following at the command prompt:</p>
+
+<pre>news queues</pre>
+<h2>Submitting Jobs to PBS</h2>
+The command:</p>
+
+<pre>qsub &lt;PBS script&gt;</pre>
+
+<p>will submit the given script for processing. The script contains information PBS needs to allocate resources for your job, directions for handling standard I/O streams, and instructions to run the job. Example scripts are included below .
+<h2>Running Interactive Jobs</h2>
+You are encouraged to use the PBS batch system, but may run interactive jobs as well. An interactive command is simply typed at the prompt in a terminal window. Standard error and standard output are printed to the terminal, redirected to a file, or piped to another command using appropriate Unix shell syntax.</p>
+
+<p>You can spawn an interactive job using the following command:</p>
+
+<pre>qsub -q debug -l select=1:ncpus=4:node_type=4way -I</pre>
+
+<p>Once your job is started, you may then run interactive commands on the compute node(s) PBS assigned to your session.
+<h2>Monitoring Queues and Requests</h2>
+The command:</p>
+
+<pre>qmap</pre>
+
+<p>will show all jobs currently running or queued on the system. For details about your particular jobs, issue the command:</p>
+
+<pre>qmap -u &lt;user name&gt;</pre>
+<h2>Canceling Queued and Running Jobs</h2>
+The command:</p>
+
+<pre>qdel &lt;job id&gt;</pre>
+
+<p>where &lt;job id&gt; is obtained from the "Job Id" field of the qmap output. This command will remove the job from the queue and terminate the job if it is running.
+<h2>Example Scripts</h2>
+
+<h3>Example #1 MPI using Sun Fire x2200 nodes (4way nodes)</h3>
+<pre>#!/bin/bash
+#PBS -q standard
+#PBS -l select=8:ncpus=4:node_type=4way
+#PBS -l walltime=08:00:00
+#PBS -j oe
+cd $PBS_O_WORKDIR
+</pre>
+<pre>mpirun -np 32 ./myprog</pre>
+<p>Here is a line-by-line breakdown of the keywords and their assigned values listed in this MPI script:</p>
+
+<p><code>#!/bin/bash</code> Specifies the shell to be used when executing the command portion of the script.</p>
+<p><code>#PBS -q standard</code> Specifies which queue the job will be submitted to.</p>
+<p><code>#PBS -l select=8:ncpus=4:node_type=4way</code> Requests 8 "blocks" of 4 processors on x2200 nodes. You can also think of this as requesting 8 nodes, running 4 tasks on each of those nodes, with the nodes being 4way (i.e. x2200) only.</p>
+<p><code>#PBS -l walltime=08:00:00</code> Requests that the running job be allowed to run for a maximum of 8 hours.</p>
+<p><code>#PBS -j oe</code> Joins the output and error files.</p>
+<p><code>cd $PBS_O_WORKDIR</code> Change to the initial working directory.</p>
+<p><code>mpirun -np 32 ./myprog</code> Runs the mpi program with a total of 32 tasks.</p>
+
+<h3>Example #2 OpenMP using Sun Fire x4600 nodes (16way nodes)</h3>
+<pre>#!/bin/bash
+#PBS -q standard
+#PBS -l select=1:ncpus=16:node_type=16way
+#PBS -l walltime=08:00:00
+#PBS -j oe
+cd $PBS_O_WORKDIR
+export OMP_NUM_THREADS=16
+export PSC_OMP_AFFINITY=TRUE</pre>
+
+<pre>./myprog</pre>
+<p>Here is a line-by-line breakdown of the example OpenMP script:</p>
+<p><code>#!/bin/bash</code> Specifies the shell to be used when executing the command portion of the script.</p>
+<p><code>#PBS -q standard</code> Specifies which queue the job will be submitted to. </p>
+<p><code>#PBS -l select=1:ncpus=16:node_type=16way</code> Requests 1"block" of 16 processors on an x4600 node. You can also think of this as requesting 1 node, running 16 tasks on the node, with the node being 16way.</p>
+<p><code>#PBS -l walltime=08:00:00</code> Requests that the running job be allowed to run for a maximum of 8 hours.</p>
+<p><code>#PBS -j oe</code> Joins the output and error files.</p>
+<p><code>cd $PBS_O_WORKDIR</code> Change to the initial working directory.<p>
+<p><code>export OMP_NUM_THREADS=16</code> Sets the number of OpenMP threads to 16.</p>
+<p><code>export PSC_OMP_AFFINITY=TRUE</code> Sets the threads to have CPU affinity.</p>
+<p><code>./myprog</code> Runs the OpenMP program.</p>
+<h3>Example #3 Data Staging Script</h3>
+<pre>#!/bin/bash
+#PBS -q transfer
+#PBS -l select=1:ncpus=1
+#PBS -l walltime=04:00:00
+#PBS -j oe
+cd $PBS_O_WORKDIR
+cp -r $ARCHIVE_HOME/mydataset/* . || exit 1</pre>
+
+<pre>qsub mpi_job.pbs</pre>
+<p>Here is a line-by-line breakdown of the keywords and their assigned values listed in this data staging script:</p>
+
+<p><code>#!/bin/bash</code> Specifies the shell to be used when executing the command portion of the script.</p>
+<p><code>#PBS -q transfer</code> Specifies to run a job in the transfer queue.</p>
+<p><code>#PBS -l select=1:ncpus=1</code> Requests 1 node to run 1 process in the queue. Data transfer jobs must be run in serial.</p>
+<p><code>#PBS -l walltime=04:00:00</code> Requests that the running job be allowed to run for a maximum of 4 hours.</p>
+<p><code>#PBS -j oe</code> Joins the output and error files.</p>
+<p><code>cd $PBS_O_WORKDIR</code> Change to the initial working directory.</p>
+<p><code>cp -r $ARCHIVE_HOME/mydataset/* . || exit 1</code> Copies files from long term storage to the current working directory.</p>
+<p><code>qsub mpi_job.pbs</code> Submits a new job to the batch scheduler once the data transfer is complete.</p>

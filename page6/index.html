@@ -1,0 +1,1865 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="最近New York Times对Eric Lander做了个访谈，并简单介绍了其个人经历。懒得翻译了，转发一篇和这篇通讯内容大致相同的中文文章。有兴趣的同学直接进New York Times 或wikipedia，看一看这个平民家庭出身、数学底蕴深厚的人类基因组计划领导人、Broad &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/page6">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/01/bioinformatist-eric-lander/">生物信息大牛Eric Lander</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-01-03T00:00:00+00:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/01/bioinformatist-eric-lander/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近New York Times对Eric Lander做了个访谈，并简单介绍了其个人经历。懒得翻译了，转发一篇和这篇通讯内容大致相同的中文文章。有兴趣的同学直接进<a href="http://www.nytimes.com/2012/01/03/science/broad-institute-director-finds-power-in-numbers.html" target="_blank">New York Times</a> 或<a href="http://en.wikipedia.org/wiki/Eric_Lander" target="_blank">wikipedia</a>，看一看这个平民家庭出身、数学底蕴深厚的人类基因组计划领导人、Broad Institute创始人以及奥巴马政府智囊团成员的人生经历和点滴思想。</p>
+
+<p>DOI: 10.3724/SP.J.1005.2010.00095</p>
+
+<p>遗传 HEREDITAS (Beijing) 2010年2月, 32(2): 95―96</p>
+
+<p>郭晓强<br />
+解放军白求恩军医学院生化教研室, 石家庄 050081</p>
+
+<p>1990年开始的人类基因组计划（Human Genome Project,HGP）是可以和“曼哈顿计划”、“阿波罗计划”相媲美的第三项宏大工程，但前者意义更为重大，一方面世界各国的科学家都参与其中，另一方面是对更复杂的体系——生命的本质问题进行深入探索，从本质上改变了前期分子生物学研究方法。尽管人类基因组计划由多名科学家参与，并且都做出重要贡献，但其中尤以埃里克•史蒂文•兰德尔（Eric Steven Lander）的作用最为关键。</p>
+
+<p>1957年2月3日，兰德尔出生于美国纽约市的布鲁克林。兰德尔从小就表现出数学的极大兴趣，并且绝对称的上一位数学天才，在全美数学测试中获得第二名，并在纽约一所高级中学获得最高等级毕业。17岁时，兰德尔就证明准完美数的存在，这项成就使他赢得威斯丁豪斯（Westinghouse）奖学金，同时来到著名的普林斯顿大学数学系学习，于1978年获得学士学位。毕业后，兰德尔又获得罗氏（Rhodes）奖学金而有机会进入牛津大学继续深造，于1981年又获得数学专业的哲学博士学位。兰德尔在数学方面可以说一帆风顺，按照常规他似乎会成为一名数学家，然而兰德尔的个性却改变了他的职业轨迹。兰德尔认为他虽然喜欢纯数学，但不愿意让数学作为自己终身的职业，这是因为钻研数学需要过一种僧侣般的生活，充满了孤独和清净的环境，而兰德尔自认为不是一个好的修道士，他更喜欢和周围人士进行大量交流，因此决定毕业后改到其他专业。</p>
+
+<p>1981年，兰德尔回到美国，通过普林斯顿大学一名教授的推荐最后在哈佛大学商学院获得一份工作，担任经济学助理教授。当时兰德尔对经济学几乎一无所知，然而这丝毫无法难倒兰德尔，他认为经济学比纯数学更适合自己，不足之处可通过业余时间自学来弥补。兰德尔自学能力惊人，并且在教学方面也具有超强的天赋，不久讲授经济学已得心应手并得到学生和同行的肯定，于1987年还升任为副教授。在经济学方面已有所见长的兰德尔在工作中却发现经济学也并非是他最爱，因此决定再次寻找其他方向。</p>
+
+<p>一个偶然的机会，兰德尔的弟弟亚瑟•兰德尔（Arthur Lander）给予了很大的帮助。亚瑟的专业是神经生物学，因此送给兰德尔一些数量神经生物学方面的论文。兰德尔虽然无法完全理解论文的含义，然而他已经被生命的巨大奥秘所深深吸引，尤其是对DNA神奇结构所着迷，这次他再一次改变了自己的专业。缺乏相关背静的兰德尔选修了哈佛大学的生物学课程，同时利用晚上时间在实验室进行果蝇基因的克隆工作。兰德尔半开玩笑的认为他是在大街拐角偶然听到并理解了生物学，当然坎布里奇大街上对生物学的讨论和对其他事物讨论一样司空见惯。</p>
+
+<p>在一次演讲中，兰德尔偶遇麻省理工的遗传学家伯特斯坦（David Botstein），伯特斯坦已开发出从基因组中寻找导致简单疾病发生的单一基因方法，而当时正打算处理更为复杂的问题，研究多基因的人类疾病如癌症、糖尿病、精神分裂症和肥胖等。兰德尔对此研究很感兴趣，因此演讲完毕后两人开始讨论如何将统计学应用于复杂人类疾病基因研究中，不久，他们就有了大致的答案。由于兰德尔对遗传学的兴趣因此于1984年加入麻省理工，第二年又成为怀特海生物医学研究所（Whitehead Institute for Biomedical Research）的一名员工，与伯特斯坦合作开始遗传学的研究。兰德尔当时仍是哈佛商学院的副教授，但幸运的是他获得了麦克阿瑟奖学金，使他能够在讲授经济学的同时还可以进行生命科学的实验。</p>
+
+<p>在麻省理工研究的早期，兰德尔将自己在数学和经济学方面的背景充分应用到生物学领域，这些尝试获得了极大的成功。兰德尔开始使用新方法来革新传统的生物学研究，如利用限制片段长度多态性来进行遗传位点的定位<sup>[1]</sup> ，并初步建立了人和小鼠的一系列简单图谱。兰德尔还开发新的方法从人类基因组中寻找有用信息，从而能够发现复杂人类疾病的基础。不久兰德尔意识到没有全面分析人类基因组的工具，这些单一方法将毫无用途。兰德尔成功制备了早期人类全基因组的遗传图谱，该图谱包括大约400个标记物。这项成就使兰德尔于1990年获得NIH人类基因组计划的首个资助，从而在怀特海研究所建立了怀特海研究所/麻省理工基因组研究中心（Whitehead Institute/MIT Center for Genome Research,WICGR），该中心成为人类基因组计划重要组成部分并发挥了关键性的作用。</p>
+
+<p>WICGR开发了基因组自动化的工具，并将这些工具应用于小鼠和人基因组更为密集的遗传图谱的制备，这些图谱是随后测序图谱的前身。人类物理图谱于1995年发表，包含15 000个标记物。在人类基因组计划之初，主要由公共基金支持，涉及多个国家的研究机构和科学家，他们的目的是将所获得成果为公众免费开放，但一直进展缓慢，主要原因是美国能源部的作用不太明晰和当时的测序技术不太成熟，但一家私人的塞拉昂基因组公司（Celera Genomics）进入大大改变了这个进程。塞拉昂的目的是将获得信息申请专利，并对这些信息的使用者收取费用（后来他们取消了这个政策，并将大量序列信息免费向公众开放），这对HGP是一个巨大的挑战。为了让数据尽可能向公众免费开放，因此加快了研究步伐。兰德尔力促科林斯（Francis Collins）首先完成基因组草图的绘制，从而与塞拉昂小组能够于2001年同时发表了这些结果。在整个测序过程中，兰德尔领导的WICGR完成了整个人类基因组测序工作的1/3，兰德尔本人还亲自完成60页论文大部分内容的书写，因此论文发表时兰德尔成为众多贡献者中的第一位<sup>[2]</sup> 。</p>
+
+<p>兰德尔还是生物信息学专家小组的核心成员，该小组负责对草图数据的分析工作。基因组测序仅仅是人类基因组的第一步，接下来如何分析并应用这些信息成为更关键的问题，但存在一系列障碍。人类基因组非常巨大，包含3×109 bp，但大小并不是唯一障碍，科学家还不得不将30亿的字母信息进行破译，从而理解每一对碱基的意义。人类基因组只代表一本生命之书，然而这本书还没有被完全读懂，解决这些难题的关键是寻找新的技术。兰德尔和同事在完成基因组前就已开发出新的生物化学程序、新的机器人技术和新的分析软件，这些工具成为基因组后期工作的基础，从而为更好理解基因组奠定了坚实的基础。兰德尔研究小组还于其他人合作于2002年发表了小鼠的基因组测序结果<sup>[3]</sup>，此外还在其他模式生物如酵母等测序方面做出了重大贡献。</p>
+
+<p>为了更好应用基因组所获得的大量信息，兰德尔联合麻省理工、哈佛大学、怀特海研究所及附属医院建立了Broad研究所，并亲自担任第一任主任。Broad研究所的主要目标是联合基础生物科学、临床医学和计算生物学的知识，努力使用人类基因组的信息以开发新的对抗疾病策略，为基因组医学创造工具，并将这些工具推广到整个生命科学界，从而加深对一些复杂疾病的理解和治疗。为了实现这个目标，兰德尔等研究了人类基因组中的变异状况，并和国际上其他研究小组共同努力，创造了包含2100万单核苷酸多态性（Single nucleotide polymorphisms,SNP）的文库。这些多态性可作为疾病敏感基因的筛选标志，使用SNP中被称为连锁失衡（linkage disequilibrium,LD）的路标来构建人类基因组图谱，该图谱对医学遗传学的发展具有重要作用，研究者可将给定的一种疾病与一种或多种基因建立联系而LD作为筛选标志则大大改善诊断程序。兰德尔根据基因表达及这些基因在化疗过程中反应而发展了癌症新的分类法<sup>[4]</sup>，这对理解癌症分子起源并设计更加有效的治疗方案具有十分重要的意义。</p>
+
+<p>兰德尔研究小组除了对人、小鼠和其他基因组的绘图和测序工作外还对其他生命科学问题进行深入研究，包括通过比较分析而理解基因组中编码的功能元件<sup>[5]</sup>；疾病及对药物反应的不同细胞信号等。尤为重要的是兰德尔小组还开发了新的基因组分析和实验室技术，这些技术已经应用于许多复杂性疾病如癌症、糖尿病、炎症和遗传性疾病的研究之中。 兰德尔由于在基因组和医学研究方面的巨大贡献而获得大量的荣誉。获得的重要奖励包括：麦克阿瑟基金会奖学金（1987年），普林斯顿大学威尔逊公共服务奖（1998年），内科学奖（2001年），Gairdner基金会国际奖（2002年），美国科学促进会公共科学和技术奖（2004年），当代最有影响力的百人之一（2004年）。除了卓越的科研才能外，兰德尔还是一位富有激情的教师，他在麻省理工讲授生物学通论达10年以上，因此于1992年赢得麻省理工纪念贝克本科生教学奖。兰德尔还为科学家和普通民众介绍遗传学的医学及社会应用，特别是2000年还在白宫做了新千年演讲。兰德尔1997年当选美国科学院院士（40岁），1999年当选美国医学院院士，此外还是美国艺术和科学院院士和美国科学促进会会员。兰德尔还是一些政府组织、学术机构、科学团体和商业公司的顾问，如千年医药公司（Millennium Pharmaceuticals）和无限医药公司（Infinity Pharmaceuticals）的首席科学顾问和主任之一。兰德尔已在许多顶尖杂志上发表重要的研究论文达200多篇，涵盖数学、经济学和生物学等多个领域。兰德尔的工作经历也像他试图破译的DNA结构一样，呈现螺旋样结构，从数学到经济学最终到现在的生命科学，是当代罕见的科学天才之一。兰德尔被认为是诺贝尔奖最强有力的竞争者之一，而随着基因组计划及相关研究重要性的体现，相信这种预测很快就会实现。</p>
+
+<p><strong><span style="font-size: small;">参考文献：</span></strong><strong><span style="font-size: medium;"> </span></strong></p>
+
+<p><strong><span style="font-size: medium;">
+</span></strong>[1] Lander ES,Botstein D. Strategies for studying heterogeneous genetic traits in humans by using a linkage map of  restriction fragment length polymorphisms.Proc Natl Acad Sci USA,1986,83(19):7353-7357.<br />
+[2] International Human Genome Sequencing Consortium: Lander ES,et al.Initial sequencing and analysis of the human genome.Nature,2001,409(6822):860-921.<br />
+[3] Waterston RH,Lindblad-Toh K,Birney E,et al.Mouse Genome Sequencing Consortium. Initial sequencing and comparative analysis of the mouse genome.Nature,2002, 420(6915):520-562.<br />
+[4] Ramaswamy S,Ross KN,Lander ES, Golub TR.A molecular signature of metastasis in primary solid tumors.Nat Genet,2003,33(1):49-54.<br />
+[5] Kellis M,Patterson N,Endrizzi M,Birren B,Lander ES.Sequencing and comparison of yeast species to identify genes and regulatory elements.Nature,2003,423:241-254.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/linux-vi-configure/">Vi编辑器的属性设置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-25T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/linux-vi-configure/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">在当前用户目录下用vi新建并打开.vimrc文件
+
+vi ~/.vimrc
+
+<pre>" 在文件中写入以下设置
+
+" 设置显示行号
+set nu
+
+" 设置tab的长度为4
+set tabstop=4 
+
+" 打开状态栏标尺
+set ruler
+
+" 突出当前行
+set cursorline
+
+" 自动语法高亮
+syntax on
+</pre>
+
+保存退出后即可生效
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/bioperl-howto-local-blast/">利用Biperl进行本地blast（Bioperl HOWTO翻译10）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-22T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/bioperl-howto-local-blast/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><h3>BLAST</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#BLAST" target="_blank">英文原文</a></p>
+
+<p>（译者注：可以先参考这两篇文章：1）<a href="http://bioops.info/2011/02/windows-perl-blast/" target="_blank">本地blast</a>   2）<a href="http://bioops.info/2011/08/parse-blast/" target="_blank">perl脚本提取BLAST结果中的信息【以tblastn为例】</a> ）</p>
+
+<p>bioperl有很多序列分析软件的接口，这意味着可以用bioperl来运行其他序列分析程序，更确切地说，可以提取程序运行结果并进行分析。在这里让我们来用最常用的序列分析软件，BLAST，作举例说明。首先要获取并安装<a href="http://www.ncbi.nlm.nih.gov/blast/" target="_blank">BLAST</a> (<a href="ftp://ftp.ncbi.nlm.nih.gov/blast/" target="_blank">ftp</a>)。（译者注：BLAST+和BLAST有很大的不同，此文默认使用的是BLAST。）然后用formatdb将序列文件索引并生成的一个叫“db.fa”的数据库文件，然后再看下面的代码。</p>
+
+<p>和前面一样，我们要用一个模块，这次是<a title="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" href="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" rel="nofollow">Bio::Tools::Run::StandAloneBlast</a>。先创建一个BLAST对象，并用new()方法设定blastall的运行参数，然后以一个序列对象作为输入。程序运行后将结果输入到另一个“report”对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::Tools::Run::</span><span class="n">StandAloneBlast</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$blast_obj</span> <span class="o">=</span> <span class="nn">Bio::Tools::Run::</span><span class="n">StandAloneBlast</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">program</span>  <span class="o">=&gt;</span> <span class="s">&#39;blastn&#39;</span><span class="p">,</span>
+</span><span class='line'>                                                   <span class="o">-</span><span class="n">database</span> <span class="o">=&gt;</span> <span class="s">&#39;db.fa&#39;</span><span class="p">));</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">id</span>  <span class="o">=&gt;</span><span class="s">&quot;test query&quot;</span><span class="p">,</span>
+</span><span class='line'>                         <span class="o">-</span><span class="n">seq</span> <span class="o">=&gt;</span><span class="s">&quot;TTTAAATATATTTTGAAGTATAGATTATATGTT&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nv">$report_obj</span> <span class="o">=</span> <span class="nv">$blast_obj</span><span class="o">-&gt;</span><span class="n">blastall</span><span class="p">(</span><span class="nv">$seq_obj</span><span class="p">);</span>
+</span><span class='line'><span class="nv">$result_obj</span> <span class="o">=</span> <span class="nv">$report_obj</span><span class="o">-&gt;</span><span class="n">next_result</span><span class="p">;</span>
+</span><span class='line'><span class="k">print</span> <span class="nv">$result_obj</span><span class="o">-&gt;</span><span class="n">num_hits</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>blastall()方法是核心，运行BLAST并提取运行结果。blastall生成的结果是一个“report”对象。利用这个对象，可以按照自己的需求访问或输出结果中的数据。report对象（$report_obj）和result对象（$result_obj）都来自SearchIO模块。后面的<a title="HOWTO:SearchIO" href="http://www.bioperl.org/wiki/HOWTO:SearchIO">SearchIO HOWTO</a>会更详细的介绍如何从这些对象中提取分析数据。</p>
+
+<p>这里给出一个用SearchIO从BLAST结果文件中提取所需结果的例子。（译者注：这里是先单独运行BLAST并生成一个结果文件，然后使用SearchIO从结果文件创建一个report对象，而上面例子是用bioperl运行BLAST后获取一个report对象。）</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SearchIO</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$report_obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nn">Bio::</span><span class="n">SearchIO</span><span class="p">(</span><span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;blast&#39;</span><span class="p">,</span>
+</span><span class='line'>                                  <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&#39;report.bls&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span> <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$report_obj</span><span class="o">-&gt;</span><span class="n">next_result</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">while</span><span class="p">(</span> <span class="nv">$hit</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="n">next_hit</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">while</span><span class="p">(</span> <span class="nv">$hsp</span> <span class="o">=</span> <span class="nv">$hit</span><span class="o">-&gt;</span><span class="n">next_hsp</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>         <span class="k">if</span> <span class="p">(</span> <span class="nv">$hsp</span><span class="o">-&gt;</span><span class="n">percent_identity</span> <span class="o">&gt;</span> <span class="mi">75</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>           <span class="k">print</span> <span class="s">&quot;Hit\t&quot;</span><span class="p">,</span> <span class="nv">$hit</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">,</span>
+</span><span class='line'>                   <span class="s">&quot;Length\t&quot;</span><span class="p">,</span> <span class="nv">$hsp</span><span class="o">-&gt;</span><span class="nb">length</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">),</span>
+</span><span class='line'>                   <span class="s">&quot;\n&quot;</span><span class="p">,</span> <span class="s">&quot;Percent_id\t&quot;</span><span class="p">,</span> <span class="nv">$hsp</span><span class="o">-&gt;</span><span class="n">percent_identity</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'>         <span class="p">}</span>
+</span><span class='line'>       <span class="p">}</span>
+</span><span class='line'>     <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>此代码是提取大于75%一致性的HSP的信息。</p>
+
+<p>有时候使用<a title="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" href="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" rel="nofollow">Bio::Tools::Run::StandAloneBlast</a>的时候会出现一些错误。（译者注：后面的就不翻译了，主要是说使用bioperl调用BLAST等其他程序时会有可能出错之类。我的经验是，<a title="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" href="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" rel="nofollow">Bio::Tools::Run::StandAloneBlast</a>只适用于UNIX/LINUX系统下能直接在终端运行BLAST相关命令的情况（复制相关程序到/usr/bin/或设定PATH profile）。Windows下没成功经验，有兴趣的自己搜一下。建议不用Bioperl调用外部程序，可如上面第二个例子，先用blast生成结果，然后再用bioperl提取结果中想要的部分。）</p>
+
+<p>Sometimes you&#8217;ll see errors when you try to use <a title="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" href="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" rel="nofollow">Bio::Tools::Run::StandAloneBlast</a> that have nothing to do with Bioperl. Make sure that <a title="wp:BLAST" href="http://en.wikipedia.org/wiki/BLAST">BLAST</a> is set up properly and running before you attempt to script it using <a title="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" href="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" rel="nofollow">Bio::Tools::Run::StandAloneBlast</a>. There are some notes on setting up BLAST in the <a title="http://bioperl.open-bio.org/SRC/bioperl-live/INSTALL" href="http://bioperl.open-bio.org/SRC/bioperl-live/INSTALL" rel="nofollow">INSTALL</a> file.</p>
+
+<p>Bioperl enables you to run a wide variety of bioinformatics programs but in order to do so, in most cases, you will need to install the accessory bioperl-run package. In addition there is no guarantee that there is a corresponding parser for the program that you wish to run, but parsers have been built for the most popular programs. You can find the bioperl-run package on the download page.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/bioperl-howto-translating/">利用Bioperl将编码序列翻译成蛋白质（Bioperl HOWTO翻译8）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-20T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/bioperl-howto-translating/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><h3>翻译</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Translating" target="_blank">英文原文</a></p>
+
+<p>在生物信息学中翻译的概念有两种，一是将任意核苷酸序列从头到尾顺次翻译；二是将真实的编码序列，如mRNA或cDNA，翻译成相应的氨基酸序列。Bioperl都可处理。</p>
+
+<p>任何alphabet值是‘dna’或‘rna’的序列对象都可以用translate方法来返回一个蛋白质序列对象，例如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$my_seq_object</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>所有的密码子都会被翻译，包括那些起始密码子和终止密码子。例如 <strong>ttttttatgccctaggggg</strong>会被翻译成<strong>FFMP*G。</strong></p>
+
+<p>另外，可以设定一些参数来改变translate()方法的输出内容。例如，可以设定终止密码子的符号（缺省是*），以及未知氨基酸的符号（缺省是X）。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$my_seq_object</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">terminator</span> <span class="o">=&gt;</span> <span class="s">&#39;-&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$my_seq_object</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">unknown</span> <span class="o">=&gt;</span> <span class="s">&#39;_&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>也可以设定翻译起始位置（译者注：也称阅读框；一个序列有六个阅读框，分别从第一、二和三个核苷酸，反向互补的第一、二和三个核苷酸开始翻译。缺省是翻译的第一个阅读框）。例如，可以从第二个核苷酸开始翻译（译者注：也可以说是第二个阅读框）：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$my_seq_object</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">frame</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>如果要进行一条完整编码序列的翻译，translate()需要进行更多的检查。详细来说，translate()需要确定开放阅读框的起始子和终止子位置正好是序列的起始和终止；并且序列中间没有终止子；如果不是常见的起始子，translate()会将其转换为甲硫氨酸（M）。需要设定&#8221;complete&#8221; 为1，如</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$my_seq_object</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">complete</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>如果上面所说的完整编码序列的条件不满足，会给出警告信息。通过设定&#8221;throw&#8221; 为1，程序会在遇到此情况时终止执行，而不只仅是只给出警告信息而继续执行后面的代码。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$my_seq_object</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">complete</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>                                      <span class="o">-</span><span class="n">throw</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>codontable_id可用于设定不同的遗传密码表。现在有16种不同的遗传密码表包括 &#8217;Standard&#8217;, &#8216;Vertebrate Mitochondrial&#8217;, &#8216;Bacterial&#8217;, &#8216;Alternative Yeast Nuclear&#8217; and &#8216;Ciliate, Dasycladacean and Hexamita Nuclear&#8217;。详见<a title="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" href="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" rel="nofollow" target="_blank">Bio::Tools::CodonTable</a>。例如，要翻译线粒体DNA：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$seq_obj</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">codontable_id</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>也可以自己创建一个特殊的遗传密码表，详见<a title="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" href="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" rel="nofollow" target="_blank">Bio::Tools::CodonTable</a>查看密码表格式，如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::Tools::</span><span class="n">CodonTable</span><span class="p">;</span>
+</span><span class='line'><span class="nv">@custom_table</span> <span class="o">=</span>
+</span><span class='line'>    <span class="p">(</span> <span class="s">&#39;test1&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="s">&#39;FFLLSSSSYY**CC*WLLLL**PPHHQQR*RRIIIFT*TT*NKKSSRRV*VVAA*ADDEE*GGG&#39;</span>
+</span><span class='line'>    <span class="p">);</span>
+</span><span class='line'><span class="nv">$codon_table</span> <span class="o">=</span> <span class="nn">Bio::Tools::</span><span class="n">CodonTable</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$id</span> <span class="o">=</span> <span class="nv">$codon_table</span><span class="o">-&gt;</span><span class="n">add_table</span><span class="p">(</span><span class="nv">@custom_table</span><span class="p">);</span>
+</span><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$my_seq_object</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">codontable_id</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>translate()也可以找出开放阅读框，默认从第一个找到的起始子开始翻译。如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$my_seq_object</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">orf</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>大部分遗传密码表中，包括NCBI中的默认设定，AUG都是起始子。可设定AUG为唯一的起始子，如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$my_seq_object</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">orf</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>                                      <span class="o">-</span><span class="n">start</span> <span class="o">=&gt;</span> <span class="s">&quot;atg&quot;</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>-start参数只有在orf设定为1的情况下才有效。</p>
+
+<p>最后一个要说的是，默认translate()会将终止子翻译成一个特殊的符号，如*，也可通过-terminator自行设定。但是，当-complete设定为1的时候，这个特殊符号会被去掉，如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$prot_obj</span> <span class="o">=</span> <span class="nv">$my_seq_object</span><span class="o">-&gt;</span><span class="n">translate</span><span class="p">(</span><span class="o">-</span><span class="n">orf</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>                                      <span class="o">-</span><span class="n">complete</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>序列<strong>tttttatgccctaggggg</strong>会被翻译成<strong>MP</strong>，而不是<strong>MP*</strong>。</p>
+
+<p>详见<a title="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" href="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" rel="nofollow" target="_blank">Bio::Tools::CodonTable</a>和<a title="http://search.cpan.org/perldoc?Bio::PrimarySeqI" href="http://search.cpan.org/perldoc?Bio::PrimarySeqI" rel="nofollow" target="_blank">Bio::PrimarySeqI</a>，查看更多的关于翻译的信息。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/bioperl-howto-statistics/">利用Biperl获取序列基本统计信息（Bioperl HOWTO翻译9）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-20T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/bioperl-howto-statistics/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><h3>获取序列基本统计信息</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Obtaining_basic_sequence_statistics" target="_blank">英文原文</a></p>
+
+<p>除了前面讲的可通过序列对象的不同方法来获取序列文件中已有的序列信息，也可以利用bioperl获取序列的其他一些信息。例如，SeqStats对象可以获取序列的分子质量，单个氨基酸或核苷酸频率，核苷酸序列所包括的密码子频率，等等。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::Tools::</span><span class="n">SeqStats</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seq_stats</span>  <span class="o">=</span> <span class="nn">Bio::Tools::</span><span class="n">SeqStats</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="nv">$seqobj</span><span class="p">);</span>
+</span><span class='line'><span class="nv">$weight</span> <span class="o">=</span> <span class="nv">$seq_stats</span><span class="o">-&gt;</span><span class="n">get_mol_wt</span><span class="p">();</span>
+</span><span class='line'><span class="nv">$monomer_ref</span> <span class="o">=</span> <span class="nv">$seq_stats</span><span class="o">-&gt;</span><span class="n">count_monomers</span><span class="p">();</span>
+</span><span class='line'><span class="nv">$codon_ref</span> <span class="o">=</span> <span class="nv">$seq_stats</span><span class="o">-&gt;</span><span class="n">count_codons</span><span class="p">();</span>  <span class="c1"># for nucleic acid sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>注：有些序列包含一些有歧义的code，get_mol_wt()会返回两个数组，一个是最大的分子质量，一个是最小的分子质量。</p>
+
+<p>SeqWords对象可以统计氨基酸或核苷酸片段的频率。详见See <a title="http://search.cpan.org/perldoc?Bio::Tools::SeqStats" href="http://search.cpan.org/perldoc?Bio::Tools::SeqStats" rel="nofollow" target="_blank">Bio::Tools::SeqStats</a>和<a title="http://search.cpan.org/perldoc?Bio::Tools::SeqWords" href="http://search.cpan.org/perldoc?Bio::Tools::SeqWords" rel="nofollow" target="_blank">Bio::Tools::SeqWords</a>。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/bioperl-howto-seq-object/">详解Bioperl的序列对象（Bioperl HOWTO翻译7）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-20T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/bioperl-howto-seq-object/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><h3>序列对象</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#The_Sequence_Object" target="_blank">英文原文</a></p>
+
+<p>前面涉及到了很多序列对象，展示了序列对象的一些创建和使用方法。这里来详细描述序列对象的功能。</p>
+
+<p>下表列出了序列对象的‘方法’（面向对象编程中的概念，见前文；表的内容就不翻译了）。‘return’表示使用这个方法时，对象所返回的值（或内容）。其中有些方法，如seq()，既可用于输出，也可以向其输入。例如，从已有的序列对象中获取序列。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$sequence_as_string</span> <span class="o">=</span> <span class="nv">$seq_obj</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>也可以自己设定序列：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$seq_obj</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">(</span><span class="s">&quot;MMTYDFFFFVVNNNNPPPPAAAW&quot;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<table border="1" cellspacing="0" cellpadding="4"><caption>Table 1: Sequence Object Methods</caption>
+<tbody>
+<tr>
+<th>Name</th>
+<th>Returns</th>
+<th>Example</th>
+<th>Note</th>
+</tr>
+<tr>
+<td>accession_number</td>
+<td>identifier</td>
+<td>$acc = $so-&gt;accession_number</td>
+<td>get or set an identifier</td>
+</tr>
+<tr>
+<td>alphabet</td>
+<td>alphabet</td>
+<td>$so-&gt;alphabet(&#8216;dna&#8217;)</td>
+<td>get or set the alphabet (&#8216;dna&#8217;,&#8217;rna&#8217;,&#8217;protein&#8217;)</td>
+</tr>
+<tr>
+<td>authority</td>
+<td>authority, if available</td>
+<td>$so-&gt;authority(&#8220;FlyBase&#8221;)</td>
+<td>get or set the organization</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>description</td>
+<td>$so-&gt;desc(&#8220;Example 1&#8221;)</td>
+<td>get or set a description</td>
+</tr>
+<tr>
+<td>display_id</td>
+<td>identifier</td>
+<td>$so-&gt;display_id(&#8220;NP_123456&#8221;)</td>
+<td>get or set an identifier</td>
+</tr>
+<tr>
+<td>division</td>
+<td>division, if available (e.g. PRI)</td>
+<td>$div = $so-&gt;division</td>
+<td>get division (e.g. &#8220;PRI&#8221;)</td>
+</tr>
+<tr>
+<td>get_dates</td>
+<td>array of dates, if available</td>
+<td>@dates = $so-&gt;get_dates</td>
+<td>get dates</td>
+</tr>
+<tr>
+<td>get_secondary_accessions</td>
+<td>array of secondary accessions, if available</td>
+<td>@accs = $so-&gt;get_secondary_accessions</td>
+<td>get other identifiers</td>
+</tr>
+<tr>
+<td>is_circular</td>
+<td>Boolean</td>
+<td>if $so-&gt;is_circular { # }</td>
+<td>get or set</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>keywords, if available</td>
+<td>@array = $so-&gt;keywords</td>
+<td>get or set keywords</td>
+</tr>
+<tr>
+<td>length</td>
+<td>length, a number</td>
+<td>$len = $so-&gt;length</td>
+<td>get the length</td>
+</tr>
+<tr>
+<td>molecule</td>
+<td>molecule type, if available</td>
+<td>$type = $so-&gt;molecule</td>
+<td>get molecule (e.g. &#8220;RNA&#8221;, &#8220;DNA&#8221;)</td>
+</tr>
+<tr>
+<td>namespace</td>
+<td>namespace, if available</td>
+<td>$so-&gt;namespace(&#8220;Private&#8221;)</td>
+<td>get or set the name space</td>
+</tr>
+<tr>
+<td>new</td>
+<td>Sequence object</td>
+<td>$so = Bio::Seq-&gt;new(-seq =&gt; &#8220;MPQRAS&#8221;)</td>
+<td>create a new one, see <a title="http://search.cpan.org/perldoc?Bio::Seq" href="http://search.cpan.org/perldoc?Bio::Seq" rel="nofollow" target="_blank">Bio::Seq</a> for more</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>pid, if available</td>
+<td>$pid = $so-&gt;pid</td>
+<td>get pid</td>
+</tr>
+<tr>
+<td>primary_id</td>
+<td>identifier</td>
+<td>$so-&gt;primary_id(12345)</td>
+<td>get or set an identifier</td>
+</tr>
+<tr>
+<td>revcom</td>
+<td>Sequence object</td>
+<td>$so2 = $so1-&gt;revcom</td>
+<td>Reverse complement</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>sequence string</td>
+<td>$seq = $so-&gt;seq</td>
+<td>get or set the sequence</td>
+</tr>
+<tr>
+<td>seq_version</td>
+<td>version, if available</td>
+<td>$so-&gt;seq_version(&#8220;1&#8221;)</td>
+<td>get or set a version</td>
+</tr>
+<tr>
+<td>species</td>
+<td>Species object</td>
+<td>$species_obj = $so-&gt;species</td>
+<td>See <a title="http://search.cpan.org/perldoc?Bio::Species" href="http://search.cpan.org/perldoc?Bio::Species" rel="nofollow" target="_blank">Bio::Species</a> for more</td>
+</tr>
+<tr>
+<td>subseq</td>
+<td>sequence string</td>
+<td>$string = $seq_obj-&gt;subseq(10,40)</td>
+<td>Arguments are start and end</td>
+</tr>
+<tr>
+<td>translate</td>
+<td>protein Sequence object</td>
+<td>$prot_obj = $dna_obj-&gt;translate</td>
+<td>See the <a title="http://www.bioperl.org/wiki/Bptutorial.pl#Translating" href="http://www.bioperl.org/wiki/Bptutorial.pl#Translating" rel="nofollow" target="_blank">Bioperl Tutorial</a> for more</td>
+</tr>
+<tr>
+<td>trunc</td>
+<td>Sequence object</td>
+<td>$so2 = $so1-&gt;trunc(10,40)</td>
+<td>Arguments are start and end</td>
+</tr>
+</tbody>
+</table>
+需要注意的是，上表列出的有些方法，如molecule和division，仅在序列对象有相应值的时候才有效，有些序列格式并不包括这些信息。所以，使用某种方法之前，一定要了解清楚输入的序列文件，及其包含的内容。</p>
+
+<p>还有一些方法是关于序列注释信息的，但这些内容可能有点离题，如果要了解的话，详见<a title="HOWTO:Feature-Annotation" href="http://www.bioperl.org/wiki/HOWTO:Feature-Annotation" target="_blank">Feature-Annotation HOWTO</a>。下表列出了一些有关的方法。
+<table border="1" cellspacing="0" cellpadding="4"><caption>Table 2: Feature and Annotation Methods</caption>
+<tbody>
+<tr>
+<th>Name</th>
+<th>Returns</th>
+<th>Note</th>
+</tr>
+<tr>
+<td>get_SeqFeatures</td>
+<td>array of SeqFeature objects</td>
+<td></td>
+</tr>
+<tr>
+<td>get_all_SeqFeatures</td>
+<td>array of SeqFeature objects array</td>
+<td>includes sub-features</td>
+</tr>
+<tr>
+<td>remove_SeqFeatures</td>
+<td>array of SeqFeatures removed</td>
+<td></td>
+</tr>
+<tr>
+<td>feature_count</td>
+<td>number of SeqFeature objects</td>
+<td></td>
+</tr>
+<tr>
+<td>add_SeqFeature</td>
+<td>annotation array of Annotation objects</td>
+<td>get or set</td>
+</tr>
+</tbody>
+</table>
+<a id="Example_Sequence_Objects" name="Example_Sequence_Objects"></a>
+<h3>举例</h3>
+接着来看一下如何使用上面提到的各种方法。看看这些方法如何从不同的来源获取序列对象以及输出内容。先来看看如何从Genbank获取并创建序列对象，代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$db_obj</span> <span class="o">=</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nv">$db_obj</span><span class="o">-&gt;</span><span class="n">get_Seq_by_acc</span><span class="p">(</span><span class="s">&quot;J01673&quot;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>或者从本地已有的Genbank文件中获取，代码如下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seqio_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="s">&quot;J01673.gb&quot;</span><span class="p">,</span> <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&quot;genbank&quot;</span> <span class="p">);</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nv">$seqio_obj</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p><a href="http://www.bioperl.org/wiki/GenBank_sequence_format" target="_blank">Genbank文件格式</a>如下所示：
+<pre>LOCUS       ECORHO                  1880 bp    DNA     linear   BCT 26-APR-1993
+DEFINITION  E.coli rho gene coding for transcription termination factor.
+ACCESSION   J01673 J01674
+VERSION     J01673.1  GI:147605
+KEYWORDS    attenuator; leader peptide; rho gene; transcription terminator.
+SOURCE      Escherichia coli
+ORGANISM  Escherichia coli
+                  Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales;
+                  Enterobacteriaceae; Escherichia.
+REFERENCE   1  (bases 1 to 1880)
+AUTHORS   Brown,S., Albrechtsen,B., Pedersen,S. and Klemm,P.
+TITLE     Localization and regulation of the structural gene for
+             transcription-termination factor rho of Escherichia coli
+JOURNAL   J. Mol. Biol. 162 (2), 283-298 (1982)
+MEDLINE   83138788
+PUBMED   6219230
+REFERENCE   2  (bases 1 to 1880) AUTHORS   Pinkham,J.L. and Platt,T.
+TITLE     The nucleotide sequence of the rho gene of E. coli K-12
+JOURNAL   Nucleic Acids Res. 11 (11), 3531-3545 (1983)
+MEDLINE   83220759
+PUBMED   6304634
+COMMENT      Original source text: Escherichia coli (strain K-12) DNA.
+                      A clean copy of the sequence for [2] was kindly provided by
+                      J.L.Pinkham and T.Platt.
+FEATURES       Location/Qualifiers
+     source      1..1880
+                     /organism="Escherichia coli"
+                     /mol_type="genomic DNA"
+                     /strain="K-12"
+                     /db_xref="taxon:562"
+     mRNA       212..&gt;1880
+                     /product="rho mRNA"
+     CDS          282..383
+                     /note="rho operon leader peptide"
+                     /codon_start=1
+                     /transl_table=11
+                     /protein_id="AAA24531.1"
+                     /db_xref="GI:147606"
+                     /translation="MRSEQISGSSLNPSCRFSSAYSPVTRQRKDMSR"
+     gene         468..1727
+                     /gene="rho"
+     CDS          468..1727
+                     /gene="rho"
+                     /note="transcription termination factor"
+                     /codon_start=1
+                     /transl_table=11
+                     /protein_id="AAA24532.1"
+                     /db_xref="GI:147607"
+                     /translation="MNLTELKNTPVSELITLGENMGLENLARMRKQDIIFAILKQHAK
+                     SGEDIFGDGVLEILQDGFGFLRSADSSYLAGPDDIYVSPSQIRRFNLRTGDTISGKIR
+                     PPKEGERYFALLKVNEVNFDKPENARNKILFENLTPLHANSRLRMERGNGSTEDLTAR
+                     VLDLASPIGRGQRGLIVAPPKAGKTMLLQNIAQSIAYNHPDCVLMVLLIDERPEEVTE
+                     MQRLVKGEVVASTFDEPASRHVQVAEMVIEKAKRLVEHKKDVIILLDSITRLARAYNT
+                     VVPASGKVLTGGVDANALHRPKRFFGAARNVEEGGSLTIIATALIDTGSKMDEVIYEE
+                     FKGTGNMELHLSRKIAEKRVFPAIDYNRSGTRKEELLTTQEELQKMWILRKIIHPMGE
+                     IDAMEFLINKLAMTKTNDDFFEMMKRS"
+ORIGIN      15 bp upstream from HhaI site.
+        1 aaccctagca ctgcgccgaa atatggcatc cgtggtatcc cgactctgct gctgttcaaa
+      61 aacggtgaag tggcggcaac caaagtgggt gcactgtcta aaggtcagtt gaaagagttc
+                                  ...deleted...  
+  1801 tgggcatgtt aggaaaattc ctggaatttg ctggcatgtt atgcaatttg catatcaaat
+  1861 ggttaatttt tgcacaggac
+//
+</pre>
+
+不论用那种方式，都能得到一样的序列对象。下表列出了这个序列对象的可用方法及其返回值。
+<table border="1" cellspacing="0" cellpadding="4"><caption>Table 3: Values from the Sequence object (<a title="GenBank sequence format" href="http://www.bioperl.org/wiki/GenBank_sequence_format" target="_blank">Genbank</a>)</caption>
+<tbody>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+</tr>
+<tr>
+<td>display_id</td>
+<td>ECORHO</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>E.coli rho gene coding for transcription termination factor.</td>
+</tr>
+<tr>
+<td>display_name</td>
+<td>ECORHO</td>
+</tr>
+<tr>
+<td>accession</td>
+<td>J01673</td>
+</tr>
+<tr>
+<td>primary_id</td>
+<td>147605</td>
+</tr>
+<tr>
+<td>seq_version</td>
+<td>1</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>attenuator; leader peptide; rho gene; transcription terminator</td>
+</tr>
+<tr>
+<td>is_circular</td>
+<td></td>
+</tr>
+<tr>
+<td>namespace</td>
+<td></td>
+</tr>
+<tr>
+<td>authority</td>
+<td></td>
+</tr>
+<tr>
+<td>length</td>
+<td>1880</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>AACCCT&#8230;ACAGGAC</td>
+</tr>
+<tr>
+<td>division</td>
+<td>BCT</td>
+</tr>
+<tr>
+<td>molecule</td>
+<td>DNA</td>
+</tr>
+<tr>
+<td>get_dates</td>
+<td>26-APR-1993</td>
+</tr>
+<tr>
+<td>get_secondary_accessions</td>
+<td>J01674</td>
+</tr>
+</tbody>
+</table>
+这里需要说明一下。首先，很多序列信息没有被返回。这些“丢失”的信息都是和序列注释信息有关，可详见<a title="HOWTO:Feature-Annotation" href="http://www.bioperl.org/wiki/HOWTO:Feature-Annotation" target="_blank">Feature and Annotation HOWTO</a>。并且，有些方法返回的是空值，比如namespace和authority。原因是对应的序列信息还没有一个普遍接受的格式或确定的名字，也许等确定的时候，作者会重写代码。（译者注：可能作者是先构造了一个结构，没有对应的内容。反正现在这些方法是没用的，暂不用管。）最后，你可能会问各个序列信息如何和相应的方法对应起来的。一般来说，由于没有一个通用标准，代码作者根据自己的常识，将相应的序列信息命一个合理的名字，然后对应到某个方法上。（最后一句可能翻译的不准确）</p>
+
+<p>再来看<a title="FASTA sequence format" href="http://www.bioperl.org/wiki/FASTA_sequence_format">fasta</a>格式文件作为输入（仍是同一序列）。<a title="FASTA sequence format" href="http://www.bioperl.org/wiki/FASTA_sequence_format" target="_blank">fasta</a>格式如下所示，相对Genbank，显得非常简单：
+<pre>&gt;gi|147605|gb|J01673.1|ECORHO E.coli rho gene coding for transcription termination factor
+AACCCTAGCACTGCGCCGAAATATGGCATCCGTGGTATCCCGACTCTGCTGCTGTTCAAAAACGGTGAAG
+TGGCGGCAACCAAAGTGGGTGCACTGTCTAAAGGTCAGTTGAAAGAGTTCCTCGACGCTAACCTGGCGTA
+                        ...deleted...
+ACGTGTTTACGTGGCGTTTTGCTTTTATATCTGTAATCTTAATGCCGCGCTGGGCATGTTAGGAAAATTC
+CTGGAATTTGCTGGCATGTTATGCAATTTGCATATCAAATGGTTAATTTTTGCACAGGAC
+</pre>
+
+可返回的内容：
+<table border="1" cellspacing="0" cellpadding="4"><caption>Table 4: Values from the Sequence object (<a title="FASTA sequence format" href="http://www.bioperl.org/wiki/FASTA_sequence_format" target="_blank">Fasta</a>)</caption>
+<tbody>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+</tr>
+<tr>
+<td>display_id</td>
+<td>147605|gb|J01673.1|ECORHO</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>E.coli rho gene coding for transcription termination factor</td>
+</tr>
+<tr>
+<td>display_name</td>
+<td>147605|gb|J01673.1|ECORHO</td>
+</tr>
+<tr>
+<td>accession</td>
+<td>unknown</td>
+</tr>
+<tr>
+<td>primary_id</td>
+<td>147605|gb|J01673.1|ECORHO</td>
+</tr>
+<tr>
+<td>is_circular</td>
+<td></td>
+</tr>
+<tr>
+<td>namespace</td>
+<td></td>
+</tr>
+<tr>
+<td>authority</td>
+<td></td>
+</tr>
+<tr>
+<td>length</td>
+<td>1880</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>AACCCT&#8230;ACAGGAC</td>
+</tr>
+</tbody>
+</table>
+和上面使用<a title="GenBank sequence format" href="http://www.bioperl.org/wiki/GenBank_sequence_format" target="_blank">Genbank</a>文件得到的信息相比，会缺少一些序列信息，如seq_version。另外，如display_id，显示的是不同值。原因在于Genbank服务器将Genbank格式转换fasta格式时遵循的规则和<a title="Swissprot sequence format" href="http://www.bioperl.org/wiki/Swissprot_sequence_format" target="_blank">SwissProt</a>服务器将SwissProt格式转换fasta格式的规则不一样。除非有一个统一的标准，否则代码作者一般是根据自己的理解将各个序列信息对应到某一方法上。虽然Bioperl可以遵循某一个特定的规则，如Genbank所使用的。但Bioperl的作者们通过投票决定不遵循任何一个只来源于某一个组织的转换规则。</p>
+
+<p>接着看一下<a title="Swissprot sequence format" href="http://www.bioperl.org/wiki/Swissprot_sequence_format" target="_blank">SwissProt</a>格式文件的输入。</p>
+
+<p>ID A2S3_RAT STANDARD; PRT; 913 AA.
+<pre>AC   Q8R2H7; Q8R2H6; Q8R4G3;
+DT   28-FEB-2003 (Rel. 41, Created)
+DE   Amyotrophic lateral sclerosis 2 chromosomal region candidate gene
+DE   protein 3 homolog (GABA-A receptor interacting factor-1) (GRIF-1) (O-
+DE   GlcNAc transferase-interacting protein of 98 kDa).
+GN   ALS2CR3 OR GRIF1 OR OIP98.
+OS   Rattus norvegicus (Rat).
+OC   Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+OC   Mammalia; Eutheria; Rodentia; Sciurognathi; Muridae; Murinae; Rattus.
+OX   NCBI_TaxID=10116;
+RN   [1]
+RP   SEQUENCE FROM N.A. (ISOFORMS 1 AND 2), SUBCELLULAR LOCATION, AND
+RP   INTERACTION WITH GABA-A RECEPTOR.
+RC   TISSUE=Brain;
+RX   MEDLINE=22162448; PubMed=12034717;
+RA   Beck M., Brickley K., Wilkinson H.L., Sharma S., Smith M.,
+RA   Chazot P.L., Pollard S., Stephenson F.A.;
+RT   "Identification, molecular cloning, and characterization of a novel
+RT   GABAA receptor-associated protein, GRIF-1.";
+RL   J. Biol. Chem. 277:30079-30090(2002).
+RN   [2]
+RP   REVISIONS TO 579 AND 595-596, AND VARIANTS VAL-609 AND PRO-820.
+RA   Stephenson F.A.;
+RL   Submitted (FEB-2003) to the EMBL/GenBank/DDBJ databases.
+RN   [3]
+RP   SEQUENCE FROM N.A. (ISOFORM 3), INTERACTION WITH O-GLCNAC TRANSFERASE,
+RP   AND O-GLYCOSYLATION.
+RC   STRAIN=Sprague-Dawley; TISSUE=Brain;
+RX   MEDLINE=22464403; PubMed=12435728;
+RA   Iyer S.P.N., Akimoto Y., Hart G.W.;
+RT   "Identification and cloning of a novel family of coiled-coil domain
+RT   proteins that interact with O-GlcNAc transferase.";
+RL   J. Biol. Chem. 278:5399-5409(2003).
+CC   -!- SUBUNIT: Interacts with GABA-A receptor and O-GlcNac transferase.
+CC   -!- SUBCELLULAR LOCATION: Cytoplasmic.
+CC   -!- ALTERNATIVE PRODUCTS:
+CC       Event=Alternative splicing; Named isoforms=3;
+CC       Name=1; Synonyms=GRIF-1a;
+CC         IsoId=Q8R2H7-1; Sequence=Displayed;
+CC       Name=2; Synonyms=GRIF-1b;
+CC         IsoId=Q8R2H7-2; Sequence=VSP_003786, VSP_003787;
+CC       Name=3;
+CC         IsoId=Q8R2H7-3; Sequence=VSP_003788;
+CC   -!- PTM: O-glycosylated.
+CC   -!- SIMILARITY: TO HUMAN OIP106.
+DR   EMBL; AJ288898; CAC81785.2; -.
+DR   EMBL; AJ288898; CAC81786.2; -.
+DR   EMBL; AF474163; AAL84588.1; -.
+DR   GO; GO:0005737; C:cytoplasm; IEP.
+DR   GO; GO:0005634; C:nucleus; IDA.
+DR   GO; GO:0005886; C:plasma membrane; IEP.
+DR   GO; GO:0006357; P:regulation of transcription from Pol II pro...; IDA.
+DR   InterPro; IPR006933; HAP1_N.
+DR   Pfam; PF04849; HAP1_N; 1.
+KW   Coiled coil; Alternative splicing; Polymorphism.
+FT   DOMAIN      134    355       COILED COIL (POTENTIAL).
+FT   VARSPLIC    653    672       VATSNPGKCLSFTNSTFTFT -&gt; ALVSHHCPVEAVRAVHP
+FT                                TRL (in isoform 2).
+FT                                /FTId=VSP_003786.
+FT   VARSPLIC    673    913       Missing (in isoform 2).
+FT                                /FTId=VSP_003787.
+FT   VARSPLIC    620    687       VQQPLQLEQKPAPPPPVTGIFLPPMTSAGGPVSVATSNPGK
+FT                                CLSFTNSTFTFTTCRILHPSDITQVTP -&gt; GSAASSTGAE
+FT                                ACTTPASNGYLPAAHDLSRGTSL (in isoform 3).
+FT                                /FTId=VSP_003788.
+FT   VARIANT     609    609       E -&gt; V.
+FT   VARIANT     820    820       S -&gt; P.
+SQ   SEQUENCE   913 AA;  101638 MW;  D0E135DBEC30C28C CRC64;
+     MSLSQNAIFK SQTGEENLMS SNHRDSESIT DVCSNEDLPE VELVNLLEEQ LPQYKLRVDS
+     LFLYENQDWS QSSHQQQDAS ETLSPVLAEE TFRYMILGTD RVEQMTKTYN DIDMVTHLLA
+                             ...deleted...
+     GIARVVKTPV PRENGKSREA EMGLQKPDSA VYLNSGGSLL GGLRRNQSLP VMMGSFGAPV
+     CTTSPKMGIL KED
+//</pre>
+
+相应的返回值如下表所示：
+<table border="1" cellspacing="0" cellpadding="4"><caption>Table 5: Values from the Sequence object (<a title="Swissprot sequence format" href="http://www.bioperl.org/wiki/Swissprot_sequence_format" target="_blank">Swissprot</a>)</caption>
+<tbody>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+</tr>
+<tr>
+<td>display_id</td>
+<td>A2S3_RAT</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>Amyotrophic lateral &#8230; protein of 98 kDa).</td>
+</tr>
+<tr>
+<td>display_name</td>
+<td>A2S3_RAT</td>
+</tr>
+<tr>
+<td>accession</td>
+<td>Q8R2H7</td>
+</tr>
+<tr>
+<td>is_circular</td>
+<td></td>
+</tr>
+<tr>
+<td>namespace</td>
+<td></td>
+</tr>
+<tr>
+<td>authority</td>
+<td></td>
+</tr>
+<tr>
+<td>seq_version</td>
+<td></td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>Coiled coil; Alternative splicing; Polymorphism</td>
+</tr>
+<tr>
+<td>length</td>
+<td>913</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>MSLSQ&#8230;ILKED</td>
+</tr>
+<tr>
+<td>division</td>
+<td>RAT</td>
+</tr>
+<tr>
+<td>get_dates</td>
+<td>28-FEB-2003 (Rel. 41, Created)</td>
+</tr>
+<tr>
+<td>get_secondary_accessions</td>
+<td>Q8R2H6 Q8R4G3</td>
+</tr>
+</tbody>
+</table>
+和Genbank一样，详见<a title="HOWTO:Feature-Annotation" href="http://www.bioperl.org/wiki/HOWTO:Feature-Annotation" target="_blank">Feature and Annotation HOWTO</a>，查看序列注释信息。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/c-note-1/">C++ Note 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-14T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/c-note-1/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>可读性差，只留着自己用<br />
+[cpp]<br />
+// my first program in C++</p>
+
+<p>/* my second program in C++<br />
+   with more comments */</p>
+
+<p>#include<br />
+using namespace std;</p>
+
+<p>int main ()<br />
+{
+  cout &lt;&lt; &quot;Hello World!&quot;;<br />
+  return 0;<br />
+}
+[/cpp]
+<table>
+<tbody>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Size*</th>
+<th>Range*</th>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>Character or small integer.</td>
+<td>1byte</td>
+<td>signed: -128 to 127<br />
+unsigned: 0 to 255</td>
+</tr>
+<tr>
+<td><code>short int</code> (<code>short</code>)</td>
+<td>Short Integer.</td>
+<td>2bytes</td>
+<td>signed: -32768 to 32767<br />
+unsigned: 0 to 65535</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>Integer.</td>
+<td>4bytes</td>
+<td>signed: -2147483648 to 2147483647<br />
+unsigned: 0 to 4294967295</td>
+</tr>
+<tr>
+<td><code>long int</code> (<code>long</code>)</td>
+<td>Long integer.</td>
+<td>4bytes</td>
+<td>signed: -2147483648 to 2147483647<br />
+unsigned: 0 to 4294967295</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>Boolean value. It can take one of two values: true or false.</td>
+<td>1byte</td>
+<td><code>true</code> or <code>false</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>Floating point number.</td>
+<td>4bytes</td>
+<td>+/- 3.4e +/- 38 (~7 digits)</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>Double precision floating point number.</td>
+<td>8bytes</td>
+<td>+/- 1.7e +/- 308 (~15 digits)</td>
+</tr>
+<tr>
+<td><code>long double</code></td>
+<td>Long double precision floating point number.</td>
+<td>8bytes</td>
+<td>+/- 1.7e +/- 308 (~15 digits)</td>
+</tr>
+<tr>
+<td><code>wchar_t</code></td>
+<td>Wide character.</td>
+<td>2 <em>or</em> 4 bytes</td>
+<td>1 wide character</td>
+</tr>
+</tbody>
+</table></p>
+
+<p><table>
+<tbody>
+<tr>
+<td><code>\n</code></td>
+<td>newline</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>carriage return</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>tab</td>
+</tr>
+<tr>
+<td><code>\v</code></td>
+<td>vertical tab</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>backspace</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>form feed (page feed)</td>
+</tr>
+<tr>
+<td><code>\a</code></td>
+<td>alert (beep)</td>
+</tr>
+<tr>
+<td><code>\'</code></td>
+<td>single quote (<samp>&#8217;</samp>)</td>
+</tr>
+<tr>
+<td><code>\"</code></td>
+<td>double quote (<samp>&#8221;</samp>)</td>
+</tr>
+<tr>
+<td><code>\?</code></td>
+<td>question mark (<samp>?</samp>)</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>backslash (<samp>\</samp>)</td>
+</tr>
+</tbody>
+</table></p>
+
+<p>[cpp]<br />
+// In order to use a variable in C++<br />
+// we must first declare it specifying which data type we want it to be.<br />
+int a, b, c;</p>
+
+<p>// Signed types can represent both positive and negative values<br />
+//  whereas unsigned types can only represent positive values (and zero).<br />
+unsigned short int NumberOfSisters;<br />
+signed int MyAccountBalance;</p>
+
+<p>int a = 0;<br />
+int a (0);</p>
+
+<p>string mystring = &quot;This is a string&quot;;<br />
+string mystring (&quot;This is a string&quot;);</p>
+
+<p>// String literals can extend to more than a single line of code by<br />
+// putting a backslash sign (\) at the end of each unfinished line.<br />
+&quot;string expressed in \<br />
+two lines&quot; </p>
+
+<p>//does not require a semicolon (;)<br />
+#define PI 3.14159<br />
+#define NEWLINE &#8216;\n&#8217; </p>
+
+<p>const int pathwidth = 100;<br />
+const char tabulator = &#8216;\t&#8217;;</p>
+
+<p>// +, -, *, /, %<br />
+// +=, -=, *=, /=, %=, &gt;&gt;=, &lt;&lt;=, &amp;=, ^=, |=<br />
+// ++, &#8211;<br />
+// ==, !=, &gt;, &lt;, &gt;=, &lt;=</p>
+
+<p>7==5 ? 4 : 3     // returns 3, since 7 is not equal to 5.<br />
+7==5+2 ? 4 : 3   // returns 4, since 7 is equal to 5+2.<br />
+5&gt;3 ? a : b      // returns the value of a, since 5 is greater than 3.<br />
+a&gt;b ? a : b      // returns whichever is greater, a or b. </p>
+
+<p>a = (b=3, b+2);<br />
+// Would first assign the value 3 to b, and then assign b+2 to variable a.<br />
+// variable a would contain the value 5 while variable b would contain value 3.</p>
+
+<p>// Bitwise Operators ( &amp;, |, ^, ~, &lt;&lt;, &gt;&gt; )</p>
+
+<p>int i;<br />
+float f = 3.14;<br />
+i = (int) f;<br />
+i = int ( f );</p>
+
+<p>//  returns the size in bytes of that type or object:<br />
+a = sizeof (char);</p>
+
+<p>cout &lt;&lt; &quot;Hello, I am &quot; &lt;&lt; age &lt;&lt; &quot; years old and my zipcode is &quot; &lt;&lt; zipcode;<br />
+// Hello, I am 24 years old and my zipcode is 90064 <br />
+cout &lt;&lt; &quot;First sentence.\n&quot;;<br />
+cout &lt;&lt; &quot;First sentence.&quot; &lt;&lt; endl;</p>
+
+<p>// Standard Input (cin).<br />
+int age;<br />
+cin &gt;&gt; age;</p>
+
+<p>// to request more than one datum input from the user: <br />
+cin &gt;&gt; a &gt;&gt; b;</p>
+
+<p>// In order to get entire lines, we can use the function getline,<br />
+// which is the more recommendable way to get user input with cin<br />
+#include &lt;iostream&gt;<br />
+#include &lt;string&gt;<br />
+using namespace std;</p>
+
+<p>int main ()<br />
+{
+  string mystr;<br />
+  cout &lt;&lt; &quot;What&#8217;s your name? &quot;;<br />
+  getline (cin, mystr);<br />
+  cout &lt;&lt; &quot;Hello &quot; &lt;&lt; mystr &lt;&lt; &quot;.\n&quot;;<br />
+  cout &lt;&lt; &quot;What is your favorite team? &quot;;<br />
+  getline (cin, mystr);<br />
+  cout &lt;&lt; &quot;I like &quot; &lt;&lt; mystr &lt;&lt; &quot; too!\n&quot;;<br />
+  return 0;<br />
+}</p>
+
+<p>// The standard header file &lt;sstream&gt; defines a class called stringstrea<br />
+// that allows a string-based object to be treated as a stream.<br />
+// This way we can perform extraction or insertion operations from/to strings, <br />
+// which is especially useful to convert strings to numerical values and vice versa.<br />
+// For example, if we want to extract an integer from a string we can write:<br />
+string mystr (&quot;1204&quot;);<br />
+int myint;<br />
+stringstream(mystr) &gt;&gt; myint;</p>
+
+<p>// stringstreams<br />
+#include &lt;iostream&gt;<br />
+#include &lt;string&gt;<br />
+#include &lt;sstream&gt;<br />
+using namespace std;</p>
+
+<p>int main ()<br />
+{
+  string mystr;<br />
+  float price=0;<br />
+  int quantity=0;</p>
+
+<p>  cout &lt;&lt; &quot;Enter price: &quot;;<br />
+  getline (cin,mystr);<br />
+  stringstream(mystr) &gt;&gt; price;<br />
+  cout &lt;&lt; &quot;Enter quantity: &quot;;<br />
+  getline (cin,mystr);<br />
+  stringstream(mystr) &gt;&gt; quantity;<br />
+  cout &lt;&lt; &quot;Total price: &quot; &lt;&lt; price*quantity &lt;&lt; endl;<br />
+  return 0;<br />
+}</p>
+
+<p>if (x == 100)<br />
+  cout &lt;&lt; &quot;x is 100&quot;;</p>
+
+<p>if (x == 100)<br />
+{
+   cout &lt;&lt; &quot;x is &quot;;<br />
+   cout &lt;&lt; x;<br />
+}</p>
+
+<p>if (x == 100)<br />
+  cout &lt;&lt; &quot;x is 100&quot;;<br />
+else<br />
+  cout &lt;&lt; &quot;x is not 100&quot;;</p>
+
+<p>if (x &gt; 0)<br />
+  cout &lt;&lt; &quot;x is positive&quot;;<br />
+else if (x &lt; 0)<br />
+  cout &lt;&lt; &quot;x is negative&quot;;<br />
+else<br />
+  cout &lt;&lt; &quot;x is 0&quot;;</p>
+
+<p>  while (n&gt;0) {<br />
+    cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+    &#8211;n;<br />
+  }</p>
+
+<p>do {<br />
+    cout &lt;&lt; &quot;Enter number (0 to end): &quot;;<br />
+    cin &gt;&gt; n;<br />
+    cout &lt;&lt; &quot;You entered: &quot; &lt;&lt; n &lt;&lt; &quot;\n&quot;;<br />
+  } while (n != 0);</p>
+
+<p>  for (int n=10; n&gt;0; n&#8211;) {<br />
+    cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+  }</p>
+
+<p>for ( n=0, i=100 ; n!=i ; n++, i&#8211; )<br />
+{
+   // whatever here&#8230;<br />
+}</p>
+
+<p> for (n=10; n&gt;0; n&#8211;)<br />
+  {<br />
+    cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+    if (n==3)<br />
+    {<br />
+      cout &lt;&lt; &quot;countdown aborted!&quot;;<br />
+      break;<br />
+    }<br />
+  }</p>
+
+<p> for (int n=10; n&gt;0; n&#8211;) {<br />
+    if (n==5) continue;<br />
+    cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+  }</p>
+
+<p> int n=10;<br />
+  loop:<br />
+  cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+  n&#8211;;<br />
+  if (n&gt;0) goto loop;</p>
+
+<p>// exit is a function defined in the cstdlib library.<br />
+// to terminate the current program with a specific exit code. <br />
+void exit (int exitcode);</p>
+
+<p>// Functions<br />
+int addition (int a, int b)<br />
+{
+  int r;<br />
+  r=a+b;<br />
+  return (r);<br />
+}
+int main ()<br />
+{
+  int z;<br />
+  z = addition (5,3);<br />
+  cout &lt;&lt; &quot;The result is &quot; &lt;&lt; z;<br />
+  return 0;<br />
+}</p>
+
+<p>// void function example<br />
+void printmessage ()<br />
+{
+  cout &lt;&lt; &quot;I&#8217;m a function!&quot;;<br />
+}
+int main ()<br />
+{
+  printmessage ();<br />
+  // printmessage; wrong!!!<br />
+  return 0;<br />
+}</p>
+
+<p>[/cpp]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/shortcut-cheat-sheet/">Shortcut Cheat Sheet</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-13T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/shortcut-cheat-sheet/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://bioops.info/images/uploads/2011/11/12UQ1920Y0-2Y45.png"><img class="alignnone size-medium wp-image-859" title="12UQ1920Y0-2Y45" src="http://bioops.info/images/uploads/2011/11/12UQ1920Y0-2Y45-300x211.png" alt="" width="300" height="211" /></a><a href="http://bioops.info/images/uploads/2011/11/bash_emacs.jpg"><img class="alignnone size-medium wp-image-860" title="bash_emacs" src="http://bioops.info/images/uploads/2011/11/bash_emacs-300x107.jpg" alt="" width="300" height="107" /></a>
+<a href="http://bioops.info/images/uploads/2011/11/bash_sheet.png"><img class="size-medium wp-image-861 alignnone" title="bash_sheet" src="http://bioops.info/images/uploads/2011/11/bash_sheet-300x225.png" alt="" width="300" height="225" /></a><a href="http://bioops.info/images/uploads/2011/11/regular-expressions-cheat-sheet-v1.png"><img class="alignnone size-medium wp-image-862" title="regular-expressions-cheat-sheet-v1" src="http://bioops.info/images/uploads/2011/11/regular-expressions-cheat-sheet-v1-220x300.png" alt="" width="220" height="300" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/perl-simulate-random-genetic-drift/">Perl模拟随机漂变</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-13T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/perl-simulate-random-genetic-drift/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>simulate_genetic_drift.pl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#旧文回收</span>
+</span><span class='line'><span class="c1">#当时写的代码有点傻傻的</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#!/usr/bin/perl</span>
+</span><span class='line'><span class="c1">#---------------------------------------------------------------------------------------</span>
+</span><span class='line'><span class="c1">#Author: me</span>
+</span><span class='line'><span class="c1">#Date: 2009-05-13 19:00</span>
+</span><span class='line'><span class="c1">#Version: 1.0</span>
+</span><span class='line'><span class="c1">#Project: random genetic drift</span>
+</span><span class='line'><span class="c1">#模拟随机漂变对某一群体等位基因频率的影响，只是简单写了一下核心的程序。</span>
+</span><span class='line'><span class="c1">#---------------------------------------------------------------------------------------</span>
+</span><span class='line'><span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="n">warnings</span><span class="p">;</span>
+</span><span class='line'><span class="nb">srand</span><span class="p">(</span><span class="nb">time</span> <span class="o">|</span> <span class="vg">$$</span><span class="p">);</span>                               <span class="c1">#为随机数发生器设定种子</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$a1percent</span><span class="p">;</span>                                  <span class="c1">#声明变量：</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$i</span><span class="p">;</span><span class="k">my</span> <span class="nv">$j</span><span class="p">;</span> <span class="k">my</span> <span class="nv">$a1sum</span><span class="p">;</span> <span class="k">my</span> <span class="nv">$randomnum</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$generation</span><span class="p">;</span> <span class="k">my</span> <span class="nv">$avegeneration</span><span class="p">;</span><span class="k">my</span> <span class="nv">$sumgeneration</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$fix1</span><span class="p">;</span> <span class="k">my</span> <span class="nv">$fix2</span><span class="p">;</span>
+</span><span class='line'><span class="k">for</span><span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span><span class="o">&lt;</span><span class="mi">10000</span><span class="p">;</span> <span class="o">++</span><span class="nv">$i</span><span class="p">){</span>                      <span class="c1">#10000次重复</span>
+</span><span class='line'>    <span class="nv">$a1percent</span><span class="o">=</span><span class="mf">0.7</span><span class="p">;</span>                             <span class="c1">#设定等位基因a1初始频率为0.7</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="nv">$generation</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span><span class="o">++</span><span class="nv">$generation</span><span class="p">){</span>        <span class="c1">#模拟世代更替，记录a1或a2固定时经历的世代数（$generation）</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="nv">$a1percent</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="nv">$a1percent</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
+</span><span class='line'>              <span class="k">last</span><span class="p">;</span>                             <span class="c1">#当a1固定或丢失的时候跳出世代更替的循环</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="nv">$a1sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>          <span class="k">for</span> <span class="p">(</span><span class="nv">$j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nv">$j</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">;</span> <span class="o">++</span><span class="nv">$j</span><span class="p">){</span>              <span class="c1">#随机挑选20个配子作为下一代个体的组成</span>
+</span><span class='line'>                <span class="nv">$randomnum</span><span class="o">=</span><span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="nv">$randomnum</span><span class="o">&lt;=</span><span class="nv">$a1percent</span><span class="p">){</span>
+</span><span class='line'>                    <span class="o">++</span><span class="nv">$a1sum</span><span class="p">;</span>                   <span class="c1">#记录挑选到a1基因的总数</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>    <span class="nv">$a1percent</span><span class="o">=</span><span class="nv">$a1sum</span><span class="o">/</span><span class="mi">20</span><span class="p">;</span>                       <span class="c1">#记录挑选到a1基因的频率</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'>   <span class="nv">$sumgeneration</span><span class="o">+=</span><span class="nv">$generation</span><span class="p">;</span>                 <span class="c1">#将每次a1或a2固定时经历世代数求和</span>
+</span><span class='line'>   <span class="k">if</span> <span class="p">(</span><span class="nv">$a1percent</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>                          <span class="c1">#a1固定</span>
+</span><span class='line'>      <span class="o">++</span><span class="nv">$fix1</span><span class="p">;</span>                                  <span class="c1">#记录a1固定的次数</span>
+</span><span class='line'>   <span class="p">}</span><span class="k">else</span><span class="p">{</span>                                       <span class="c1">#a1丢失，a2固定</span>
+</span><span class='line'>      <span class="o">++</span><span class="nv">$fix2</span><span class="p">;</span>                                  <span class="c1">#记录a2固定的次数</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nv">$avegeneration</span><span class="o">=</span><span class="nv">$sumgeneration</span><span class="o">/</span><span class="mi">10000</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$fix1</span><span class="o">=</span><span class="nv">$fix1</span><span class="o">/</span><span class="mi">10000</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$fix2</span><span class="o">=</span><span class="nv">$fix2</span><span class="o">/</span><span class="mi">10000</span><span class="p">;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;a1或a2固定的平均世代数为: $avegeneration\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;a1固定的概率为:$fix1\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;a2固定的概率为:$fix2\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nb">exit</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/perl-parse-and-write-excel/">利用Perl将数据导入excel中</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-13T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/perl-parse-and-write-excel/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>to_excel.pl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#旧文回收</span>
+</span><span class='line'><span class="c1">#将数据导入excel，再用excel处理基本是多此一举</span>
+</span><span class='line'><span class="c1">#且excel可以直接导入按一定规律排列的数据（如用tab分隔的数据）</span>
+</span><span class='line'><span class="c1">#留给有需要的人用吧</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">use</span> <span class="nn">Spreadsheet::</span><span class="n">WriteExcel</span><span class="p">;</span> <span class="c1">#需要安装此模块</span>
+</span><span class='line'><span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#新建一个工作簿，gethomo.xls</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$workbook</span> <span class="o">=</span> <span class="nn">Spreadsheet::</span><span class="n">WriteExcel</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="s">&quot;gethomo.xls&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#新建一个工作表</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$worksheet</span> <span class="o">=</span> <span class="nv">$workbook</span><span class="o">-&gt;</span><span class="n">add_worksheet</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#需要导入的数据</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$datafile</span><span class="o">=</span><span class="s">&quot;gethomo.txt&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#打开数据文件</span>
+</span><span class='line'><span class="k">unless</span><span class="p">(</span> <span class="nb">open</span><span class="p">(</span><span class="n">GET_FILE_DATA</span><span class="p">,</span> <span class="nv">$datafile</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">print</span> <span class="bp">STDERR</span> <span class="s">&quot;Cannot open file \&quot;$filename\&quot;\n\n&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="nb">exit</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">@input</span><span class="o">=</span><span class="sr">&lt;GET_FILE_DATA&gt;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#写入excel</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nv">$i</span><span class="o">&lt;</span><span class="nb">scalar</span> <span class="nv">@input</span><span class="p">;</span><span class="nv">$i</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="c1">#按照输入文件内容的排列格式修改此行</span>
+</span><span class='line'>       <span class="k">my</span> <span class="nv">@input_row</span><span class="o">=</span><span class="nb">split</span> <span class="p">(</span><span class="sr">/\t/</span><span class="p">,</span> <span class="nv">$input</span><span class="p">[</span><span class="nv">$i</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'>       <span class="k">for</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nv">$j</span><span class="o">&lt;</span><span class="nb">scalar</span> <span class="nv">@input_row</span><span class="p">;</span><span class="nv">$j</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>              <span class="k">my</span> <span class="nv">$input_cell</span><span class="o">=</span><span class="nv">$input_row</span><span class="p">[</span><span class="nv">$j</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>              <span class="c1">#在$i行$j列的单元格中写入数据.(注: 行列初始值为0)</span>
+</span><span class='line'>              <span class="k">unless</span> <span class="p">(</span><span class="nv">$input_cell</span><span class="o">=~</span><span class="sr">/=/</span><span class="p">){</span><span class="nv">$worksheet</span><span class="o">-&gt;</span><span class="nb">write</span><span class="p">(</span><span class="nv">$i</span><span class="p">,</span> <span class="nv">$j</span><span class="p">,</span> <span class="nv">$input_cell</span><span class="p">);}</span>
+</span><span class='line'>       <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">#打完收工</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#若要从excel中提取数据，</span>
+</span><span class='line'><span class="c1">#则需要使用Spreadsheet::ParseExcel模块</span>
+</span><span class='line'><span class="c1">#常用的几条语句如下：</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$parser</span><span class="o">=</span><span class="nn">Spreadsheet::</span><span class="n">ParseExcel</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">();</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$workbook</span> <span class="o">=</span> <span class="nv">$parser</span><span class="o">-&gt;</span><span class="n">Parse</span><span class="p">(</span><span class="s">&#39;RNA1.xls&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="k">for</span> <span class="k">my</span> <span class="nv">$worksheet</span> <span class="p">(</span> <span class="nv">$workbook</span><span class="o">-&gt;</span><span class="n">worksheets</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">my</span> <span class="p">(</span> <span class="nv">$row_min</span><span class="p">,</span> <span class="nv">$row_max</span> <span class="p">)</span> <span class="o">=</span> <span class="nv">$worksheet</span><span class="o">-&gt;</span><span class="n">row_range</span><span class="p">();</span>
+</span><span class='line'>      <span class="k">my</span> <span class="p">(</span> <span class="nv">$col_min</span><span class="p">,</span> <span class="nv">$col_max</span> <span class="p">)</span> <span class="o">=</span> <span class="nv">$worksheet</span><span class="o">-&gt;</span><span class="n">col_range</span><span class="p">();</span>
+</span><span class='line'>      <span class="k">for</span> <span class="k">my</span> <span class="nv">$col</span> <span class="p">(</span> <span class="nv">$col_min</span> <span class="o">..</span> <span class="nv">$col_max</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="c1">#......</span>
+</span><span class='line'>       <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">#关于更多用perl操作excel的方式和代码可以参考CPAN</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page7">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page5">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

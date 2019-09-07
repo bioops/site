@@ -1,0 +1,833 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="前些天去plant center retreat的时候跟Michael Freeling有过交流。
+是一个很和蔼矍铄的一个老人。
+做的研究也跟我们实验室比较接近。 Differentiation of the maize subgenomes by genome dominance and &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/page7">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/paper-maize-subgenome/">[Paper] Differentiation of the Maize Subgenomes by Genome Dominance and Both Ancient and Ongoing Gene Loss</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-13T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/paper-maize-subgenome/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><pre>前些天去<a href="http://plantcenter.uga.edu/retreat/index.php" target="_blank">plant center retreat</a>的时候跟<a title="freeling" href="http://microscopy.berkeley.edu/~freeling/" target="_blank">Michael Freeling</a>有过交流。
+是一个很和蔼矍铄的一个老人。
+做的研究也跟我们实验室比较接近。
+</pre>
+<strong>Differentiation of the maize subgenomes by genome dominance and both ancient and ongoing gene loss</strong></p>
+
+<p>James C. Schnable, Nathan M. Springerb, and Michael Freeling</p>
+
+<p>Abstract</p>
+
+<p>Ancient tetraploidies are found throughout the eukaryotes. After duplication, one copy of each duplicate gene pair tends to be lost (fractionate). For all studied tetraploidies, the loss of duplicated genes, known as homeologs, homoeologs, ohnologs, or syntenic paralogs, is uneven between duplicate regions. In maize, a species that experienced a tetraploidy 5–12 million years ago, we show that in addition to uneven ancient gene loss, the two complete genomes contained within maize are differentiated by ongoing fractionation among diverse inbreds as well as by a pattern of overexpression of genes from the genome that has experienced less gene loss. These expression differences are consistent over a range of experiments quantifying RNA abundance in different tissues. We propose that the universal bias in gene loss between the genomes of this ancient tetraploid, and perhaps all tetraploids, is the result of selection against loss of the gene responsible for the majority of total expression for a duplicate gene pair. Although the tetraploidy of maize is ancient, biased gene loss and expression continue today and explain, at least in part, the remarkable genetic diversity found among modern maize cultivars.</p>
+
+<p><a href="http://www.pnas.org/content/108/10/4069" target="_blank">http://www.pnas.org/content/108/10/4069</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/paper-comparison-go/">[Paper] Comparison of Lists of Genes Based on Functional Profiles</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-13T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/paper-comparison-go/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.biomedcentral.com/1471-2105/12/401" target="_blank">http://www.biomedcentral.com/1471-2105/12/401</a>
+<h3>Comparison of lists of genes based on functional profiles</h3>
+Abstract (provisional)</p>
+
+<p><strong>Background</strong>
+How to compare studies on the basis of their biological significance is a problem of central importance in high-throughput genomics. Many methods for performing such comparisons are based on the information in databases of functional annotation, such as those that form the Gene Ontology (GO). Typically, they consist of analyzing gene annotation frequencies in some pre-specified GO classes, in a class-by-class way, followed by p-value adjustment for multiple testing. Enrichment analysis, where a list of genes is compared against a wider universe of genes, is the most common example.</p>
+
+<p><strong>Results</strong>
+A new global testing procedure and a method incorporating it are presented. Instead of testing separately for each GO class, a single global test for all classes under consideration is performed. The test is based on the distance between the functional profiles, defined as the joint frequencies of annotation in a given set of GO classes. These classes may be chosen at one or more GO levels. The new global test is more powerful and accurate with respect to type I errors than the usual class-by-class approach. When applied to some real datasets, the results suggest that the method may also provide useful information that complements the tests performed using a class-by-class approach if gene counts are sparse in some classes. An R library, goProfiles, implements these methods and is available from Bioconductor, http://bioconductor.org/packages/release/bioc/html/goProfiles.html.</p>
+
+<p><strong>Conclusions</strong>
+The method provides an inferential basis for deciding whether two lists are functionally different. For global comparisons it is preferable to the global chi-square test of homogeneity. Furthermore, it may provide additional information if used in conjunction with class-by-class methods.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/paper-assemblathon-1/">[Paper] Assemblathon 1: A Competitive Assessment of De Novo Short Read Assembly Methods</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-13T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/paper-assemblathon-1/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a title="assemblathon" href="http://assemblathon.org/" target="_blank">Assemblathon</a>是一个关于<em>de novo</em> Genome Assembly for Next-generation Sequencing 的竞赛。</p>
+
+<p>各个研究组使用同一测序数据，各自进行拼接，最后比较各个结果。</p>
+
+<p>第一次竞赛数据来源于模拟<a title="hiseq_2000" href="http://www.illumina.com/systems/hiseq_2000.ilmn" target="_blank">HiSeq 2000</a>的sequencing，以便于分析拼接错误。</p>
+
+<p>第一次竞赛结果在<a title="cshl_meeting" href="http://meetings.cshl.edu/meetings.html" target="_blank">CSHL Biology of Genomes meeting</a>（我明年会去）上<a href="http://korflab.ucdavis.edu/Datasets/Assemblathon/Assemblathon1/biology_of_genomes_assemblathon_talk.pdf" target="_blank">公布</a>，并<a href="http://genome.cshlp.org/content/early/2011/09/16/gr.126599.111" target="_blank">发表</a>在近期genome research上。</p>
+
+<p>第二次竞赛使用真实测序数据，已经截止提交各自结果，正在进行后续比较分析。</p>
+
+<p><strong>Assemblathon 1: A competitive assessment of de novo short read assembly methods</strong></p>
+
+<p>Abstract</p>
+
+<p>Low cost short read sequencing technology has revolutionised genomics, though it is only just becoming practical for the high quality de novo assembly of a novel large genome. We describe the Assemblathon 1 competition, which aimed to comprehensively assess the state of the art in de novo assembly methods when applied to current sequencing technologies. In a collaborative effort teams were asked to assemble a simulated Illumina HiSeq dataset of an unknown, simulated diploid genome. A total of 41 assemblies from 17 different groups were received. Novel haplotype aware assessments of coverage, contiguity, structure, base calling and copy number were made. We establish that within this benchmark (1) it is possible to assemble the genome to a high level of coverage and accuracy, and that (2) large differences exist between the assemblies, suggesting room for further improvements in current methods.</p>
+
+<p><a href="http://genome.cshlp.org/content/early/2011/09/16/gr.126599.111" target="_blank">paper link</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/c-hello-world/">C++ Hello World</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-13T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/c-hello-world/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>write in file &#8220;hello.cpp&#8221;:</p>
+
+<figure class='code'><figcaption><span>hello.cpp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="c1">// my first program in C++</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#include &lt;iostream&gt;;</span>
+</span><span class='line'><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span> <span class="p">()</span>
+</span><span class='line'><span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello World!&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>compile:
+<pre>g++ -o hello hello.cpp</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/%E8%BD%AC%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF/">[转]传说中的程序猿</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-06T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/%E8%BD%AC%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.cnblogs.com/God-froest/archive/2011/11/06/programMonkey.html" target="_blank">原文链接</a></p>
+
+<p><img class="alignright size-medium wp-image-797" style="border-style: initial; border-color: initial; color: #0000ee; text-decoration: underline;" title="programming monkey" src="http://bioops.info/images/uploads/2011/11/Screenshot-at-2011-11-06-213721-300x163.png" alt="" width="300" height="163" /></p>
+
+<p>程序猿是一种近几十年来出现的新物种，是工业革命的产物。<strong>英文</strong>(Programmer Monkey)是一种非常特殊的、可以从事程序开发、维护的动物。一般分为程序设计猿和程序编码猿，但两者的界限并不非常清楚，都可以进行开发、维护工作，特别是在中国，而且最重要的一点，二者都是一种非常悲剧的存在。
+<div><span style="color: #0000ee;"><span style="text-decoration: underline;">
+</span></span>他的特点是：对技术充满JI情（因为能够得到香蕉）将编程作为一种爱好（不一定，只有少数的程序猿有这一素质）</div></p>
+
+<p>如果你允许会滔滔不绝地跟你谈论技术（程序猿使用特殊的语言，别的人或猴子很难听懂）</p>
+
+<p>有过个人的开发经历（独立的寻找过香蕉或追寻母猿）</p>
+
+<p>坚持认为某种技术最好（程序猿都很固执）</p>
+
+<p>如果让他用他认为不好的技术他会非常别扭（同上）</p>
+
+<p>聪明、健谈、兴趣广泛（只限于NEET和有关宅话题）</p>
+
+<p>在大学和工作前就开始接触程序（程序猿从小就是程序猿了）</p>
+
+<p>总而言之，程序猿和它的一些同种族（如网管猿，技术猿）一样，都是人类用来帮助提高生产力的家畜，由于许多程序猿的智力很高，所以经常自己去寻找香蕉或妹子而无心工作，但这只是个别现象，总体来说程序猿是一种对人类很有用的动物，它们工作时很勤劳，而且不像 业务猿 那样喜欢跳奇怪的舞蹈（也叫增猿舞）吵的人们想鬼畜它，程序猿一般到了30岁左右就会进化成别的猿类（一般是管理猿），不过据报道，也有一些少数一生都是没有母猿的悲剧程序猿。</p>
+
+<p>程序猿是被诅咒的悲惨生物，它们受到的诅咒有：过度的劳作、永远不足的睡眠、低廉的收入等等……</p>
+
+<p>程序猿并不擅长战斗，它们生活中最主要的活动是——在树叶上打洞，然后将打洞的树叶放进一个木盒子里念咒语，并声称那些是能够提高族群的食物供给或提供其他神奇功能的伟大产品。但是，因为每个程序猿打洞的方式各不相同，他们之间也会经常爆发冲突，每个程序猿都声称自己所用的打洞方式是最好最先进，打出的洞是最美最华丽的，并不惜因此用打洞的树叶互相投掷。根据一些冒险者收集到的程序猿族群的资料，所谓的打洞方式，现在所知，有——西珈岬式、爪哇式、希沙埔式等等。不过，另人惊异的是，虽然每个程序猿所用的打洞方式都不同，但它们能用几乎所有的方式来给树叶打洞，来表达“你好，世界”的意思……</p>
+
+<p>因为长时间的不运动，程序猿的体力普遍低下，不擅长近战。不过，它们的高超智力弥补了这个缺陷。投掷打洞树叶是它们常用的攻击方式，而且，一如它们所宣称的一样，那些树叶有着一些神奇的功能——很多冒险者在受到树叶攻击后，虽然受伤并不严重，但都不同程度表现出反应迟缓、四肢不听指挥、眼前一片蓝色等症状，甚至于昏迷不醒。不过，好在这些症状都不致命，但是这足以保护程序猿远离冒险者的侵扰。</p>
+
+<p>程序猿只为了保护栖息地才会战斗，因此，一般冒险者都会绕开它们的地界。而且，由于程序猿的智力达到了能和冒险者交流的程度，甚至有的冒险者和程序猿族群建立了良好的关系，并且得到了它们的打洞树叶作为向族群提供食物的交换——只是这些礼物在冒险者手上远不如在程序猿手上可靠……</p>
+
+<p>诗歌歌颂：锄禾日当午，不如coding苦，对着C++，一调一下午； 锄禾日当午，不如coding苦，调了一下 午，Bug还得补; 锄禾日当午，不如coding苦，Bug刚补完，结构需重组； 锄禾日当午，哪有coding苦，Bug改不完，无言见列祖。</p>
+
+<p>日常行为特点：
+<h3><a name="5_1"></a>一、准备工作</h3>
+“工欲善其事必先利其器。”</p>
+
+<p>1.电脑不一定要配置高，但是双屏是必须的，越大越好，能一个横屏一个竖屏更好。一个用来查资料，一个用来写代码。总之要显得信息量很大，效率很高。</p>
+
+<p>2.椅子不一定要舒服，但是一定要可以半躺着。</p>
+
+<p>3.大量的便签，各种的颜色的，用来记录每天要完成的事务，多多益善。沿着电脑屏幕的边框，尽量贴满，显出有很多事情的样子。</p>
+
+<p>4.工具书，orelly的，机械工业，电子工业什么的都可以，能英文就英文，不行影印版的也可以，反正越厚越好，而且千万不要放在书架上，一定要堆在桌上，半打开状。
+<h3><a name="5_2"></a>二、从进门开始</h3>
+1.着装！着装！不管你是去实验室，或者去公司的大楼，在或者是小公司的民宅，或是自己创业的黑作坊；无论是春夏秋冬白天晚上刮风下雨电闪雷鸣台风龙卷风，一个装b的程序员都要十分在意自己着装！这里只提出参考建议。初级装：衬衣+牛仔裤+休闲鞋。中级装：T恤+宽松短裤+拖鞋。高级装：背心+宽松大花裤衩+人字拖。</p>
+
+<p>2.得体的举止。在走廊以及任何形式的过道里，一定要双手插兜，走得像个痞子，至少要看起来有点反社会，如若不行，可走文弱天才型geek路线。。</p>
+
+<p>3.如果有女性在你背后指指点点，小声嘀咕说这一定是一个技术男的时候，应该先低头，然后保持低头状态，缓缓回头，坏坏地蔑笑但是不要出声，然后快步前行。</p>
+
+<p>4.进门后，一定不要跟任何人打招呼，笔直走向自己的位置，最多路过打一杯咖啡，千万不要有多余的动作，显示出自己的专注与心无旁骛。
+<h3><a name="5_3"></a>三、坐下就不要再动了</h3>
+1.坐下以后，姿势需要略微后仰，能翘着二郎腿最好了，然后在后仰的情况下低着头，以便看到屏幕，然后千万就不要再动了。
+<div>　　2.粗暴地把电脑前的大堆书推开一个口，然后摘下电脑上的一个便签，看一眼，不过3秒，可以开始coding了。</div>
+3.能不用IDE就不要用，实在装不了，无论IDE是什么，一定要调成DOS那种黑色背景的。</p>
+
+<p>4.如果写前台界面，就不停地调试后台代码；如果写java，就在里面混编C；如果写C，就在里面混编汇编。不光要coding，还要时不时的翻出一本什么英文的书翻一翻，看不懂就看看插图，然后扔到面前假装懂了继续coding。</p>
+
+<p>5.什么看起来高端就用什么，不要管实用不实用。例如对C++：switch统统重构成多态；如果有指针，统统改成智能的；C++一定要自己写 template；数字是全部要替换成宏的名字能起多长就起多长；struct就不要出现了，如果出现，也一定要用__attriburte__修饰一下；运算都是位操作的；操作符都是重载的；网络都是并发缓冲线程池的；int只用int32_t声明的;继承不用普通的，什么多继承虚继承啊；helloworld也要写捕获异常的；后人一看代码，中间一堆关键字 extern,asm,auto,XXXXX_cast,volatile,explicit,register,template，让一般总在敲 int,if,else,for的小程序员顿时心生崇拜。</p>
+
+<p>6.注释？算了吧。只有两个路线可以选：一，变量名起得巨长无比，看代码就和读英文文章一样顺畅，根本不需要加注释。 二，代码无比晦涩，加不加注释根本无影响。</p>
+
+<p>7.千万不要用IM工具交流，千万不要问同事问题，显得自己没有水平，都是自己上网或者查书。</p>
+
+<p>8.无论是同事间开玩笑或者发生任何群体性时间，不要抬头，更不要东张西望，即使地震火灾，也一定要先提交代码再行离开。
+<h3><a name="5_4"></a>四、潇洒地离开</h3>
+1.人走，主机是千万千万不能关的，至少要跑个daily build，实在不行正在svn提交也勉强算过关。</p>
+
+<p>2.书应该已经又堆到屏幕前了，千万不要整理，明天再来推开。</p>
+
+<p>3.不强求最后一个走，但一定要所有的非程序员，什么市场啊前台啊pm啊都走光了，才可以走。</p>
+
+<p>4.走得时候一定要率性，千万不要收拾任何东西，站起来，出门，好的，就这样。</p>
+
+<p>5.如果今天一定要说句话的话，找到那个最苦逼的程序员，跟他说，你进度太慢了啊，不要老让我等你。</p>
+
+<p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/co-author-nat-biotechnol-pigeonpea-english/">[Co-author] ICRISAT-led Global Team Cracks Pigeonpea Genome</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-06T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/co-author-nat-biotechnol-pigeonpea-english/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>First legume genome sequence to improve livelihoods of smallholder farmers in the dryland tropics</em></p>
+
+<p><strong>Hyderabad, India</strong><strong> and Shenzhen, China,</strong><strong> 07 November 2011 – </strong>Once referred to as an “orphan crop” mainly grown by poor farmers, pigeonpea is now set to join the world’s league of major food crops with the completion of its genome sequence.</p>
+
+<p>The completed genome sequence of pigeonpea is featured as an advance online publication on 06 November 2011 on the website of the journal <em><a href="http://www.nature.com/nbt/journal/vaop/ncurrent/abs/nbt.2022.html" target="_blank">Nature Biotechnology</a></em>, the highest ranked journal in the area of biotechnology<em>. </em>The <a href="http://www.icrisat.org/gt-bt/iipg/Genome_Manuscript.html" target="_blank">paper</a> provides an overview of the structure and function of the genes that define what makes a pigeonpea plant. It also reveals valuable clues on how the genomic sequence can be useful to crop improvement for sustainable food production particularly in the marginal environments of Asia and sub-Saharan Africa.</p>
+
+<p>Years of genome analysis by a global research partnership led by the International Crops Research Institute for the Semi-Arid Tropics (ICRISAT) based in Hyderabad, India have resulted in the identification of 48,680 pigeonpea genes. A couple of hundred of these genes were found unique to the crop in terms of drought tolerance, an important trait that can be transferred to other similar legume crops like soybean, cowpea or common bean that belong to the same family.</p>
+
+<p>In the fight against poverty and hunger amid the threat of climate change, highly nutritious, drought-tolerant crops are the best bets for smallholder farmers in marginal environments to survive and improve their livelihoods.</p>
+
+<p>Pigeonpea, grown on about 5 million hectares in Asia, sub-Saharan Africa and South-Central America, is a very important food legume for millions of the poor in the semi-arid regions of the world. Known as the “poor people’s meat” because of its high protein content, it provides a well-balanced diet when accompanied with cereals.</p>
+
+<p>“The mapping of the pigeonpea genome is a breakthrough that could not have come at a better time. Now that the world is faced with hunger and famine particularly in the Horn of Africa brought about by the worst drought of the decades, science-based, sustainable agricultural development solutions are vital in extricating vulnerable dryland communities out of poverty and hunger for good,” says ICRISAT Director General William D. Dar.</p>
+
+<p>“Modern crop improvement technologies for smallholder farmer crops such as pigeonpea will be crucial to speed up the development of improved varieties that can provide high yields and improved livelihoods, and at the same time meet the challenges of marginal environments and the threat of climate change and scarce natural resources,&#8221; adds Dar.</p>
+
+<p>Rajeev Varshney, the lead scientist and coordinator for the pigeonpea genome sequencing project explains how this breakthrough will unlock pigeonpea’s potential.</p>
+
+<p>“Having the pigeonpea genome sequence as a reference will significantly speed up and reduce the cost of screening the ‘good genes’ within the stored pigeonpea seed collections in genebanks like that of ICRISAT. This also means dramatically reducing the cost of developing new improved varieties for farmers,” says Varshney.</p>
+
+<p>“At the moment, in general, it can take 6-10 years to breed a new variety. With the use of this genome sequence data, in the future, we could be breeding a new variety in just about 3 years.” he adds.</p>
+
+<p>&#8220;The pigeonpea collaboration with ICRISAT is a milestone in the partnership between India and China, showcasing the excellent working dynamics and understanding among Indian and Chinese genomics scientists. I hope more partnerships like this will be established in the future, and I believe this will surely bring a significant difference to the whole world,&#8221; says Professor Huanming Yang, Chairman of BGI-Shenzhen, the world’s largest genomics institute and a key partner of this project.</p>
+
+<p>India is the largest producer of pigeonpea, but crop productivity in the country, as well as in sub-Saharan Africa, is only less than 1 ton per hectare. An improved understanding of the pigeonpea genome will have a major impact on improved crop productivity, tackling pests and disease constraints in production, and improved resistance to harsh environments and the future variable climate.</p>
+
+<p>Pigeonpea is the first “orphan crop”, the first “non-industrial crop” and the second food legume (after soybean) with a completed genome sequence.</p>
+
+<p>It is also the first time that a Consultative Group on International Agricultural Research (CGIAR) supported Center like ICRISAT has led the genome sequencing of a food crop.</p>
+
+<p>The sequencing was accomplished by a global research partnership, the International Initiative for Pigeonpea Genomics (IIPG), led by ICRISAT with partners such as BGI – Shenzhen (China), US research laboratories like University of Georgia, University of California-Davis, Cold Spring Harbor Laboratory, and National Centre for Genome Resources, European research institutes like the UK-based National University of Ireland Galway and also support from the CGIAR Generation Challenge Programme, US National Science Foundation and in-kind contribution from the collaborating research institutes.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/co-author-nat-biotechnol-pigeonpe/">[Co-author] Nat. Biotechnol.：木豆基因组破译加速育种发展</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-06T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/co-author-nat-biotechnol-pigeonpe/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>2011年11月7日，由国际半干旱地区热带作物研究所(ICRISAT)主导，美国乔治亚大学、美国加州大学戴维斯分校、美国冷泉港实验室、美国国家基因组资源中心、深圳华大基因研究院等单位共同合作完成的木豆基因组研究成果在国际权威杂志《自然-生物技术》（Nature Biotechnology）上在线发表。木豆是继大豆之后第二个完成基因组测序的食用豆类，其基因组测序的完成将有助于科学家们从基因组水平更好地了解木豆的生物学特性，对提高木豆的质量、产量和促进亚洲及撒哈拉以南的非洲等地区的可持续性粮食生产具有重大意义。本项目得到了国际农业研究顾问机构(CGIAR)开展的全球挑战计划(Generation Challenge Programme, GCP)的大力支持。</p>
+
+<p>木豆是木豆属Cajanus中唯一的一个栽培种Cajanus cajan，为世界第六大食用豆类，也是迄今为止唯一的一种木本食用豆类作物。木豆原产于印度，距今大约已有6000年的栽培历史，目前全世界木豆栽培面积为500多万公顷，主要分布在亚洲、非洲撒哈拉沙漠以南和美国中南部，其中，栽培面积最大的是印度，占世界的80%以上。木豆在世界的半干旱地区是一种非常重要的食用豆类，由于其高蛋白含量被称为“穷人的肉”，与谷类一起搭配食用可保证当地居民的膳食平衡。木豆基因组结构和功能的研究对提高木豆的质量、产量和增强其对恶劣环境的抵抗能力和防治病虫害等方面具有重要意义。</p>
+
+<p>研究人员通过新一代测序技术对木豆的DNA进行测序、组装和注释，推测出木豆的基因组大小约为833.07Mb（组装得到的基因组大小约为605.78Mb），并预测其含有48,680个基因。研究人员发现了一些木豆所特有的耐旱基因，这些基因可以被转入到大豆、豇豆或者菜豆等其他豆类植物中，从而提高这些豆类的耐旱性，这将有助于改善干旱地区贫困农民的生计。文章的第一作者之一、华大基因该项目负责人陈文彬介绍说：“在对木豆的基因组进行分析时，我们发现这些与耐旱相关的基因在整个木豆的驯化及其祖先的进化历史上很可能扮演着非常重要的角色。木豆基因组序列图谱的完成为深入探讨其重要农业性状奠定了坚实的遗传学基础，并将有助于具有优良性状的木豆新品种的研究与开发”。</p>
+
+<p>国际半干旱地区热带作物研究所所长 William D. Dar说：“目前全球正面临着几十年来最严重的旱灾和饥荒，尤其是非洲。以科学为基础的、可持续的农业发展对帮助干旱地区人民摆脱贫困和饥荒是至关重要的。木豆基因组序列图谱的完成对加速新品种培育、提高作物产量以及改善民生具有非常重要的意义。”</p>
+
+<p>文章的第一作者、该项目的首席科学家Rajeev Varshney博士解释说：“目前，通过传统的方法培育一个新品种大概需要6-10年的时间，而木豆基因组序列图谱将有助于加快木豆‘优良基因’的筛选，可使培育一个新品种的时间缩短至3年，同时也会使成本大大降低。” 华大基因主席杨焕明院士表示：“此次木豆基因组项目的重大成果对中印两国科学家之间的合作具有里程碑式的意义，说明中印两国的科学家在基因组学研究领域已经建立了良好的合作关系和深刻的共识。希望将来我们能有更多的合作机会，为整个世界和人类做出更多贡献。”(<a href="http://www.bioon.com/" target="_blank">生物谷</a>Bioon.com)</p>
+
+<p>nature链接<a title="" href="http://dx.doi.org/10.1038/nbt.2022" target="_blank">doi:10.1038/nbt.2022</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/life-is-tough/">Life Is Tough</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-03T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/life-is-tough/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我是个不太容易生气的人，</p>
+
+<p>依稀记得上次生气还是去年，</p>
+
+<p>再上一次是前年。</p>
+
+<p>最近某人一而再再而三的惹我。</p>
+
+<p>祝愿那些曾经惹我生气的人或组织，</p>
+
+<p>包括某政府，</p>
+
+<p>早死早超生。</p>
+
+<p>那人死后绝对上不了他所谓的天堂，</p>
+
+<p>人品太差。</p>
+
+<p>唉，</p>
+
+<p>文人的毛病，</p>
+
+<p>躲在某个角落，</p>
+
+<p>愤愤。</p>
+
+<p>其他人该怎样还怎样。</p>
+
+<p>起身，</p>
+
+<p>继续看paper。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/back-or-not/">[转]海归，海不归：留学人员无法回避的两难抉择</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-03T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/11/back-or-not/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>（一篇好文，贴近现实，不造作，不谈“格调”）</p>
+
+<p>作者：吕小羽 来源：科学时报</p>
+
+<p>是在美国的好山好水之中体味寂寞呢，还是在国内拥挤嘈杂的人潮中快意拼搏？这是每一个留学人员无法回避的两难抉择，是横亘在他们心头的哈姆雷特之问。
+<div id="ztload"></div>
+秋千荡起的是快乐也是寂寞。</p>
+
+<p>在美国的留学人员中流传着这样两句话，形容中国与美国的不同：美国是“好山好水好寂寞”，中国是“好挤好乱好快活”。</p>
+
+<p>去年12月，中组部部长李源潮在第13届中国留学人员广州科技交流会开幕式上曾经引用这两句话，他在讲话中说：“一位回国创业的年轻人告诉我：在那边，是好山好水好寂寞；到这边，是好挤好乱好快活。确实，中国现在还不是世界上科研条件、生活条件最好的国家，但中国是现在世界上发展最活跃、人才创新创业机会最多的国家之一。”</p>
+
+<p>李源潮说这番话的目的是吸引留学生回国创业。其实，每一位留学人员心里都明白，中国是自己的故乡，有自己熟悉的一切，可无法否认的是，其自然环境和社会环境尚有种种不尽如人意之处；美国有优美的自然环境，文明的社会氛围，然而中国人生活在美国却要忍受文化的疏离感。</p>
+
+<p>那么，是在美国的好山好水之中体味寂寞呢，还是在国内拥挤嘈杂的人潮中快意拼搏？这是每一个留学人员无法回避的两难抉择，是横亘在他们心头的哈姆雷特之问。</p>
+
+<p>然而这个问题在20年前，甚至10年前都不成其为问题。在改革开放初期和上世纪90年代，好容易走出国门的留学生们，一旦踏上美利坚的土地，见识到这个物质文明高度发达的社会，几乎立即就确定了要在这片土地上扎根的决心。一拿到学位就义无反顾地留在美国，很少有回国的考虑。因为在那时，中国的社会、经济各方面与美国相比还有较大的差距，两者基本上不具备可比性，很容易作出选择。</p>
+
+<p>时过境迁，对于2000年以后出国的人来说，情况就完全不同了。经过近20年的高速发展，中国已经今非昔比，与美国的差距在渐渐缩小，一线大城市的设施与生活水平并不比美国差。再加上经济发展所创造的大量机会，使中国更具备吸引力。然而正是这一点，使今天的留学生们面临两难选择：两边都各有长短，取舍就变得分外困难。</p>
+
+<p>于是乎，有人“海归”，有人“海不归”，还有的人则干脆当起了“海鸥”，在太平洋上空飞去飞来。</p>
+
+<p>选择回国的往往是那些在国内有一定的人脉关系，对自己的社交能力还比较自信的人。他们对国内的环境适应性较强，也愿意折腾一番。</p>
+
+<p>还有一些人是考虑到父母的养老问题而选择回国。因为语言、文化的原因，老年人很难适应美国的生活，再加上医疗保险等问题，将父母接到美国养老并不现实。这个问题往后会更加凸显，因为现在出国的留学生都是实行独生子女政策以后出生的，如何兼顾父母这一问题在他们身上会更为现实和严峻。</p>
+
+<p>选择不回国的人也有各自的原因。其中很大一部分觉得自己缺少背景，回国不会比在美国发展得更好。国内大城市生活成本又比较高，一切靠自己打拼会很辛苦。这些人从内心里来说更喜欢美国简单的人际关系和一切皆守定规的社会氛围，更倾向于过简单自然的生活。</p>
+
+<p>我的一个朋友就是如此。这位朋友是学机械制造的，在纽约大学拿了博士学位。当时，上海的一所著名高校和他在厦门的母校都邀请他去任教，并承诺给他丰厚的待遇。他最终没有回国。他跟我聊天时说：“我是个简单的人，不擅长处理错综复杂的人际关系。再说国内也太拥挤了。相对来说，美国这边的生活更让我觉得轻松。”2007年他在得克萨斯州找到了工作，带着妻子搬到了得克萨斯南部海边。他在电话中向我描述现在的生活：房子很大，仅院子就有500平方米。前院被他们布置成了花园，后院是草坪、游泳池。还种了一个很大的菜园，四季的蔬菜除了自给自足以外，还能分赠给周围的邻居。房子离海边开车半小时，周末夫妻两人常常到海边游泳、散步、垂钓，只需用绳子绑住一根生鸡腿浸到海水里，一会儿工夫就能钓上来一串大海蟹。前不久他把父母接过去小住，让他们也享受那里干净的空气和大自然。</p>
+
+<p>还有很多人是为了孩子的教育留在美国。到美国留学的人无疑是同龄人中的佼佼者，是应试教育的胜出者。然而深知其中甘苦的他们却不愿意让自己的孩子再走同样的路。</p>
+
+<p>我的另一家朋友就是如此。他家已经在洛杉矶一个不错的学区买了房子，家里有两个上小学和幼儿园的孩子。他们按照美国人的习惯在后院布置了儿童活动区，有秋千、沙坑、滑梯，还有一棵枝繁叶茂的大树，树上建造了树屋。孩子们每天下午两点半放学后，有时去同学家玩，有时就在自己家的后院里自由玩耍。偶尔也弹弹钢琴，纯粹出于兴趣。孩子们的妈妈常说，国内的孩子上学太累了，几乎没有快乐的童年。经受那么大的压力，目的不过是为了上一个好大学。而在美国这边，轻轻松松，玩着长大，也能上大学，而且是世界名校，毕业以后的发展空间更大。在美国上学，家长也更轻松，不需要像国内那样托关系、找门路去争取所谓的重点学校。</p>
+
+<p>正因为生活在美国有这么多好处，而中国也确实有很多机会，不少人实在难以取舍，只好选择当“海鸥”，把孩子、家庭留在美国享受优质环境和教育，自己只身回国创业，体验中国经济成长期的无限可能性，定期往返于中美之间。</p>
+
+<p>归，还是不归？这的确是个问题。这个问题并不是爱不爱国这一简单的划分所能涵盖的，而是关乎人的自由、价值与尊严等多方面的命题。</p>
+
+<p>留在美国的，生活的确安稳富足，但远离故土与亲人，内心深处总有思乡的愁绪。回到国内的，在热热闹闹的生活之余，回想彼岸的风景，也会有一丝留恋与怅然。</p>
+
+<p>归与不归都有遗憾，鱼和熊掌不可兼得。这也许就是生活的真谛。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/10/perl-gd-graph-histogram/">使用Perl做频率分布图</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-09T00:00:00+00:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/10/perl-gd-graph-histogram/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>hist.pl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#需要安装相应模块</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">GD::Graph::</span><span class="n">histogram</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#创建一个数组的reference</span>
+</span><span class='line'><span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#创建图片对象</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$graph</span> <span class="o">=</span> <span class="k">new</span> <span class="nn">GD::Graph::</span><span class="n">histogram</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">600</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#设置格式</span>
+</span><span class='line'><span class="nv">$graph</span><span class="o">-&gt;</span><span class="n">set</span><span class="p">(</span>
+</span><span class='line'>    <span class="n">x_label</span>         <span class="o">=&gt;</span> <span class="s">&#39;X Label&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">y_label</span>         <span class="o">=&gt;</span> <span class="s">&#39;Count&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">title</span>           <span class="o">=&gt;</span> <span class="s">&#39;A Simple Count Histogram Chart&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">x_labels_vertical</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">bar_spacing</span>     <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">shadow_depth</span>    <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">shadowclr</span>       <span class="o">=&gt;</span> <span class="s">&#39;dred&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">transparent</span>     <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="ow">or</span> <span class="nb">warn</span> <span class="nv">$graph</span><span class="o">-&gt;</span><span class="n">error</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#输出频率分布图到图片对象上</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$gd</span> <span class="o">=</span> <span class="nv">$graph</span><span class="o">-&gt;</span><span class="n">plot</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$graph</span><span class="o">-&gt;</span><span class="n">error</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#打印到文件</span>
+</span><span class='line'><span class="nb">open</span><span class="p">(</span><span class="n">IMG</span><span class="p">,</span> <span class="s">&#39;&gt;histogram.png&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span> <span class="vg">$!</span><span class="p">;</span>
+</span><span class='line'><span class="nb">binmode</span> <span class="n">IMG</span><span class="p">;</span>
+</span><span class='line'><span class="k">print</span> <span class="n">IMG</span> <span class="nv">$gd</span><span class="o">-&gt;</span><span class="n">png</span><span class="p">;</span>
+</span><span class='line'><span class="nb">close</span> <span class="n">IMG</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>详见<a href="http://search.cpan.org/dist/GDGraph-histogram/lib/GD/Graph/histogram.pm" target="_blank">GD::Graph::histogram</a>。</p>
+
+<p>Perl做出来的图真是难看，跟R差太远了。</p>
+
+<p>我是用了大量perl script提取出了一些数据，只是想先看看数据的分布情况，不做拟合和后续统计分析，懒得写R script了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page8">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page6">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

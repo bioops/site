@@ -1,0 +1,66 @@
+---
+layout: post
+title: perl模拟随机漂变
+categories:
+- Perl
+- Programming
+tags:
+- Evolution
+- HOWTO
+- Perl
+published: true
+comments: true
+---
+
+``` perl simulate_genetic_drift.pl
+
+#旧文回收
+#当时写的代码有点傻傻的
+ 
+#!/usr/bin/perl
+#---------------------------------------------------------------------------------------
+#Author: me
+#Date: 2009-05-13 19:00
+#Version: 1.0
+#Project: random genetic drift
+#模拟随机漂变对某一群体等位基因频率的影响，只是简单写了一下核心的程序。
+#---------------------------------------------------------------------------------------
+use strict;
+use warnings;
+srand(time | $$);                               #为随机数发生器设定种子
+my $a1percent;                                  #声明变量：
+my $i;my $j; my $a1sum; my $randomnum;
+my $generation; my $avegeneration;my $sumgeneration;
+my $fix1; my $fix2;
+for($i=0; $i<10000; ++$i){                      #10000次重复
+    $a1percent=0.7;                             #设定等位基因a1初始频率为0.7
+    for($generation=0; 1;++$generation){        #模拟世代更替，记录a1或a2固定时经历的世代数（$generation）
+          if ($a1percent==0 or $a1percent==1){
+              last;                             #当a1固定或丢失的时候跳出世代更替的循环
+          }
+          $a1sum=0;
+          for ($j=0; $j<20; ++$j){              #随机挑选20个配子作为下一代个体的组成
+                $randomnum=rand(1);
+                if ($randomnum<=$a1percent){
+                    ++$a1sum;                   #记录挑选到a1基因的总数
+                }
+          }
+    $a1percent=$a1sum/20;                       #记录挑选到a1基因的频率
+   }
+   $sumgeneration+=$generation;                 #将每次a1或a2固定时经历世代数求和
+   if ($a1percent==1){                          #a1固定
+      ++$fix1;                                  #记录a1固定的次数
+   }else{                                       #a1丢失，a2固定
+      ++$fix2;                                  #记录a2固定的次数
+   }
+}
+$avegeneration=$sumgeneration/10000;
+$fix1=$fix1/10000;
+$fix2=$fix2/10000;
+print "a1或a2固定的平均世代数为: $avegeneration\n";
+print "a1固定的概率为:$fix1\n";
+print "a2固定的概率为:$fix2\n";
+exit;
+
+```
+

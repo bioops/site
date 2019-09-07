@@ -1,0 +1,33 @@
+---
+layout: post
+title: 利用Biperl获取序列基本统计信息（Bioperl HOWTO翻译9）
+categories:
+- Bioperl HOWTO翻译
+- Programming
+tags:
+- Bioperl
+- HOWTO
+- Perl
+- Statistics
+- Translation
+published: true
+comments: true
+---
+<p><h3>获取序列基本统计信息</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Obtaining_basic_sequence_statistics" target="_blank">英文原文</a></p>
+
+<p>除了前面讲的可通过序列对象的不同方法来获取序列文件中已有的序列信息，也可以利用bioperl获取序列的其他一些信息。例如，SeqStats对象可以获取序列的分子质量，单个氨基酸或核苷酸频率，核苷酸序列所包括的密码子频率，等等。</p>
+
+``` perl
+
+use Bio::Tools::SeqStats;
+$seq_stats  = Bio::Tools::SeqStats->new($seqobj);
+$weight = $seq_stats->get_mol_wt();
+$monomer_ref = $seq_stats->count_monomers();
+$codon_ref = $seq_stats->count_codons();  # for nucleic acid sequence
+
+```
+
+<p>注：有些序列包含一些有歧义的code，get_mol_wt()会返回两个数组，一个是最大的分子质量，一个是最小的分子质量。</p>
+
+<p>SeqWords对象可以统计氨基酸或核苷酸片段的频率。详见See <a title="http://search.cpan.org/perldoc?Bio::Tools::SeqStats" href="http://search.cpan.org/perldoc?Bio::Tools::SeqStats" rel="nofollow" target="_blank">Bio::Tools::SeqStats</a>和<a title="http://search.cpan.org/perldoc?Bio::Tools::SeqWords" href="http://search.cpan.org/perldoc?Bio::Tools::SeqWords" rel="nofollow" target="_blank">Bio::Tools::SeqWords</a>。</p>

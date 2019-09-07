@@ -1,0 +1,54 @@
+---
+layout: post
+title: windows下用perl操作bl2seq进行两序列比对
+categories:
+- Perl
+- Programming
+- Software
+tags:
+- Bioinformatics
+- Bl2seq
+- Blast
+- HOWTO
+- Perl
+published: true
+comments: true
+---
+
+``` perl run_bl2seq.pl
+
+#bl2seq是本地blast中的一个程序，用于两序列比对。
+# Two sequence alignment (using bl2seq)
+use strict;
+use Bio::SearchIO;
+#############################
+#两个输入文件
+my $seq1="m16.fa";
+my $seq2="s11.fa";
+#输出文件
+my $tempoutput="bl2seq.txt";
+#设置bl2seq的安装路径
+my $bl2seq="D:/blast/bin/bl2seq";
+#############################
+system("$bl2seq -i $seq1 -j $seq2 -p blastn -F F -o $tempoutput -g T");
+#具体参数设置可以参考blast的帮助文件
+my ($result,$hit,$hsp);
+#实现对比对结果的分析和提取
+my $in = new Bio::SearchIO(-format => 'blast',
+                           -file   => "$tempoutput");
+while( $result = $in->next_result ) {
+  while( $hit = $result->next_hit ) {
+    while( $hsp = $hit->next_hsp ) {
+      if( $hsp->length('total') > 1500 ) {
+        #这里可以做很多相关分析，具体可以参考Bio::SearchIO的document
+        if ( $hsp->percent_identity >= 80 ) {
+          print "Hit= ",       $hit->name,
+                ",Length=",     $hsp->length('total'),
+                ",Percent_id=", $hsp->percent_identity, "n";
+        }
+      }
+    }
+  }
+}
+
+```

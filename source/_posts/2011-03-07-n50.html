@@ -1,0 +1,19 @@
+---
+layout: post
+title: N50
+categories:
+- Bioinformatics
+- NGS
+tags:
+- N50
+- NGS
+published: true
+comments: true
+---
+<p>What does N50 mean? What is N50 or N90?</p>
+
+<p><strong>N50</strong> is a statistical measure of average length of a set of sequences. It is used widely in genomics, especially in reference to <a title="Contig" href="http://bioops.info/2011/03/contig/" target="_blank">contig</a> or <a title="Supercontig" href="http://www.broadinstitute.org/crd/wiki/index.php/Supercontig">supercontig</a> lengths within a <a title="Draft assembly" href="http://www.broadinstitute.org/crd/wiki/index.php/Draft_assembly">draft assembly</a>.</p>
+
+<p>N50 is defined as the contig length such that using equal or longer contigs produces half the bases of the genome. The N50 size is computed by sorting all contigs from largest to smallest and by determining the minimum set of contigs whose sizes total 50% of the entire genome.</p>
+
+<p>Alternative definition: Given a set of sequences of varying lengths, the N50 length is defined as the length N for which 50% of all bases in the sequences are in a sequence of length L &lt; N. This can be found mathematically as follows: Take a list L of positive integers. Create another list L' , which is identical to L, except that every element n in L has been replaced with n copies of itself. Then the median of L' is the N50 of L. For example: If L = {2, 2, 2, 3, 3, 4, 8, 8}, then L' consists of six 2's, six 3's, four 4's, and sixteen 8's; the N50 of L is the median of L' , which is 6.</p>

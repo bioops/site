@@ -1,0 +1,71 @@
+---
+layout: post
+title: Fedora下配置VNC服务器
+categories:
+- Linux
+- OS
+tags:
+- HOWTO
+- Linux
+- Note
+- VNC Server
+published: true
+comments: true
+---
+<p>1、
+<pre>rpm -qa | grep vnc</pre>
+可以查找到<br />
+vnc-1.0.0-2.fc11.i586<br />
+vnc-server-1.0.0-2.fc11.i586<br />
+否则安装vnc和vncserver</p>
+
+<p>2、
+<pre>env</pre>
+假设可找到HOME=/home/user用户</p>
+
+<p>3、
+<pre>ifconfig</pre>
+假设ip=192.168.119.131</p>
+
+<p>4、
+<pre>vncserver:10</pre>
+指令创建用户，开启10为终端</p>
+
+<p>5、
+<pre>vi /home/user/.vnc/xstartup</pre>
+修改最后一行tmp&amp; 为gnome&amp;</p>
+
+<p>6、root权限
+<pre>vi /etc/sysconfig/vncservers</pre>
+修改：<br />
+VNCSERVERS="10：user"<br />
+VNCSERVERARGS[10]="-geometry 800x600"</p>
+
+<p>7、root权限
+<pre>vi /etc/sysconfig/iptables</pre>
+添加<br />
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 5910 -j ACCEPT<br />
+-A INPUT -m state --state NEW -m udp -p udp --dport 5910 -j ACCEPT</p>
+
+<p>8、修改selinux
+<pre>vi /etc/selinux/config</pre>
+修改：<br />
+SELINUX=disabed</p>
+
+<p>9、root
+<pre>service xinetd restart
+service iptables restart
+chkconfig --level 345 vncserver on//开机自启动
+service vncserver restart</pre>
+至此服务器已经启动<br />
+在其他电脑上<br />
+ping 192.169.119.131 没问题<br />
+安装vncviewer<br />
+输入192.168.119.131:5910<br />
+恭喜成功</p>
+
+<p>10、VNC黑屏问题<br />
+将黑屏用户的xstartup（一般为：/home/user用户名称/.vnc/xstartup）文件的属性修改为755（rwxr-xr-x）.
+<pre>chmod 755 /home/user/.vnc/xstartup</pre>
+重启vncserver服务即可！
+<pre>service vncserver restart</pre></p>

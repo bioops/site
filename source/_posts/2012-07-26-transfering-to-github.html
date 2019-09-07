@@ -1,0 +1,97 @@
+---
+layout: post
+title: transfering to github
+categories:
+- Life
+tags:
+- github
+- Life
+published: true
+comments: true
+---
+<p>受<a href="http://kyle.xlau.org/posts/blogging-like-a-hacker.html">《像黑客一样写博客》</a>的启发和<a href="http://www.soimort.org/tech-blog/2011/11/19/introduction-to-jekyll_zh.html">《像黑客一样写博客——Jekyll入门》</a>的技术指导，打算把<a href="http://bioops.info/">bioops</a>迁移到<a href="http://github.com/">github</a>上。不怎么懂github和jekyll。搞了半天，基本上follow <a href="http://jekyllbootstrap.com/">jekyllbootstrap</a>上的文档。模版用<a href="http://themes.jekyllbootstrap.com/preview/mark-reid/">make-reid</a>；代码高亮用<a href="https://code.google.com/p/google-code-prettify/">google-code-prettify</a>；参照<a href="http://wowubuntu.com/markdown/">Markdown语法说明</a>开始写博客。暂不打算整站迁移，先练练手。</p>
+
+<p><strong>补充：</strong>github+jekyll太nerdy了。现在的处理办法是两个都保留，但github只发原创，欢迎<a href="http://baihezimu.github.com/" target="_blank">访问</a>（<a href="http://baihezimu.github.com/atom.xml" target="_blank">RSS</a>）。</p>
+
+<p>大部分时间在折腾这个代码高亮，走了很多弯路，现将最后简易可行的方法记录如下：
+<ol>
+	<li>在<code>/_includes/themes/mark-reid/default.html</code>中的<code>&lt;/head&gt;</code>前加入</li>
+</ol><script src="https://gist.github.com/bioops/4946613.js"></script>
+	<li>在<code>&lt;body&gt;</code> tag中加入<code>onload="prettyPrint()"</code></li>
+	<li>在代码前后加<code>&lt;pre class="prettyprint"&gt;...&lt;/pre&gt;</code>标识高亮</li>
+	<li>貌似对javascript代码无效，总是出错。所以用<a href="https://gist.github.com">gist</a>代替（如上所示）。</li>
+
+
+<p>另外，按照<a href="https://github.com/mojombo/jekyll/wiki/Blog-Migrations">jekyll wiki</a>上迁移wordpress文档的时候在安装mysqlplus会报错
+<pre>ERROR:  Error installing mysqlplus:
+    ERROR: Failed to build gem native extension.
+
+        /usr/bin/ruby1.8 extconf.rb
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lm... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lz... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lsocket... no
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lnsl... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lmygcc... no
+checking for mysql_query() in -lmysqlclient... no
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file for more
+details.  You may need configuration options.
+
+Provided configuration options:
+    --with-opt-dir
+    --without-opt-dir
+    --with-opt-include
+    --without-opt-include=${opt-dir}/include
+    --with-opt-lib
+    --without-opt-lib=${opt-dir}/lib
+    --with-make-prog
+    --without-make-prog
+    --srcdir=.
+    --curdir
+    --ruby=/usr/bin/ruby1.8
+    --with-mysql-config
+    --without-mysql-config
+    --with-mysql-dir
+    --without-mysql-dir
+    --with-mysql-include
+    --without-mysql-include=${mysql-dir}/include
+    --with-mysql-lib
+    --without-mysql-lib=${mysql-dir}/lib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+    --with-mlib
+    --without-mlib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+    --with-zlib
+    --without-zlib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+    --with-socketlib
+    --without-socketlib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+    --with-nsllib
+    --without-nsllib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+    --with-mygcclib
+    --without-mygcclib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+
+Gem files will remain installed in /var/lib/gems/1.8/gems/mysqlplus-0.1.2 for inspection.
+Results logged to /var/lib/gems/1.8/gems/mysqlplus-0.1.2/ext/gem_make.out</pre>
+
+<p>解决办法参照<a href="https://github.com/lorensr/mysqlplus/tree/">https://github.com/lorensr/mysqlplus/tree/</a>及自己琢磨：
+<pre>sudo apt-get install libmysql++-dev
+sudo gem install hpricot</pre>
+转换成功后生成的是html文件，并且换行符显示的是^M（dos下的回车符），为了让转换后的文章正确分段，可先将html后缀变成md，然后批量去掉^M
+<pre>rename -v s/\.html/\.md/ *
+dos2unix *.md</pre></p>

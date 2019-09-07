@@ -1,0 +1,93 @@
+---
+layout: post
+title: ! 'ABySS: A parallel assembler for short read sequence data'
+categories:
+- Bioinformatics
+- NGS
+- Software
+tags:
+- ABySS
+- Bioinformatics
+- Genomics
+- Linux
+- NGS
+- Parallel
+published: true
+comments: true
+---
+<p><h2>Abstract</h2>
+Widespread adoption of massively parallel deoxyribonucleic acid (DNA) sequencing instruments has prompted the recent development of de novo short read assembly algorithms. A common shortcoming of the available tools is their inability to efficiently assemble vast amounts of data generated from large-scale sequencing projects, such as the sequencing of individual human genomes to catalog natural genetic variation. To address this limitation, we developed ABySS (Assembly By Short Sequences), a parallelized sequence assembler. As a demonstration of the capability of our software, we assembled 3.5 billion paired-end reads from the genome of an African male publicly released by Illumina, Inc. Approximately 2.76 million contigs &gt; or =100 base pairs (bp) in length were created with an N50 size of 1499 bp, representing 68% of the reference human genome. Analysis of these contigs identified polymorphic and novel sequences not present in the human reference assembly, which were validated by alignment to alternate human assemblies and to other primate genomes.</p>
+
+<p><strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/19251739" target="_blank">PMID: 1925173</a></strong></p>
+
+<p><h1>ABySS README</h1></p>
+
+<p>ABySS - assemble short reads into contigs
+<h2>Compiling ABySS</h2>
+Compiling ABySS should be as easy as
+<pre>./configure &amp;&amp; make</pre>
+To install ABySS in a specified directory
+<pre>./configure --prefix=/opt/ABySS &amp;&amp; make &amp;&amp; sudo make install</pre>
+If you wish to build the parallel assembler with MPI support, MPI should be found in /usr/include and /usr/lib or its location specified to configure:
+<pre>./configure --with-mpi=/usr/lib/openmpi &amp;&amp; make</pre>
+ABySS should be built using Google sparsehash to reduce memory usage, although it will build without. Google sparsehash should be found in /usr/include or its location specified to configure:
+<pre>./configure CPPFLAGS=-I/usr/local/include</pre>
+The default maximum k-mer size is 64 and may be decreased to reduce memory usage or increased at compile time:
+<pre>./configure --enable-maxk=96 &amp;&amp; make</pre>
+To run ABySS, its binaries should be found in your PATH.
+<h2>Single-end assembly</h2>
+Assemble short reads in a file named reads.fa into contigs in a file named contigs.fa with the following command:
+<pre>ABYSS -k25 reads.fa -o contigs.fa</pre>
+where -k is an appropriate k-mer length. The only method to find the optimal value of k is to run multiple trials and inspect the results. The following shell snippet will assemble for every value of k from 20 to 40.
+<pre>for k in {20..40}; do
+    ABYSS -k$k reads.fa -o contigs-k$k.fa
+done</pre>
+The maximum value for k is 64. This limit may be changed at compile time using the --enable-maxk option of configure. It may be decreased to 32 to decrease memory usage, which is particularly useful for large parallel jobs, or increased to 96.
+<h2>Paired-end assembly</h2>
+To assemble paired short reads in a file named reads.fa into contigs in a file named paired-contigs.fa, run the command:
+<pre>abyss-pe k=25 n=10 in='reads1.fa reads2.fa' name=ecoli</pre>
+where <em>k</em> is the k-mer length as before. <em>n</em> is the minimum number of pairs needed to consider joining two contigs. The optimal value for n must be found by trial. <em>in</em> specifies the input files to read, which may be in FASTA, FASTQ, qseq or export format and compressed with gz, bz2 or xz. The assembled contigs will be stored in ${name}-contigs.fa.</p>
+
+<p>The suffix of the read identifier for a pair of reads must be one of '1' and '2', or 'A' and 'B', or 'F' and 'R', or 'F3' and 'R3', or 'forward' and 'reverse'. The reads may be interleaved in the same file or found in different files; however, interleaved mates will use less memory.</p>
+
+<p>abyss-pe is a driver script implemented as a Makefile and runs a single-end assembly, as described above, and the following commands, which must be found in your PATH:
+<ul>
+	<li>ABYSS - the single-end assembler</li>
+	<li>AdjList - finds overlaps of length k-1 between contigs</li>
+	<li>KAligner<strong>**</strong> - aligns reads to contigs</li>
+	<li>ParseAligns<strong>**</strong> - finds pairs of reads in alignments</li>
+	<li>DistanceEst<strong>**</strong> - estimates distances between contigs</li>
+	<li>Overlap - find overlaps between blunt contigs</li>
+	<li>SimpleGraph - finds paths between pairs of contigs</li>
+	<li>MergePaths - merges consistent paths</li>
+	<li>Consensus - for a colour-space assembly, convert the colour-space contigs to nucleotide contigs</li>
+</ul>
+<strong>**</strong> These steps can be run in parallel (see below)
+<h2>Paired-end assembly of multiple fragment libraries</h2>
+The distribution of fragment sizes of each library is calculated empirically by aligning paired reads to the contigs produced by the single-end assembler, and the distribution is stored in a file with the extension .hist, such as ecoli-4.hist. The N50 of the single-end assembly must be well over the fragment-size to obtain an accurate empirical distribution.</p>
+
+<p>Here's an example scenario of assembling a data set with two different fragment libraries and single-end reads:</p>
+
+<p>Library lib1 has reads in two files, lib1_1.fa and lib1_2.fa. Library lib2 has reads in two files, lib2_1.fa and lib2_2.fa. Single-end reads are stored in two files se1.fa and se2.fa.</p>
+
+<p>The command line to assemble this example data set is...
+<pre>abyss-pe -j2 k=25 n=10 name=ecoli lib='lib1 lib2' 
+    lib1='lib1_1.fa lib1_2.fa' lib2='lib2_1.fa lib2_2.fa' 
+    se='se1.fa se2.fa'</pre>
+The paired-end assembly of lib1 and lib2 may be run in parallel by specifying the -j option of make to abyss-pe, which is implemented as a Makefile script. The -j option should be set to the number of libraries, but setting it higher will not cause any trouble.</p>
+
+<p>The empirical distribution of fragment sizes will be stored in two files named lib1-3.hist and lib2-3.hist. These files may be plotted to check that the empirical distribution agrees with the expected distribution. The assembled contigs will be stored in ${name}-contigs.fa.</p>
+
+<p>Reads without mates should be placed in a file specified by the `se' (single-end) parameter. Reads without mates in the paired-end files will slow down the paired-end assembler considerably during the ParseAligns stage.
+<h2>Parallel assembly</h2>
+The `np' option of abyss-pe specifies the number of processes to use for the ABYSS-P parallel MPI job. Without any MPI configuration, this will allow you to make use of multiple cores on a single machine. To use multiple machines for assembly, you must create a hostfile for mpirun, which is describe in the mpirun man page.</p>
+
+<p>The paired-end assembly runs on a single processor. For very large jobs, a good portion of the paired-end assembly (KAligner, ParseAligns, DistanceEst) may be run in parallel separate processes, but this process is not automated by the driver script abyss-pe.</p>
+
+<p>Open MPI integrates well with SGE (Sun Grid Engine). For example, to submit an array of jobs to assemble every odd value of k between 51 and 63 using 64 processes for each job:
+<pre>qsub -pe openmpi 64 -t 51-63:2 -N testing abyss-pe in=reads.fa n=10</pre>
+For more information on using SGE and qsub, please refer to the qsub manual page. Open MPI must have been compiled with support for SGE using the ./configure --with-sge option.
+<h2>See also</h2>
+Try `abyss --help' for more information on command line options, or see the manual page in the file `ABYSS.1'. Please refer to the mpirun manual page for information on configuring parallel jobs.</p>
+
+<p>Written by Jared Simpson and Shaun Jackman. Subscribe to the users' mailing list at <a title="http://www.bcgsc.ca/mailman/listinfo/abyss-users" rel="nofollow" href="http://www.bcgsc.ca/mailman/listinfo/abyss-users">http://www.bcgsc.ca/mailman/listinfo/abyss-users</a> Contact the users' mailing list at &lt;abyss-users@bcgsc.ca&gt; or the authors directly at &lt;abyss@bcgsc.ca&gt;.

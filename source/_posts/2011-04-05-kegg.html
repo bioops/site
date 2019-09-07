@@ -1,0 +1,36 @@
+---
+layout: post
+title: ! 'KEGG: Kyoto Encyclopedia of Genes and Genomes'
+categories:
+- Bioinformatics
+- Genomics
+- Perl
+- Programming
+tags:
+- Bioinformatics
+- Functional Genomics
+- KEGG
+- Perl
+published: true
+comments: true
+---
+<p>The increasing amount of genome sequence data is the basis for understanding life as a molecular system and for developing medical, pharmaceutical, and other practical applications. Since 1995 we have been developing knowledge-based methods for uncovering higher-order systemic behaviors of the cell and the organism from genomic and molecular information. The reference knowledge is stored in <a href="http://www.genome.jp/kegg/" target="_blank">KEGG</a>, Kyoto Encyclopedia of Genes and Genomes, and associated bioinformatics technologies are being developed both for basic research and practical applications.</p>
+
+<p>Example for searching KEGG with Perl:</p>
+
+<p>See <a href="http://www.genome.jp/kegg/soap/" target="_blank">this</a> for more information.</p>
+
+``` perl kegg.pl
+
+#!/usr/bin/perl
+use SOAP::Lite;
+$wsdl   = 'http://soap.genome.jp/KEGG.wsdl';
+$serv   = SOAP::Lite->service($wsdl);
+$offset = 1;
+$limit  = 5;
+$top5   = $serv->get_best_neighbors_by_gene('vvi:100261203', $offset, $limit);
+foreach $hit (@{$top5}) {
+ print "$hit->{genes_id1}\t$hit->{genes_id2}\t$hit->{sw_score}\n";
+}
+
+```

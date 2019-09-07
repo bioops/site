@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Java | Bioops]]></title>
+  <link href="http://bioops.info/category/java/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Note of Java]]></title>
+    <link href="http://bioops.info/2011/02/note-of-java/"/>
+    <updated>2011-02-17T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/02/note-of-java</id>
+    <content type="html"><![CDATA[<p>transferred  to <a href="https://docs.google.com/document/pub?id=1tOFpFMcQyRzEY3aXMcdTqC1Z29YtiBYUFk42F4L9OGE" target="_blank">google doc</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Learning Java #1]]></title>
+    <link href="http://bioops.info/2011/02/learning-java-1/"/>
+    <updated>2011-02-17T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/02/learning-java-1</id>
+    <content type="html"><![CDATA[<p>Hello World!</p>
+
+<p>&#8220;` java HelloWorldApp.java</p>
+
+<p>/**
+ * The HelloWorldApp class implements an application that
+ * simply prints “Hello World!” to standard output.
+ */
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println(“Hello World!”); // Display the string.
+    }
+}</p>
+
+<p>&#8220;`</p>
+
+<p>compile and run</p>
+
+<pre>javac HelloWorldApp.java
+java HelloWorldApp</pre>
+
+<p>object, class, package</p>
+
+<p>inheritance</p>
+
+<pre>class MountainBike extends Bicycle {
+     // new fields and methods defining a mountain bike would go here
+}</pre>
+
+<p>interface</p>
+
+<pre>class ACMEBicycle implements Bicycle {
+// remainder of this class implemented as before
+}</pre>
+
+<p>package</p>
+
+<p>…</p>
+]]></content>
+  </entry>
+  
+</feed>

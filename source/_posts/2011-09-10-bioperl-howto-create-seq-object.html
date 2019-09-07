@@ -1,0 +1,78 @@
+---
+layout: post
+title: Bioperl创建序列对象（Bioperl HOWTO翻译2）
+categories:
+- Bioperl HOWTO翻译
+- Programming
+tags:
+- Bioperl
+- HOWTO
+- Perl
+- Seq
+- Translation
+published: true
+comments: true
+---
+<p><h3>创建序列（序列对象）</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Creating_a_sequence.2C_and_an_Object" target="_blank">英文原文</a></p>
+
+<p>第一个脚本先来学习如何创建一个序列，准确的说是一个序列对象。Bioperl是“<a href="http://en.wikipedia.org/wiki/Object_oriented">面向对象</a>”方式的。至于为什么要用“面向对象”，Why introduce these odd or intrusive notions into software that should be biological or intuitive?（不会翻译）。原因在于模块化或者面向对象化会使得处理复杂数据的时候更灵活更简单。一旦越过了这个坎儿，你会发现使用“对象”是理所当然的。</p>
+
+<p>有一种简单的方式去理解“什么是对象”，对象就是一个装载数据的箱子。举一个典型的例子，一个生物学序列包含了不同类型数据（序列本身、序列标识和注释等等），这个序列就类似一个对象。</p>
+
+<p>在Bioperl中，所有的对象都是有特定的模块来创建的，如果要创建某个对象，必须先告诉Perl需要加载哪个模块。例如：</p>
+
+``` perl
+
+#!/bin/perl -w
+use Bio::Seq;
+
+```
+
+<p>表示用Pel来加载“<a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>”模块，这个模块在电脑中是一个“&lt;bioperl module directory&gt;/Bio/Seq.pm”文件。<a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>模块可以用于创建一个<a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>对象。这个模块是Bioperl的一个核心模块。在Bioperl中，“Bio::Seq object”、“Sequence object”或者“Seq object”都是指的同一个意思，这个对象包含了一个生物学序列及其名称、标识符和属性。先来看如何创建一个简单的序列对象：</p>
+
+``` perl
+
+#!/bin/perl -w
+use Bio::Seq;
+$seq_obj = Bio::Seq->new(-seq=> "aaaatgggggggggggccccgtt",
+-alphabet => ‘dna’ );
+
+```
+
+<p>变量$seq_obj就是一个简单的，包含一个序列的序列对象。另外也需要声明这个序列是DNA序列。（-alphabet可以是‘dna’、‘rna’或者‘protein’），如果不声明，Bioperl会猜测一个合理的序列类型。一般能猜测正确，但如果序列中有太多N或X表示未知序列的字符，Bioperl很有可能猜错从而导致更严重的问题。</p>
+
+<p>如前所示，可以自己创建一个对象，<a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>也可以通过读取特定格式的文件来自动创建对象。比如：序列比对结果、数据库记录以及<a href="http://en.wikipedia.org/wiki/BLAST">BLAST</a>结果文件。</p>
+
+<p>必须用new()方法来创建一个新的对象。“模块名称-&gt;方法名称new(一些参数名称=&gt;参数值)”，是Bioperl的标准语法格式。</p>
+
+<p>注：如果你有一些编程经验，你可能会知道“函数”或“子程序”的概念。在面向对象编程中，这个概念应该叫做“方法”。</p>
+
+<p>前面说过，对象就是一个装载数据的箱子，但不止如此，这个箱子还有其他功能。一个对象会有多个方法用于调用。例如，<a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>模块可以调用seq()方法来输出 <a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>对象中的序列。举例说明：</p>
+
+``` perl
+
+#!/bin/perl -w
+use Bio::Seq;
+$seq_obj = Bio::Seq->new(-seq => "aaaatgggggggggggccccgtt", -alphabet => 'dna' );
+print $seq_obj->seq;
+
+```
+
+<p>这个脚本会在屏幕上输出“aaaatgggggggggggccccgtt”。-&gt;符号表示一个对象调用它的某个方法。</p>
+
+<p>再来举一个更实际点的例子。一个序列对象一般都要包含标识符、描述和序列。</p>
+
+``` perl
+
+#!/bin/perl -w
+use Bio::Seq;
+$seq_obj = Bio::Seq->new(-seq => "aaaatgggggggggggccccgtt",                        
+                          -display_id => "#12345",                        
+                          -desc => "example 1",                        
+                          -alphabet => "dna" );
+print $seq_obj->seq();
+
+```
+
+<p>其中aaaatgggggggggggccccgtt、 #12345和 example 1叫做“参数”。这个例子展示了如何将各类参数传递给new()方法。</p>

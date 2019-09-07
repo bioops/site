@@ -1,0 +1,29 @@
+---
+layout: post
+title: ! '[paper] Comparison of lists of genes based on functional profiles'
+categories:
+- Bioinformatics
+- Genomics
+- Paper
+- Software
+tags:
+- Bioinformatics
+- Comparative Genomics
+- Functional Genomics
+- Gene Ontology
+- Paper
+published: true
+comments: true
+---
+<p><a href="http://www.biomedcentral.com/1471-2105/12/401" target="_blank">http://www.biomedcentral.com/1471-2105/12/401</a>
+<h3>Comparison of lists of genes based on functional profiles</h3>
+Abstract (provisional)</p>
+
+<p><strong>Background</strong>
+How to compare studies on the basis of their biological significance is a problem of central importance in high-throughput genomics. Many methods for performing such comparisons are based on the information in databases of functional annotation, such as those that form the Gene Ontology (GO). Typically, they consist of analyzing gene annotation frequencies in some pre-specified GO classes, in a class-by-class way, followed by p-value adjustment for multiple testing. Enrichment analysis, where a list of genes is compared against a wider universe of genes, is the most common example.</p>
+
+<p><strong>Results</strong>
+A new global testing procedure and a method incorporating it are presented. Instead of testing separately for each GO class, a single global test for all classes under consideration is performed. The test is based on the distance between the functional profiles, defined as the joint frequencies of annotation in a given set of GO classes. These classes may be chosen at one or more GO levels. The new global test is more powerful and accurate with respect to type I errors than the usual class-by-class approach. When applied to some real datasets, the results suggest that the method may also provide useful information that complements the tests performed using a class-by-class approach if gene counts are sparse in some classes. An R library, goProfiles, implements these methods and is available from Bioconductor, http://bioconductor.org/packages/release/bioc/html/goProfiles.html.</p>
+
+<p><strong>Conclusions</strong>
+The method provides an inferential basis for deciding whether two lists are functionally different. For global comparisons it is preferable to the global chi-square test of homogeneity. Furthermore, it may provide additional information if used in conjunction with class-by-class methods.</p>

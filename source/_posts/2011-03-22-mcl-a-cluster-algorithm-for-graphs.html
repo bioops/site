@@ -1,0 +1,46 @@
+---
+layout: post
+title: MCL - a cluster algorithm for graphs
+categories:
+- Bioinformatics
+- Genomics
+- Software
+tags:
+- Blast
+- Clustering
+- Gene family
+- MCL
+- Software
+published: true
+comments: true
+---
+<p>The <strong><a href="http://www.micans.org/mcl/" target="_blank">MCL</a> </strong>can be used to cluster/group similar genes into gene families from BLAST (<strong>not BLAST+</strong>)  <a href="http://bioops.info/2011/03/notes-on-using-blast/" target="_blank">-m 8</a> output file.</p>
+
+<p><strong>TribeMCL is not available now.</strong></p>
+
+<p><a href="http://www.orthomcl.org/cgi-bin/OrthoMclWeb.cgi" target="_blank">OrthoMCL</a> is a more powerful software based on MCL for grouping orthologous protein sequences
+The <strong><a href="http://www.micans.org/mcl/" target="_blank">MCL</a> algorithm</strong> is short for the <strong>Markov Cluster Algorithm</strong>, a fast and scalable unsupervised cluster algorithm for networks (also known as <em>graphs</em>) based on simulation of (stochastic) flow in graphs. The algorithm was invented/<a href="http://www.micans.org/mcl/sec_discovery.html">discovered</a> by <a href="http://micans.org/stijn/" target="_blank">Stijn van Dongen</a> at the <a href="http://www.cwi.nl/" target="_parent">Centre for Mathematics and Computer Science</a> (also known as CWI) in the Netherlands. The PhD thesis <a href="http://www.micans.org/mcl/sec_thesisetc.html"><em>Graph clustering by flow simulation</em></a> is centered around this algorithm, the main topics being the mathematical theory behind it, its position in cluster analysis and graph clustering, issues concerning scalability, implementation, and benchmarking, and performance criteria for graph clustering in general. The work for this thesis was carried out under supervision of <a href="http://www.cwi.nl/~jve/" target="_parent">Jan van Eijck</a> and <a href="http://www.cwi.nl/~mich/" target="_parent">Michiel Hazewinkel</a>.
+<h3>Protocol: Clustering similarity graphs encoded in BLAST results</h3>
+First we create an ABC-formatted file using the external columnar BLAST format, which is assumed to be in a file called seq.cblast.
+<pre>cut -f 1,2,11 seq.cblast &gt; seq.abc</pre>
+The columnar format in the file seq.cblast has, for a given BLAST hit, the sequence labels in the first two columns and the asssociated E-value in column 11. It is parsed by the standard UNIX cut utility. The format must have been created with the BLAST -m8 option so that no comment lines are present. Alternatively these can be filtered out using grep.<br />
+The newly created seq.abc file is loaded by mcxload, which writes both a network file seq.mci and a dictionary file seq.tab.
+<pre>mcxload -abc seq.abc --stream-mirror --stream-neg-log10 -stream-tf 'ceil(200)' -o seq.mci -write-tab seq.tab</pre>
+The --stream-mirror option ensures that the resulting network will be undirected, as recommended when using mcl. Omitting this option would result in a directed network as BLAST E-values generally differ between two sequences. The default course of action for mcxload is to use the best value found between a pair of labels. The next option, --abc-neg-log10 tranforms the numerical values in the input (the BLAST E-values) by taking the logarithm in base 10 and subsequently negating the sign. Finally, the transformed values are capped so that any E-value below 1e-200 is set to a maximum allowed edge weight of 200.<br />
+To obtain clusterings from seq.mci and seq.tab one has two choices. The first is to generate an abstract clustering representation and from that obtain the label output, as follows. Below the -o option is not used, so mcl will create meaningful and unique output names by itself. The default way of doing this is to preprend the prefix out. and to append a suffix encoding the inflation value used, with inflation encoded using two digits of precision and the decimal separator removed.
+<pre>mcl seq.mci -I 1.4
+mcl seq.mci -I 2
+mcl seq.mci -I 4
+mcl seq.mci -I 6
+
+mcxdump -icl out.seq.mci.I14 -tabr seq.tab -o dump.seq.mci.I14
+mcxdump -icl out.seq.mci.I20 -tabr seq.tab -o dump.seq.mci.I20
+mcxdump -icl out.seq.mci.I40 -tabr seq.tab -o dump.seq.mci.I40
+mcxdump -icl out.seq.mci.I60 -tabr seq.tab -o dump.seq.mci.I60
+</pre>
+Now the file out.seq.tab.I14 and its associates can be used for example to compute the distances between the encoded clusterings with clm dist, to compute a set of strictly reconciled nested clusterings with clm order, or to compute an efficiency criterion with clm info.<br />
+Alternatively, label output can be obtained directly from mcl as follows.
+<pre>mcl seq.mci -I 1.4  -use-tab seq.tab
+mcl seq.mci -I 2  -use-tab seq.tab
+mcl seq.mci -I 4  -use-tab seq.tab
+mcl seq.mci -I 6  -use-tab seq.tab</pre></p>

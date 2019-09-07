@@ -1,0 +1,1160 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>利用Bioperl进行序列输入和输出（Bioperl HOWTO翻译13） - Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="利用Bioperl进行序列输入和输出
+英文原文 目录 1 作者  2 版权 3 基础 4 十秒速览 5 背景 6 格式 7 举例 8 字符串相关 9 更多示例 10 警告 11 纠错 12 使用Bio::Seq::SeqBuilder提速 作者 Ewan Birney &lt;birney at &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/2012/03/bioperl-howto-seqio">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">利用Bioperl进行序列输入和输出（Bioperl HOWTO翻译13）</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-03-19T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><h3>利用Bioperl进行序列输入和输出</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:SeqIO" target="_blank">英文原文</a></p>
+
+<div id="toctitle">
+<h2>目录</h2>
+</div>
+<ul>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#Authors">1 作者 </a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#Copyright">2 版权</a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#The_basics">3 基础</a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#10_second_overview">4 十秒速览</a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#Background_Information">5 背景</a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#Formats">6 格式</a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#Working_Examples">7 举例</a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#To_and_From_a_String">8 字符串相关</a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#And_more_examples...">9 更多示例</a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#Caveats">10 警告</a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#Error_Handling">11 纠错</a></li>
+	<li><a href="http://bioops.info/2012/03/bioperl-howto-seqio/#Speed.2C_Bio::Seq::SeqBuilder">12 使用Bio::Seq::SeqBuilder提速</a></li>
+</ul>
+<a id="Authors" name="Authors"></a>
+<h2>作者</h2>
+<ul>
+	<li><a title="Ewan Birney" href="http://www.bioperl.org/wiki/Ewan_Birney">Ewan Birney</a> &lt;<a title="mailto:birney-at-ebi.ac.uk" href="mailto:birney-at-ebi.ac.uk" rel="nofollow">birney at ebi.ac.uk</a>&gt;</li>
+	<li><a title="Brian Osborne" href="http://www.bioperl.org/wiki/Brian_Osborne">Brian Osborne</a> &lt;<a title="mailto:briano-at-bioteam.net" href="mailto:briano-at-bioteam.net" rel="nofollow">briano at bioteam.net</a>&gt;</li>
+	<li><a title="Darin London" href="http://www.bioperl.org/wiki/Darin_London">Darin London</a> &lt;<a title="mailto:darin.london-at-duke.edu" href="mailto:darin.london-at-duke.edu" rel="nofollow">darin.london at duke.edu</a>&gt;</li>
+</ul>
+<a id="Copyright" name="Copyright"></a>
+<h2>版权</h2>
+<a title="Ewan Birney" href="http://www.bioperl.org/wiki/Ewan_Birney">Ewan Birney</a>拥有此文档版权。 基于 <a href="http://www.perl.com/pub/language/misc/Artistic.html">Perl Artistic License</a>协议有限共享。</p>
+
+<p><a id="The_basics" name="The_basics"></a>
+<h2>基础</h2>
+作者假定阅读此文章的读者没有用过<a title="BioPerl" href="http://www.bioperl.org/wiki/BioPerl">BioPerl</a>，也许是一个想要获取一些序列信息的生物学者；也许是一个想学习一下目前流行的所谓“<a href="http://www.bioperl.org/wiki/Bioinformatics" target="_blank">生物新信息学</a>”的IT人士。我们讲解的第一个脚本就是如何从包含一个或多个序列的序列文件中提取相关信息。</p>
+
+<p>一个小建议：坚持使用<a title="Module:Bio::SeqIO" href="http://www.bioperl.org/wiki/Module:Bio::SeqIO">Bio::SeqIO</a>模块来处理序列。先来看一下完成任务所需要的前几行脚本：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/bin/perl</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$file</span>         <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span> <span class="c1"># get the file name, somehow</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seqio_object</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="nv">$file</span><span class="p">);</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq_object</span>   <span class="o">=</span> <span class="nv">$seqio_object</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>为什么要用<a title="Module:Bio::SeqIO" href="http://www.bioperl.org/wiki/Module:Bio::SeqIO">Bio::SeqIO</a>？部分原因是SeqIO能识别各种不同的序列格式并从中提取然后创建相应的BioPerl对象。有些序列格式很简单，例如<a title="FASTA sequence format" href="http://www.bioperl.org/wiki/FASTA_sequence_format">FASTA</a>。fasta格式仅包含序列和一个简单的序列标识符，而不包含序列内部的一些详细的特征或信息（<a title="HOWTO:Feature-Annotation" href="http://www.bioperl.org/wiki/HOWTO:Feature-Annotation">Feature-Annotation HOWTO</a>里具体讲了序列的特征）。一般来说，SeqIO能识别不同的序列格式，并创建相应的对象，例如输入fasta，SeqIO会创建一个<a title="Module:Bio::Seq" href="http://www.bioperl.org/wiki/Module:Bio::Seq">Bio::Seq</a>对象，而输入Genbank或EMBL这种包含注释信息的序列文件，SeqIO则会创建一个<a title="Module:Bio::Seq::RichSeq" href="http://www.bioperl.org/wiki/Module:Bio::Seq::RichSeq">Bio::Seq::RichSeq</a>对象。</p>
+
+<p>至于SeqIO针对不同格式的序列文件，到底创建了哪种对象，我们并不需要关心。SeqIO会把自动这些细节问题处理好。</p>
+
+<p><a id="10_second_overview" name="10_second_overview"></a>
+<h2>十秒速览</h2>
+生物信息学的工作会接触到各种格式的序列。而又有几乎同样多的程序来处理这些序列。SeqIO的优势是可以通过创建和输出序列对象的方式来处理很多不同格式的序列。可以将SeqIO想象成一个智能的文件控制系统。</p>
+
+<p><a id="Background_Information" name="Background_Information"></a>
+<h2>背景</h2>
+SeqIO系统可以处理很多复杂的序列格式。提供给Bioperl输入序列（序列可以是普通文件、标准输入输出（<tt>STDIN<span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif;">和</span></tt><tt>STDOUT）、变量等等</tt>）以及序列格式，Bioperl即可从序列中提取所有可以提取的信息。有时候并不需要说明序列格式。SeqIO可通过文件扩展名或文件内容来猜测出序列格式。如果文件没有扩展名或者文件内容不完整甚至压根输入的就不是一个文件，Bioperl直接默认是fasta格式（译者注：而这样就很可能出错）。除非明确知道所用的序列就是fasta格式，最好还是明确告知Bioperl你所输入序列的格式。</p>
+
+<p>SeqIO可以接受多种形式的输入。唯一的要求是序列必须包含在Perl所规定的“句柄”中（详见<a title="http://search.cpan.org/perldoc?IO::Handle" href="http://search.cpan.org/perldoc?IO::Handle" rel="nofollow">IO::Handle</a>）。大多数人使用文件句柄或者标准输入/输出（STDIN/STDOUT）。Perl还提供了如何将一段字符串转为句柄（见下文）。这样一来，几乎所有东西都可以作为SeqIO的输入，只要其中含有序列信息。SeqIO的主要工作流程就是获取一个句柄，然后依次将一条条序列信息转化为SeqI对象，若有需要则创建一个句柄以输出序列文件。SeqIO可以识别多个序列之间的分隔符，如genbank格式中的“// ”，fasta格式中的“&gt;”，也能识别用关键字或符号标识的其他序列信息。</p>
+
+<p><a id="Formats" name="Formats"></a>
+<h2>格式</h2>
+BioPerl的SeqIO模块能识别很多序列格式并且互相转换. 表1是最新版本的SeqIO所支持的格式。（译者注：表格见<a href="http://www.bioperl.org/wiki/HOWTO:SeqIO#Formats" rel="nofollow">原文</a>。如前所述，SeqIO将输入的不同格式序列用相应的模块转换成相应的序列对象）</p>
+
+<p><strong>注:</strong> <a title="Module:Bio::SeqIO" href="http://www.bioperl.org/wiki/Module:Bio::SeqIO">Bio::SeqIO</a>需要<a title="Bioperl-ext" href="http://www.bioperl.org/wiki/Bioperl-ext">bioperl-ext</a>包来和<a title="http://staden.sourceforge.net/" href="http://staden.sourceforge.net/" rel="nofollow">Staden</a>包中的<tt>io_lib库<span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif;">才能读取</span></tt><tt>scf, abi, alf, pln, exp, ctf,和ztr格式的序列</tt>.</p>
+
+<p>也许有些人会对上面提到的不同序列格式对应不同序列对象产生疑问，如“为了转换序列格式，如何才能把一个<em>PrimarySeq</em>对象转换为<em>RichSeq</em>对象？”答案是：这种问题压根就不用担心，SeqIO会自动转换。之所以不同的格式对应不同的对象，因为有些序列有很少信息，而有些格式又包含很多信息。（译者注：可能是避免大炮打蚊子似的浪费） 你并不需要关心SeqIO是如何转换的。列出表2，展示一下常见的序列格式和对应的序列对象，也可满足一些人的好奇心。（表格见<a href="http://www.bioperl.org/wiki/HOWTO:SeqIO#Formats" rel="nofollow">原文</a>。）</p>
+
+<p><a id="Working_Examples" name="Working_Examples"></a>
+<h2>举例</h2>
+先举个最简单的例子，如何从序列文件中提取<a title="Accession number" href="http://www.bioperl.org/wiki/Accession_number">accession number</a>。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1"># first, bring in the SeqIO module</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Notice that you do not have to use any Bio:SeqI</span>
+</span><span class='line'><span class="c1"># objects, because SeqIO does this for you. In fact, it</span>
+</span><span class='line'><span class="c1"># even knows which SeqI object to use for the provided</span>
+</span><span class='line'><span class="c1"># format.</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Bring in the file and format, or die with a nice</span>
+</span><span class='line'><span class="c1"># usage statement if one or both arguments are missing.</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$usage</span>  <span class="o">=</span> <span class="s">&quot;getaccs.pl file format\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$file</span>   <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$format</span> <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Now create a new SeqIO object to bring in the input</span>
+</span><span class='line'><span class="c1"># file. The new method takes arguments in the format</span>
+</span><span class='line'><span class="c1"># key =&gt; value, key =&gt; value. The basic keys that it</span>
+</span><span class='line'><span class="c1"># can accept values for are &#39;-file&#39; which expects some</span>
+</span><span class='line'><span class="c1"># information on how to access your data, and &#39;-format&#39;</span>
+</span><span class='line'><span class="c1"># which expects one of the Bioperl-format-labels mentioned</span>
+</span><span class='line'><span class="c1"># above. Although it is optional, it is good</span>
+</span><span class='line'><span class="c1"># programming practice to provide &gt; and &lt; in front of any</span>
+</span><span class='line'><span class="c1"># filenames provided in the -file parameter. This makes the</span>
+</span><span class='line'><span class="c1"># resulting filehandle created by SeqIO explicitly read (&lt;)</span>
+</span><span class='line'><span class="c1"># or write(&gt;).  It will definitely help others reading your</span>
+</span><span class='line'><span class="c1"># code understand the function of the SeqIO object.</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$inseq</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                            <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;&lt;$file&quot;</span><span class="p">,</span>
+</span><span class='line'>                            <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="nv">$format</span><span class="p">,</span>
+</span><span class='line'>                            <span class="p">);</span>
+</span><span class='line'><span class="c1"># Now that we have a seq stream,</span>
+</span><span class='line'><span class="c1"># we need to tell it to give us a $seq.</span>
+</span><span class='line'><span class="c1"># We do this using the &#39;next_seq&#39; method of SeqIO.</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$seq</span> <span class="o">=</span> <span class="nv">$inseq</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nv">$seq</span><span class="o">-&gt;</span><span class="n">accession_number</span><span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>运行此脚本需要两个参数，输入序列的文件名和文件格式。上例显示了最基本的处理genbank文件的方式。其他格式，如<tt>fasta</tt>,<tt>swissprot</tt>, <tt>ace</tt>都是类似的，需要给bioperl提供其所支持的格式名称。（译者注：一般情况下bioperl可以自己猜测出来序列的格式，而不需提供format参数，为保险期间最好说明格式类型。）</p>
+
+<p>需要注意的是，SeqIO默认是处理多个序列的。每一次调用next_seq时，返回的是下一个序列，直到返回一个undef，即文件末尾。 <span style="font-family: monospace;">脚本是一个一个序列依次读取，相比一次性把所有序列读取后再处理更节省内存。undef的重要性在于，当文件达到末尾的时候，undef可终止while循环。</span></p>
+
+<p>下例是把<a title="EMBL sequence format" href="http://www.bioperl.org/wiki/EMBL_sequence_format">EMBL</a>文件中的所有序列信息都放先在一个数组里，然后从数组里提取所需信息。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$input_file</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq_in</span>  <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                              <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;embl&#39;</span><span class="p">,</span>
+</span><span class='line'>                              <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="nv">$input_file</span><span class="p">,</span>
+</span><span class='line'>                              <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># loads the whole file into memory - be careful</span>
+</span><span class='line'><span class="c1"># if this is a big file, then this script will</span>
+</span><span class='line'><span class="c1"># use a lot of memory</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">@seq_array</span><span class="p">;</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span> <span class="nv">$seq</span> <span class="o">=</span> <span class="nv">$seq_in</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nb">push</span><span class="p">(</span><span class="nv">@seq_array</span><span class="p">,</span><span class="nv">$seq</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># now do something with these. First sort by length,</span>
+</span><span class='line'><span class="c1"># find the average and median lengths and print them out</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">@seq_array</span> <span class="o">=</span> <span class="nb">sort</span> <span class="p">{</span> <span class="nv">$a</span><span class="o">-&gt;</span><span class="nb">length</span> <span class="sr">&lt;=&gt;</span> <span class="nv">$b</span><span class="o">-&gt;</span><span class="nb">length</span> <span class="p">}</span> <span class="nv">@seq_array</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">foreach</span> <span class="k">my</span> <span class="nv">$seq</span> <span class="p">(</span> <span class="nv">@seq_array</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$total</span> <span class="o">+=</span> <span class="nv">$seq</span><span class="o">-&gt;</span><span class="nb">length</span><span class="p">;</span>
+</span><span class='line'>    <span class="nv">$count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Mean length &quot;</span><span class="p">,</span><span class="nv">$total</span><span class="sr">/$count,&quot; Median &quot;,$seq_array[$count/</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="nb">length</span><span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>现在来看如何转换序列格式。当你从一个序列文件创建一个<a title="Module:Bio::SeqIO" href="http://www.bioperl.org/wiki/Module:Bio::SeqIO">Bio::SeqIO</a>对象后，每次调用next_seq，Bioperl都会通过运行很多相关的脚本，来提取下一条序列的信息，并记录到一个SeqI对象中。神奇的是，next_seq一次性提取整条序列的所有信息，因为Bioperl能够理解序列的起始和终止位置，当提取完一条序列信息后自动停止，等待下一次next_seq的调用。同时，Bioperl也能识别出序列的注释信息，例如在genbank序列 <tt><a href="http://www.ncbi.nlm.nih.gov/Sitemap/samplerecord#LocusB" target="_blank">LOCUS</a>行中的</tt><a href="http://www.ncbi.nlm.nih.gov/Sitemap/samplerecord#GenBankDivisionB" target="_blank">DIVISION</a>信息。 要转换格式，就是把存储序列信息的一个<a title="Module:Bio::SeqI" href="http://www.bioperl.org/wiki/Module:Bio::SeqI">Bio::SeqI</a>对象以另一种格式输出到新文件中。 这时就要用<a title="Module:Bio::SeqIO" href="http://www.bioperl.org/wiki/Module:Bio::SeqIO">Bio::SeqIO</a>中的另一个方法，write_seq。write_seq的工作原理与刚才所说的读取序列的过程正好相反，并通过next_seq将输入和输出的过程连接起来。Bioperl可以将一个SeqI对象按照所需格式输出到新的序列文件中。看下面的示例会更清楚一些：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="c1"># get command-line arguments, or die with a usage statement</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$usage</span>         <span class="o">=</span> <span class="s">&quot;x2y.pl infile infileformat outfile outfileformat\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$infile</span>        <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$infileformat</span>  <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$outfile</span>       <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$outfileformat</span> <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># create one SeqIO object to read in,and another to write out</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq_in</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                             <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;&lt;$infile&quot;</span><span class="p">,</span>
+</span><span class='line'>                             <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="nv">$infileformat</span><span class="p">,</span>
+</span><span class='line'>                             <span class="p">);</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq_out</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                              <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;&gt;$outfile&quot;</span><span class="p">,</span>
+</span><span class='line'>                              <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="nv">$outfileformat</span><span class="p">,</span>
+</span><span class='line'>                              <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># write each entry in the input file to the output file</span>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$inseq</span> <span class="o">=</span> <span class="nv">$seq_in</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$seq_out</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$inseq</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>可以将$seq_in和$seq_out想象成两个特殊的文件句柄，并且这个文件句柄“知道”序列及其格式。用文件句柄时一般用类似&lt;F&gt;的操作符，而$seq_in和$seq_out则使用next_seq()方法来读取或输出序列对象，如用“$seqio-&gt;write_seq($seq_object)”相对于“print F $line”。</p>
+
+<p>注：<a title="Module:Bio::SeqIO" href="http://www.bioperl.org/wiki/Module:Bio::SeqIO">Bio::SeqIO</a>允许使用一种办法来模仿文件句柄的输入输出（也不知道用这种方法是傻还是聪明），让<code>&lt;F&gt;存储序列，“</code><code>print F”则是输出序列。但这种方式对很多人来说是一种非主流想法，看起来很别扭，有时候也会引起一些不必要的困惑。</code></p>
+
+<p>这个可通用与序列格式转换的脚本只比前面例子里提取accession号和计算序列平均长度的脚本多了几行代码。（主要增加的部分是为了从命令行获取参数）这就是Bioperl的优势所在，可以用很少的代码完成很复杂的任务。</p>
+
+<p>接着，我们来看通过简单修改上面例子中的代码来展示一下SeqIO的灵活性。例如，用其他程序输出一段内容，然后用Bioperl来接受其输出的内容，处理后输出到新文件中。这里需要明确亮点，一个和Perl有关，另一个是Bioperl特有的。Perl可以通过在一个句柄的名字前加“*”号将其转换（GLOB）成一个文件句柄，以便于后面使用。 另外，<a title="Module:Bio::SeqIO" href="http://www.bioperl.org/wiki/Module:Bio::SeqIO">Bio::SeqIO</a>可以将前面转换后的文件句柄作为<code>-fh的参数，以代替</code><code>-file参数。下面展示的例子中，all2y.pl可以从其他程序的输出端获取内容，使用时类似于：</code>
+<pre>    &gt;cat myseqs.fa | all2y.pl fasta newseqs.gb genbank</pre>
+其代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="c1"># get command-line arguments, or die with a usage statement</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$usage</span>     <span class="o">=</span> <span class="s">&quot;all2y.pl informat outfile outfileformat\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$informat</span>  <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$outfile</span>   <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$outformat</span> <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># create one SeqIO object to read in, and another to write out</span>
+</span><span class='line'><span class="c1"># *STDIN is a &#39;globbed&#39; filehandle with the contents of Standard In</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seqin</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                            <span class="o">-</span><span class="n">fh</span>     <span class="o">=&gt;</span> <span class="o">\*</span><span class="bp">STDIN</span><span class="p">,</span>
+</span><span class='line'>                            <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="nv">$informat</span><span class="p">,</span>
+</span><span class='line'>                            <span class="p">);</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seqout</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                             <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;&gt;$outfile&quot;</span><span class="p">,</span>
+</span><span class='line'>                             <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="nv">$outformat</span><span class="p">,</span>
+</span><span class='line'>                             <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># write each entry in the input file to the output file</span>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$inseq</span> <span class="o">=</span> <span class="nv">$seqin</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$seqout</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$inseq</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>有时候可能根本就用不着文件。可以直接使用 <tt>STDIN<span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif;">和</span></tt><tt>STDOUT，将输出序列做为另一程序的输入，比如：</tt>
+<pre>    cat *.seq | in2out.pl EMBL Genbank | someother program</pre>
+代码如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="c1"># get command-line arguments, or die with a usage statement</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$usage</span>     <span class="o">=</span> <span class="s">&quot;in2out.pl informat outformat\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$informat</span>  <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$outformat</span> <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># create one SeqIO object to read in, and another to write out</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seqin</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                            <span class="o">-</span><span class="n">fh</span>     <span class="o">=&gt;</span> <span class="o">\*</span><span class="bp">STDIN</span><span class="p">,</span>
+</span><span class='line'>                            <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="nv">$informat</span><span class="p">,</span>
+</span><span class='line'>                            <span class="p">);</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$outseq</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                             <span class="o">-</span><span class="n">fh</span>     <span class="o">=&gt;</span> <span class="o">\*</span><span class="bp">STDOUT</span><span class="p">,</span>
+</span><span class='line'>                             <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="nv">$outformat</span><span class="p">,</span>
+</span><span class='line'>                             <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># write each entry in the input to the output</span>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$inseq</span> <span class="o">=</span> <span class="nv">$seqin</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$outseq</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$inseq</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p><a id="To_and_From_a_String" name="To_and_From_a_String"></a>
+<h2>字符串相关</h2>
+一个很常见的问题是：“如果我有一个字符串，其中包含了一系列的某格式的序列，我该如何才能把这些序列转换成Bio::Seq对象？”比如有些时候，需要用户在网页表格内输入一段序列，然后对这段序列做一些处理。可以通过把用户输入的一段字符串转化成符合Perl标准的句柄(Perl 5.8.0以后可以直接用open来完成），然后-fh参数就可设置成这个句柄，而不用设置成文件名。</p>
+
+<p>下面的两个例子都不是完整的程序，只是给个基本的示例。假设通过<a title="wp:CGI" href="http://en.wikipedia.org/wiki/CGI">CGI</a>脚本获取到用户输入的序列和序列格式，并分别放到两个字符串变量中。刚才提到Bio::seqIO可通过文件后缀名识别序列格式，这里输入的序列不是文件，所以必须告知Bioperl文件格式。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">IO::</span><span class="n">String</span><span class="p">;</span>   <span class="c1"># only needed for Perl versions previous to 5.8.0</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">## get a string into $string somehow, with its format in $format, say from a web form.</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$string</span>   <span class="o">=</span> <span class="s">&quot;&gt;SEQ1\nacgt\n&gt;revseq1\ntgca\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$format</span>   <span class="o">=</span> <span class="s">&quot;fasta&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$stringfh</span> <span class="o">=</span> <span class="nn">IO::</span><span class="n">String</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="nv">$string</span><span class="p">);</span>                                         <span class="c1"># Use this for Perl BEFORE 5.8.0</span>
+</span><span class='line'><span class="nb">open</span><span class="p">(</span><span class="nv">$stringfh</span><span class="p">,</span> <span class="s">&quot;&lt;&quot;</span><span class="p">,</span> <span class="o">\</span><span class="nv">$string</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span> <span class="s">&quot;Could not open string for reading: $!&quot;</span><span class="p">;</span>   <span class="c1"># Use this for Perl AFTER 5.8.0 (inclusive)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seqio</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span> <span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                             <span class="o">-</span><span class="n">fh</span>     <span class="o">=&gt;</span> <span class="nv">$stringfh</span><span class="p">,</span>
+</span><span class='line'>                             <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="nv">$format</span><span class="p">,</span>
+</span><span class='line'>                             <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span><span class="p">(</span> <span class="k">my</span> <span class="nv">$seq</span> <span class="o">=</span> <span class="nv">$seqio</span><span class="o">-&gt;</span><span class="n">next_seq</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1"># process each seq</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nv">$seq</span><span class="o">-&gt;</span><span class="n">id</span> <span class="o">.</span> <span class="s">&#39; = &#39;</span><span class="o">.</span><span class="nv">$seq</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">()</span><span class="o">.</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>同样道理，也可以将一个序列对象以一字符串的形式输出。示例（注意open函数内“&lt;”和“&gt;”的区别，“&lt;”用于输入，“&gt;”用于输出）：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">IO::</span><span class="n">String</span><span class="p">;</span>   <span class="c1"># only needed for Perl versions BEFORE 5.8.0</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$string</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$stringfh</span> <span class="o">=</span> <span class="nn">IO::</span><span class="n">String</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">\</span><span class="nv">$string</span><span class="p">);</span>                                        <span class="c1"># Use this for Perl BEFORE 5.8.0</span>
+</span><span class='line'><span class="nb">open</span><span class="p">(</span><span class="nv">$stringfh</span><span class="p">,</span> <span class="s">&quot;&gt;&quot;</span><span class="p">,</span> <span class="o">\</span><span class="nv">$string</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span> <span class="s">&quot;Could not open string for writing: $!&quot;</span><span class="p">;</span>   <span class="c1"># Use this for Perl AFTER 5.8.0 (inclusive)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seqOut</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                             <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;swiss&#39;</span><span class="p">,</span>
+</span><span class='line'>                             <span class="o">-</span><span class="n">fh</span>     <span class="o">=&gt;</span> <span class="nv">$io</span><span class="p">,</span>
+</span><span class='line'>                             <span class="p">);</span>
+</span><span class='line'><span class="nv">$seqOut</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$seq_obj</span><span class="p">);</span>
+</span><span class='line'><span class="k">print</span> <span class="nv">$string</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p><a id="And_more_examples..." name="And_more_examples..."></a>
+<h2>更多示例</h2>
+<a title="Module:Bio::SeqIO" href="http://www.bioperl.org/wiki/Module:Bio::SeqIO">Bio::SeqIO</a>中的<code>-file</code>参数可以是多个文件。也可以是一段字符串，用于表明从<a title="wp:Pipe (Unix)" href="http://en.wikipedia.org/wiki/Pipe_(Unix)">管道</a>输入的内容。格式是<code>'-file' =&gt; '命令 |'。注意后面的“|”符号。当需要处理很大的压缩文件而又没有足够空间解压缩的时候，这种办法很管用。这里给出一个从gzip压缩的genbank文件中提取序列并转换成新的fasta格式的文件，使用方法如下：</code>
+<pre>     gzip2fasta.pl gbpri1.seq.gz Genbank gbpri1.fa</pre>
+下面是gzip2fasta.pl的代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="c1"># get command-line arguments, or die with a usage statement</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$usage</span>    <span class="o">=</span> <span class="s">&quot;gzip2fasta.pl infile informat outfile\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$infile</span>   <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$informat</span> <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$outfile</span>  <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># create one SeqIO object to read in, and another to write out</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seqin</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                            <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;/usr/local/bin/gunzip -c $infile |&quot;</span><span class="p">,</span>
+</span><span class='line'>                            <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="nv">$informat</span><span class="p">,</span>
+</span><span class='line'>                            <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seqout</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                             <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;&gt;$outfile&quot;</span><span class="p">,</span>
+</span><span class='line'>                             <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;Fasta&#39;</span><span class="p">,</span>
+</span><span class='line'>                             <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># write each entry in the input to the output file</span>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$inseq</span> <span class="o">=</span> <span class="nv">$seqin</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$seqout</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$inseq</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>当然Bioperl也可一“管道输出”。使用格式是：<code>'-file' =&gt; "| 命令"。这个时候“|”变到了命令的前面。下面举个例子，用Bioperl将一个genbank序列文件转为fasta格式的序列，但不输出文件，直接传递给WashU Blast，让其建立序列数据库。用法：</code>
+<pre>    any2wublastable.pl myfile.gb Genbank mywublastable p</pre>
+<tt>any2wublastable.pl的代码：</tt></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># get command-line arguments, or die with a usage statement</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$usage</span>     <span class="o">=</span> <span class="s">&quot;any2wublastable.pl infile informat outdbname outdbtype\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$infile</span>    <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$informat</span>  <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$outdbname</span> <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$outdbtype</span> <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># create one SeqIO object to read in, and another to write out</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seqin</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                            <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;&lt;$infile&quot;</span><span class="p">,</span>
+</span><span class='line'>                            <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="nv">$informat</span><span class="p">,</span>
+</span><span class='line'>                            <span class="p">);</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seqout</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                             <span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="s">&quot;| /usr/local/bin/xdformat -o $outdbname -${outdbtype} -- -&quot;</span><span class="p">,</span>
+</span><span class='line'>                             <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;Fasta&#39;</span><span class="p">,</span>
+</span><span class='line'>                             <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># write each entry in the input to the output</span>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$inseq</span> <span class="o">=</span> <span class="nv">$seqin</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$seqout</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$inseq</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>可能一些有经验的读者已经意识到new方法返回的是一个引用变量（reference），引用的可以是任意格式的数据。现在来看一个用引用变量存储序列信息的例子。任务是要从一个genbank序列文件中提取出人类的序列并输出到human.gb文件，剩下的序列输出到other.gb文件。这里需要用到两个哈希数组（hash），并分别以“human”和“other”作为下标（key）。
+<pre>     splitgb.pl inseq.gb</pre>
+<tt>splitgb.pl</tt>的代码:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># get command-line argument, or die with a usage statement</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$usage</span>  <span class="o">=</span> <span class="s">&quot;splitgb.pl infile\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$infile</span> <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$inseq</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                            <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;&lt;$infile&quot;</span><span class="p">,</span>
+</span><span class='line'>                            <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;Genbank&#39;</span><span class="p">,</span>
+</span><span class='line'>                            <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">%outfiles</span> <span class="o">=</span> <span class="p">(</span>
+</span><span class='line'>                <span class="s">&#39;human&#39;</span> <span class="o">=&gt;</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                                           <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&#39;&gt;human.gb&#39;</span><span class="p">,</span>
+</span><span class='line'>                                           <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;Genbank&#39;</span><span class="p">,</span>
+</span><span class='line'>                                           <span class="p">),</span>
+</span><span class='line'>                <span class="s">&#39;other&#39;</span> <span class="o">=&gt;</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                                           <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&#39;&gt;other.gb&#39;</span><span class="p">,</span>
+</span><span class='line'>                                           <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;Genbank&#39;</span><span class="p">,</span>
+</span><span class='line'>                                           <span class="p">),</span>
+</span><span class='line'>                <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$seqin</span> <span class="o">=</span> <span class="nv">$inseq</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1"># here we make use of the species attribute, which returns a</span>
+</span><span class='line'>    <span class="c1"># species object, which has a binomial attribute that</span>
+</span><span class='line'>    <span class="c1"># holds the binomial species name of the source of the sequence</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nv">$seqin</span><span class="o">-&gt;</span><span class="n">species</span><span class="o">-&gt;</span><span class="n">binomial</span> <span class="o">=~</span> <span class="sr">m/Homo sapiens/</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$outfiles</span><span class="p">{</span><span class="s">&#39;human&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$seqin</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$outfiles</span><span class="p">{</span><span class="s">&#39;other&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$seqin</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>现在来看用更复杂的多维hash来存储Genbank和fasta的序列信息。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="c1"># get command-line argument, or die with a usage statement</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$usage</span>  <span class="o">=</span> <span class="s">&quot;splitgb.pl infile\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$infile</span> <span class="o">=</span> <span class="nb">shift</span> <span class="ow">or</span> <span class="nb">die</span> <span class="nv">$usage</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$inseq</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                            <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;&lt;$infile&quot;</span><span class="p">,</span>
+</span><span class='line'>                            <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;Genbank&#39;</span><span class="p">,</span>
+</span><span class='line'>                            <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">%outfiles</span> <span class="o">=</span> <span class="p">(</span>
+</span><span class='line'>                <span class="n">human</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>                          <span class="n">Genbank</span> <span class="o">=&gt;</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                                                     <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&#39;&gt;human.gb&#39;</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;Genbank&#39;</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="p">),</span>
+</span><span class='line'>                          <span class="n">Fasta</span>   <span class="o">=&gt;</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                                                     <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&#39;&gt;human.fa&#39;</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;Fasta&#39;</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="p">),</span>
+</span><span class='line'>                          <span class="p">},</span>
+</span><span class='line'>                <span class="n">other</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class='line'>                          <span class="n">Genbank</span> <span class="o">=&gt;</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                                                     <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&#39;&gt;other.gb&#39;</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;Genbank&#39;</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="p">),</span>
+</span><span class='line'>                          <span class="n">Fasta</span>   <span class="o">=&gt;</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                                                     <span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="s">&#39;&gt;other.fa&#39;</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;Fasta&#39;</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="p">),</span>
+</span><span class='line'>                          <span class="p">}</span>
+</span><span class='line'>                <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$seqin</span> <span class="o">=</span> <span class="nv">$inseq</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nv">$seqin</span><span class="o">-&gt;</span><span class="n">species</span><span class="o">-&gt;</span><span class="n">binomial</span> <span class="o">=~</span> <span class="sr">m/Homo sapiens/</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$outfiles</span><span class="p">{</span><span class="s">&#39;human&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="s">&#39;Genbank&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$seqin</span><span class="p">);</span>
+</span><span class='line'>        <span class="nv">$outfiles</span><span class="p">{</span><span class="s">&#39;human&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="s">&#39;Fasta&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$seqin</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$outfiles</span><span class="p">{</span><span class="s">&#39;other&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="s">&#39;Genbank&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$seqin</span><span class="p">);</span>
+</span><span class='line'>        <span class="nv">$outfiles</span><span class="p">{</span><span class="s">&#39;other&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="s">&#39;Fasta&#39;</span><span class="p">}</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$seqin</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>最后要说的是<a href="http://en.wikipedia.org/wiki/One-liner_program" target="_blank">单行</a>程序。Perl允许在命令行里用单行程序的方式编写脚本，而不需要放在脚本文件中。如下所示，-e后面用单引号括住脚本代码，<tt>-M后面跟所调用的模块。（译者注：-M后面没有空格，-e后面可有可无，多个模块则写多个-M。）当脚本内部也需要使用单引号时必须用q()来代替，防止混淆。下面举的例子是要找出在一个压缩的序列文件中有多少GSS序列。注：为了便于阅读，下面的代码有分行，但在命令行中一般没有写完代码不分行。（译者注：有单引号存在的时候，也可以分行，直到单引号结束再回车才会运行命令。）</tt>
+<pre>perl -MBio::SeqIO -e 'my $gss=0;
+my $in=Bio::SeqIO-&gt;new(q(-file)=&gt;q(/usr/local/bin/gunzip -c gbpri1.seq.gz |), q(-format)=&gt;q(Genbank));
+while (my $seq = $in-&gt;next_seq) { $gss++ if ($seq-&gt;keywords =~ m/GSS/);}
+ print "There are $gss GSS sequences in gbpri1.seq.gz\n";'</pre>
+<a id="Caveats" name="Caveats"></a>
+<h2>警告</h2>
+因为<a title="BioPerl" href="http://www.bioperl.org/wiki/BioPerl">BioPerl</a>用一个单一而通用的数据接口来存取所有支持格式的文件，有时候Bioperl就会或多或少改变原本文件的数据结构。例如，从<a title="GenBank" href="http://www.bioperl.org/wiki/GenBank">GenBank</a>数据库中下载到一个genbank格式的序列，然后用bioperl转换成一个新的genbank格式的序列。用&#8221;<tt>diff origfile newfile</tt>&#8220;后会惊奇地发现两者有所不同，这时你就应该明白我第一句说的是什么了。需要记住Bioperl并不提供“往返行程”，它只是通过一个通用的数据接口来获取多种多样序列的信息，并用于其他脚本或程序从中提取所需信息。</p>
+
+<p><a id="Error_Handling" name="Error_Handling"></a>
+<h2>纠错</h2>
+如果所给定的文件不存在，脚本会运行出错并给出相应的错误信息。这用编程术语叫做“<a href="http://en.wikipedia.org/wiki/Exception_handling" target="_blank">抛出异常</a>”。例如：
+<pre>      user@localhost ~/src/bioperl-live&gt; perl t.pl bollocks silly
+      ------------- EXCEPTION  -------------
+      MSG: Could not open bollocks for reading: No such file or directory
+      STACK Bio::Root::IO::_initialize_io Bio/Root/IO.pm:259
+      STACK Bio::SeqIO::_initialize Bio/SeqIO.pm:441
+      STACK Bio::SeqIO::genbank::_initialize Bio/SeqIO/genbank.pm:122
+      STACK Bio::SeqIO::new Bio/SeqIO.pm:359
+      STACK Bio::SeqIO::new Bio/SeqIO.pm:372
+      STACK toplevel t.pl:9
+      --------------------------------------
+</pre>
+
+这种错误信息非常有用。因为可以从中可以找出出错的地方，也叫“<a href="http://en.wikipedia.org/wiki/Stack_trace" target="_blank">堆栈追踪</a>”。如上例中给出了出错的文件和与错误相关的行号。（译者注：上例中t.pl是用户自己的脚本，出错是在t.pl文件的第9行。其他都是bioperl包含的一些相关模块文件，所列行号只是和错误相关，但一般不会是bioperl本身出错。）</p>
+
+<p>Bioperl会自动识别出类似的错误并终止程序运行。但最好是自己就在脚本中设置一些纠错机制。 可以通过类似下例来“捕获异常”。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$input_file</span>  <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$output_file</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># we have to declare $seq_in and $seq_out before</span>
+</span><span class='line'><span class="c1"># the eval block as we want to use them afterwards</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq_in</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq_out</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">eval</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$seq_in</span>   <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                                <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;genbank&#39;</span><span class="p">,</span>
+</span><span class='line'>                                <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="nv">$input_file</span><span class="p">,</span>
+</span><span class='line'>                                <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">$seq_out</span>  <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                                <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;fasta&#39;</span><span class="p">,</span>
+</span><span class='line'>                                <span class="o">-</span><span class="n">file</span>   <span class="o">=&gt;</span> <span class="s">&quot;&gt;$output_file&quot;</span><span class="p">,</span>
+</span><span class='line'>                                <span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span> <span class="vg">$@</span> <span class="p">)</span> <span class="p">{</span> <span class="c1"># an error occurred</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;Was not able to open files, sorry!\n&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;Full error is\n\n$@\n&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq</span><span class="p">;</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span> <span class="nv">$seq</span> <span class="o">=</span> <span class="nv">$seq_in</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nv">$seq_out</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$seq</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>eval是perl的一种纠错机制，不止是<a title="BioPerl" href="http://www.bioperl.org/wiki/BioPerl">BioPerl</a>才有。如果eval {BLOCK}中的一段程序出错后，回将错误信息返回到$@变量。需要注意的是：必须提前声明变量 <code>$seq_in<span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif;">和</span></code><code>$seq_out。如果在eval {}内用my声明变量，此变量只被设定在eval{}中，当在eval{}之后调用此变量是就会出错（用use strict时会提示错误并终止运行）。</code></p>
+
+<p><a id="Speed.2C_Bio::Seq::SeqBuilder" name="Speed.2C_Bio::Seq::SeqBuilder"></a>
+<h2>提速, <a title="Module:Bio::Seq::SeqBuilder" href="http://www.bioperl.org/wiki/Module:Bio::Seq::SeqBuilder">Bio::Seq::SeqBuilder</a></h2>
+如果需要处理大批量的序列，且只需要从中提取很少部分信息（如只提取genbank文件中的序列），可以使用<a title="Module:Bio::Seq::SeqBuilder" href="http://www.bioperl.org/wiki/Module:Bio::Seq::SeqBuilder">Bio::Seq::SeqBuilder</a>来设定<a title="Module:Bio::SeqIO" href="http://www.bioperl.org/wiki/Module:Bio::SeqIO">Bio::SeqIO</a>只提取需要的部分信息。这样能够节省很多时间从而提升脚本的运行速度。</p>
+
+<p>例如，只需要genbank文件中三类注释信息，可提升大约6倍的速度。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="n">Benchmark</span> <span class="sx">qw(:all)</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$file</span> <span class="o">=</span> <span class="s">&quot;gbbct10.seq&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">timethis</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">sub </span><span class="p">{</span>
+</span><span class='line'>   <span class="k">my</span> <span class="nv">$in</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="nv">$file</span><span class="p">,</span> <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&quot;genbank&quot;</span><span class="p">);</span>
+</span><span class='line'>   <span class="k">for</span> <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">1000</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">my</span> <span class="nv">$seq</span> <span class="o">=</span> <span class="nv">$in</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">;</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">timethis</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">sub </span><span class="p">{</span>
+</span><span class='line'>   <span class="k">my</span> <span class="nv">$in</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="nv">$file</span><span class="p">,</span> <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&quot;genbank&quot;</span><span class="p">);</span>
+</span><span class='line'>   <span class="k">my</span> <span class="nv">$builder</span> <span class="o">=</span> <span class="nv">$in</span><span class="o">-&gt;</span><span class="n">sequence_builder</span><span class="p">();</span>
+</span><span class='line'>   <span class="nv">$builder</span><span class="o">-&gt;</span><span class="n">want_none</span><span class="p">();</span>
+</span><span class='line'>   <span class="nv">$builder</span><span class="o">-&gt;</span><span class="n">add_wanted_slot</span><span class="p">(</span><span class="s">&#39;display_id&#39;</span><span class="p">,</span><span class="s">&#39;desc&#39;</span><span class="p">,</span><span class="s">&#39;seq&#39;</span><span class="p">);</span>
+</span><span class='line'>   <span class="k">for</span> <span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">1000</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">my</span> <span class="nv">$seq</span> <span class="o">=</span> <span class="nv">$in</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">;</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>结果：
+<pre>timethis 1: 10 wallclock secs ( 9.64 usr +  0.02 sys =  9.66 CPU) @  0.10/s (n=1)
+            (warning: too few iterations for a reliable count)
+timethis 1:  1 wallclock secs ( 1.63 usr +  0.00 sys =  1.63 CPU) @  0.61/s (n=1)
+            (warning: too few iterations for a reliable count)</pre>
+更多相关内容见<a title="HOWTO:Feature-Annotation" href="http://www.bioperl.org/wiki/HOWTO:Feature-Annotation#Customizing_Sequence_Object_Construction">HOWTO:Feature-Annotation</a>
+<div id="catlinks"></div></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    <a href="https://plus.google.com/113645349664564078087" rel="author">Bioops</a>
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2012-03-19T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/bioperl-howtofan-yi/'>bioperl howto翻译</a>, <a class='category' href='/category/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bioops.info/2012/03/bioperl-howto-seqio/" data-via="" data-counturl="http://bioops.info/2012/03/bioperl-howto-seqio/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-layout="button_count" data-send="false" data-width="300" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/03/bioperl-howto-beginners-else/" title="Previous Post: Bioperl入门其他部分（Bioperl HOWTO翻译12）">&laquo; Bioperl入门其他部分（Bioperl HOWTO翻译12）</a>
+      
+      
+        <a class="basic-alignment right" href="/2012/04/next-generation-sequencing-ngs-technologies-market/" title="Next Post: 2016年下一代测序技术的全球市场总额将达23.43亿刀">2016年下一代测序技术的全球市场总额将达23.43亿刀 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bioops.info/2012/03/bioperl-howto-seqio/';
+        var disqus_url = 'http://bioops.info/2012/03/bioperl-howto-seqio/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

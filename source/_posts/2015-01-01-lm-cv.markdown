@@ -1,0 +1,66 @@
+---
+layout: post
+title: "Linear regression with cross validation"
+date: 2015-01-01 15:33:24 -0500
+comments: true
+categories: [Programming, R, Statistics]
+---
+
+Cross validation for linear model and the bootstrap confidence interval for coefficients
+
+``` R linear_CV.R
+
+# (a) Linear model
+
+# read data
+library(RCurl)
+data <- getURL("https://raw.githubusercontent.com/bioops/mis_scripts/master/statistics/data/prostateData.txt")
+prostate <- read.table(text = data, header=T,sep="\t")
+# remove the first column
+prostate<-prostate[,-1]
+# run the linear model
+prostate_lm<-lm(lpsa~.,data=prostate)
+
+# summary of the fit
+summary(prostate_lm)
+
+
+# (b) Cross-validation
+
+# need boot package
+library(boot)
+# fit the linear model
+glm.fit<-glm(lpsa~lcavol+lweight+age+lbph+svi+lcp+gleason+pgg45,data=prostate)
+
+# LOOCV
+cv.glm(prostate, glm.fit)$delta[1]
+
+# 10-fold CV
+cv.err.10<-rep(0,10)
+for(i in 1:10){
+  cv.err.10[i]<-cv.glm(prostate, glm.fit, K=10)$delta[1]
+}
+
+# mean error of 10-fold CV
+mean(cv.err.10)
+
+
+# (c) Bootstrap
+
+# get ther residuals and fitted values from linear model
+prostate_new<-data.frame(prostate, res=resid(prostate_lm), fitted=fitted(prostate_lm))
+# a function to get the coefficients from each bootstrap
+prostate.fun<-function(data, i){
+  d<-data
+  d$lpsa<-d$fitted+d$res[i]
+  coef(update(prostate_lm, data=d))
+}
+# bootstrap
+prostate.lm.boot<-boot(prostate_new, prostate.fun, R=1000)
+
+# 95% conficence level for lcavol
+boot.ci(prostate.lm.boot, index=2)
+# 95% conficence level for lweight
+boot.ci(prostate.lm.boot, index=3)
+
+```

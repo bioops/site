@@ -1,0 +1,89 @@
+---
+layout: post
+title: perl脚本提取BLAST结果中的信息【以tblastn为例】
+categories:
+- Perl
+- Programming
+- Software
+tags:
+- Blast
+- HOWTO
+- Perl
+- Regular Expression
+published: true
+comments: true
+---
+<p>用blast中<a href="http://www.pangloss.com/wiki/Blast" target="_blank"> -m 8</a>参数可以得到类似的信息，但满足不了所有的需求。用bioperl可以得到任意想要的信息，但我用的cluster上没有bioperl，只好自己写了一个。只是用了一些正则表达式，不适用于其他blast（比如blastn、blastp），但只需要稍微改一下就可以了，暂时将就着用吧。欢迎留言讨论。</p>
+
+``` perl parse_blast.pl
+
+#!/usr/bin/perl
+# Parse alignments from tBLASTn output file
+use strict;
+use warnings;
+print "query\tquery_length\thit\tscore\texpect\tidentity\tquery_strand\tsubject_strand\tcoverage_query\tcoverage_subject\tquery_start\tquery_end\tsubject_start\tsubject_end\n";
+my $input=$ARGV[0];
+my ($eachline,$query_name,$query_length,$hit_name,$hsp_num);
+my ($query_start_temp,$query_end_temp,$subject_start_temp,$subject_end_temp);
+my ($query_start,$query_end,$subject_start,$subject_end,$query_seq,$subject_seq,$query_seq_temp,$subject_seq_temp);
+my ($score,$expect,$coverage_query,$coverage_subject,$identity_query,$identity_subject,$identity,$query_strand,$subject_strand);
+$hsp_num=0;
+open(IN,"<$input") or die ("no file $input !");
+while (defined($eachline=<IN>)){
+  $eachline=~s/[\r\n]//g;
+  if($eachline=~/^Query= /){
+    ($query_name)=($eachline=~/^Query= (\S+)/);
+    $eachline=<IN>;
+    ($query_length)=($eachline=~/\((\S+) letters\)/);
+    $query_length=~s/,//g;
+  }
+  if($eachline=~/^>/){
+    ($hit_name)=($eachline=~/^>(\S+)/);
+  }
+  if($eachline=~/^ Score/){
+    ($score,$expect)=($eachline =~ /Score = (.*) bits.*Expect.* = (\S+),/);
+    $hsp_num++;
+    if($hsp_num>1){
+      $coverage_query=$query_end-$query_start+1;
+      $coverage_subject=$subject_end-$subject_start+1;
+      print "$coverage_query\t$coverage_subject\t$query_start\t$query_end\t$subject_start\t$subject_end\t$query_seq\t$subject_seq\n";
+    }
+    $query_start=1000000000;$query_end=0;
+    $subject_start=1000000000;$subject_end=0;
+    $query_seq='';$subject_seq='';
+    print "$query_name\t$query_length\t$hit_name\t";
+    print "$score\t$expect\t";
+  }
+  if($eachline=~/^ Identities/){
+    ($identity_query,$identity_subject,$identity)=($eachline =~ /Identities = (\d+)\/(\d+) \((\d+)%\)/);
+    print "$identity\t";
+  }
+  if($eachline=~/^ Frame = /){
+    if($eachline =~ / Frame = -/){$subject_strand='Minus';}elsif($eachline =~ / Frame = +/){$subject_strand='Plus';}
+    $query_strand='Plus';
+    print "$query_strand\t$subject_strand\t";
+  }
+  if($eachline=~/^Query: (\d+)/){
+    if($query_strand eq 'Plus'){($query_start_temp,$query_seq_temp,$query_end_temp)=($eachline =~ /(\d+)(\D+)(\d+)/);}
+    if($query_strand eq 'Minus'){($query_end_temp,$query_seq_temp,$query_start_temp)=($eachline =~ /(\d+)(\D+)(\d+)/);}
+    $query_seq_temp=~s/[ -]//g;$query_seq.=$query_seq_temp;
+    if($query_start>$query_start_temp){$query_start=$query_start_temp;}
+    if($query_end<$query_end_temp){$query_end=$query_end_temp;}
+  }
+  if($eachline=~/^Sbjct: (\d+)/){
+    if($subject_strand eq 'Plus'){($subject_start_temp,$subject_seq_temp,$subject_end_temp)=($eachline =~ /(\d+)(\D+)(\d+)/);}
+    if($subject_strand eq 'Minus'){($subject_end_temp,$subject_seq_temp,$subject_start_temp)=($eachline =~ /(\d+)(\D+)(\d+)/);}   
+    $subject_seq_temp=~s/[ -]//g;$subject_seq.=$subject_seq_temp;
+    if($subject_start>$subject_start_temp){$subject_start=$subject_start_temp;}
+    if($subject_end<$subject_end_temp){$subject_end=$subject_end_temp;}
+  }
+  if($eachline=~/^Matrix: /){
+    $coverage_query=$query_end-$query_start+1;
+    $coverage_subject=$subject_end-$subject_start+1;
+    print "$coverage_query\t$coverage_subject\t$query_start\t$query_end\t$subject_start\t$subject_end\t$query_seq\t$subject_seq\n";
+  }
+}
+close IN;
+
+```
+

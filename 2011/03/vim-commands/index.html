@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Useful, Essential and Most Often Used Vim Commands - Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="&lt; The list of Vim commands &gt; Working with files Vim command
+Action :e filename
+Open a new file. You can use the Tab key for automatic file name &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/2011/03/vim-commands">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Useful, Essential and Most Often Used Vim Commands</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-09T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>&lt; <strong>The list of Vim commands</strong> &gt;
+<div>
+<table border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr>
+<td id="files" colspan="2"><em><strong>Working with files</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>:e filename</td>
+<td>Open a new file. You can use the Tab key for automatic file name completion, just like at the shell command prompt.</td>
+</tr>
+<tr>
+<td>:w filename</td>
+<td>Save changes to a file. If you don&#8217;t specify a file name, Vim saves as the file name you were editing. For saving the file under a different name, specify the file name.</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>Quit Vim. If you have unsaved changes, Vim refuses to exit.</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>Exit Vim without saving changes.</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>Write the file and exit.</td>
+</tr>
+<tr>
+<td>: x</td>
+<td>Almost the same as :wq, write the file and exit if you&#8217;ve made changes to the file. If you haven&#8217;t made any changes to the file, Vim exits without writing the file.</td>
+</tr>
+<tr>
+<td id="nav" colspan="2"><em><strong>Moving around in the file</strong></em></td>
+</tr>
+<tr>
+<td colspan="2">These Vim commands and keys work both in command mode and visual mode.</td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>j or Up Arrow</td>
+<td>Move the cursor up one line.</td>
+</tr>
+<tr>
+<td>k or Down Arrow</td>
+<td>Down one line.</td>
+</tr>
+<tr>
+<td>h or Left Arrow</td>
+<td>Left one character.</td>
+</tr>
+<tr>
+<td>l or Right Arrow</td>
+<td>Right one character.</td>
+</tr>
+<tr>
+<td>e</td>
+<td>To the end of a word.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>To the end of a whitespace-delimited word.</td>
+</tr>
+<tr>
+<td>b</td>
+<td>To the beginning of a word.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>To the beginning of a whitespace-delimited word.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>To the beginning of a line.</td>
+</tr>
+<tr>
+<td>^</td>
+<td>To the first non-whitespace character of a line.</td>
+</tr>
+<tr>
+<td>$</td>
+<td>To the end of a line.</td>
+</tr>
+<tr>
+<td>H</td>
+<td>To the first line of the screen.</td>
+</tr>
+<tr>
+<td>M</td>
+<td>To the middle line of the screen.</td>
+</tr>
+<tr>
+<td>L</td>
+<td>To the the last line of the screen.</td>
+</tr>
+<tr>
+<td>:<em>n</em></td>
+<td>Jump to line number <em>n</em>. For example, to jump to line 42, you&#8217;d type :42</td>
+</tr>
+<tr>
+<td id="insert" colspan="2"><em><strong>Inserting and overwriting text</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>i</td>
+<td>Insert before cursor.</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Insert to the start of the current line.</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Append after cursor.</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Append to the end of the current line.</td>
+</tr>
+<tr>
+<td>o</td>
+<td>Open a new line below and insert.</td>
+</tr>
+<tr>
+<td>O</td>
+<td>Open a new line above and insert.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Change the rest of the current line.</td>
+</tr>
+<tr>
+<td>r</td>
+<td>Overwrite one character. After overwriting the single character, go back to command mode.</td>
+</tr>
+<tr>
+<td>R</td>
+<td>Enter insert mode but replace characters rather than inserting.</td>
+</tr>
+<tr>
+<td>The ESC key</td>
+<td>Exit insert/overwrite mode and go back to command mode.</td>
+</tr>
+<tr>
+<td id="delete" colspan="2"><em><strong>Deleting text</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>x</td>
+<td>Delete characters under the cursor.</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Delete characters before the cursor.</td>
+</tr>
+<tr>
+<td>dd or :d</td>
+<td>Delete the current line.</td>
+</tr>
+<tr>
+<td id="visual" colspan="2"><em><strong>Entering visual mode</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>v</td>
+<td>Start highlighting characters. Use the normal movement keys and commands to select text for highlighting.</td>
+</tr>
+<tr>
+<td>V</td>
+<td>Start highlighting lines.</td>
+</tr>
+<tr>
+<td>The ESC key</td>
+<td>Exit visual mode and return to command mode.</td>
+</tr>
+<tr>
+<td id="visualcom" colspan="2"><em><strong>Editing blocks of text</strong></em></td>
+</tr>
+<tr>
+<td colspan="2">Note: the Vim commands marked with (V) work in visual mode, when you&#8217;ve selected some text. The other commands work in the command mode, when you haven&#8217;t selected any text.</td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>~</td>
+<td>Change the case of characters. This works both in visual and command mode. In visual mode, change the case of highlighted characters. In command mode, change the case of the character uder cursor.</td>
+</tr>
+<tr>
+<td>&gt; (V)</td>
+<td>Shift right (indent).</td>
+</tr>
+<tr>
+<td>&lt; (V)</td>
+<td>Shift left (de-indent).</td>
+</tr>
+<tr>
+<td>c (V)</td>
+<td>Change the highlighted text.</td>
+</tr>
+<tr>
+<td>y (V)</td>
+<td>Yank the highlighted text. In Windows terms, &#8220;copy the selected text to clipboard.&#8221;</td>
+</tr>
+<tr>
+<td>d (V)</td>
+<td>Delete the highlighted text. In Windows terms, &#8220;cut the selected text to clipboard.&#8221;</td>
+</tr>
+<tr>
+<td>yy or :y or Y</td>
+<td>Yank the current line. You don&#8217;t need to highlight it first.</td>
+</tr>
+<tr>
+<td>dd or :d</td>
+<td>Delete the current line. Again, you don&#8217;t need to highlight it first.</td>
+</tr>
+<tr>
+<td>p</td>
+<td>Put the text you yanked or deleted. In Windows terms, &#8220;paste the contents of the clipboard&#8221;. Put characters after the cursor. Put lines below the current line.</td>
+</tr>
+<tr>
+<td>P</td>
+<td>Put characters before the cursor. Put lines above the current line.</td>
+</tr>
+<tr>
+<td id="ooopsie" colspan="2"><em><strong>Undo and redo</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>u</td>
+<td>Undo the last action.</td>
+</tr>
+<tr>
+<td>U</td>
+<td>Undo all the latest changes that were made to the current line.</td>
+</tr>
+<tr>
+<td>Ctrl + r</td>
+<td>Redo.</td>
+</tr>
+<tr>
+<td id="search" colspan="2"><em><strong>Search</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>/<em>pattern</em></td>
+<td>Search the file for <em>pattern</em>.</td>
+</tr>
+<tr>
+<td>n</td>
+<td>Scan for next search match in the same direction.</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Scan for next search match but opposite direction.</td>
+</tr>
+<tr>
+<td id="replace" colspan="2"><em><strong>Replace</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>:<em>r</em>s/<em>foo</em>/<em>bar</em>/<em>a</em></td>
+<td>Substitute <em>foo</em> with <em>bar</em>. <em>r</em> determines the range and <em>a</em> determines the arguments.</td>
+</tr>
+<tr>
+<td colspan="2">The range (<em>r</em>) can be</td>
+</tr>
+<tr>
+<td>nothing</td>
+<td>Work on current line only.</td>
+</tr>
+<tr>
+<td>number</td>
+<td>Work on the line whose number you give.</td>
+</tr>
+<tr>
+<td>%</td>
+<td>The whole file.</td>
+</tr>
+<tr>
+<td colspan="2">Arguments (<em>a</em>) can be</td>
+</tr>
+<tr>
+<td>g</td>
+<td>Replace all occurrences in the line. Without this, Vim replaces only the first occurrences in each line.</td>
+</tr>
+<tr>
+<td>i</td>
+<td>Ignore case for the search pattern.</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Don&#8217;t ignore case.</td>
+</tr>
+<tr>
+<td>c</td>
+<td>Confirm each substitution. You can type y to substitute this match, n to skip this match, a to substitute this and all the remaining matches (&#8220;Yes to all&#8221;), and q to quit substitution.</td>
+</tr>
+<tr>
+<td colspan="2">Examples</td>
+</tr>
+<tr>
+<td>:452s/<em>foo</em>/<em>bar</em>/</td>
+<td>Replace the first occurrence of the word <em>foo</em> with <em>bar</em> on line number 452.</td>
+</tr>
+<tr>
+<td>:s/<em>foo</em>/<em>bar</em>/g</td>
+<td>Replace every occurrence of the word <em>foo</em> with <em>bar</em> on current line.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/g</td>
+<td>Replace every occurrence of the word <em>foo</em> with <em>bar</em> in the whole file.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/gi</td>
+<td>The same as above, but ignore the case of the pattern you want to substitute. This replaces <em>foo</em>, <em>FOO</em>, <em>Foo</em>, and so on.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/gc</td>
+<td>Confirm every substitution.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/c</td>
+<td>For each line on the file, replace the first occurrence of <em>foo</em> with <em>bar</em> and confirm every substitution.</td>
+</tr>
+</tbody>
+</table>
+</div></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    <a href="https://plus.google.com/113645349664564078087" rel="author">Bioops</a>
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2011-03-09T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/linux/'>linux</a>, <a class='category' href='/category/os/'>os</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bioops.info/2011/03/vim-commands/" data-via="" data-counturl="http://bioops.info/2011/03/vim-commands/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-layout="button_count" data-send="false" data-width="300" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/03/parse-gff3-file/" title="Previous Post: Parse gff3 file">&laquo; Parse gff3 file</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/03/ubuntu-terminal-directory/" title="Next Post: ubuntu下终端路径只显示当前目录">ubuntu下终端路径只显示当前目录 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bioops.info/2011/03/vim-commands/';
+        var disqus_url = 'http://bioops.info/2011/03/vim-commands/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+---
+layout: post
+title: 真核基因组注释
+categories:
+- Bioinformatics
+- NGS
+tags:
+- Annotation
+- Assembly
+- NGS
+- Transcriptome
+published: true
+comments: true
+---
+<p>测一个未知基因组（<em>de nove</em> sequence），要进行测序、拼接及注释。关于测序仪和拼接软件已经讲的很多了，很少有关于基因组注释的文章。一篇最近在Nature Review Genetics上的<a href="http://www.nature.com/nrg/journal/v13/n5/full/nrg3174.html" target="_blank">文章</a>，A beginner's guide to eukaryotic genome annotation，非常详细地讲解了如何做基因组注释，是一篇非常好的入门文章。</p>
+
+<p>基因组拼接好后，一般要先进行重复序列的检测和注释，然后mask掉这些重复序列，再进行编码基因的预测（有时候也预测非编码RNA），最后一步是整合。因为要通过不同的方法和参考来源来预测，会得到不同的结果，整合时综合考虑预测错误和可变剪接，得到可靠的注释，这一步要一个个手工检测。</p>
+
+<p>有很多软件可以做注释（可见文章内的列表），主要分为ab initio和evidence-driven两种预测方法。</p>
+
+<p>现在RNA-seq技术也很成熟了，一般都是在测基因组时也要做RNA-seq，这些RNA-seq既可用于分析基因的表达，也是非常好的基因注释的参考资源。</p>

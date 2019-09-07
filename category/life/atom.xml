@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Life | Bioops]]></title>
+  <link href="http://bioops.info/category/life/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[2015]]></title>
+    <link href="http://bioops.info/2015/01/2015/"/>
+    <updated>2015-01-01T02:31:05+00:00</updated>
+    <id>http://bioops.info/2015/01/2015</id>
+    <content type="html"><![CDATA[<p>Happy new year!</p>
+
+<p>Hopefully, I will <a href="http://bioops.info/">write</a> and <a href="https://github.com/bioops">code</a> more often in 2015.</p>
+
+<p>Stay tuned!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[八卦]]></title>
+    <link href="http://bioops.info/2013/09/gossip/"/>
+    <updated>2013-09-17T12:48:00+00:00</updated>
+    <id>http://bioops.info/2013/09/gossip</id>
+    <content type="html"><![CDATA[<p><a href="http://www.biostat.washington.edu/~dwitten/">Daniela Witten</a>，26岁当上assistant professor，被福布斯评为科学界30个30岁以下的牛人<a href="http://www.forbes.com/special-report/2011/30-under30-12/30-under-30-12_science.html">之一</a>。<a href="http://en.wikipedia.org/wiki/Edward_Witten">父</a><a href="http://en.wikipedia.org/wiki/Chiara_Nappi">母</a>都是普林斯顿的professor，<a href="http://psych.princeton.edu/psychology/research/witten/index.php">姐姐</a>是普林斯顿的assistant professor，她爸得过菲尔兹奖，<a href="http://www.nytimes.com/2008/08/17/fashion/weddings/17WITTEN.html">老公</a>是facebook的元老。</p>
+
+<p>总结：科研是聪明且有钱人的游戏。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Warning]]></title>
+    <link href="http://bioops.info/2013/08/warning/"/>
+    <updated>2013-08-07T14:19:00+00:00</updated>
+    <id>http://bioops.info/2013/08/warning</id>
+    <content type="html"><![CDATA[<p>A couple of months ago, I transfered the website engine from wordpress into Octopress. A lot of errors were found in previous posts due to format incompatibility, especially some perl scripts.</p>
+
+<p>Please read carefully before using any code or script, and leave a comment if you find some “terrible” error.</p>
+
+<p>Thank you!</p>
+
+<p>[update-2013-08-08] now only perl howto related posts</p>
+
+<p>[update-2015-01-01] All format issues are (putatively) resolved.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Final Transfer to Github]]></title>
+    <link href="http://bioops.info/2013/05/final-transfer-to-github/"/>
+    <updated>2013-05-24T22:14:00+00:00</updated>
+    <id>http://bioops.info/2013/05/final-transfer-to-github</id>
+    <content type="html"><![CDATA[<p>I had been using 000webhost.com to host my website till several days ago when I noticed my website was suspendend for “violating 20%+ CPU usage limit for more than 1000 times.”</p>
+
+<p>The 000wbehost server is good and stable. Most importantly it’s free. Now, I have to transfter to another free and good web hosting service. Github is a good choice. But github does not support wordpress. I tried to transferr the website to github <a href="http://bioops.info/2012/07/transfering-to-github/">before</a>, but I am not comfortable to write blogs using Markdown.</p>
+
+<p>It’s difficult to find another free service supporting wordpress, and lots of people said the static blogging engine is much better than wordpress. Looks like I will stay here for a while.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Common Job Requirements for Senior/mid-senior Bioinformatician and Computational Biologist]]></title>
+    <link href="http://bioops.info/2013/04/job-requirements-for-bioinformatician/"/>
+    <updated>2013-04-18T00:00:00+00:00</updated>
+    <id>http://bioops.info/2013/04/job-requirements-for-bioinformatician</id>
+    <content type="html"><![CDATA[<p><ul>
+	<li>Degree: Phd (=MS+“n” years experience)</li>
+	<li>NGS data processing experience</li>
+	<li>Biology + Statistics knowledge</li>
+	<li>Programming: Statistics (R/Matlab/SAS), Script language (Python/Perl), OOP (C++/Java), Database (SQL)</li>
+	<li>Linux/Unix</li>
+	<li>Written and oral communication skills</li>
+</ul>
+(Note: Based on an incomplete and unprofessional survey on US job market in April 2013)</p>
+]]></content>
+  </entry>
+  
+</feed>

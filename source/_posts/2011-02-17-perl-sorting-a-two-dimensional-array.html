@@ -1,0 +1,40 @@
+---
+layout: post
+title: ! 'Perl: Sorting a Two-Dimensional Array'
+categories:
+- Perl
+- Programming
+tags:
+- Array
+- HOWTO
+- Perl
+- Programming
+published: true
+comments: true
+---
+<p>copy from <a href="http://www.devx.com/tips/Tip/5283">http://www.devx.com/tips/Tip/5283</a></p>
+
+<p>The Perl sort function is useful for alphabetically sorting lists. However, you can't use it on a list of lists, because once a list starts listing other lists, they cease to be lists and become references instead. By sorting arrays within arrays, it's possible to gain relational database-like control over data grids.<br />
+For example, let's say I have a list of lists called @biglist. To print all of its unsorted contents, I would write:</p>
+
+<pre>for $list_ref ( @biglist ) {
+print "@$list_ref\n";
+}</pre>
+
+<p>To sort @biglist by the first element in each list, I would write:</p>
+
+<pre>for $list_ref ( sort { $a->[0] <=> $b->[0] } @biglist ) {
+print "@$list_ref\n";
+}</pre>
+
+<p>If the array element that you wish to sort is not numeric then change the '' to 'cmp' to sort asciibetically:</p>
+
+<pre>for $list_ref ( sort { $a->[0] cmp $b->[0] } @biglist ) {
+print "@$list_ref\n";
+}</pre>
+
+<p>also, should you wish to not sort in a case-sensitive way:</p>
+
+<pre>for $list_ref ( sort { lc($a->[0]) cmp lc($b->[0]) } @biglist ) {
+print "@$list_ref\n";
+}</pre>

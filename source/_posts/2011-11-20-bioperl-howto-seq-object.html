@@ -1,0 +1,902 @@
+---
+layout: post
+title: 详解Bioperl的序列对象（Bioperl HOWTO翻译7）
+categories:
+- Bioperl HOWTO翻译
+- Programming
+tags:
+- Bioperl
+- HOWTO
+- Perl
+- Seq
+- Translation
+published: true
+comments: true
+---
+<p><h3>序列对象</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#The_Sequence_Object" target="_blank">英文原文</a></p>
+
+<<<<<<< HEAD:source/_posts/2011-11-20-bioperl-howto-seq-object.html
+<p>前面涉及到了很多序列对象，展示了序列对象的一些创建和使用方法。这里来详细描述序列对象的功能。</p>
+
+<p>下表列出了序列对象的‘方法’（面向对象编程中的概念，见前文；表的内容就不翻译了）。‘return’表示使用这个方法时，对象所返回的值（或内容）。其中有些方法，如seq()，既可用于输出，也可以向其输入。例如，从已有的序列对象中获取序列。</p>
+
+``` perl
+=======
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>详解Bioperl的序列对象（Bioperl HOWTO翻译7） - Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="序列对象
+英文原文 前面涉及到了很多序列对象，展示了序列对象的一些创建和使用方法。这里来详细描述序列对象的功能。 下表列出了序列对象的‘方法’（面向对象编程中的概念，见前文；表的内容就不翻译了）。‘return’表示使用这个方法时，对象所返回的值（或内容）。其中有些方法，如seq()，既可用于输出 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/2011/11/bioperl-howto-seq-object">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">详解Bioperl的序列对象（Bioperl HOWTO翻译7）</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-20T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:2011/11/bioperl-howto-seq-object/index.html
+
+$sequence_as_string = $seq_obj->seq;
+
+```
+
+<p>也可以自己设定序列：</p>
+
+``` perl
+
+<<<<<<< HEAD:source/_posts/2011-11-20-bioperl-howto-seq-object.html
+$seq_obj->seq("MMTYDFFFFVVNNNNPPPPAAAW");
+=======
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$sequence_as_string</span> <span class="o">=</span> <span class="nv">$seq_obj</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:2011/11/bioperl-howto-seq-object/index.html
+
+```
+
+<<<<<<< HEAD:source/_posts/2011-11-20-bioperl-howto-seq-object.html
+=======
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$seq_obj</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">(</span><span class="s">&quot;MMTYDFFFFVVNNNNPPPPAAAW&quot;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:2011/11/bioperl-howto-seq-object/index.html
+<table border="1" cellspacing="0" cellpadding="4"><caption>Table 1: Sequence Object Methods</caption>
+<tbody>
+<tr>
+<th>Name</th>
+<th>Returns</th>
+<th>Example</th>
+<th>Note</th>
+</tr>
+<tr>
+<td>accession_number</td>
+<td>identifier</td>
+<td>$acc = $so-&gt;accession_number</td>
+<td>get or set an identifier</td>
+</tr>
+<tr>
+<td>alphabet</td>
+<td>alphabet</td>
+<td>$so-&gt;alphabet('dna')</td>
+<td>get or set the alphabet ('dna','rna','protein')</td>
+</tr>
+<tr>
+<td>authority</td>
+<td>authority, if available</td>
+<td>$so-&gt;authority("FlyBase")</td>
+<td>get or set the organization</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>description</td>
+<td>$so-&gt;desc("Example 1")</td>
+<td>get or set a description</td>
+</tr>
+<tr>
+<td>display_id</td>
+<td>identifier</td>
+<td>$so-&gt;display_id("NP_123456")</td>
+<td>get or set an identifier</td>
+</tr>
+<tr>
+<td>division</td>
+<td>division, if available (e.g. PRI)</td>
+<td>$div = $so-&gt;division</td>
+<td>get division (e.g. "PRI")</td>
+</tr>
+<tr>
+<td>get_dates</td>
+<td>array of dates, if available</td>
+<td>@dates = $so-&gt;get_dates</td>
+<td>get dates</td>
+</tr>
+<tr>
+<td>get_secondary_accessions</td>
+<td>array of secondary accessions, if available</td>
+<td>@accs = $so-&gt;get_secondary_accessions</td>
+<td>get other identifiers</td>
+</tr>
+<tr>
+<td>is_circular</td>
+<td>Boolean</td>
+<td>if $so-&gt;is_circular { # }</td>
+<td>get or set</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>keywords, if available</td>
+<td>@array = $so-&gt;keywords</td>
+<td>get or set keywords</td>
+</tr>
+<tr>
+<td>length</td>
+<td>length, a number</td>
+<td>$len = $so-&gt;length</td>
+<td>get the length</td>
+</tr>
+<tr>
+<td>molecule</td>
+<td>molecule type, if available</td>
+<td>$type = $so-&gt;molecule</td>
+<td>get molecule (e.g. "RNA", "DNA")</td>
+</tr>
+<tr>
+<td>namespace</td>
+<td>namespace, if available</td>
+<td>$so-&gt;namespace("Private")</td>
+<td>get or set the name space</td>
+</tr>
+<tr>
+<td>new</td>
+<td>Sequence object</td>
+<td>$so = Bio::Seq-&gt;new(-seq =&gt; "MPQRAS")</td>
+<td>create a new one, see <a title="http://search.cpan.org/perldoc?Bio::Seq" href="http://search.cpan.org/perldoc?Bio::Seq" rel="nofollow" target="_blank">Bio::Seq</a> for more</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>pid, if available</td>
+<td>$pid = $so-&gt;pid</td>
+<td>get pid</td>
+</tr>
+<tr>
+<td>primary_id</td>
+<td>identifier</td>
+<td>$so-&gt;primary_id(12345)</td>
+<td>get or set an identifier</td>
+</tr>
+<tr>
+<td>revcom</td>
+<td>Sequence object</td>
+<td>$so2 = $so1-&gt;revcom</td>
+<td>Reverse complement</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>sequence string</td>
+<td>$seq = $so-&gt;seq</td>
+<td>get or set the sequence</td>
+</tr>
+<tr>
+<td>seq_version</td>
+<td>version, if available</td>
+<td>$so-&gt;seq_version("1")</td>
+<td>get or set a version</td>
+</tr>
+<tr>
+<td>species</td>
+<td>Species object</td>
+<td>$species_obj = $so-&gt;species</td>
+<td>See <a title="http://search.cpan.org/perldoc?Bio::Species" href="http://search.cpan.org/perldoc?Bio::Species" rel="nofollow" target="_blank">Bio::Species</a> for more</td>
+</tr>
+<tr>
+<td>subseq</td>
+<td>sequence string</td>
+<td>$string = $seq_obj-&gt;subseq(10,40)</td>
+<td>Arguments are start and end</td>
+</tr>
+<tr>
+<td>translate</td>
+<td>protein Sequence object</td>
+<td>$prot_obj = $dna_obj-&gt;translate</td>
+<td>See the <a title="http://www.bioperl.org/wiki/Bptutorial.pl#Translating" href="http://www.bioperl.org/wiki/Bptutorial.pl#Translating" rel="nofollow" target="_blank">Bioperl Tutorial</a> for more</td>
+</tr>
+<tr>
+<td>trunc</td>
+<td>Sequence object</td>
+<td>$so2 = $so1-&gt;trunc(10,40)</td>
+<td>Arguments are start and end</td>
+</tr>
+</tbody>
+</table>
+需要注意的是，上表列出的有些方法，如molecule和division，仅在序列对象有相应值的时候才有效，有些序列格式并不包括这些信息。所以，使用某种方法之前，一定要了解清楚输入的序列文件，及其包含的内容。</p>
+
+<p>还有一些方法是关于序列注释信息的，但这些内容可能有点离题，如果要了解的话，详见<a title="HOWTO:Feature-Annotation" href="http://www.bioperl.org/wiki/HOWTO:Feature-Annotation" target="_blank">Feature-Annotation HOWTO</a>。下表列出了一些有关的方法。
+<table border="1" cellspacing="0" cellpadding="4"><caption>Table 2: Feature and Annotation Methods</caption>
+<tbody>
+<tr>
+<th>Name</th>
+<th>Returns</th>
+<th>Note</th>
+</tr>
+<tr>
+<td>get_SeqFeatures</td>
+<td>array of SeqFeature objects</td>
+<td></td>
+</tr>
+<tr>
+<td>get_all_SeqFeatures</td>
+<td>array of SeqFeature objects array</td>
+<td>includes sub-features</td>
+</tr>
+<tr>
+<td>remove_SeqFeatures</td>
+<td>array of SeqFeatures removed</td>
+<td></td>
+</tr>
+<tr>
+<td>feature_count</td>
+<td>number of SeqFeature objects</td>
+<td></td>
+</tr>
+<tr>
+<td>add_SeqFeature</td>
+<td>annotation array of Annotation objects</td>
+<td>get or set</td>
+</tr>
+</tbody>
+</table>
+<a id="Example_Sequence_Objects" name="Example_Sequence_Objects"></a>
+<h3>举例</h3>
+接着来看一下如何使用上面提到的各种方法。看看这些方法如何从不同的来源获取序列对象以及输出内容。先来看看如何从Genbank获取并创建序列对象，代码如下：</p>
+
+<<<<<<< HEAD:source/_posts/2011-11-20-bioperl-howto-seq-object.html
+``` perl
+
+use Bio::DB::GenBank;
+$db_obj = Bio::DB::GenBank->new;
+$seq_obj = $db_obj->get_Seq_by_acc("J01673");
+
+```
+
+<p>或者从本地已有的Genbank文件中获取，代码如下</p>
+
+``` perl
+
+use Bio::SeqIO;
+$seqio_obj = Bio::SeqIO->new(-file => "J01673.gb", -format => "genbank" );
+$seq_obj = $seqio_obj->next_seq;
+
+```
+=======
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$db_obj</span> <span class="o">=</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nv">$db_obj</span><span class="o">-&gt;</span><span class="n">get_Seq_by_acc</span><span class="p">(</span><span class="s">&quot;J01673&quot;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>或者从本地已有的Genbank文件中获取，代码如下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seqio_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="s">&quot;J01673.gb&quot;</span><span class="p">,</span> <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&quot;genbank&quot;</span> <span class="p">);</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nv">$seqio_obj</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:2011/11/bioperl-howto-seq-object/index.html
+
+<p><a href="http://www.bioperl.org/wiki/GenBank_sequence_format" target="_blank">Genbank文件格式</a>如下所示：
+<pre>LOCUS       ECORHO                  1880 bp    DNA     linear   BCT 26-APR-1993
+DEFINITION  E.coli rho gene coding for transcription termination factor.
+ACCESSION   J01673 J01674
+VERSION     J01673.1  GI:147605
+KEYWORDS    attenuator; leader peptide; rho gene; transcription terminator.
+SOURCE      Escherichia coli
+ORGANISM  Escherichia coli
+                  Bacteria; Proteobacteria; Gammaproteobacteria; Enterobacteriales;
+                  Enterobacteriaceae; Escherichia.
+REFERENCE   1  (bases 1 to 1880)
+AUTHORS   Brown,S., Albrechtsen,B., Pedersen,S. and Klemm,P.
+TITLE     Localization and regulation of the structural gene for
+             transcription-termination factor rho of Escherichia coli
+JOURNAL   J. Mol. Biol. 162 (2), 283-298 (1982)
+MEDLINE   83138788
+PUBMED   6219230
+REFERENCE   2  (bases 1 to 1880) AUTHORS   Pinkham,J.L. and Platt,T.
+TITLE     The nucleotide sequence of the rho gene of E. coli K-12
+JOURNAL   Nucleic Acids Res. 11 (11), 3531-3545 (1983)
+MEDLINE   83220759
+PUBMED   6304634
+COMMENT      Original source text: Escherichia coli (strain K-12) DNA.
+                      A clean copy of the sequence for [2] was kindly provided by
+                      J.L.Pinkham and T.Platt.
+FEATURES       Location/Qualifiers
+     source      1..1880
+                     /organism="Escherichia coli"
+                     /mol_type="genomic DNA"
+                     /strain="K-12"
+                     /db_xref="taxon:562"
+     mRNA       212..&gt;1880
+                     /product="rho mRNA"
+     CDS          282..383
+                     /note="rho operon leader peptide"
+                     /codon_start=1
+                     /transl_table=11
+                     /protein_id="AAA24531.1"
+                     /db_xref="GI:147606"
+                     /translation="MRSEQISGSSLNPSCRFSSAYSPVTRQRKDMSR"
+     gene         468..1727
+                     /gene="rho"
+     CDS          468..1727
+                     /gene="rho"
+                     /note="transcription termination factor"
+                     /codon_start=1
+                     /transl_table=11
+                     /protein_id="AAA24532.1"
+                     /db_xref="GI:147607"
+                     /translation="MNLTELKNTPVSELITLGENMGLENLARMRKQDIIFAILKQHAK
+                     SGEDIFGDGVLEILQDGFGFLRSADSSYLAGPDDIYVSPSQIRRFNLRTGDTISGKIR
+                     PPKEGERYFALLKVNEVNFDKPENARNKILFENLTPLHANSRLRMERGNGSTEDLTAR
+                     VLDLASPIGRGQRGLIVAPPKAGKTMLLQNIAQSIAYNHPDCVLMVLLIDERPEEVTE
+                     MQRLVKGEVVASTFDEPASRHVQVAEMVIEKAKRLVEHKKDVIILLDSITRLARAYNT
+                     VVPASGKVLTGGVDANALHRPKRFFGAARNVEEGGSLTIIATALIDTGSKMDEVIYEE
+                     FKGTGNMELHLSRKIAEKRVFPAIDYNRSGTRKEELLTTQEELQKMWILRKIIHPMGE
+                     IDAMEFLINKLAMTKTNDDFFEMMKRS"
+ORIGIN      15 bp upstream from HhaI site.
+        1 aaccctagca ctgcgccgaa atatggcatc cgtggtatcc cgactctgct gctgttcaaa
+      61 aacggtgaag tggcggcaac caaagtgggt gcactgtcta aaggtcagtt gaaagagttc
+                                  ...deleted...  
+  1801 tgggcatgtt aggaaaattc ctggaatttg ctggcatgtt atgcaatttg catatcaaat
+  1861 ggttaatttt tgcacaggac
+//
+</pre>
+
+不论用那种方式，都能得到一样的序列对象。下表列出了这个序列对象的可用方法及其返回值。
+<table border="1" cellspacing="0" cellpadding="4"><caption>Table 3: Values from the Sequence object (<a title="GenBank sequence format" href="http://www.bioperl.org/wiki/GenBank_sequence_format" target="_blank">Genbank</a>)</caption>
+<tbody>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+</tr>
+<tr>
+<td>display_id</td>
+<td>ECORHO</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>E.coli rho gene coding for transcription termination factor.</td>
+</tr>
+<tr>
+<td>display_name</td>
+<td>ECORHO</td>
+</tr>
+<tr>
+<td>accession</td>
+<td>J01673</td>
+</tr>
+<tr>
+<td>primary_id</td>
+<td>147605</td>
+</tr>
+<tr>
+<td>seq_version</td>
+<td>1</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>attenuator; leader peptide; rho gene; transcription terminator</td>
+</tr>
+<tr>
+<td>is_circular</td>
+<td></td>
+</tr>
+<tr>
+<td>namespace</td>
+<td></td>
+</tr>
+<tr>
+<td>authority</td>
+<td></td>
+</tr>
+<tr>
+<td>length</td>
+<td>1880</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>AACCCT...ACAGGAC</td>
+</tr>
+<tr>
+<td>division</td>
+<td>BCT</td>
+</tr>
+<tr>
+<td>molecule</td>
+<td>DNA</td>
+</tr>
+<tr>
+<td>get_dates</td>
+<td>26-APR-1993</td>
+</tr>
+<tr>
+<td>get_secondary_accessions</td>
+<td>J01674</td>
+</tr>
+</tbody>
+</table>
+这里需要说明一下。首先，很多序列信息没有被返回。这些“丢失”的信息都是和序列注释信息有关，可详见<a title="HOWTO:Feature-Annotation" href="http://www.bioperl.org/wiki/HOWTO:Feature-Annotation" target="_blank">Feature and Annotation HOWTO</a>。并且，有些方法返回的是空值，比如namespace和authority。原因是对应的序列信息还没有一个普遍接受的格式或确定的名字，也许等确定的时候，作者会重写代码。（译者注：可能作者是先构造了一个结构，没有对应的内容。反正现在这些方法是没用的，暂不用管。）最后，你可能会问各个序列信息如何和相应的方法对应起来的。一般来说，由于没有一个通用标准，代码作者根据自己的常识，将相应的序列信息命一个合理的名字，然后对应到某个方法上。（最后一句可能翻译的不准确）</p>
+
+<p>再来看<a title="FASTA sequence format" href="http://www.bioperl.org/wiki/FASTA_sequence_format">fasta</a>格式文件作为输入（仍是同一序列）。<a title="FASTA sequence format" href="http://www.bioperl.org/wiki/FASTA_sequence_format" target="_blank">fasta</a>格式如下所示，相对Genbank，显得非常简单：
+<pre>&gt;gi|147605|gb|J01673.1|ECORHO E.coli rho gene coding for transcription termination factor
+AACCCTAGCACTGCGCCGAAATATGGCATCCGTGGTATCCCGACTCTGCTGCTGTTCAAAAACGGTGAAG
+TGGCGGCAACCAAAGTGGGTGCACTGTCTAAAGGTCAGTTGAAAGAGTTCCTCGACGCTAACCTGGCGTA
+                        ...deleted...
+ACGTGTTTACGTGGCGTTTTGCTTTTATATCTGTAATCTTAATGCCGCGCTGGGCATGTTAGGAAAATTC
+CTGGAATTTGCTGGCATGTTATGCAATTTGCATATCAAATGGTTAATTTTTGCACAGGAC
+</pre>
+
+可返回的内容：
+<table border="1" cellspacing="0" cellpadding="4"><caption>Table 4: Values from the Sequence object (<a title="FASTA sequence format" href="http://www.bioperl.org/wiki/FASTA_sequence_format" target="_blank">Fasta</a>)</caption>
+<tbody>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+</tr>
+<tr>
+<td>display_id</td>
+<td>147605|gb|J01673.1|ECORHO</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>E.coli rho gene coding for transcription termination factor</td>
+</tr>
+<tr>
+<td>display_name</td>
+<td>147605|gb|J01673.1|ECORHO</td>
+</tr>
+<tr>
+<td>accession</td>
+<td>unknown</td>
+</tr>
+<tr>
+<td>primary_id</td>
+<td>147605|gb|J01673.1|ECORHO</td>
+</tr>
+<tr>
+<td>is_circular</td>
+<td></td>
+</tr>
+<tr>
+<td>namespace</td>
+<td></td>
+</tr>
+<tr>
+<td>authority</td>
+<td></td>
+</tr>
+<tr>
+<td>length</td>
+<td>1880</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>AACCCT...ACAGGAC</td>
+</tr>
+</tbody>
+</table>
+和上面使用<a title="GenBank sequence format" href="http://www.bioperl.org/wiki/GenBank_sequence_format" target="_blank">Genbank</a>文件得到的信息相比，会缺少一些序列信息，如seq_version。另外，如display_id，显示的是不同值。原因在于Genbank服务器将Genbank格式转换fasta格式时遵循的规则和<a title="Swissprot sequence format" href="http://www.bioperl.org/wiki/Swissprot_sequence_format" target="_blank">SwissProt</a>服务器将SwissProt格式转换fasta格式的规则不一样。除非有一个统一的标准，否则代码作者一般是根据自己的理解将各个序列信息对应到某一方法上。虽然Bioperl可以遵循某一个特定的规则，如Genbank所使用的。但Bioperl的作者们通过投票决定不遵循任何一个只来源于某一个组织的转换规则。</p>
+
+<p>接着看一下<a title="Swissprot sequence format" href="http://www.bioperl.org/wiki/Swissprot_sequence_format" target="_blank">SwissProt</a>格式文件的输入。</p>
+
+<p>ID A2S3_RAT STANDARD; PRT; 913 AA.
+<pre>AC   Q8R2H7; Q8R2H6; Q8R4G3;
+DT   28-FEB-2003 (Rel. 41, Created)
+DE   Amyotrophic lateral sclerosis 2 chromosomal region candidate gene
+DE   protein 3 homolog (GABA-A receptor interacting factor-1) (GRIF-1) (O-
+DE   GlcNAc transferase-interacting protein of 98 kDa).
+GN   ALS2CR3 OR GRIF1 OR OIP98.
+OS   Rattus norvegicus (Rat).
+OC   Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+OC   Mammalia; Eutheria; Rodentia; Sciurognathi; Muridae; Murinae; Rattus.
+OX   NCBI_TaxID=10116;
+RN   [1]
+RP   SEQUENCE FROM N.A. (ISOFORMS 1 AND 2), SUBCELLULAR LOCATION, AND
+RP   INTERACTION WITH GABA-A RECEPTOR.
+RC   TISSUE=Brain;
+RX   MEDLINE=22162448; PubMed=12034717;
+RA   Beck M., Brickley K., Wilkinson H.L., Sharma S., Smith M.,
+RA   Chazot P.L., Pollard S., Stephenson F.A.;
+RT   "Identification, molecular cloning, and characterization of a novel
+RT   GABAA receptor-associated protein, GRIF-1.";
+RL   J. Biol. Chem. 277:30079-30090(2002).
+RN   [2]
+RP   REVISIONS TO 579 AND 595-596, AND VARIANTS VAL-609 AND PRO-820.
+RA   Stephenson F.A.;
+RL   Submitted (FEB-2003) to the EMBL/GenBank/DDBJ databases.
+RN   [3]
+RP   SEQUENCE FROM N.A. (ISOFORM 3), INTERACTION WITH O-GLCNAC TRANSFERASE,
+RP   AND O-GLYCOSYLATION.
+RC   STRAIN=Sprague-Dawley; TISSUE=Brain;
+RX   MEDLINE=22464403; PubMed=12435728;
+RA   Iyer S.P.N., Akimoto Y., Hart G.W.;
+RT   "Identification and cloning of a novel family of coiled-coil domain
+RT   proteins that interact with O-GlcNAc transferase.";
+RL   J. Biol. Chem. 278:5399-5409(2003).
+CC   -!- SUBUNIT: Interacts with GABA-A receptor and O-GlcNac transferase.
+CC   -!- SUBCELLULAR LOCATION: Cytoplasmic.
+CC   -!- ALTERNATIVE PRODUCTS:
+CC       Event=Alternative splicing; Named isoforms=3;
+CC       Name=1; Synonyms=GRIF-1a;
+CC         IsoId=Q8R2H7-1; Sequence=Displayed;
+CC       Name=2; Synonyms=GRIF-1b;
+CC         IsoId=Q8R2H7-2; Sequence=VSP_003786, VSP_003787;
+CC       Name=3;
+CC         IsoId=Q8R2H7-3; Sequence=VSP_003788;
+CC   -!- PTM: O-glycosylated.
+CC   -!- SIMILARITY: TO HUMAN OIP106.
+DR   EMBL; AJ288898; CAC81785.2; -.
+DR   EMBL; AJ288898; CAC81786.2; -.
+DR   EMBL; AF474163; AAL84588.1; -.
+DR   GO; GO:0005737; C:cytoplasm; IEP.
+DR   GO; GO:0005634; C:nucleus; IDA.
+DR   GO; GO:0005886; C:plasma membrane; IEP.
+DR   GO; GO:0006357; P:regulation of transcription from Pol II pro...; IDA.
+DR   InterPro; IPR006933; HAP1_N.
+DR   Pfam; PF04849; HAP1_N; 1.
+KW   Coiled coil; Alternative splicing; Polymorphism.
+FT   DOMAIN      134    355       COILED COIL (POTENTIAL).
+FT   VARSPLIC    653    672       VATSNPGKCLSFTNSTFTFT -&gt; ALVSHHCPVEAVRAVHP
+FT                                TRL (in isoform 2).
+FT                                /FTId=VSP_003786.
+FT   VARSPLIC    673    913       Missing (in isoform 2).
+FT                                /FTId=VSP_003787.
+FT   VARSPLIC    620    687       VQQPLQLEQKPAPPPPVTGIFLPPMTSAGGPVSVATSNPGK
+FT                                CLSFTNSTFTFTTCRILHPSDITQVTP -&gt; GSAASSTGAE
+FT                                ACTTPASNGYLPAAHDLSRGTSL (in isoform 3).
+FT                                /FTId=VSP_003788.
+FT   VARIANT     609    609       E -&gt; V.
+FT   VARIANT     820    820       S -&gt; P.
+SQ   SEQUENCE   913 AA;  101638 MW;  D0E135DBEC30C28C CRC64;
+     MSLSQNAIFK SQTGEENLMS SNHRDSESIT DVCSNEDLPE VELVNLLEEQ LPQYKLRVDS
+     LFLYENQDWS QSSHQQQDAS ETLSPVLAEE TFRYMILGTD RVEQMTKTYN DIDMVTHLLA
+                             ...deleted...
+     GIARVVKTPV PRENGKSREA EMGLQKPDSA VYLNSGGSLL GGLRRNQSLP VMMGSFGAPV
+     CTTSPKMGIL KED
+//</pre>
+
+相应的返回值如下表所示：
+<table border="1" cellspacing="0" cellpadding="4"><caption>Table 5: Values from the Sequence object (<a title="Swissprot sequence format" href="http://www.bioperl.org/wiki/Swissprot_sequence_format" target="_blank">Swissprot</a>)</caption>
+<tbody>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+</tr>
+<tr>
+<td>display_id</td>
+<td>A2S3_RAT</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>Amyotrophic lateral ... protein of 98 kDa).</td>
+</tr>
+<tr>
+<td>display_name</td>
+<td>A2S3_RAT</td>
+</tr>
+<tr>
+<td>accession</td>
+<td>Q8R2H7</td>
+</tr>
+<tr>
+<td>is_circular</td>
+<td></td>
+</tr>
+<tr>
+<td>namespace</td>
+<td></td>
+</tr>
+<tr>
+<td>authority</td>
+<td></td>
+</tr>
+<tr>
+<td>seq_version</td>
+<td></td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>Coiled coil; Alternative splicing; Polymorphism</td>
+</tr>
+<tr>
+<td>length</td>
+<td>913</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>MSLSQ...ILKED</td>
+</tr>
+<tr>
+<td>division</td>
+<td>RAT</td>
+</tr>
+<tr>
+<td>get_dates</td>
+<td>28-FEB-2003 (Rel. 41, Created)</td>
+</tr>
+<tr>
+<td>get_secondary_accessions</td>
+<td>Q8R2H6 Q8R4G3</td>
+</tr>
+</tbody>
+</table>
+和Genbank一样，详见<a title="HOWTO:Feature-Annotation" href="http://www.bioperl.org/wiki/HOWTO:Feature-Annotation" target="_blank">Feature and Annotation HOWTO</a>，查看序列注释信息。</p>
+<<<<<<< HEAD:source/_posts/2011-11-20-bioperl-howto-seq-object.html
+=======
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    <a href="https://plus.google.com/113645349664564078087" rel="author">Bioops</a>
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2011-11-20T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/bioperl-howtofan-yi/'>bioperl howto翻译</a>, <a class='category' href='/category/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bioops.info/2011/11/bioperl-howto-seq-object/" data-via="" data-counturl="http://bioops.info/2011/11/bioperl-howto-seq-object/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-layout="button_count" data-send="false" data-width="300" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/11/c-note-1/" title="Previous Post: C++ note 1">&laquo; C++ note 1</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/11/bioperl-howto-statistics/" title="Next Post: 利用Biperl获取序列基本统计信息（Bioperl HOWTO翻译9）">利用Biperl获取序列基本统计信息（Bioperl HOWTO翻译9） &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bioops.info/2011/11/bioperl-howto-seq-object/';
+        var disqus_url = 'http://bioops.info/2011/11/bioperl-howto-seq-object/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:2011/11/bioperl-howto-seq-object/index.html

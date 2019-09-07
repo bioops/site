@@ -1,0 +1,55 @@
+---
+layout: post
+title: 使用Perl做频率分布图
+categories:
+- Perl
+- Programming
+tags:
+- Histogram
+- HOWTO
+- Perl
+- Perl module
+published: true
+comments: true
+---
+
+``` perl hist.pl
+
+#需要安装相应模块
+use GD::Graph::histogram;
+ 
+#创建一个数组的reference
+$data = [1,5,7,8,9,10,11,3,3,5,5,5,7,2,2];
+ 
+#创建图片对象
+my $graph = new GD::Graph::histogram(400,600);
+ 
+#设置格式
+$graph->set(
+    x_label         => 'X Label',
+    y_label         => 'Count',
+    title           => 'A Simple Count Histogram Chart',
+    x_labels_vertical => 1,
+    bar_spacing     => 0,
+    shadow_depth    => 1,
+    shadowclr       => 'dred',
+    transparent     => 0,
+)
+or warn $graph->error;
+ 
+#输出频率分布图到图片对象上
+my $gd = $graph->plot($data) or die $graph->error;
+ 
+#打印到文件
+open(IMG, '>histogram.png') or die $!;
+binmode IMG;
+print IMG $gd->png;
+close IMG;
+
+```
+
+<p>详见<a href="http://search.cpan.org/dist/GDGraph-histogram/lib/GD/Graph/histogram.pm" target="_blank">GD::Graph::histogram</a>。</p>
+
+<p>Perl做出来的图真是难看，跟R差太远了。</p>
+
+<p>我是用了大量perl script提取出了一些数据，只是想先看看数据的分布情况，不做拟合和后续统计分析，懒得写R script了。</p>

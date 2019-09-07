@@ -1,0 +1,23 @@
+---
+layout: post
+title: String-graph based next-generation sequencing assemblers
+categories:
+- Bioinformatics
+- NGS
+- Software
+tags:
+- Assembly
+- NGS
+- Software
+published: true
+comments: true
+---
+<p>Please read <a href="http://www.homolog.us/blogs/2012/02/11/string-graph-assembler/" target="_blank">this article</a> or the following linked papers for the reason using <a href="http://en.wikipedia.org/wiki/String_graph">string-graph</a> algorithm.</p>
+
+<p><a href="http://www.zbh.uni-hamburg.de/?id=349" target="_blank">Readjoiner</a> (<a href="http://www.biomedcentral.com/1471-2105/13/82/abstract" target="_blank">Gonnella and Kurtz 2012</a>) Readjoiner is a sequence assembler based on the assembly string graph framework (<a href="http://bioinformatics.oxfordjournals.org/content/21/suppl_2/ii79.abstract" target="_blank">Myers 2005</a>). It is faster and uses less memory than previous string graph-based assemblers.</p>
+
+<p><a href="https://github.com/jts/sga" target="_blank">SGA</a> (<a href="http://genome.cshlp.org/content/22/3/549" target="_blank">Simpson and Durbin 2012</a>) SGA is a de novo genome assembler based on the concept of string graphs. The major goal of SGA is to be very memory efficient, which is achieved by using a compressed representation of DNA sequence reads.</p>
+
+<p><a href="http://www.genomic.ch/edena.php" target="_blank">Edena</a> (<a href="http://genome.cshlp.org/content/18/5/802" target="_blank">Hernandez et al 2008</a>) The program is under development. Edena is based on the classical overlap layout assembly framework. In addition, it includes two features to improve the assembly of very short sequences: exact matching and detection of spurious reads.</p>
+
+<p><a href="http://www.engr.uconn.edu/~htd06001/assembler/" target="_blank">LEAP</a> (<a href="http://bioinformatics.oxfordjournals.org/content/27/14/1901.long" target="_blank">Dinh and Rajasekaran 2011</a>) LEAP incorporates a memory-efficient data structure for the overlap graph. This data structure requires only linear time to construct and and linear memory to store.</p>

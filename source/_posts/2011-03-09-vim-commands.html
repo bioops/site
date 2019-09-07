@@ -1,0 +1,366 @@
+---
+layout: post
+title: useful, essential and most often used Vim commands
+categories:
+- Linux
+- OS
+tags:
+- Linux
+- Note
+- Vim
+published: true
+comments: true
+---
+<p>&lt; <strong>The list of Vim commands</strong> &gt;
+<div>
+<table border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr>
+<td id="files" colspan="2"><em><strong>Working with files</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>:e filename</td>
+<td>Open a new file. You can use the Tab key for automatic file name completion, just like at the shell command prompt.</td>
+</tr>
+<tr>
+<td>:w filename</td>
+<td>Save changes to a file. If you don't specify a file name, Vim saves as the file name you were editing. For saving the file under a different name, specify the file name.</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>Quit Vim. If you have unsaved changes, Vim refuses to exit.</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>Exit Vim without saving changes.</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>Write the file and exit.</td>
+</tr>
+<tr>
+<td>: x</td>
+<td>Almost the same as :wq, write the file and exit if you've made changes to the file. If you haven't made any changes to the file, Vim exits without writing the file.</td>
+</tr>
+<tr>
+<td id="nav" colspan="2"><em><strong>Moving around in the file</strong></em></td>
+</tr>
+<tr>
+<td colspan="2">These Vim commands and keys work both in command mode and visual mode.</td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>j or Up Arrow</td>
+<td>Move the cursor up one line.</td>
+</tr>
+<tr>
+<td>k or Down Arrow</td>
+<td>Down one line.</td>
+</tr>
+<tr>
+<td>h or Left Arrow</td>
+<td>Left one character.</td>
+</tr>
+<tr>
+<td>l or Right Arrow</td>
+<td>Right one character.</td>
+</tr>
+<tr>
+<td>e</td>
+<td>To the end of a word.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>To the end of a whitespace-delimited word.</td>
+</tr>
+<tr>
+<td>b</td>
+<td>To the beginning of a word.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>To the beginning of a whitespace-delimited word.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>To the beginning of a line.</td>
+</tr>
+<tr>
+<td>^</td>
+<td>To the first non-whitespace character of a line.</td>
+</tr>
+<tr>
+<td>$</td>
+<td>To the end of a line.</td>
+</tr>
+<tr>
+<td>H</td>
+<td>To the first line of the screen.</td>
+</tr>
+<tr>
+<td>M</td>
+<td>To the middle line of the screen.</td>
+</tr>
+<tr>
+<td>L</td>
+<td>To the the last line of the screen.</td>
+</tr>
+<tr>
+<td>:<em>n</em></td>
+<td>Jump to line number <em>n</em>. For example, to jump to line 42, you'd type :42</td>
+</tr>
+<tr>
+<td id="insert" colspan="2"><em><strong>Inserting and overwriting text</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>i</td>
+<td>Insert before cursor.</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Insert to the start of the current line.</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Append after cursor.</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Append to the end of the current line.</td>
+</tr>
+<tr>
+<td>o</td>
+<td>Open a new line below and insert.</td>
+</tr>
+<tr>
+<td>O</td>
+<td>Open a new line above and insert.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Change the rest of the current line.</td>
+</tr>
+<tr>
+<td>r</td>
+<td>Overwrite one character. After overwriting the single character, go back to command mode.</td>
+</tr>
+<tr>
+<td>R</td>
+<td>Enter insert mode but replace characters rather than inserting.</td>
+</tr>
+<tr>
+<td>The ESC key</td>
+<td>Exit insert/overwrite mode and go back to command mode.</td>
+</tr>
+<tr>
+<td id="delete" colspan="2"><em><strong>Deleting text</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>x</td>
+<td>Delete characters under the cursor.</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Delete characters before the cursor.</td>
+</tr>
+<tr>
+<td>dd or :d</td>
+<td>Delete the current line.</td>
+</tr>
+<tr>
+<td id="visual" colspan="2"><em><strong>Entering visual mode</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>v</td>
+<td>Start highlighting characters. Use the normal movement keys and commands to select text for highlighting.</td>
+</tr>
+<tr>
+<td>V</td>
+<td>Start highlighting lines.</td>
+</tr>
+<tr>
+<td>The ESC key</td>
+<td>Exit visual mode and return to command mode.</td>
+</tr>
+<tr>
+<td id="visualcom" colspan="2"><em><strong>Editing blocks of text</strong></em></td>
+</tr>
+<tr>
+<td colspan="2">Note: the Vim commands marked with (V) work in visual mode, when you've selected some text. The other commands work in the command mode, when you haven't selected any text.</td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>~</td>
+<td>Change the case of characters. This works both in visual and command mode. In visual mode, change the case of highlighted characters. In command mode, change the case of the character uder cursor.</td>
+</tr>
+<tr>
+<td>&gt; (V)</td>
+<td>Shift right (indent).</td>
+</tr>
+<tr>
+<td>&lt; (V)</td>
+<td>Shift left (de-indent).</td>
+</tr>
+<tr>
+<td>c (V)</td>
+<td>Change the highlighted text.</td>
+</tr>
+<tr>
+<td>y (V)</td>
+<td>Yank the highlighted text. In Windows terms, "copy the selected text to clipboard."</td>
+</tr>
+<tr>
+<td>d (V)</td>
+<td>Delete the highlighted text. In Windows terms, "cut the selected text to clipboard."</td>
+</tr>
+<tr>
+<td>yy or :y or Y</td>
+<td>Yank the current line. You don't need to highlight it first.</td>
+</tr>
+<tr>
+<td>dd or :d</td>
+<td>Delete the current line. Again, you don't need to highlight it first.</td>
+</tr>
+<tr>
+<td>p</td>
+<td>Put the text you yanked or deleted. In Windows terms, "paste the contents of the clipboard". Put characters after the cursor. Put lines below the current line.</td>
+</tr>
+<tr>
+<td>P</td>
+<td>Put characters before the cursor. Put lines above the current line.</td>
+</tr>
+<tr>
+<td id="ooopsie" colspan="2"><em><strong>Undo and redo</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>u</td>
+<td>Undo the last action.</td>
+</tr>
+<tr>
+<td>U</td>
+<td>Undo all the latest changes that were made to the current line.</td>
+</tr>
+<tr>
+<td>Ctrl + r</td>
+<td>Redo.</td>
+</tr>
+<tr>
+<td id="search" colspan="2"><em><strong>Search</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>/<em>pattern</em></td>
+<td>Search the file for <em>pattern</em>.</td>
+</tr>
+<tr>
+<td>n</td>
+<td>Scan for next search match in the same direction.</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Scan for next search match but opposite direction.</td>
+</tr>
+<tr>
+<td id="replace" colspan="2"><em><strong>Replace</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>:<em>r</em>s/<em>foo</em>/<em>bar</em>/<em>a</em></td>
+<td>Substitute <em>foo</em> with <em>bar</em>. <em>r</em> determines the range and <em>a</em> determines the arguments.</td>
+</tr>
+<tr>
+<td colspan="2">The range (<em>r</em>) can be</td>
+</tr>
+<tr>
+<td>nothing</td>
+<td>Work on current line only.</td>
+</tr>
+<tr>
+<td>number</td>
+<td>Work on the line whose number you give.</td>
+</tr>
+<tr>
+<td>%</td>
+<td>The whole file.</td>
+</tr>
+<tr>
+<td colspan="2">Arguments (<em>a</em>) can be</td>
+</tr>
+<tr>
+<td>g</td>
+<td>Replace all occurrences in the line. Without this, Vim replaces only the first occurrences in each line.</td>
+</tr>
+<tr>
+<td>i</td>
+<td>Ignore case for the search pattern.</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Don't ignore case.</td>
+</tr>
+<tr>
+<td>c</td>
+<td>Confirm each substitution. You can type y to substitute this match, n to skip this match, a to substitute this and all the remaining matches ("Yes to all"), and q to quit substitution.</td>
+</tr>
+<tr>
+<td colspan="2">Examples</td>
+</tr>
+<tr>
+<td>:452s/<em>foo</em>/<em>bar</em>/</td>
+<td>Replace the first occurrence of the word <em>foo</em> with <em>bar</em> on line number 452.</td>
+</tr>
+<tr>
+<td>:s/<em>foo</em>/<em>bar</em>/g</td>
+<td>Replace every occurrence of the word <em>foo</em> with <em>bar</em> on current line.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/g</td>
+<td>Replace every occurrence of the word <em>foo</em> with <em>bar</em> in the whole file.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/gi</td>
+<td>The same as above, but ignore the case of the pattern you want to substitute. This replaces <em>foo</em>, <em>FOO</em>, <em>Foo</em>, and so on.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/gc</td>
+<td>Confirm every substitution.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/c</td>
+<td>For each line on the file, replace the first occurrence of <em>foo</em> with <em>bar</em> and confirm every substitution.</td>
+</tr>
+</tbody>
+</table>
+</div></p>

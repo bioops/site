@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Software | Bioops]]></title>
+  <link href="http://bioops.info/category/software/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Painful Experience on Building Local UCSC Genome Browser]]></title>
+    <link href="http://bioops.info/2012/11/local-ucsc-genome-browser/"/>
+    <updated>2012-11-21T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/11/local-ucsc-genome-browser</id>
+    <content type="html"><![CDATA[<p>I want to install a UCSC genome browser on my ubuntu workstation, to integrate and display the genomes , mostly plant genomes, with related annotations and NGS data, e.g. RNA-seq, methylation, SNPs, synteny, genome alignment, and etc.. There are also <a href="http://genomewiki.ucsc.edu/index.php/Other_genome_browsers" target="_blank">other genome browsers</a>, but UCSC is my favorite and can meet my needs.</p>
+
+<p>I spent a couple of workdays building from sources and adding custom genomes. The browser is based on mysql and apache which I don&#8217;t know much about, so It&#8217;s not surprising I encountered tons of problems. Thank google and other kind people who posted their experiences. I feel sorry that I cannot do the same thing as them, but at least I would like to share some resources and tips.</p>
+
+<p>1) Read the <a href="http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=tree;f=src/product;hb=HEAD" target="_blank">README files</a> in the sources, and follow the instructions. (You&#8217;d better understand them.)</p>
+
+<p>2) The <a href="http://genomewiki.ucsc.edu/index.php/Main_Page" target="_blank">wiki site</a> is very helpfull.</p>
+
+<p>3) Other people&#8217;s experiences. (<a href="http://bergmanlab.smith.man.ac.uk/?p=1111" target="_blank">1</a> and <a href="http://enotacoes.wordpress.com/2009/09/03/installing-a-minimal-ucsc-mirror-in-ubuntu-jaunty-64-bits/" target="_blank">2</a>)</p>
+
+<p>4) If top bar is not showing, add the following code in apach2 conf file. (/etc/apache2/apache2.conf on my machine)
+<script src="https://gist.github.com/bioops/4946649.js"></script>
+5) Mysql loading local file issue in hgLOAD* scripts. I tried different solutions, but only one worked for me. I logged into mysql and run the loading command if the error appears.</p>
+
+<p>6) Stop mysql before rsync mysql files from UCSC server.</p>
+
+<p>7) Most mysql problems were caused by permission settings.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Next-generation Sequencing Quality Control Tools]]></title>
+    <link href="http://bioops.info/2012/08/ngs-qc-tools/"/>
+    <updated>2012-08-21T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/08/ngs-qc-tools</id>
+    <content type="html"><![CDATA[<p><a href="http://hannonlab.cshl.edu/fastx_toolkit/" target="_blank"><strong>FASTX-Toolkit</strong></a>: The FASTX-Toolkit is a collection of command line tools for Short-Reads FASTA/ FASTQ files preprocessing, including:
+<ul>
+	<li>FASTQ-to-FASTA converter
+<div>Convert FASTQ files to FASTA files.</div></li>
+	<li>FASTQ Information
+<div>Chart Quality Statistics and Nucleotide Distribution</div></li>
+	<li>FASTQ/A Collapser
+<div>Collapsing identical sequences in a FASTQ/A file into a single sequence (while maintaining reads counts)</div></li>
+	<li>FASTQ/A Trimmer
+<div>Shortening reads in a FASTQ or FASTQ files (removing barcodes or noise).</div></li>
+	<li>FASTQ/A Renamer
+<div>Renames the sequence identifiers in FASTQ/A file.</div></li>
+	<li>FASTQ/A Clipper
+<div>Removing sequencing adapters / linkers</div></li>
+	<li>FASTQ/A Reverse-Complement
+<div>Producing the Reverse-complement of each sequence in a FASTQ/FASTA file.</div></li>
+	<li>FASTQ/A Barcode splitter
+<div>Splitting a FASTQ/FASTA files containning multiple samples</div></li>
+	<li>FASTA Formatter
+<div>changes the width of sequences line in a FASTA file</div></li>
+	<li>FASTA Nucleotide Changer
+<div>Convets FASTA sequences from/to RNA/DNA</div></li>
+	<li>FASTQ Quality Filter
+<div>Filters sequences based on quality</div></li>
+	<li>FASTQ Quality Trimmer
+<div>Trims (cuts) sequences based on quality</div></li>
+	<li>FASTQ Masker
+<div>Masks nucleotides with &#8216;N&#8217; (or other character) based on quality</div></li>
+</ul>
+<strong><a href="https://main.g2.bx.psu.edu/" target="_blank">Galaxy NGS QC and manipulation tools</a> (<a href="http://bioinformatics.oxfordjournals.org/content/26/14/1783.short" target="_blank">citation</a>)</strong>: Galaxy provides a tool suite that functions on all of the commonly known FASTQ format variants and provides a pipeline for manipulating next generation sequencing data taken from a sequencing machine all the way through the quality filtering steps.</p>
+
+<p><strong><a href="http://brainarray.mbni.med.umich.edu/brainarray/ngsqc/" target="_blank">NGSQC</a> (<a href="http://www.biomedcentral.com/1471-2164/11/S4/S7/" target="_blank">citation</a>)</strong>:The NGSQC pipeline provides a set of novel quality control measures for quickly detecting a wide variety of quality issues in deep sequencing data derived from two dimensional surfaces, regardless of the assay technology used. It also enables researchers to determine whether sequencing data related to their most interesting biological discoveries are caused by sequencing quality issues. NGSQC can help to ensure that biological conclusions, in particular those based on relatively rare sequences, are not caused by low quality sequencing.</p>
+
+<p><strong><a href="http://www.nipgr.res.in/ngsqctoolkit.html" target="_blank">NGS QC Toolkit</a> (<a href="http://www.plosone.org/article/info:doi/10.1371/journal.pone.0030619#abstract0" target="_blank">citation</a>)</strong>: A toolkit for the quality control (QC) of next generation sequencing (NGS) data. The toolkit comprises of user-friendly stand alone tools for quality control of the sequence data generated using Illumina and Roche 454 platforms with detailed results in the form of tables and graphs, and filtering of high-quality sequence data. It also includes few other tools, which are helpful in NGS data quality control and analysis.</p>
+
+<p><strong><a href="http://prinseq.sourceforge.net/" target="_blank">PRINSEQ</a> (<a href="http://bioinformatics.oxfordjournals.org/content/27/6/863" target="_blank">citation</a>)</strong>: PRINSEQ can be used to filter, reformat, or trim your genomic and metagenomic sequence data. It generates summary statistics of your sequences in graphical and tabular format. It is easily configurable and provides a user-friendly interface.</p>
+
+<p><strong><a href="http://solexaqa.sourceforge.net/" target="_blank">SolexaQA</a> (<a href="http://www.biomedcentral.com/1471-2105/11/485" target="_blank">citation</a>)</strong>: SolexaQA is a Perl-based software package that calculates quality statistics and creates visual representations of data quality from FASTQ files generated by Illumina second-generation sequencing technology (“Solexa”).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tools for Cross-species Biological Network Comparison]]></title>
+    <link href="http://bioops.info/2012/07/tools-for-cross-species-biological-network-comparison/"/>
+    <updated>2012-07-23T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/07/tools-for-cross-species-biological-network-comparison</id>
+    <content type="html"><![CDATA[<p><strong>GraphAlignment</strong>: GraphAlignment is an extension package for the R programming environment which provides functions for finding an alignment between two networks based on link and node similarity scores. This package implements the Bayesian scoring methods and the alignment algorithm introduced in the paper J. Berg and M. Lässig, <a href="http://www.pnas.org/cgi/content/full/103/29/10967">&#8220;Cross-species analysis of biological networks by Bayesian alignment&#8221;</a>, PNAS 103 (29), 10967-10972 (2006). Documentation and installation guide are available <a href="http://www.thp.uni-koeln.de/~berg/GraphAlignment/" target="_blank">here</a>.</p>
+
+<p><strong>PathBLAST</strong>: PathBLAST is a network alignment and search tool for comparing protein interaction networks across species to identify protein pathways and complexes that have been conserved by evolution. PathBLAST is now available at <a href="http://www.pathblast.org/" target="_blank">http://www.pathblast.org/</a> as a web-based query. (<a href="http://www.pathblast.org/docs/publications.html" target="_blank">publications</a>)</p>
+
+<p><strong>IsoRankN</strong>: IsoRankN (IsoRank-Nibble) is a global multiple-network alignment tool based on spectral clustering on the induced graph of pairwise alignment scores. IsoRankN outperforms existing algorithms for global network alignment in coverage and consistency on multiple alignments of the five available eukaryotic networks. Being based on spectral methods, IsoRankN is both error-tolerant and computationally efficient. More information is available <a href="http://groups.csail.mit.edu/cb/mna/" target="_blank">here</a>.</p>
+
+<p><strong>NetworkBLAST &amp; NetworkBLAST-M</strong>: NetworkBLAST analyzes protein interaction networks across species to infer protein complexes that are conserved in evolution.<br />
+For comparing multiple networks use <a href="http://www.cs.tau.ac.il/%7Ebnet/License-nbm.htm">Networkblast-M</a>; for an executable of NetworkBLAST please refer to <a href="http://www.cs.tau.ac.il/%7Ebnet/License.htm">here</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[String-graph Based Next-generation Sequencing Assemblers]]></title>
+    <link href="http://bioops.info/2012/05/string-graph-based-next-generation-sequencing-assembler/"/>
+    <updated>2012-05-08T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/05/string-graph-based-next-generation-sequencing-assembler</id>
+    <content type="html"><![CDATA[<p>Please read <a href="http://www.homolog.us/blogs/2012/02/11/string-graph-assembler/" target="_blank">this article</a> or the following linked papers for the reason using <a href="http://en.wikipedia.org/wiki/String_graph">string-graph</a> algorithm.</p>
+
+<p><a href="http://www.zbh.uni-hamburg.de/?id=349" target="_blank">Readjoiner</a> (<a href="http://www.biomedcentral.com/1471-2105/13/82/abstract" target="_blank">Gonnella and Kurtz 2012</a>) Readjoiner is a sequence assembler based on the assembly string graph framework (<a href="http://bioinformatics.oxfordjournals.org/content/21/suppl_2/ii79.abstract" target="_blank">Myers 2005</a>). It is faster and uses less memory than previous string graph-based assemblers.</p>
+
+<p><a href="https://github.com/jts/sga" target="_blank">SGA</a> (<a href="http://genome.cshlp.org/content/22/3/549" target="_blank">Simpson and Durbin 2012</a>) SGA is a de novo genome assembler based on the concept of string graphs. The major goal of SGA is to be very memory efficient, which is achieved by using a compressed representation of DNA sequence reads.</p>
+
+<p><a href="http://www.genomic.ch/edena.php" target="_blank">Edena</a> (<a href="http://genome.cshlp.org/content/18/5/802" target="_blank">Hernandez et al 2008</a>) The program is under development. Edena is based on the classical overlap layout assembly framework. In addition, it includes two features to improve the assembly of very short sequences: exact matching and detection of spurious reads.</p>
+
+<p><a href="http://www.engr.uconn.edu/~htd06001/assembler/" target="_blank">LEAP</a> (<a href="http://bioinformatics.oxfordjournals.org/content/27/14/1901.long" target="_blank">Dinh and Rajasekaran 2011</a>) LEAP incorporates a memory-efficient data structure for the overlap graph. This data structure requires only linear time to construct and and linear memory to store.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Paper] GAGE: A Critical Evaluation of Genome Assemblies and Assembly Algorithms]]></title>
+    <link href="http://bioops.info/2012/03/paper-gage-a-critical-evaluation-of-genome-assemblies-and-assembly-algorithms/"/>
+    <updated>2012-03-01T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/03/paper-gage-a-critical-evaluation-of-genome-assemblies-and-assembly-algorithms</id>
+    <content type="html"><![CDATA[<p><strong>GAGE: A critical evaluation of genome assemblies and assembly algorithms</strong></p>
+
+<p>Abstract</p>
+
+<p>New sequencing technology has dramatically altered the landscape of whole-genome sequencing, allowing scientists to initiate numerous projects to decode the genomes of previously unsequenced organisms. The lowest-cost technology can generate deep coverage of most species, including mammals, in just a few days. The sequence data generated by one of these projects consist of millions or billions of short DNA sequences (reads) that range from 50 to 150 nt in length. These sequences must then be assembled de novo before most genome analyses can begin. Unfortunately, genome assembly remains a very difficult problem, made more difficult by shorter reads and unreliable long-range linking information. In this study, we evaluated several of the leading de novo assembly algorithms on four different short-read data sets, all generated by Illumina sequencers. Our results describe the relative performance of the different assemblers as well as other significant differences in assembly difficulty that appear to be inherent in the genomes themselves. Three overarching conclusions are apparent: first, that data quality, rather than the assembler itself, has a dramatic effect on the quality of an assembled genome; second, that the degree of contiguity of an assembly varies enormously among different assemblers and different genomes; and third, that the correctness of an assembly also varies widely and is not well correlated with statistics on contiguity. To enable others to replicate our results, all of our data and methods are freely available, as are all assemblers used in this study.</p>
+
+<p><a href="http://genome.cshlp.org/content/22/3/557.full?rss=1" target="_blank">fulltext</a></p>
+]]></content>
+  </entry>
+  
+</feed>

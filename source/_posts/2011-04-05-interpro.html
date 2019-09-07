@@ -1,0 +1,24 @@
+---
+layout: post
+title: InterPro
+categories:
+- Bioinformatics
+- Genomics
+- Perl
+- Programming
+tags:
+- Bioinformatics
+- Functional Genomics
+- InterPro
+- Perl
+published: true
+comments: true
+---
+<p><a href="http://bioops.info/2011/04/interpro/" target="_blank">InterPro</a> is an integrated database of predictive protein "signatures" used for the classification and automatic annotation of proteins and genomes. InterPro classifies sequences at superfamily, family and subfamily levels, predicting the occurrence of functional domains, repeats and important sites. InterPro adds in-depth annotation, including GO terms, to the protein signatures.</p>
+
+<p>Search InterPro with Perl:
+<a href="http://www.ebi.ac.uk/Tools/webservices/download_clients/perl/soaplite/iprscan_soaplite.pl" target="_blank"> iprscan_soaplite.pl</a> (SOAP::Lite)
+<a href="http://www.ebi.ac.uk/Tools/webservices/download_clients/perl/xmlcompile/iprscan_xmlcompile.pl" target="_blank"> iprscan_xmlcompile.pl</a> (XML::Compile::SOAP)<br />
+usage:
+<pre>perl iprscan_soaplite.pl Seqfile --email mymai@mymail.com</pre>
+see <a href="http://www.ebi.ac.uk/Tools/webservices/services/pfa/iprscan_soap" target="_blank">this</a> for more information.</p>

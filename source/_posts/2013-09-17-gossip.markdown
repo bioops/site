@@ -1,0 +1,11 @@
+---
+layout: post
+title: "八卦"
+date: 2013-09-17 12:48
+comments: true
+categories: Life
+---
+
+[Daniela Witten](http://www.biostat.washington.edu/~dwitten/)，26岁当上assistant professor，被福布斯评为科学界30个30岁以下的牛人[之一](http://www.forbes.com/special-report/2011/30-under30-12/30-under-30-12_science.html)。[父](http://en.wikipedia.org/wiki/Edward_Witten)[母](http://en.wikipedia.org/wiki/Chiara_Nappi)都是普林斯顿的professor，[姐姐](http://psych.princeton.edu/psychology/research/witten/index.php)是普林斯顿的assistant professor，她爸得过菲尔兹奖，[老公](http://www.nytimes.com/2008/08/17/fashion/weddings/17WITTEN.html)是facebook的元老。
+
+总结：科研是聪明且有钱人的游戏。

@@ -1,0 +1,386 @@
+<<<<<<< HEAD:source/_posts/2011-03-24-mysql-common-command.html
+---
+layout: post
+title: MySql常用命令总结
+categories:
+- Linux
+- OS
+tags:
+- Command
+- Linux
+- Mysql
+- Note
+published: true
+comments: true
+---
+<p><strong>一、连接MYSQL。</strong></p>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Bioops]]></title>
+  <link href="http://bioops.info/category/linux/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vi编辑器的属性设置]]></title>
+    <link href="http://bioops.info/2011/11/linux-vi-configure/"/>
+    <updated>2011-11-25T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/11/linux-vi-configure</id>
+    <content type="html"><![CDATA[<p>在当前用户目录下用vi新建并打开.vimrc文件</p>
+
+<p>vi ~/.vimrc</p>
+
+<pre>" 在文件中写入以下设置
+
+" 设置显示行号
+set nu
+
+" 设置tab的长度为4
+set tabstop=4 
+
+" 打开状态栏标尺
+set ruler
+
+" 突出当前行
+set cursorline
+
+" 自动语法高亮
+syntax on
+</pre>
+
+<p>保存退出后即可生效</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Shortcut Cheat Sheet]]></title>
+    <link href="http://bioops.info/2011/11/shortcut-cheat-sheet/"/>
+    <updated>2011-11-13T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/11/shortcut-cheat-sheet</id>
+    <content type="html"><![CDATA[<p><a href="http://bioops.info/images/uploads/2011/11/12UQ1920Y0-2Y45.png"><img class="alignnone size-medium wp-image-859" title="12UQ1920Y0-2Y45" src="http://bioops.info/images/uploads/2011/11/12UQ1920Y0-2Y45-300x211.png" alt="" width="300" height="211" /></a><a href="http://bioops.info/images/uploads/2011/11/bash_emacs.jpg"><img class="alignnone size-medium wp-image-860" title="bash_emacs" src="http://bioops.info/images/uploads/2011/11/bash_emacs-300x107.jpg" alt="" width="300" height="107" /></a>
+<a href="http://bioops.info/images/uploads/2011/11/bash_sheet.png"><img class="size-medium wp-image-861 alignnone" title="bash_sheet" src="http://bioops.info/images/uploads/2011/11/bash_sheet-300x225.png" alt="" width="300" height="225" /></a><a href="http://bioops.info/images/uploads/2011/11/regular-expressions-cheat-sheet-v1.png"><img class="alignnone size-medium wp-image-862" title="regular-expressions-cheat-sheet-v1" src="http://bioops.info/images/uploads/2011/11/regular-expressions-cheat-sheet-v1-220x300.png" alt="" width="220" height="300" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[做生物信息常用到的linux命令]]></title>
+    <link href="http://bioops.info/2011/08/linux-command-bioinformatics/"/>
+    <updated>2011-08-27T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/08/linux-command-bioinformatics</id>
+    <content type="html"><![CDATA[<p>1，统计一个序列文件中的序列个数（grep用好了可以非常快捷方便地处理一些数据）
+<pre>grep -c '&gt;' seqfile</pre>
+2, 查看大文件头几行或最后几行
+<pre>head seqfile
+tail seqfile</pre>
+3，文件行数
+<pre>wc -l seqfile</pre>
+4，矩阵格式的文件，提取其中的某几列（例如<a href="http://www.pangloss.com/wiki/Blast" target="_blank">blast -m 8</a>）
+<pre> cut -f 1,2,11 seq.cblast &gt; seq.abc</pre>
+5，awk和sed</p>
+
+<p>先学的perl，后知道awk和sed，认识到很多事情用awk和sed解决比写perl脚本方便多了</p>
+
+<p>比如fastq转换fasta文件：
+<pre>awk ‘NR % 4 == 1 || NR % 4 == 2′ myfile.fastq | sed -e ‘s/@/&gt;/’ &gt; myfile.fasta</pre>
+6，screen管理远程任务，可以在远程会话断开后继续在后台运行，详见<a href="http://www.path8.net/tn/archives/3746" target="_blank">此文</a>。</p>
+
+<p>7，vi/vim就不必细说了，编程必备。(emacs党自动替换成emacs)</p>
+
+<p>8，暂时就这么多了。好长时间没做过东西了。等用到或者想到了再加。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fedora下配置VNC服务器]]></title>
+    <link href="http://bioops.info/2011/04/fedora-vncserver/"/>
+    <updated>2011-04-05T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/04/fedora-vncserver</id>
+    <content type="html"><![CDATA[<p>1、
+<pre>rpm -qa | grep vnc</pre>
+可以查找到<br />
+vnc-1.0.0-2.fc11.i586<br />
+vnc-server-1.0.0-2.fc11.i586<br />
+否则安装vnc和vncserver</p>
+
+<p>2、
+<pre>env</pre>
+假设可找到HOME=/home/user用户</p>
+
+<p>3、
+<pre>ifconfig</pre>
+假设ip=192.168.119.131</p>
+
+<p>4、
+<pre>vncserver:10</pre>
+指令创建用户，开启10为终端</p>
+
+<p>5、
+<pre>vi /home/user/.vnc/xstartup</pre>
+修改最后一行tmp&amp; 为gnome&amp;</p>
+
+<p>6、root权限
+<pre>vi /etc/sysconfig/vncservers</pre>
+修改：<br />
+VNCSERVERS=&#8221;10：user&#8221;<br />
+VNCSERVERARGS[10]=&#8221;-geometry 800x600&#8221;</p>
+
+<p>7、root权限
+<pre>vi /etc/sysconfig/iptables</pre>
+添加<br />
+-A INPUT -m state &#8211;state NEW -m tcp -p tcp &#8211;dport 5910 -j ACCEPT<br />
+-A INPUT -m state &#8211;state NEW -m udp -p udp &#8211;dport 5910 -j ACCEPT</p>
+
+<p>8、修改selinux
+<pre>vi /etc/selinux/config</pre>
+修改：<br />
+SELINUX=disabed</p>
+
+<p>9、root
+<pre>service xinetd restart
+service iptables restart
+chkconfig --level 345 vncserver on//开机自启动
+service vncserver restart</pre>
+至此服务器已经启动<br />
+在其他电脑上<br />
+ping 192.169.119.131 没问题<br />
+安装vncviewer<br />
+输入192.168.119.131:5910<br />
+恭喜成功</p>
+
+<p>10、VNC黑屏问题<br />
+将黑屏用户的xstartup（一般为：/home/user用户名称/.vnc/xstartup）文件的属性修改为755（rwxr-xr-x）.
+<pre>chmod 755 /home/user/.vnc/xstartup</pre>
+重启vncserver服务即可！
+<pre>service vncserver restart</pre></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MySql常用命令总结]]></title>
+    <link href="http://bioops.info/2011/03/mysql-common-command/"/>
+    <updated>2011-03-24T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/03/mysql-common-command</id>
+    <content type="html"><![CDATA[<p><strong>一、连接MYSQL。</strong></p>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/linux/atom.xml
+
+<p>格式： mysql -h主机地址 -u用户名 －p用户密码</p>
+
+<p>1、例1：连接到本机上的MYSQL。</p>
+
+<p>首先在打开DOS窗口，然后进入目录 mysqlbin，再键入命令mysql -uroot -p，回车后提示你输密码，如果刚安装好MYSQL，超级用户root是没有密码的，故直接回车即可进入到MYSQL中了，MYSQL的提示符是：mysql&gt;</p>
+
+<p>2、例2：连接到远程主机上的MYSQL。假设远程主机的IP为：110.110.110.110，用户名为root,密码为abcd123。则键入以下命令：</p>
+
+<p>mysql -h110.110.110.110 -uroot -pabcd123</p>
+
+<p>（注:u与root可以不用加空格，其它也一样）</p>
+
+<p>3、退出MYSQL命令： exit （回车）</p>
+
+<p>other:
+<pre>
+Use yum to install both mysql command line tool and the server:
+yum -y install mysql mysql-server
+Enable the MySQL service:
+/sbin/chkconfig mysqld on
+Start the MySQL server:
+/sbin/service mysqld start
+Set the MySQL root password:
+mysqladmin -u root password 'new-password'The quotes around the new password are required.
+log on mysql:
+mysql -h 127.0.0.1 -u user_name -p
+mysqld --basedir=/ --datadir=/usr/local/mysql/data --user=mysql --pid-file=/usr/local/mysql/data/RFSIM.pid --skip-external-locking --port=3306 --socket=/tmp/mysql.sock
+</pre></p>
+
+<<<<<<< HEAD:source/_posts/2011-03-24-mysql-common-command.html
+<p>出现"/var/lib/mysql/mysql.sock“不存在的解决方法<br />
+=======
+<p>出现&#8221;/var/lib/mysql/mysql.sock“不存在的解决方法<br />
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/linux/atom.xml
+1、<br />
+创建/修改文件 /etc/my.cnf，至少增加/修改一行<br />
+[mysql]<br />
+[client]<br />
+socket = /tmp/mysql.sock<br />
+#在这里写上你的mysql.sock的正确位置，通常不是在 /tmp/ 下就是在 /var/lib/mysql/ 下<br />
+2、<br />
+指定IP地址，使用tcp方式连接mysql，而不使用本地sock方式<br />
+#mysql -h127.0.0.1 -uuser -ppassword<br />
+3、<br />
+为 mysql.sock 加个连接，比如说实际的mysql.sock在 /tmp/ 下，则<br />
+#ln -s /tmp/mysql.sock /var/lib/mysql/mysql.sock即可</p>
+
+<p><strong>二、修改密码。</strong></p>
+
+<p>格式：mysqladmin -u用户名 -p旧密码 password 新密码</p>
+
+<p>1、例1：给root加个密码ab12。首先在DOS下进入目录mysqlbin，然后键入以下命令</p>
+
+<p>mysqladmin -uroot -password ab12</p>
+
+<p>注：因为开始时root没有密码，所以-p旧密码一项就可以省略了。</p>
+
+<p>2、例2：再将root的密码改为djg345。</p>
+
+<p>mysqladmin -uroot -pab12 password djg345</p>
+
+<p><strong>三、增加新用户。</strong>（注意：和上面不同，下面的因为是MYSQL环境中的命令，所以后面都带一个分号作为命令结束符）</p>
+
+<<<<<<< HEAD:source/_posts/2011-03-24-mysql-common-command.html
+<p>格式：grant select on 数据库.* to 用户名@登录主机 identified by "密码"</p>
+
+<p>例1、增加一个用户test1密码为abc，让他可以在任何主机上登录，并对所有数据库有查询、插入、修改、删除的权限。首先用以root用户连入MYSQL，然后键入以下命令：</p>
+
+<p>grant select,insert,update,delete on *.* to test1@"%" Identified by "abc";</p>
+=======
+<p>格式：grant select on 数据库.* to 用户名@登录主机 identified by &#8220;密码&#8221;</p>
+
+<p>例1、增加一个用户test1密码为abc，让他可以在任何主机上登录，并对所有数据库有查询、插入、修改、删除的权限。首先用以root用户连入MYSQL，然后键入以下命令：</p>
+
+<p>grant select,insert,update,delete on *.* to test1@&#8221;%&#8221; Identified by &#8220;abc&#8221;;</p>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/linux/atom.xml
+
+<p>但例1增加的用户是十分危险的，你想如某个人知道test1的密码，那么他就可以在internet上的任何一台电脑上登录你的mysql数据库并对你的数据可以为所欲为了，解决办法见例2。</p>
+
+<p>例2、增加一个用户test2密码为abc,让他只可以在localhost上登录，并可以对数据库mydb进行查询、插入、修改、删除的操作（localhost指本地主机，即MYSQL数据库所在的那台主机），这样用户即使用知道test2的密码，他也无法从internet上直接访问数据库，只能通过MYSQL主机上的web页来访问了。</p>
+
+<<<<<<< HEAD:source/_posts/2011-03-24-mysql-common-command.html
+<p>grant select,insert,update,delete on mydb.* to test2@localhost identified by "abc";</p>
+
+<p>如果你不想test2有密码，可以再打一个命令将密码消掉。</p>
+
+<p>grant select,insert,update,delete on mydb.* to test2@localhost identified by "";</p>
+=======
+<p>grant select,insert,update,delete on mydb.* to test2@localhost identified by &#8220;abc&#8221;;</p>
+
+<p>如果你不想test2有密码，可以再打一个命令将密码消掉。</p>
+
+<p>grant select,insert,update,delete on mydb.* to test2@localhost identified by &#8220;&#8221;;</p>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/linux/atom.xml
+
+<p>在上篇我们讲了登录、增加用户、密码更改等问题。下篇我们来看看MYSQL中有关数据库方面的操作。注意：你必须首先登录到MYSQL中，以下操作都是在MYSQL的提示符下进行的，而且每个命令以分号结束。</p>
+
+<p><strong>一、操作技巧</strong></p>
+
+<p>1、如果你打命令时，回车后发现忘记加分号，你无须重打一遍命令，只要打个分号回车就可以了。也就是说你可以把一个完整的命令分成几行来打，完后用分号作结束标志就OK。</p>
+
+<p>2、你可以使用光标上下键调出以前的命令。但以前我用过的一个MYSQL旧版本不支持。我现在用的是mysql-3.23.27-beta-win。</p>
+
+<p><strong>二、显示命令</strong></p>
+
+<p>1、显示数据库列表。</p>
+
+<p>show databases;</p>
+
+<p>刚开始时才两个数据库：mysql和test。mysql库很重要它里面有MYSQL的系统信息，我们改密码和新增用户，实际上就是用这个库进行操作。</p>
+
+<p>2、显示库中的数据表：</p>
+
+<p>use mysql； ／／打开库，学过FOXBASE的一定不会陌生吧</p>
+
+<p>show tables;</p>
+
+<p>3、显示数据表的结构：</p>
+
+<p>describe 表名;</p>
+
+<p>4、建库：</p>
+
+<p>create database 库名;</p>
+
+<p>5、建表：</p>
+
+<p>use 库名；</p>
+
+<p>create table 表名 (字段设定列表)；</p>
+
+<p>6、删库和删表:</p>
+
+<p>drop database 库名;</p>
+
+<p>drop table 表名；</p>
+
+<p>7、将表中记录清空：</p>
+
+<p>delete from 表名;</p>
+
+<p>8、显示表中的记录：</p>
+
+<p>select * from 表名;</p>
+
+<p><strong>三、一个建库和建表以及插入数据的实例</strong></p>
+
+<p>&nbsp;</p>
+
+<p><pre>drop database if exists school; //如果存在SCHOOL则删除 
+create database school; //建立库SCHOOL 
+use school; //打开库SCHOOL 
+create table teacher //建立表TEACHER 
+( 
+id int(3) auto_increment not null primary key, 
+name char(10) not null, 
+address varchar(50) default '深圳', 
+year date 
+); //建表结束 
+//以下为插入字段 
+insert into teacher values('','glchengang','深圳一中','1976-10-10'); 
+insert into teacher values('','jack','深圳一中','1975-12-23');</pre></p>
+
+<p>注：在建表中（1）将ID设为长度为3的数字字段:int(3)并让它每个记录自动加一:auto_increment并不能为空:not null而且让他成为主字段primary key（2）将NAME设为长度为10的字符字段（3）将ADDRESS设为长度50的字符字段，而且缺省值为深圳。varchar和char有什么区别呢，只有等以后的文章再说了。（4）将YEAR设为日期字段。</p>
+
+<p>如果你在mysql提示符键入上面的命令也可以，但不方便调试。你可以将以上命令原样写入一个文本文件中假设为school.sql，然后复制到c:\下，并在DOS状态进入目录\mysql\bin，然后键入以下命令：</p>
+
+<p>mysql -uroot -p密码 &lt; c:\school.sql</p>
+
+<p>如果成功，空出一行无任何显示；如有错误，会有提示。（以上命令已经调试，你只要将//的注释去掉即可使用）。</p>
+
+<p><strong>四、将文本数据转到数据库中</strong></p>
+
+<p>1、文本数据应符合的格式：字段数据之间用tab键隔开，null值用\n来代替.</p>
+
+<p>例：</p>
+
+<p>3 rose 深圳二中 1976-10-10</p>
+
+<p>4 mike 深圳一中 1975-12-23</p>
+
+<<<<<<< HEAD:source/_posts/2011-03-24-mysql-common-command.html
+<p>2、数据传入命令 load data local infile "文件名" into table 表名;</p>
+=======
+<p>2、数据传入命令 load data local infile &#8220;文件名&#8221; into table 表名;</p>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/linux/atom.xml
+
+<p>注意：你最好将文件复制到\mysql\bin目录下，并且要先用use命令打表所在的库。</p>
+
+<p><strong>五、备份数据库：</strong>（命令在DOS的\mysql\bin目录下执行）</p>
+
+<<<<<<< HEAD:source/_posts/2011-03-24-mysql-common-command.html
+<p>mysqldump --opt school&gt;school.bbb</p>
+
+<p>注释:将数据库school备份到school.bbb文件，school.bbb是一个文本文件，文件名任取，打开看看你会有新发现。</p>
+
+<p>后记：其实MYSQL的对数据库的操作与其它的SQL类数据库大同小异，您最好找本将SQL的书看看。我在这里只介绍一些基本的，其实我也就只懂这些了，呵呵。最好的MYSQL教程还是"晏子"译的"MYSQL中文参考手册"不仅免费每个相关网站都有下载，而且它是最权威的。可惜不是象"PHP4中文手册"那样是chm的格式，在查找函数命令的时候不太方便。</p>
+
+<p>&nbsp;</p>
+=======
+<p>mysqldump &#8211;opt school&gt;school.bbb</p>
+
+<p>注释:将数据库school备份到school.bbb文件，school.bbb是一个文本文件，文件名任取，打开看看你会有新发现。</p>
+
+<p>后记：其实MYSQL的对数据库的操作与其它的SQL类数据库大同小异，您最好找本将SQL的书看看。我在这里只介绍一些基本的，其实我也就只懂这些了，呵呵。最好的MYSQL教程还是&#8221;晏子&#8221;译的&#8221;MYSQL中文参考手册&#8221;不仅免费每个相关网站都有下载，而且它是最权威的。可惜不是象&#8221;PHP4中文手册&#8221;那样是chm的格式，在查找函数命令的时候不太方便。</p>
+
+<p>&nbsp;</p>
+]]></content>
+  </entry>
+  
+</feed>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/linux/atom.xml

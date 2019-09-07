@@ -1,0 +1,64 @@
+---
+layout: post
+title: Bioperl从网络数据库中提取多个序列（Bioperl HOWTO翻译6）
+categories:
+- Bioperl HOWTO翻译
+- Programming
+tags:
+- Bioperl
+- Genbank
+- HOWTO
+- Perl
+- Translation
+published: true
+comments: true
+---
+<p><h3>从网络数据库中提取多个序列</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Retrieving_multiple_sequences_from_a_database" target="_blank">英文原文</a></p>
+
+<p>虽然有很多更复杂的方法从<a href="http://en.wikipedia.org/wiki/GenBank">Genbank</a>中提取多个序列，这里只展示一个比较“生物学”的办法，即利用<a href="http://search.cpan.org/perldoc?Bio::DB::Query::GenBank">Bio::DB::Query::GenBank</a>模块。查询Genbank中拟南芥拓扑异构酶（Arabidopsis topoisomerases）的核苷酸序列，代码示例：</p>
+
+``` perl
+
+use Bio::DB::Query::GenBank;
+$query = "Arabidopsis[ORGN] AND topoisomerase[TITL] and 0:3000[SLEN]";
+$query_obj = Bio::DB::Query::GenBank->new(-db    => 'nucleotide', -query => $query );
+
+```
+
+<p>注：类似这种通过字符串获取序列的办法只适用于<a href="http://www.bioperl.org/wiki/Release_pumpkin">Bioper 1.5版</a>之后，且只能查询<a href="http://en.wikipedia.org/wiki/GenBank">Genbank</a>，至于其他数据库，如<a href="http://en.wikipedia.org/wiki/Swissprot">Swissprot</a>或<a href="http://en.wikipedia.org/wiki/EMBL">EMBL</a>，只能通过标识号或accession号查询。</p>
+
+<p>另一个例子，获取布氏锥虫（<em>Trypanosoma brucei</em>）的  EST序列</p>
+
+``` perl
+
+$query_obj = Bio::DB::Query::GenBank->new(
+                      -query   =>'gbdiv est[prop] AND Trypanosoma brucei [organism]',
+                      -db      => 'nucleotide' );
+
+```
+
+<p>关于Genbank的查询字符串格式，详见<a href="http://www.ncbi.nlm.nih.gov/entrez/query/static/help/Summary_Matrices.html#Search_Fields_and_Qualifiers">此处</a>。</p>
+
+<p>刚才的例子中只是创建了一个查询对象（query object），但并没有真正提取到序列。还需要创建一个数据库对象，然后就可以按照以前讲过的在数据库对象中提取序列信息。</p>
+
+``` perl
+
+use Bio::DB::GenBank;
+use Bio::DB::Query::GenBank;
+$query = "Arabidopsis[ORGN] AND topoisomerase[TITL] and 0:3000[SLEN]";
+$query_obj = Bio::DB::Query::GenBank->new(-db    => 'nucleotide',  -query => $query );
+$gb_obj = Bio::DB::GenBank->new;
+$stream_obj = $gb_obj->get_Stream_by_query($query_obj);
+while ($seq_obj = $stream_obj->next_seq) {    
+    # do something with the sequence object    
+    print $seq_obj->display_id, "\t", $seq_obj->length, "\n";
+}
+
+```
+
+<p>$stream_obj 和get_Stream_by_query会比较陌生。需要提取多个序列信息时，可以使用这种数据流（stream）的形式。和get_Seq_by_id比较类似，只不过可以提取多个序列。</p>
+
+<p>注意上述代码是一步一步分开执行的：先是查询对象，然后传递给数据库对象，最后用一个循环来输出序列信息，循环内用的是序列对象。</p>
+
+<p>警告：一定要注意查询字符串的设置。现在核苷酸数据库非常庞大，如果返回的查询结果包含了非常多的序列的话，程序会长时间运行下去，甚至耗尽内存。可以通过设置[SLEN]来限制结果数量。</p>

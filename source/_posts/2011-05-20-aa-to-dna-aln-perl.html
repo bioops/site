@@ -1,0 +1,46 @@
+---
+layout: post
+title: transfer protein alignment to DNA alignment by Bioperl
+categories:
+- Perl
+- Programming
+tags:
+- Alignment
+- Bioinformatics
+- Bioperl
+- HOWTO
+- Perl
+- Programming
+published: true
+comments: true
+---
+
+``` perl aaln_to_daln.pl
+
+# it needs two files as input,
+# 1) protein alignment result
+# 2)cds sequences of the proteins
+use strict;
+use Bio::SeqIO;
+use Bio::AlignIO;
+use Bio::Align::Utilities qw(aa_to_dna_aln);
+my $alignio = Bio::AlignIO->new(-format => 'NEXUS',
+-file => 'pro.nxs');
+ 
+my $aa_aln = $alignio->next_aln;
+ 
+my $seqdata= 'cds.fa';
+my $seqio = new Bio::SeqIO(-file => $seqdata,
+-format => 'fasta');
+my %seqs;
+# process each sequence
+while ( my $seq = $seqio->next_seq ) {
+$seqs{$seq->display_id} = $seq;
+}
+ 
+my $dna_aln = aa_to_dna_aln($aa_aln, %seqs);
+ 
+my $out = Bio::AlignIO->new(-file => ">cds.phylip" , '-format' => 'NEXUS');
+$out ->write_aln($dna_aln);
+
+```

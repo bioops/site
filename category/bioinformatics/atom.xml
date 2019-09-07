@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bioinformatics | Bioops]]></title>
+  <link href="http://bioops.info/category/bioinformatics/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Sequencing Cost (2013 Feb)]]></title>
+    <link href="http://bioops.info/2013/02/sequencing-cost/"/>
+    <updated>2013-02-20T00:00:00+00:00</updated>
+    <id>http://bioops.info/2013/02/sequencing-cost</id>
+    <content type="html"><![CDATA[<p><div><section>
+<h2><a href="http://www.nature.com/news/gene-sequencing-leaves-the-laboratory-1.12454" target="_blank">Reasonably priced genomes</a></h2>
+<section></section><section>Although no reports of big innovations in DNA sequencing are expected at a major conference this week, the current cost and capabilities of the technology now make medical applications worthwhile.</section>
+<table>
+<thead>
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Machine cost</th>
+<th scope="col">Read length (bases)</th>
+<th scope="col">Cost per megabase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Illumina MiSeq</td>
+<td>US$125,000</td>
+<td>500</td>
+<td>14–70 cents</td>
+</tr>
+<tr>
+<td>Illumina HiSeq</td>
+<td>US$690,000</td>
+<td>300</td>
+<td>4–5 cents</td>
+</tr>
+<tr>
+<td>PacBio RS</td>
+<td>US$695,000</td>
+<td>4,575</td>
+<td>$2–17</td>
+</tr>
+<tr>
+<td>Ion Torrent PGM</td>
+<td>US$49,000</td>
+<td>400</td>
+<td>60 cents–$5</td>
+</tr>
+<tr>
+<td>Ion Torrent Proton</td>
+<td>US$224,000</td>
+<td>200</td>
+<td>1–9 cents</td>
+</tr>
+</tbody>
+</table>
+Source: The companies; Travis Glenn</section></div></p>
+
+<p>
+<div></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Painful Experience on Building Local UCSC Genome Browser]]></title>
+    <link href="http://bioops.info/2012/11/local-ucsc-genome-browser/"/>
+    <updated>2012-11-21T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/11/local-ucsc-genome-browser</id>
+    <content type="html"><![CDATA[<p>I want to install a UCSC genome browser on my ubuntu workstation, to integrate and display the genomes , mostly plant genomes, with related annotations and NGS data, e.g. RNA-seq, methylation, SNPs, synteny, genome alignment, and etc.. There are also <a href="http://genomewiki.ucsc.edu/index.php/Other_genome_browsers" target="_blank">other genome browsers</a>, but UCSC is my favorite and can meet my needs.</p>
+
+<p>I spent a couple of workdays building from sources and adding custom genomes. The browser is based on mysql and apache which I don&#8217;t know much about, so It&#8217;s not surprising I encountered tons of problems. Thank google and other kind people who posted their experiences. I feel sorry that I cannot do the same thing as them, but at least I would like to share some resources and tips.</p>
+
+<p>1) Read the <a href="http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=tree;f=src/product;hb=HEAD" target="_blank">README files</a> in the sources, and follow the instructions. (You&#8217;d better understand them.)</p>
+
+<p>2) The <a href="http://genomewiki.ucsc.edu/index.php/Main_Page" target="_blank">wiki site</a> is very helpfull.</p>
+
+<p>3) Other people&#8217;s experiences. (<a href="http://bergmanlab.smith.man.ac.uk/?p=1111" target="_blank">1</a> and <a href="http://enotacoes.wordpress.com/2009/09/03/installing-a-minimal-ucsc-mirror-in-ubuntu-jaunty-64-bits/" target="_blank">2</a>)</p>
+
+<p>4) If top bar is not showing, add the following code in apach2 conf file. (/etc/apache2/apache2.conf on my machine)
+<script src="https://gist.github.com/bioops/4946649.js"></script>
+5) Mysql loading local file issue in hgLOAD* scripts. I tried different solutions, but only one worked for me. I logged into mysql and run the loading command if the error appears.</p>
+
+<p>6) Stop mysql before rsync mysql files from UCSC server.</p>
+
+<p>7) Most mysql problems were caused by permission settings.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Next-generation Sequencing Quality Control Tools]]></title>
+    <link href="http://bioops.info/2012/08/ngs-qc-tools/"/>
+    <updated>2012-08-21T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/08/ngs-qc-tools</id>
+    <content type="html"><![CDATA[<p><a href="http://hannonlab.cshl.edu/fastx_toolkit/" target="_blank"><strong>FASTX-Toolkit</strong></a>: The FASTX-Toolkit is a collection of command line tools for Short-Reads FASTA/ FASTQ files preprocessing, including:
+<ul>
+	<li>FASTQ-to-FASTA converter
+<div>Convert FASTQ files to FASTA files.</div></li>
+	<li>FASTQ Information
+<div>Chart Quality Statistics and Nucleotide Distribution</div></li>
+	<li>FASTQ/A Collapser
+<div>Collapsing identical sequences in a FASTQ/A file into a single sequence (while maintaining reads counts)</div></li>
+	<li>FASTQ/A Trimmer
+<div>Shortening reads in a FASTQ or FASTQ files (removing barcodes or noise).</div></li>
+	<li>FASTQ/A Renamer
+<div>Renames the sequence identifiers in FASTQ/A file.</div></li>
+	<li>FASTQ/A Clipper
+<div>Removing sequencing adapters / linkers</div></li>
+	<li>FASTQ/A Reverse-Complement
+<div>Producing the Reverse-complement of each sequence in a FASTQ/FASTA file.</div></li>
+	<li>FASTQ/A Barcode splitter
+<div>Splitting a FASTQ/FASTA files containning multiple samples</div></li>
+	<li>FASTA Formatter
+<div>changes the width of sequences line in a FASTA file</div></li>
+	<li>FASTA Nucleotide Changer
+<div>Convets FASTA sequences from/to RNA/DNA</div></li>
+	<li>FASTQ Quality Filter
+<div>Filters sequences based on quality</div></li>
+	<li>FASTQ Quality Trimmer
+<div>Trims (cuts) sequences based on quality</div></li>
+	<li>FASTQ Masker
+<div>Masks nucleotides with &#8216;N&#8217; (or other character) based on quality</div></li>
+</ul>
+<strong><a href="https://main.g2.bx.psu.edu/" target="_blank">Galaxy NGS QC and manipulation tools</a> (<a href="http://bioinformatics.oxfordjournals.org/content/26/14/1783.short" target="_blank">citation</a>)</strong>: Galaxy provides a tool suite that functions on all of the commonly known FASTQ format variants and provides a pipeline for manipulating next generation sequencing data taken from a sequencing machine all the way through the quality filtering steps.</p>
+
+<p><strong><a href="http://brainarray.mbni.med.umich.edu/brainarray/ngsqc/" target="_blank">NGSQC</a> (<a href="http://www.biomedcentral.com/1471-2164/11/S4/S7/" target="_blank">citation</a>)</strong>:The NGSQC pipeline provides a set of novel quality control measures for quickly detecting a wide variety of quality issues in deep sequencing data derived from two dimensional surfaces, regardless of the assay technology used. It also enables researchers to determine whether sequencing data related to their most interesting biological discoveries are caused by sequencing quality issues. NGSQC can help to ensure that biological conclusions, in particular those based on relatively rare sequences, are not caused by low quality sequencing.</p>
+
+<p><strong><a href="http://www.nipgr.res.in/ngsqctoolkit.html" target="_blank">NGS QC Toolkit</a> (<a href="http://www.plosone.org/article/info:doi/10.1371/journal.pone.0030619#abstract0" target="_blank">citation</a>)</strong>: A toolkit for the quality control (QC) of next generation sequencing (NGS) data. The toolkit comprises of user-friendly stand alone tools for quality control of the sequence data generated using Illumina and Roche 454 platforms with detailed results in the form of tables and graphs, and filtering of high-quality sequence data. It also includes few other tools, which are helpful in NGS data quality control and analysis.</p>
+
+<p><strong><a href="http://prinseq.sourceforge.net/" target="_blank">PRINSEQ</a> (<a href="http://bioinformatics.oxfordjournals.org/content/27/6/863" target="_blank">citation</a>)</strong>: PRINSEQ can be used to filter, reformat, or trim your genomic and metagenomic sequence data. It generates summary statistics of your sequences in graphical and tabular format. It is easily configurable and provides a user-friendly interface.</p>
+
+<p><strong><a href="http://solexaqa.sourceforge.net/" target="_blank">SolexaQA</a> (<a href="http://www.biomedcentral.com/1471-2105/11/485" target="_blank">citation</a>)</strong>: SolexaQA is a Perl-based software package that calculates quality statistics and creates visual representations of data quality from FASTQ files generated by Illumina second-generation sequencing technology (“Solexa”).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Paper] a Whole-Cell Computational Model Predicts Phenotype From Genotype]]></title>
+    <link href="http://bioops.info/2012/07/paper-a-whole-cell-computational-model-predicts-phenotype-from-genotype/"/>
+    <updated>2012-07-24T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/07/paper-a-whole-cell-computational-model-predicts-phenotype-from-genotype</id>
+    <content type="html"><![CDATA[<p><a href="http://www.cell.com/abstract/S0092-8674%2812%2900776-3" target="_blank">http://www.cell.com/abstract/S0092-8674%2812%2900776-3</a>
+<h2>Highlights</h2>
+<ul>
+	<li>An entire organism is modeled in terms of its molecular components</li>
+	<li>Complex phenotypes can be modeled by integrating cell processes into a single model</li>
+	<li>Unobserved cellular behaviors are predicted by model of <em>M. genitalium</em></li>
+	<li>New biological processes and parameters are predicted by model of <em>M</em>. <em>genitalium</em></li>
+</ul>
+<h2>Summary</h2>
+Understanding how complex phenotypes arise from individual molecules and their interactions is a primary challenge in biology that computational approaches are poised to tackle. We report a whole-cell computational model of the life cycle of the human pathogen <em>Mycoplasma genitalium</em> that includes all of its molecular components and their interactions. An integrative approach to modeling that combines diverse mathematics enabled the simultaneous inclusion of fundamentally different cellular processes and experimental measurements. Our whole-cell model accounts for all annotated gene functions and was validated against a broad range of data. The model provides insights into many previously unobserved cellular behaviors, including in vivo rates of protein-DNA association and an inverse relationship between the durations of DNA replication initiation and replication. In addition, experimental analysis directed by model predictions identified previously undetected kinetic parameters and biological functions. We conclude that comprehensive whole-cell models can be used to facilitate biological discovery.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tools for Cross-species Biological Network Comparison]]></title>
+    <link href="http://bioops.info/2012/07/tools-for-cross-species-biological-network-comparison/"/>
+    <updated>2012-07-23T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/07/tools-for-cross-species-biological-network-comparison</id>
+    <content type="html"><![CDATA[<p><strong>GraphAlignment</strong>: GraphAlignment is an extension package for the R programming environment which provides functions for finding an alignment between two networks based on link and node similarity scores. This package implements the Bayesian scoring methods and the alignment algorithm introduced in the paper J. Berg and M. Lässig, <a href="http://www.pnas.org/cgi/content/full/103/29/10967">&#8220;Cross-species analysis of biological networks by Bayesian alignment&#8221;</a>, PNAS 103 (29), 10967-10972 (2006). Documentation and installation guide are available <a href="http://www.thp.uni-koeln.de/~berg/GraphAlignment/" target="_blank">here</a>.</p>
+
+<p><strong>PathBLAST</strong>: PathBLAST is a network alignment and search tool for comparing protein interaction networks across species to identify protein pathways and complexes that have been conserved by evolution. PathBLAST is now available at <a href="http://www.pathblast.org/" target="_blank">http://www.pathblast.org/</a> as a web-based query. (<a href="http://www.pathblast.org/docs/publications.html" target="_blank">publications</a>)</p>
+
+<p><strong>IsoRankN</strong>: IsoRankN (IsoRank-Nibble) is a global multiple-network alignment tool based on spectral clustering on the induced graph of pairwise alignment scores. IsoRankN outperforms existing algorithms for global network alignment in coverage and consistency on multiple alignments of the five available eukaryotic networks. Being based on spectral methods, IsoRankN is both error-tolerant and computationally efficient. More information is available <a href="http://groups.csail.mit.edu/cb/mna/" target="_blank">here</a>.</p>
+
+<p><strong>NetworkBLAST &amp; NetworkBLAST-M</strong>: NetworkBLAST analyzes protein interaction networks across species to infer protein complexes that are conserved in evolution.<br />
+For comparing multiple networks use <a href="http://www.cs.tau.ac.il/%7Ebnet/License-nbm.htm">Networkblast-M</a>; for an executable of NetworkBLAST please refer to <a href="http://www.cs.tau.ac.il/%7Ebnet/License.htm">here</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

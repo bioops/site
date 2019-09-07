@@ -1,0 +1,119 @@
+---
+layout: post
+title: 利用Bioperl将编码序列翻译成蛋白质（Bioperl HOWTO翻译8）
+categories:
+- Bioperl HOWTO翻译
+- Programming
+tags:
+- Bioperl
+- HOWTO
+- Perl
+- protein.
+- Translating
+- Translation
+published: true
+comments: true
+---
+<p><h3>翻译</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Translating" target="_blank">英文原文</a></p>
+
+<p>在生物信息学中翻译的概念有两种，一是将任意核苷酸序列从头到尾顺次翻译；二是将真实的编码序列，如mRNA或cDNA，翻译成相应的氨基酸序列。Bioperl都可处理。</p>
+
+<p>任何alphabet值是‘dna’或‘rna’的序列对象都可以用translate方法来返回一个蛋白质序列对象，例如：</p>
+
+``` perl
+
+$prot_obj = $my_seq_object->translate;
+
+```
+
+<p>所有的密码子都会被翻译，包括那些起始密码子和终止密码子。例如 <strong>ttttttatgccctaggggg</strong>会被翻译成<strong>FFMP*G。</strong></p>
+
+<p>另外，可以设定一些参数来改变translate()方法的输出内容。例如，可以设定终止密码子的符号（缺省是*），以及未知氨基酸的符号（缺省是X）。</p>
+
+``` perl
+
+$prot_obj = $my_seq_object->translate(-terminator => '-');
+$prot_obj = $my_seq_object->translate(-unknown => '_');
+
+```
+
+<p>也可以设定翻译起始位置（译者注：也称阅读框；一个序列有六个阅读框，分别从第一、二和三个核苷酸，反向互补的第一、二和三个核苷酸开始翻译。缺省是翻译的第一个阅读框）。例如，可以从第二个核苷酸开始翻译（译者注：也可以说是第二个阅读框）：</p>
+
+``` perl
+
+$prot_obj = $my_seq_object->translate(-frame => 1);
+
+```
+
+<p>如果要进行一条完整编码序列的翻译，translate()需要进行更多的检查。详细来说，translate()需要确定开放阅读框的起始子和终止子位置正好是序列的起始和终止；并且序列中间没有终止子；如果不是常见的起始子，translate()会将其转换为甲硫氨酸（M）。需要设定"complete" 为1，如</p>
+
+``` perl
+
+$prot_obj = $my_seq_object->translate(-complete => 1);
+
+```
+
+<p>如果上面所说的完整编码序列的条件不满足，会给出警告信息。通过设定"throw" 为1，程序会在遇到此情况时终止执行，而不只仅是只给出警告信息而继续执行后面的代码。</p>
+
+``` perl
+
+$prot_obj = $my_seq_object->translate(-complete => 1,
+                                      -throw => 1);
+
+```
+
+<p>codontable_id可用于设定不同的遗传密码表。现在有16种不同的遗传密码表包括 'Standard', 'Vertebrate Mitochondrial', 'Bacterial', 'Alternative Yeast Nuclear' and 'Ciliate, Dasycladacean and Hexamita Nuclear'。详见<a title="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" href="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" rel="nofollow" target="_blank">Bio::Tools::CodonTable</a>。例如，要翻译线粒体DNA：</p>
+
+``` perl
+
+$prot_obj = $seq_obj->translate(-codontable_id => 2);
+
+```
+
+<p>也可以自己创建一个特殊的遗传密码表，详见<a title="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" href="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" rel="nofollow" target="_blank">Bio::Tools::CodonTable</a>查看密码表格式，如：</p>
+
+``` perl
+
+use Bio::Tools::CodonTable;
+@custom_table =
+    ( 'test1',
+      'FFLLSSSSYY**CC*WLLLL**PPHHQQR*RRIIIFT*TT*NKKSSRRV*VVAA*ADDEE*GGG'
+    );
+$codon_table = Bio::Tools::CodonTable->new;
+$id = $codon_table->add_table(@custom_table);
+$prot_obj = $my_seq_object->translate(-codontable_id => $id);
+
+```
+
+<p>translate()也可以找出开放阅读框，默认从第一个找到的起始子开始翻译。如：</p>
+
+``` perl
+
+$prot_obj = $my_seq_object->translate(-orf => 1);
+
+```
+
+<p>大部分遗传密码表中，包括NCBI中的默认设定，AUG都是起始子。可设定AUG为唯一的起始子，如：</p>
+
+``` perl
+
+$prot_obj = $my_seq_object->translate(-orf => 1,
+                                      -start => "atg" );
+
+```
+
+<p>-start参数只有在orf设定为1的情况下才有效。</p>
+
+<p>最后一个要说的是，默认translate()会将终止子翻译成一个特殊的符号，如*，也可通过-terminator自行设定。但是，当-complete设定为1的时候，这个特殊符号会被去掉，如：</p>
+
+``` perl
+
+$prot_obj = $my_seq_object->translate(-orf => 1,
+                                      -complete => 1);
+
+```
+
+<p>序列<strong>tttttatgccctaggggg</strong>会被翻译成<strong>MP</strong>，而不是<strong>MP*</strong>。</p>
+
+<p>详见<a title="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" href="http://search.cpan.org/perldoc?Bio::Tools::CodonTable" rel="nofollow" target="_blank">Bio::Tools::CodonTable</a>和<a title="http://search.cpan.org/perldoc?Bio::PrimarySeqI" href="http://search.cpan.org/perldoc?Bio::PrimarySeqI" rel="nofollow" target="_blank">Bio::PrimarySeqI</a>，查看更多的关于翻译的信息。</p>

@@ -1,0 +1,74 @@
+---
+layout: post
+title: 本地blast
+categories:
+- Perl
+- Programming
+- Software
+tags:
+- Bioinformatics
+- Blast
+- HOWTO
+- Local
+- Perl
+published: true
+comments: true
+---
+<p><div /></p>
+
+<p><strong><span style="text-decoration: underline;">1.Blast程序下载和安装</span></strong>
+<a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/LATEST" target="_blank">ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/LATEST</a>在该目录中选择需要的blast程序，下载.<br />
+windows用户: 双击，在该文件所在目录下会生成一系列文件。在c:windows下创建名为NCBI.ini的配置文件，用记事本写入：</p>
+
+<pre>[NCBI]
+Data ="pathdata"</pre>
+<p>（注意：path代表你电脑上blast的安装目录）</p>
+
+<p>Linux 用户:直接解压</p>
+
+<p><strong><span style="text-decoration: underline;">2.下载数据库
+</span></strong><a href="ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/">ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/</a>
+也可以用fasta文件创建自己的数据库</p>
+
+<p><strong><span style="text-decoration: underline;">3.格式化数据库
+</span></strong>windows用户: 进入cmd，使用cd /d 命令打开blast程序所在文件夹。<br />
+linux用户，也需要在终端内进入/blast/bin/ 文件夹, 也可使用export PATH=$PATH:/path/to/blast/bin/ 省去进入blast文件夹<br />
+输入：formatdb -i databasename -p F -o T<br />
+databasename表示自己选择的数据库（最好使用绝对路径）<br />
+-i input file 参数用于指定需要格式的数据库<br />
+-p type of file 用于指定文件类型，T 为蛋白质，F为核酸，默认为 T<br />
+-o parse options 用于指定是否解析序列ID并创建索引 T 为创建，F为不创建，默认为F。如果不用T，会提示[NULL_Caption] WARNING: "inputseq": Could not find index files for database "databasename"<br />
+可以输入formatdb --help 来获取相关参数的解释和帮助。</p>
+
+<p><strong><span style="text-decoration: underline;">4.blastall</span></strong>
+windows用户: 进入cmd，使用cd /d 命令打开blast程序所在文件夹。<br />
+linux用户，也需要在终端内进入/blast/bin/ 文件夹。<br />
+输入：blastall -p blastn -d databasename -i inputfile -o outputfile<br />
+-p program name 为需要使用的程序名<br />
+blastn 为核酸序列对比搜索<br />
+blastp 为蛋白质序列对比搜索<br />
+blastx 为用被翻译的核酸序列在蛋白质数据库中搜索<br />
+tblastn 为 用蛋白质序列在 [核酸序列翻译后数据库] 中搜索<br />
+tblastx 为用翻译后的核酸序列 在 核酸序列翻译后数据库中搜索<br />
+可以输入blastall - 来获取相关参数的解释和帮助。<br />
+-d databasename 指定所使用的数据库名称<br />
+-i inputfile 待搜索的序列文件（最好使用绝对路径）<br />
+-o outputfile 指定保存结果的文件（最好使用绝对路径）</p>
+
+<p><strong>注：通过Perl 脚本实现本地化运行BLAST</strong></p>
+
+``` perl local_blast.pl
+
+#!/usr/bin/perl -w
+$formatdb = "blastpath/formatdb";
+$blastall="blastpath/blastall";
+$database="database path";
+$input="inputfile path";
+$output="outputfile path";
+$system_check=system("$formatdb -i $database -p F -o T");
+$system_check=system("$blastall -p blastn -d $database -i $input -o $output");
+#windows用户注意：路径中目录必须用“/”，而不是widows常用的“”;
+#前面所说的文件路径一律用“”。linux用户无视.
+
+```
+

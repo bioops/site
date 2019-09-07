@@ -1,0 +1,35 @@
+---
+layout: post
+title: 做生物信息常用到的linux命令
+categories:
+- Linux
+- OS
+- Software
+tags:
+- Bioinformatics
+- Command
+- Linux
+- Note
+published: true
+comments: true
+---
+<p>1，统计一个序列文件中的序列个数（grep用好了可以非常快捷方便地处理一些数据）
+<pre>grep -c '&gt;' seqfile</pre>
+2, 查看大文件头几行或最后几行
+<pre>head seqfile
+tail seqfile</pre>
+3，文件行数
+<pre>wc -l seqfile</pre>
+4，矩阵格式的文件，提取其中的某几列（例如<a href="http://www.pangloss.com/wiki/Blast" target="_blank">blast -m 8</a>）
+<pre> cut -f 1,2,11 seq.cblast &gt; seq.abc</pre>
+5，awk和sed</p>
+
+<p>先学的perl，后知道awk和sed，认识到很多事情用awk和sed解决比写perl脚本方便多了</p>
+
+<p>比如fastq转换fasta文件：
+<pre>awk ‘NR % 4 == 1 || NR % 4 == 2′ myfile.fastq | sed -e ‘s/@/&gt;/’ &gt; myfile.fasta</pre>
+6，screen管理远程任务，可以在远程会话断开后继续在后台运行，详见<a href="http://www.path8.net/tn/archives/3746" target="_blank">此文</a>。</p>
+
+<p>7，vi/vim就不必细说了，编程必备。(emacs党自动替换成emacs)</p>
+
+<p>8，暂时就这么多了。好长时间没做过东西了。等用到或者想到了再加。</p>

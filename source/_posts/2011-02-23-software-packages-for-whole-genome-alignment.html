@@ -1,0 +1,62 @@
+---
+layout: post
+title: Software packages for whole genome alignment
+categories:
+- Bioinformatics
+- Genomics
+- Software
+tags:
+- Alignment
+- Bioinformatics
+- Genomics
+- Software
+published: true
+comments: true
+---
+<p><div>
+<div /></div></p>
+
+<p>More softwares and information will be added. (latest updated on 28/02/2011)</p>
+
+<p><strong>Several available tools for alignment of whole genomes.</strong></p>
+
+<p><a href="http://users.soe.ucsc.edu/~kent/xenoAli/index.html" target="_blank">WABA</a> (<a href="http://genome.cshlp.org/content/10/8/1115.long" target="_blank">Kent and Zahler 2000</a>) Wobble Aware Bulk Aligner for cross-species whole genome alignment</p>
+
+<p><a href="http://www.bx.psu.edu/~rsharris/lastz/" target="_blank">LASTZ</a> or BLASTZ <span style="color: #ff0000;">* recommended</span> (<a href="http://genome.cshlp.org/content/13/1/103.full" target="_blank">Schwartz et al. 2003</a>) LASTZ is a program for aligning DNA sequences, a pairwise aligner. Originally designed to handle sequences the size of human chromosomes and from different species, it is also useful for sequences produced by NGS sequencing technologies such as Roche 454.</p>
+
+<p><a href="http://lagan.stanford.edu/lagan_web/index.shtml" target="_blank">LAGAN</a> (<a href="http://genome.cshlp.org/content/13/4/721.full">Brudno et al. 2003</a>) The Lagan Tookit is a set of alignment programs for comparative genomics. The three main components are a pairwise aligner (LAGAN), a multiple aligner (M-LAGAN), and a glocal aligner (Shuffle-LAGAN). All three are based on the <a href="http://www.cs.toronto.edu/~brudno/chaos/" target="_blank">CHAOS</a> local alignment tool and combine speed (regions up to several megabases can be aligned in minutes) with high accuracy. The results of the alignment can be visualized using the <a href="http://modeling.water.ca.gov/delta/models/dsm2/tools/vista/index.html" target="_blank">VISTA</a> visualization tool.</p>
+
+<p><a href="http://mummer.sourceforge.net/" target="_blank">MUMMER</a> <span style="color: #ff0000;">*recommended</span> (3 papers for 3 versions <a href="http://mummer.sourceforge.net/MUMmer.pdf" target="_blank">1.0</a>, <a href="http://mummer.sourceforge.net/MUMmer2.pdf" target="_blank">2.1</a>, <a href="http://mummer.sourceforge.net/MUMmer3.pdf" target="_blank">3.0</a>) MUMmer is a system for rapidly aligning entire genomes, whether in complete or draft form. For example, MUMmer 3.0 can find all 20-basepair or longer exact matches between a pair of 5-megabase genomes in 13.7 seconds, using 78 MB of memory, on a 2.4 GHz Linux desktop computer. MUMmer can also align incomplete genomes; it can easily handle the 100s or 1000s of contigs from a shotgun sequencing project, and will align them to another set of contigs or a genome using the NUCmer program included with the system. If the species are too divergent for a DNA sequence alignment to detect similarity, then the PROmer program can generate alignments based upon the six-frame translations of both input sequences.</p>
+
+<p><a href="http://bio.math.berkeley.edu/avid/" target="_blank">AVID</a> (or <a href="http://genome.lbl.gov/vista/downloads.shtml" target="_blank">click here</a>)(<a href="http://genome.cshlp.org/content/13/1/97.full" target="_blank">Bray et al. 2002</a>) AVID is designed to be fast, memory efficient, and practical for sequence alignments of large genomic regions up to megabases long.</p>
+
+<p><a href="http://www.genome.ist.i.kyoto-u.ac.jp/~aln_user/cgaln/" target="_blank">Cgaln</a> (<a href="http://www.biomedcentral.com/1471-2105/11/224" target="_blank">Nakato and Gotoh et al. 2010</a>) Cgaln (Coarse grained alignment) is a program designed to align a pair of whole genomic sequences of not only bacteria but also entire chromosomes of vertebrates on a nominal desktop computer. Cgaln performs an alignment job in two steps, at the block level and then at the nucleotide level. The former "coarse-grained" alignment can explore genomic rearrangements and reduce the regions to be analyzed in the next step. The latter is devoted to detailed alignment within the limited regions found in the first stage. The output of Cgaln is 'glocal' in the sense that rearrangements are taken into consideration while each alignable region is extended as long as possible. Thus, Cgaln is not only fast and memory-efficient, but also can filter noisy outputs without missing the most important homologous segment pairs.</p>
+
+<p><a href="http://last.cbrc.jp/" target="_blank">LAST</a> <span style="color: #ff0000;">**highly recommended</span> (<a href="http://genome.cshlp.org/content/early/2011/02/04/gr.113985.110" target="_blank">Kiełbasa et al. 2011</a>)
+<p style="margin-bottom: 0px; font-family: 'Times New Roman'; line-height: normal; font-size: medium;">LAST can:</p></p>
+
+<p><ul style="margin-top: 0px; font-family: 'Times New Roman'; line-height: normal; font-size: medium;">
+	<li>Handle <strong>big</strong>sequence data, e.g:
+<ul style="margin-top: 0px;">
+	<li>Compare two vertebrate genomes</li>
+	<li>Align billions of DNA reads to a genome</li>
+</ul>
+</li>
+	<li>Indicate the <a href="http://lastweb.cbrc.jp/about.html">reliability</a> of each aligned column.</li>
+	<li>Use sequence quality data <a href="http://nar.oxfordjournals.org/cgi/content/abstract/gkq010">properly</a>.</li>
+	<li>Compare DNA to proteins, with frameshifts.</li>
+	<li>Compare PSSMs to sequences</li>
+	<li>Calculate the likelihood of chance similarities between random sequences.</li>
+</ul>
+<a href="http://www.sanger.ac.uk/resources/software/alfresco/" target="_blank">Alfresco</a> (<a href="http://psb.stanford.edu/psb-online/proceedings/psb08/abstracts/2008_p3.html" target="_blank">Dalca and Brudno 2008</a>) A key feature of the program is to use available analysis programs relevant to comparative genome sequence analysis, combine the results of these, and graphically present them in an intuitive way, thereby facilitating the analysis of large genomic regions.</p>
+
+<p><strong>Softwares for finding nearly identical regions in whole genomes very fast</strong></p>
+
+<p>BLAT (read everything about it on <span style="color: #0000ee;"><a href="http://en.wikipedia.org/wiki/BLAT_(bioinformatics)" target="_blank">Wikipedia</a></span> or <a href="http://genome.ucsc.edu/cgi-bin/hgBlat" target="_blank">UCSC Genome Browser</a> and <a href="http://genome.ucsc.edu/FAQ/FAQblat.html" target="_blank">FAQ</a>) (<a href="http://genome.cshlp.org/content/12/4/656" target="_blank">Kent 2002</a>) BLAT (the BLAST-Like Alignment Tool) is a software program developed by Jim Kent at UCSC to identify similarities between DNA sequences and protein sequences.BLAT is much faster than older tools such as BLAST for nucleotide and protein alignments, and it can also perform spliced alignments of RNA to DNA.</p>
+
+<p><a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/LATEST">BLAST</a> (megablast) OK! Everyone knows it! Just click <a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/LATEST" target="_blank">it</a> for latest version of blast. (Please keep in mind it's BLAST not BLAST+, for BLAST+, click <a href="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST" target="_blank">here</a>)</p>
+
+<p><a href="http://www.sanger.ac.uk/resources/software/ssaha2/" target="_blank">SSAHA2</a> (<a href="http://genome.cshlp.org/content/11/10/1725.long" target="_blank">Ning et al 2001</a> paper about SSAHA) (Sequence Search and Alignment by Hashing Algorithm) is a pairwise sequence alignment program designed for the efficient mapping of sequencing reads onto genomic reference sequences. SSAHA2 reads of most sequencing platforms (ABI-Sanger, Roche 454, Illumina-Solexa) and a range of output formats (SAM, CIGAR, PSL etc.) are supported. A pile-up pipeline for analysis and genotype calling is available as a separate package.</p>
+
+<p>
+</p>

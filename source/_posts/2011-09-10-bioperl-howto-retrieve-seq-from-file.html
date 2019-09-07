@@ -1,0 +1,57 @@
+---
+layout: post
+title: Bioperl从文件中提取序列（Bioperl HOWTO翻译4）
+categories:
+- Bioperl HOWTO翻译
+- Programming
+tags:
+- Bioperl
+- HOWTO
+- Perl
+- SeqIO
+- Translation
+published: true
+comments: true
+---
+<p><h3>从文件中提取序列</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Retrieving_a_sequence_from_a_file" target="_blank">英文原文</a></p>
+
+<p>新手会不太习惯使用<a href="http://search.cpan.org/perldoc?Bio::SeqIO">Bio::SeqIO</a>来处理序列文件。从某些方面可以理解，因为学过了Perl一般的处理文件方式，会对Bioperl的方式不习惯，或者认为比较复杂。但使用open()函数会让提取序列变得非常复杂。请相信SeqIO！它可以处理几乎所有的序列格式、读写序列文件并且和其他很多Bioperl模块相辅相成。</p>
+
+<p>前面我们已经创建了一个“sequence.fasta”的序列文件，现在我们来用SeqIO读取它，如下：</p>
+
+``` perl
+
+#!/bin/perl -w
+use Bio::SeqIO;
+$seqio_obj = Bio::SeqIO->new(-file => "sequence.fasta", -format => "fasta" );
+
+```
+
+<p>与前面写文件脚本明显不同的一点是-file参数值没有了“&gt;”符号，意思是读取“sequence.fasta”文件。现在我们加上最关键的一行，通过next_seq方法把序列文件中的序列生成序列对象。</p>
+
+``` perl
+
+#!/bin/perl -w
+use Bio::SeqIO;
+$seqio_obj = Bio::SeqIO->new(-file => "sequence.fasta", -format => "fasta" );
+$seq_obj = $seqio_obj->next_seq;
+
+```
+
+<p>next_seq()方法的作用是将下一个存在的序列提取到SeqIO对象中。在上例中，提取的是第一个序列。同时，将SeqIO对象变量命名为$seq_obj，此SeqIO对象和最开始的例子中，利用<a href="http://search.cpan.org/perldoc?Bio::SeqIO">Bio::Seq</a>自己手动创建的SeqIO对象是相似的。next_&lt;something&gt;方法在Bioperl中经常出现，都是类似的功能。比如，<a href="http://search.cpan.org/perldoc?Bio::AlignIO">Bio::AlignIO</a>中的next_aln()表示提取序列比对结果中的下一个比对，Bio::SearchIO中的next_hit()是提取<a href="http://en.wikipedia.org/wiki/BLAST">BLAST</a>或<a href="http://www.bioperl.org/wiki/HMMER">HMMER</a>结果中的下一个hit。</p>
+
+<p>如果文件中有多个序列，就应该用一个循环来一个一个地读取，示例：</p>
+
+``` perl
+
+while ($seq_obj = $seqio_obj->next_seq){   
+    # print the sequence   
+    print $seq_obj->seq,"\n";
+}
+
+```
+
+<p>在读取序列时候，并不需要规定“-format”参数来指明文件格式。如果为了安全起见，可以声明。如果没有指定，SeqIO可以通过文件后缀名决定序列格式（Bioperl支持的序列后缀名详见<a href="http://www.bioperl.org/wiki/HOWTO:SeqIO">SeqIO HOWTO</a>）。在上例中，后缀“fasta”已经表明了这是一个fasta文件，SeqIO自动将其作为fasta文件读取。如果是未知的后缀名或没有后缀名，SeqIO会根据序列文件内容猜测可能的格式，但这种猜测无法保证100%正确。</p>
+
+<p>指明“-alphabet”参数会比较有帮助，这样就避免Bioperl去猜测序列类型（"dna", "rna", "protein"），因为Bioperl有时候可能猜不对，例如MGGGGTCAATT这样的蛋白质序列会被当作DNA序列，或者类似“-”符号出现在序列中也会影响Bioperl的判断。</p>

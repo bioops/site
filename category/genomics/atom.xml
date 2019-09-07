@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Genomics | Bioops]]></title>
+  <link href="http://bioops.info/category/genomics/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Painful Experience on Building Local UCSC Genome Browser]]></title>
+    <link href="http://bioops.info/2012/11/local-ucsc-genome-browser/"/>
+    <updated>2012-11-21T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/11/local-ucsc-genome-browser</id>
+    <content type="html"><![CDATA[<p>I want to install a UCSC genome browser on my ubuntu workstation, to integrate and display the genomes , mostly plant genomes, with related annotations and NGS data, e.g. RNA-seq, methylation, SNPs, synteny, genome alignment, and etc.. There are also <a href="http://genomewiki.ucsc.edu/index.php/Other_genome_browsers" target="_blank">other genome browsers</a>, but UCSC is my favorite and can meet my needs.</p>
+
+<p>I spent a couple of workdays building from sources and adding custom genomes. The browser is based on mysql and apache which I don&#8217;t know much about, so It&#8217;s not surprising I encountered tons of problems. Thank google and other kind people who posted their experiences. I feel sorry that I cannot do the same thing as them, but at least I would like to share some resources and tips.</p>
+
+<p>1) Read the <a href="http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=tree;f=src/product;hb=HEAD" target="_blank">README files</a> in the sources, and follow the instructions. (You&#8217;d better understand them.)</p>
+
+<p>2) The <a href="http://genomewiki.ucsc.edu/index.php/Main_Page" target="_blank">wiki site</a> is very helpfull.</p>
+
+<p>3) Other people&#8217;s experiences. (<a href="http://bergmanlab.smith.man.ac.uk/?p=1111" target="_blank">1</a> and <a href="http://enotacoes.wordpress.com/2009/09/03/installing-a-minimal-ucsc-mirror-in-ubuntu-jaunty-64-bits/" target="_blank">2</a>)</p>
+
+<p>4) If top bar is not showing, add the following code in apach2 conf file. (/etc/apache2/apache2.conf on my machine)
+<script src="https://gist.github.com/bioops/4946649.js"></script>
+5) Mysql loading local file issue in hgLOAD* scripts. I tried different solutions, but only one worked for me. I logged into mysql and run the loading command if the error appears.</p>
+
+<p>6) Stop mysql before rsync mysql files from UCSC server.</p>
+
+<p>7) Most mysql problems were caused by permission settings.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Paper] Differentiation of the Maize Subgenomes by Genome Dominance and Both Ancient and Ongoing Gene Loss]]></title>
+    <link href="http://bioops.info/2011/11/paper-maize-subgenome/"/>
+    <updated>2011-11-13T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/11/paper-maize-subgenome</id>
+    <content type="html"><![CDATA[<p><pre>前些天去<a href="http://plantcenter.uga.edu/retreat/index.php" target="_blank">plant center retreat</a>的时候跟<a title="freeling" href="http://microscopy.berkeley.edu/~freeling/" target="_blank">Michael Freeling</a>有过交流。
+是一个很和蔼矍铄的一个老人。
+做的研究也跟我们实验室比较接近。
+</pre>
+<strong>Differentiation of the maize subgenomes by genome dominance and both ancient and ongoing gene loss</strong></p>
+
+<p>James C. Schnable, Nathan M. Springerb, and Michael Freeling</p>
+
+<p>Abstract</p>
+
+<p>Ancient tetraploidies are found throughout the eukaryotes. After duplication, one copy of each duplicate gene pair tends to be lost (fractionate). For all studied tetraploidies, the loss of duplicated genes, known as homeologs, homoeologs, ohnologs, or syntenic paralogs, is uneven between duplicate regions. In maize, a species that experienced a tetraploidy 5–12 million years ago, we show that in addition to uneven ancient gene loss, the two complete genomes contained within maize are differentiated by ongoing fractionation among diverse inbreds as well as by a pattern of overexpression of genes from the genome that has experienced less gene loss. These expression differences are consistent over a range of experiments quantifying RNA abundance in different tissues. We propose that the universal bias in gene loss between the genomes of this ancient tetraploid, and perhaps all tetraploids, is the result of selection against loss of the gene responsible for the majority of total expression for a duplicate gene pair. Although the tetraploidy of maize is ancient, biased gene loss and expression continue today and explain, at least in part, the remarkable genetic diversity found among modern maize cultivars.</p>
+
+<p><a href="http://www.pnas.org/content/108/10/4069" target="_blank">http://www.pnas.org/content/108/10/4069</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Paper] Comparison of Lists of Genes Based on Functional Profiles]]></title>
+    <link href="http://bioops.info/2011/11/paper-comparison-go/"/>
+    <updated>2011-11-13T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/11/paper-comparison-go</id>
+    <content type="html"><![CDATA[<p><a href="http://www.biomedcentral.com/1471-2105/12/401" target="_blank">http://www.biomedcentral.com/1471-2105/12/401</a>
+<h3>Comparison of lists of genes based on functional profiles</h3>
+Abstract (provisional)</p>
+
+<p><strong>Background</strong>
+How to compare studies on the basis of their biological significance is a problem of central importance in high-throughput genomics. Many methods for performing such comparisons are based on the information in databases of functional annotation, such as those that form the Gene Ontology (GO). Typically, they consist of analyzing gene annotation frequencies in some pre-specified GO classes, in a class-by-class way, followed by p-value adjustment for multiple testing. Enrichment analysis, where a list of genes is compared against a wider universe of genes, is the most common example.</p>
+
+<p><strong>Results</strong>
+A new global testing procedure and a method incorporating it are presented. Instead of testing separately for each GO class, a single global test for all classes under consideration is performed. The test is based on the distance between the functional profiles, defined as the joint frequencies of annotation in a given set of GO classes. These classes may be chosen at one or more GO levels. The new global test is more powerful and accurate with respect to type I errors than the usual class-by-class approach. When applied to some real datasets, the results suggest that the method may also provide useful information that complements the tests performed using a class-by-class approach if gene counts are sparse in some classes. An R library, goProfiles, implements these methods and is available from Bioconductor, http://bioconductor.org/packages/release/bioc/html/goProfiles.html.</p>
+
+<p><strong>Conclusions</strong>
+The method provides an inferential basis for deciding whether two lists are functionally different. For global comparisons it is preferable to the global chi-square test of homogeneity. Furthermore, it may provide additional information if used in conjunction with class-by-class methods.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[KEGG: Kyoto Encyclopedia of Genes and Genomes]]></title>
+    <link href="http://bioops.info/2011/04/kegg/"/>
+    <updated>2011-04-05T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/04/kegg</id>
+    <content type="html"><![CDATA[<p>The increasing amount of genome sequence data is the basis for understanding life as a molecular system and for developing medical, pharmaceutical, and other practical applications. Since 1995 we have been developing knowledge-based methods for uncovering higher-order systemic behaviors of the cell and the organism from genomic and molecular information. The reference knowledge is stored in <a href="http://www.genome.jp/kegg/" target="_blank">KEGG</a>, Kyoto Encyclopedia of Genes and Genomes, and associated bioinformatics technologies are being developed both for basic research and practical applications.</p>
+
+<p>Example for searching KEGG with Perl:</p>
+
+<p>See <a href="http://www.genome.jp/kegg/soap/" target="_blank">this</a> for more information.</p>
+
+<p>&#8220;` perl kegg.pl</p>
+
+<h1 id="usrbinperl">!/usr/bin/perl</h1>
+<p>use SOAP::Lite;
+$wsdl   = ‘http://soap.genome.jp/KEGG.wsdl’;
+$serv   = SOAP::Lite-&gt;service($wsdl);
+$offset = 1;
+$limit  = 5;
+$top5   = $serv-&gt;get_best_neighbors_by_gene(‘vvi:100261203’, $offset, $limit);
+foreach $hit (@{$top5}) {
+ print “$hit-&gt;{genes_id1}\t$hit-&gt;{genes_id2}\t$hit-&gt;{sw_score}\n”;
+}</p>
+
+<p>&#8220;`</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[InterPro]]></title>
+    <link href="http://bioops.info/2011/04/interpro/"/>
+    <updated>2011-04-05T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/04/interpro</id>
+    <content type="html"><![CDATA[<p><a href="http://bioops.info/2011/04/interpro/" target="_blank">InterPro</a> is an integrated database of predictive protein &#8220;signatures&#8221; used for the classification and automatic annotation of proteins and genomes. InterPro classifies sequences at superfamily, family and subfamily levels, predicting the occurrence of functional domains, repeats and important sites. InterPro adds in-depth annotation, including GO terms, to the protein signatures.</p>
+
+<p>Search InterPro with Perl:
+<a href="http://www.ebi.ac.uk/Tools/webservices/download_clients/perl/soaplite/iprscan_soaplite.pl" target="_blank"> iprscan_soaplite.pl</a> (SOAP::Lite)
+<a href="http://www.ebi.ac.uk/Tools/webservices/download_clients/perl/xmlcompile/iprscan_xmlcompile.pl" target="_blank"> iprscan_xmlcompile.pl</a> (XML::Compile::SOAP)<br />
+usage:
+<pre>perl iprscan_soaplite.pl Seqfile --email mymai@mymail.com</pre>
+see <a href="http://www.ebi.ac.uk/Tools/webservices/services/pfa/iprscan_soap" target="_blank">this</a> for more information.</p>
+]]></content>
+  </entry>
+  
+</feed>

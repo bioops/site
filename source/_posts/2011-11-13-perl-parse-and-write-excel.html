@@ -1,0 +1,72 @@
+---
+layout: post
+title: 利用Perl将数据导入excel中
+categories:
+- Perl
+- Programming
+tags:
+- Data Processing
+- Excel
+- HOWTO
+- Perl
+published: true
+comments: true
+---
+
+``` perl to_excel.pl
+
+#旧文回收
+#将数据导入excel，再用excel处理基本是多此一举
+#且excel可以直接导入按一定规律排列的数据（如用tab分隔的数据）
+#留给有需要的人用吧
+ 
+use Spreadsheet::WriteExcel; #需要安装此模块
+use strict;
+ 
+#新建一个工作簿，gethomo.xls
+my $workbook = Spreadsheet::WriteExcel->new("gethomo.xls");
+ 
+#新建一个工作表
+my $worksheet = $workbook->add_worksheet();
+ 
+#需要导入的数据
+my $datafile="gethomo.txt";
+ 
+#打开数据文件
+unless( open(GET_FILE_DATA, $datafile) ) {
+      print STDERR "Cannot open file \"$filename\"\n\n";
+      exit;
+}
+my @input=<GET_FILE_DATA>;
+ 
+#写入excel
+for (my $i=0;$i<scalar @input;$i++){
+ 
+       #按照输入文件内容的排列格式修改此行
+       my @input_row=split (/\t/, $input[$i]); 
+ 
+       for (my $j=0;$j<scalar @input_row;$j++){
+              my $input_cell=$input_row[$j];
+ 
+              #在$i行$j列的单元格中写入数据.(注: 行列初始值为0)
+              unless ($input_cell=~/=/){$worksheet->write($i, $j, $input_cell);}
+       }
+}
+#打完收工
+ 
+#若要从excel中提取数据，
+#则需要使用Spreadsheet::ParseExcel模块
+#常用的几条语句如下：
+my $parser=Spreadsheet::ParseExcel->new();
+my $workbook = $parser->Parse('RNA1.xls');
+for my $worksheet ( $workbook->worksheets() ) {
+      my ( $row_min, $row_max ) = $worksheet->row_range();
+      my ( $col_min, $col_max ) = $worksheet->col_range();
+      for my $col ( $col_min .. $col_max ) {
+            #......
+       }
+}
+#关于更多用perl操作excel的方式和代码可以参考CPAN
+
+```
+

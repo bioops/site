@@ -1,0 +1,96 @@
+---
+layout: post
+title: Bioperl快速检索序列（Bioperl HOWTO翻译11）
+categories:
+- Bioperl HOWTO翻译
+- Programming
+tags:
+- Bioperl
+- HOWTO
+- Index
+- Perl
+- Translation
+published: true
+comments: true
+---
+<p><h3>索引序列文件以用于快速检索</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Indexing_for_Fast_Retrieval" target="_blank">英文原文</a></p>
+
+<p>索引序列是Bioperl一个非常出色的功能。你可以将需要处理的本地序列文件建立一个索引然后利用这个索引提取你所需要的序列文件。这样做最重要的原因是——速度！从有索引的大量本地序列中提取所需序列要比用<a title="http://search.cpan.org/perldoc?Bio::DB::GenBank" href="http://search.cpan.org/perldoc?Bio::DB::GenBank" rel="nofollow" target="_blank">Bio::DB::GenBank</a>从远程数据库中提取快得多。也比用SeqIO快，因为SeqIO要一个一个通读每一个序列，然后才能找到所需的。灵活性是另一个原因。自己的有些序列毕竟不同于公共数据库上的序列，将自己收集的序列建立索引可用于日后快速的提取。</p>
+
+<p>需要说明，在提取序列时的唯一要求是，所提供的要提取序列的id必须具有唯一性。（译者注：如果要提取所有相同有某特征序列，比如想要refseq，即id中包含“_”的序列，可以灵活变通：先输出所有id，然后选取那些有“_”的id，然后再用这些id提取序列信息。）</p>
+
+<p>Bioperl有多个用于索引序列的模块，如 Bio::Index::*类和<a title="http://search.cpan.org/perldoc?Bio::DB::Fasta" href="http://search.cpan.org/perldoc?Bio::DB::Fasta" rel="nofollow" target="_blank">Bio::DB::Fasta</a>。 这些模块的原理都是一样的，先索引一个或多个序列文件，然后再根据id提取序列。先以<a href="http://www.bioperl.org/wiki/Module:Bio::Index::Fasta" target="_blank">Bio::Index::Fasta</a>为例。使用此模块时要先设定一个终端环境变量，如下：</p>
+
+``` perl
+
+use Bio::Index::Fasta;
+$ENV{BIOPERL_INDEX_TYPE} = "SDBM_File";
+
+```
+
+<p>可见在Perl脚本中也可以设定终端环境变量，此变量存贮在叫%ENV的特殊hash中。此设置当然也可以在终端中设定，在tcsh或csh中如下:
+<pre>&gt;setenv BIOPERL_INDEX_TYPE SDBM_File</pre>
+
+在bash shell中设定如下：
+
+<pre>&gt;export BIOPERL_INDEX_TYPE=SDBM_File</pre>
+
+BIOPERL_INDEX_TYPE是环境变量名， SDBM_File是变量的值。（译者注：SDBM是perl使用的一种文件格式，用于将hash保存在一个SDBM文件中。见<a href="http://search.cpan.org/dist/perl-5.12.4/ext/SDBM_File/SDBM_File.pm" target="_blank">这里</a>）. BIOPERL_INDEX指定索引文件所在的目录，可以通过设定此变量建立多个索引文件。（译者注：可以设定“setenv BIOPERL_INDEX /nfs/datadisk/bioperlindex/”，<a href="http://www.bioperl.org/wiki/Module:Bio::Index::Fasta" target="_blank">详见</a>）</p>
+
+<p>看例子：</p>
+
+``` perl
+
+$ENV{BIOPERL_INDEX_TYPE} = "SDBM_File";
+use Bio::Index::Fasta;
+ 
+$file_name = "sequence.fa";
+$id = "48882";
+$inx = Bio::Index::Fasta->new (-filename => $file_name . ".idx", -write_flag => 1);
+$inx->make_index($file_name);
+
+```
+
+<p>在sequence.fa所在的目录下运行此脚本，将会在该目录下自动生成一个equence.fa.idx索引文件，然后可以通过下一语句提取所需序列：</p>
+
+``` perl
+
+$seq_obj = $inx->fetch($id)
+
+```
+
+<p>默认以 &gt;符号来识别fasta格式的序列，如果是要提取“48882”为id的序列，该序列头信息应该是类似下面的格式：
+<pre>&gt;48882 pdb|1CRA</pre>
+但是，如果想按照其他字符串提取序列，比如上例中“1CRA”，可以通过id_parser改变索引id的格式，（将自定义的index格式通过一个子函数传递给id_parser），详见<a title="http://search.cpan.org/perldoc?Bio::Index::Fasta" href="http://search.cpan.org/perldoc?Bio::Index::Fasta" rel="nofollow" target="_blank">Bio::Index::Fasta</a>。例如：</p>
+
+``` perl
+
+$inx->id_parser(\&get_id);
+$inx->make_index($file_name);
+ 
+sub get_id {       
+    $header = shift;       
+    $header =~ /pdb\|(\S+)/;       
+    $1;
+}
+
+```
+
+<p>准确地说，id_parser接受的是一个子函数的引用变量（a reference to a function）。</p>
+
+<p>再来看<a title="http://search.cpan.org/perldoc?Bio::DB::Fasta" href="http://search.cpan.org/perldoc?Bio::DB::Fasta" rel="nofollow" target="_blank">Bio::DB::Fasta</a>，相对<a title="http://search.cpan.org/perldoc?Bio::Index::Fasta" href="http://search.cpan.org/perldoc?Bio::Index::Fasta" rel="nofollow" target="_blank">Bio::Index::Fasta</a>有些更好的功能。主要是：可以处理大批量序列 ；可以很方便地提取序列片段。示例：</p>
+
+``` perl
+
+use Bio::DB::Fasta;
+($file,$id,$start,$end) = ("genome.fa","CHROMOSOME_I",11250,11333);
+$db = Bio::DB::Fasta->new($file);
+$seq = $db->seq($id,$start,$end);
+print $seq,"\n";
+
+```
+
+<p>此脚本将genome.fa建立索引，然后提取CHROMOSOME_I上从11250到11333的序列片段。也可以如<a title="http://search.cpan.org/perldoc?Bio::Index::Fasta" href="http://search.cpan.org/perldoc?Bio::Index::Fasta" rel="nofollow" target="_blank">Bio::Index::Fasta</a>一样自定义要索引的id。（译者注：在new()中设定-makeid参数，此参数使用方法和上面的id_parser一样。详见<a title="http://search.cpan.org/perldoc?Bio::DB::Fasta" href="http://search.cpan.org/perldoc?Bio::DB::Fasta" rel="nofollow" target="_blank">Bio::DB::Fasta</a>）</p>
+
+<p>更多的信息可见<a title="HOWTO:Local Databases" href="http://www.bioperl.org/wiki/HOWTO:Local_Databases" target="_blank">HOWTO:Local_Databases</a></p>

@@ -1,0 +1,99 @@
+---
+layout: post
+title: Notes on using BLAST
+categories:
+- Software
+tags:
+- Bioinformatics
+- Blast
+- Note
+- Software
+published: true
+comments: true
+---
+<p>BLAST (<strong>not BLAST+</strong>) provides an option for tabular output that is easily parsed. Use the -m 8 option for tabular output, or the -m 9 option to include headers.
+<pre>blastall -i input.fa -d /path/to/db.fa -p blastn -m 8</pre>
+Assumes that db.fa is in a directory that also has a correctly formatted database. This can be achieved by:
+<pre>formatdb -i db.fa -p F</pre>
+The fields for tabular BLAST output are:
+<div>
+<table>
+<tbody>
+<tr>
+<td>1</td>
+<td>Query</td>
+<td>The query sequence id</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Subject</td>
+<td>The matching subject sequence id</td>
+</tr>
+<tr>
+<td>3</td>
+<td>% id</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>alignment length</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>mistmatches</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>gap openings</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>q.start</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>q.end</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>s.start</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>s.end</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>e-value</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td>bit score</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+Parse the information:</p>
+
+<p>Python</p>
+
+<pre>
+for line in open(“myfile.blast”):
+(queryId, subjectId, percIdentity, alnLength, mismatchCount, gapOpenCount, queryStart, queryEnd, subjectStart, subjectEnd, eVal, bitScore) = line.split(“t”)
+</pre>
+
+<p>Perl</p>
+
+<pre>
+while (<>) {
+($queryId, $subjectId, $percIdentity, $alnLength, $mismatchCount, $gapOpenCount, $queryStart, $queryEnd, $subjectStart, $subjectEnd, $eVal, $bitScore) = split(/t/)
+}</pre>

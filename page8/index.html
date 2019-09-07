@@ -1,0 +1,900 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="省得自己写代码，循环、遍历，纠结于各种算法的效率上。 直接拿来主义，用已有的模块，List::Compare。 既然发在CPAN上，估计是优化过的，而且反正perl的速度本来就不快，又只是自己用，简单易用省心，最好。 listcomp.pl1
+2
+3
+4
+5
+6
+7
+8
+9
+use List:: &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/page8">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/10/perl-list-compare/">使用perl模块迅速得到两数组的子集和并集</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-08T00:00:00+00:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/10/perl-list-compare/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>省得自己写代码，循环、遍历，纠结于各种算法的效率上。</p>
+
+<p>直接拿来主义，用已有的模块，<a href="http://search.cpan.org/~jkeenan/List-Compare-0.37/lib/List/Compare.pm" target="_blank">List::Compare</a>。</p>
+
+<p>既然发在CPAN上，估计是优化过的，而且反正perl的速度本来就不快，又只是自己用，简单易用省心，最好。</p>
+
+<figure class='code'><figcaption><span>listcomp.pl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">List::</span><span class="n">Compare</span><span class="p">;</span> <span class="c1">#需要安装</span>
+</span><span class='line'><span class="nv">@Llist</span> <span class="o">=</span> <span class="sx">qw(abel abel baker camera delta edward fargo golfer)</span><span class="p">;</span>
+</span><span class='line'><span class="nv">@Rlist</span> <span class="o">=</span> <span class="sx">qw(baker camera delta delta edward fargo golfer hilton)</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$lc</span> <span class="o">=</span> <span class="nn">List::</span><span class="n">Compare</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">\</span><span class="nv">@Llist</span><span class="p">,</span> <span class="o">\</span><span class="nv">@Rlist</span><span class="p">);</span> <span class="c1">#使用数组的reference</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">@intersection</span> <span class="o">=</span> <span class="nv">$lc</span><span class="o">-&gt;</span><span class="n">get_intersection</span><span class="p">;</span> <span class="c1">#子集</span>
+</span><span class='line'><span class="nv">@union</span> <span class="o">=</span> <span class="nv">$lc</span><span class="o">-&gt;</span><span class="n">get_union</span><span class="p">;</span> <span class="c1">#并集</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;@intersection\n@union\n&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>List::Compare还有很多其他用法。</p>
+
+<p>比如，get_unique()，返回第一个数组特有的那些元素；</p>
+
+<p>而get_complement()，返回第二个数组特有的那些元素；</p>
+
+<p>以及get_symmetric_difference()，返回属于某一数组但不同时属于两个数组的那些元素。</p>
+
+<p>详见<a href="http://search.cpan.org/~jkeenan/List-Compare-0.37/lib/List/Compare.pm" target="_blank">List::Compare</a>。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/10/steve-jobs-1955-2011/">Steve Jobs (1955-2011)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-05T00:00:00+00:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/10/steve-jobs-1955-2011/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Steve Jobs (1955-2011), &#8220;stay hungry, stay foolish.&#8221;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/10/busy/">BUSY</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-03T00:00:00+00:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/10/busy/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>too busy in these days.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/macports/">Mac下类似apt-get和yum的软件——macports</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-09-20T00:00:00+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/09/macports/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>用惯了apt-get和yum，现在转到mac上，总想着sudo apt-get install一下安装某些软件。其实mac也有类似的软件，<a href="http://www.macports.org/" target="_blank">MacPorts</a>和<a href="http://www.finkproject.org/index.php" target="_blank">fink</a>。</p>
+
+<p>今天先介绍MacPorts。</p>
+
+<p>先安装xcode和X11，然后到<a href="http://www.macports.org/install.php" target="_blank">这里</a>下载.dmg。安装以后就可以在终端里类似apt-get那样安装软件了（包括GNU软件、开源软件等），如：
+<pre>sudo port install wget</pre>
+其他操作还有：
+<pre>
+sudo port selfupdate       #升级port
+sudo port sync             #同apt-get的update。
+port list                  #列出所有软件
+port search XXX            #查找XXX软件
+port deps XXX              #查看XXX软件的依赖
+sudo port install XXX      #安装XXX软件
+sudo port uninstall XXX    #卸载</pre>
+等。</p>
+
+<p>更多的细节可以在MacPorts官网获得。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/bioperl-howto-write-seq-to-file/">Bioperl输出序列文件（Bioperl HOWTO翻译3）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-09-10T00:00:00+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/09/bioperl-howto-write-seq-to-file/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><h3>输出序列文件</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Writing_a_sequence_to_a_file" target="_blank">英文原文</a></p>
+
+<p>下面将展示如何利用两个模块创建一个序列文件。上例中，已经有了一个序列对象$seq_obj，然后需要创建另一个用于读写文件的对象，SeqIO对象。IO表示Input-Output（输入输出）。<a href="http://search.cpan.org/perldoc?Bio::SeqIO">Bio::SeqIO</a>可用于读取和输出各种Bioperl支持的序列格式文件（支持的序列格式列表详见<a href="http://www.bioperl.org/wiki/HOWTO:SeqIO">SeqIO HOWTO</a>）。创建<a href="http://search.cpan.org/perldoc?Bio::SeqIO">Bio::SeqIO</a>对象和前述使用new()创建序列对象的方法类似，如下所示：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seqio_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="s">&#39;&gt;sequence.fasta&#39;</span><span class="p">,</span> <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;fasta&#39;</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>注：在-file参数中，“&gt;”符号表示要创建一个名字为“sequence.fasta”的文件用于内容输出。这和一般Perl脚本中，使用函数open()来写文件也是用“&gt;”。（译者注：&lt; 输入、&gt; 输出）。在“-format”参数中声明序列格式是“fasta”，所以创建的会是一个<a href="http://www.bioperl.org/wiki/FASTA_sequence_format">fasta格式</a>的序列文件。</p>
+
+<p>现在来把刚才的两个例子放在一起：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/bin/perl -w</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">seq</span> <span class="o">=&gt;</span> <span class="s">&quot;aaaatgggggggggggccccgtt&quot;</span><span class="p">,</span>
+</span><span class='line'>                                           <span class="o">-</span><span class="n">display_id</span> <span class="o">=&gt;</span> <span class="s">&quot;#12345&quot;</span><span class="p">,</span>
+</span><span class='line'>                                           <span class="o">-</span><span class="n">desc</span> <span class="o">=&gt;</span> <span class="s">&quot;example 1&quot;</span><span class="p">,</span>
+</span><span class='line'>                                           <span class="o">-</span><span class="n">alphabet</span> <span class="o">=&gt;</span> <span class="s">&quot;dna&quot;</span> <span class="p">);</span>
+</span><span class='line'><span class="nv">$seqio_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="s">&#39;&gt;sequence.fasta&#39;</span><span class="p">,</span> <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&#39;fasta&#39;</span> <span class="p">);</span>
+</span><span class='line'><span class="nv">$seqio_obj</span><span class="o">-&gt;</span><span class="n">write_seq</span><span class="p">(</span><span class="nv">$seq_obj</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>最后一行write_seq()是个新东西，是不？在这一行中，序列对象$seq_obj作为write_seq()的参数传递给了SeqIO对象。从另一个角度看，SeqIO对象能够识别并处理序列对象，并将此序列对象以<a href="http://www.bioperl.org/wiki/FASTA_sequence_format">fasta格式</a>输出到一个文件中。来试着运行一下这个脚本：
+<pre>perl seqio.pl</pre>
+在同一文件夹下会有一个新的文件，“sequence.fasta”，内容如下：
+<pre>&gt;#12345 example 1
+aaaatgggggggggggccccgtt</pre>
+SeqIO非常聪明，比如我们把-format参数设置为“genbank”，序列文件会变成这样：
+<pre>LOCUS       #12345                    23 bp    dna     linear   UNK
+DEFINITION  example 1
+ACCESSION   unknown
+FEATURES             Location/Qualifiers
+BASE COUNT        4 a      4 c     12 g      3 t
+ORIGIN       1 aaaatggggg ggggggcccc gtt
+//</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/bioperl-howto-retrieve-seq-from-file/">Bioperl从文件中提取序列（Bioperl HOWTO翻译4）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-09-10T00:00:00+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/09/bioperl-howto-retrieve-seq-from-file/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><h3>从文件中提取序列</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Retrieving_a_sequence_from_a_file" target="_blank">英文原文</a></p>
+
+<p>新手会不太习惯使用<a href="http://search.cpan.org/perldoc?Bio::SeqIO">Bio::SeqIO</a>来处理序列文件。从某些方面可以理解，因为学过了Perl一般的处理文件方式，会对Bioperl的方式不习惯，或者认为比较复杂。但使用open()函数会让提取序列变得非常复杂。请相信SeqIO！它可以处理几乎所有的序列格式、读写序列文件并且和其他很多Bioperl模块相辅相成。</p>
+
+<p>前面我们已经创建了一个“sequence.fasta”的序列文件，现在我们来用SeqIO读取它，如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/bin/perl -w</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seqio_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="s">&quot;sequence.fasta&quot;</span><span class="p">,</span> <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&quot;fasta&quot;</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>与前面写文件脚本明显不同的一点是-file参数值没有了“&gt;”符号，意思是读取“sequence.fasta”文件。现在我们加上最关键的一行，通过next_seq方法把序列文件中的序列生成序列对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/bin/perl -w</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seqio_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">SeqIO</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span> <span class="s">&quot;sequence.fasta&quot;</span><span class="p">,</span> <span class="o">-</span><span class="nb">format</span> <span class="o">=&gt;</span> <span class="s">&quot;fasta&quot;</span> <span class="p">);</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nv">$seqio_obj</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>next_seq()方法的作用是将下一个存在的序列提取到SeqIO对象中。在上例中，提取的是第一个序列。同时，将SeqIO对象变量命名为$seq_obj，此SeqIO对象和最开始的例子中，利用<a href="http://search.cpan.org/perldoc?Bio::SeqIO">Bio::Seq</a>自己手动创建的SeqIO对象是相似的。next_&lt;something&gt;方法在Bioperl中经常出现，都是类似的功能。比如，<a href="http://search.cpan.org/perldoc?Bio::AlignIO">Bio::AlignIO</a>中的next_aln()表示提取序列比对结果中的下一个比对，Bio::SearchIO中的next_hit()是提取<a href="http://en.wikipedia.org/wiki/BLAST">BLAST</a>或<a href="http://www.bioperl.org/wiki/HMMER">HMMER</a>结果中的下一个hit。</p>
+
+<p>如果文件中有多个序列，就应该用一个循环来一个一个地读取，示例：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">while</span> <span class="p">(</span><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nv">$seqio_obj</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">){</span>
+</span><span class='line'>    <span class="c1"># print the sequence   </span>
+</span><span class='line'>    <span class="k">print</span> <span class="nv">$seq_obj</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>在读取序列时候，并不需要规定“-format”参数来指明文件格式。如果为了安全起见，可以声明。如果没有指定，SeqIO可以通过文件后缀名决定序列格式（Bioperl支持的序列后缀名详见<a href="http://www.bioperl.org/wiki/HOWTO:SeqIO">SeqIO HOWTO</a>）。在上例中，后缀“fasta”已经表明了这是一个fasta文件，SeqIO自动将其作为fasta文件读取。如果是未知的后缀名或没有后缀名，SeqIO会根据序列文件内容猜测可能的格式，但这种猜测无法保证100%正确。</p>
+
+<p>指明“-alphabet”参数会比较有帮助，这样就避免Bioperl去猜测序列类型（&#8221;dna&#8221;, &#8220;rna&#8221;, &#8220;protein&#8221;），因为Bioperl有时候可能猜不对，例如MGGGGTCAATT这样的蛋白质序列会被当作DNA序列，或者类似“-”符号出现在序列中也会影响Bioperl的判断。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/bioperl-howto-retrieve-seq-from-database/">Bioperl从网络数据库中提取一个序列（Bioperl HOWTO翻译5）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-09-10T00:00:00+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/09/bioperl-howto-retrieve-seq-from-database/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>从网络数据库中提取一个序列</p>
+
+<p><a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Retrieving_a_sequence_from_a_database" target="_blank">英文原文</a></p>
+
+<p>Bioperl强大的功能之一就是可以从各种类型的资源中提取序列而不用考虑其格式，序列文件、网络数据库、本地数据库等。在此举例说明如何利用<a href="http://search.cpan.org/perldoc?Bio::DB::GenBank">Bio::DB::Genbank</a>模块从<a href="http://en.wikipedia.org/wiki/GenBank">Genbank</a>中提取一个序列条目。</p>
+
+<p>先声明要使用的模块：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>也可以从下列数据库中提取序列：<a title="wp:Swissprot" href="http://en.wikipedia.org/wiki/Swissprot">SwissProt</a> (<a title="http://search.cpan.org/perldoc?Bio::DB::SwissProt" href="http://search.cpan.org/perldoc?Bio::DB::SwissProt">Bio::DB::SwissProt</a>)、GenPept (<a title="http://search.cpan.org/perldoc?Bio::DB::GenPept" href="http://search.cpan.org/perldoc?Bio::DB::GenPept">Bio::DB::GenPept</a>)、 <a title="wp:EMBL" href="http://en.wikipedia.org/wiki/EMBL">EMBL</a> (<a title="http://search.cpan.org/perldoc?Bio::DB::EMBL" href="http://search.cpan.org/perldoc?Bio::DB::EMBL">Bio::DB::EMBL</a>)、SeqHound (<a title="http://search.cpan.org/perldoc?Bio::DB::SeqHound" href="http://search.cpan.org/perldoc?Bio::DB::SeqHound">Bio::DB::SeqHound</a>)、Entrez Gene (<a title="http://search.cpan.org/perldoc?Bio::DB::EntrezGene" href="http://search.cpan.org/perldoc?Bio::DB::EntrezGene">Bio::DB::EntrezGene</a>)、 RefSeq (<a title="http://search.cpan.org/perldoc?Bio::DB::RefSeq" href="http://search.cpan.org/perldoc?Bio::DB::RefSeq">Bio::DB::RefSeq</a>)等。</p>
+
+<p>然后创建一个对象：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$db_obj</span> <span class="o">=</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>这里创建了一个“数据库对象”，但并没有任何参数。再来看数据库对象的一个有用的功能：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$db_obj</span> <span class="o">=</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nv">$db_obj</span><span class="o">-&gt;</span><span class="n">get_Seq_by_id</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>get_Seq_by_id方法 识别Genbank的GI号。另外，get_Seq_by_acc 可识别accession号 (e.g. &#8220;A12345&#8221;)，get_Seq_by_version可识别带版本号的accession号(e.g. &#8220;A12345.2&#8221;)。相应的方法只能识别相应的条目标识号。</p>
+
+<p>Bioperl可以从数据库中提取一个或多个序列。但如果要提取大批量的序列时，要避免使用循环，否则NCBI会认为是滥用其服务资源而封掉使用者的IP。有其他很多更好更快的方法来大批量提取，例如，下载GenBank的某一部分数据（译者注：比如可以从NCBI ftp只下载人类的mRNA序列），然后从中直接提取需要的序列；或者使用格式化过的数据库（使用本地BLAST中formatdb格式化），然后用fastacmd（也在本地BLAST程序中）提取所需要的序列。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/bioperl-howto-retrieve-multipleseq-from-database/">Bioperl从网络数据库中提取多个序列（Bioperl HOWTO翻译6）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-09-10T00:00:00+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/09/bioperl-howto-retrieve-multipleseq-from-database/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><h3>从网络数据库中提取多个序列</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Retrieving_multiple_sequences_from_a_database" target="_blank">英文原文</a></p>
+
+<p>虽然有很多更复杂的方法从<a href="http://en.wikipedia.org/wiki/GenBank">Genbank</a>中提取多个序列，这里只展示一个比较“生物学”的办法，即利用<a href="http://search.cpan.org/perldoc?Bio::DB::Query::GenBank">Bio::DB::Query::GenBank</a>模块。查询Genbank中拟南芥拓扑异构酶（Arabidopsis topoisomerases）的核苷酸序列，代码示例：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::DB::Query::</span><span class="n">GenBank</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$query</span> <span class="o">=</span> <span class="s">&quot;Arabidopsis[ORGN] AND topoisomerase[TITL] and 0:3000[SLEN]&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$query_obj</span> <span class="o">=</span> <span class="nn">Bio::DB::Query::</span><span class="n">GenBank</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">db</span>    <span class="o">=&gt;</span> <span class="s">&#39;nucleotide&#39;</span><span class="p">,</span> <span class="o">-</span><span class="n">query</span> <span class="o">=&gt;</span> <span class="nv">$query</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>注：类似这种通过字符串获取序列的办法只适用于<a href="http://www.bioperl.org/wiki/Release_pumpkin">Bioper 1.5版</a>之后，且只能查询<a href="http://en.wikipedia.org/wiki/GenBank">Genbank</a>，至于其他数据库，如<a href="http://en.wikipedia.org/wiki/Swissprot">Swissprot</a>或<a href="http://en.wikipedia.org/wiki/EMBL">EMBL</a>，只能通过标识号或accession号查询。</p>
+
+<p>另一个例子，获取布氏锥虫（<em>Trypanosoma brucei</em>）的  EST序列</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="nv">$query_obj</span> <span class="o">=</span> <span class="nn">Bio::DB::Query::</span><span class="n">GenBank</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span>
+</span><span class='line'>                      <span class="o">-</span><span class="n">query</span>   <span class="o">=&gt;</span><span class="s">&#39;gbdiv est[prop] AND Trypanosoma brucei [organism]&#39;</span><span class="p">,</span>
+</span><span class='line'>                      <span class="o">-</span><span class="n">db</span>      <span class="o">=&gt;</span> <span class="s">&#39;nucleotide&#39;</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>关于Genbank的查询字符串格式，详见<a href="http://www.ncbi.nlm.nih.gov/entrez/query/static/help/Summary_Matrices.html#Search_Fields_and_Qualifiers">此处</a>。</p>
+
+<p>刚才的例子中只是创建了一个查询对象（query object），但并没有真正提取到序列。还需要创建一个数据库对象，然后就可以按照以前讲过的在数据库对象中提取序列信息。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="k">use</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::DB::Query::</span><span class="n">GenBank</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$query</span> <span class="o">=</span> <span class="s">&quot;Arabidopsis[ORGN] AND topoisomerase[TITL] and 0:3000[SLEN]&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$query_obj</span> <span class="o">=</span> <span class="nn">Bio::DB::Query::</span><span class="n">GenBank</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">db</span>    <span class="o">=&gt;</span> <span class="s">&#39;nucleotide&#39;</span><span class="p">,</span>  <span class="o">-</span><span class="n">query</span> <span class="o">=&gt;</span> <span class="nv">$query</span> <span class="p">);</span>
+</span><span class='line'><span class="nv">$gb_obj</span> <span class="o">=</span> <span class="nn">Bio::DB::</span><span class="n">GenBank</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$stream_obj</span> <span class="o">=</span> <span class="nv">$gb_obj</span><span class="o">-&gt;</span><span class="n">get_Stream_by_query</span><span class="p">(</span><span class="nv">$query_obj</span><span class="p">);</span>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nv">$stream_obj</span><span class="o">-&gt;</span><span class="n">next_seq</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1"># do something with the sequence object    </span>
+</span><span class='line'>    <span class="k">print</span> <span class="nv">$seq_obj</span><span class="o">-&gt;</span><span class="n">display_id</span><span class="p">,</span> <span class="s">&quot;\t&quot;</span><span class="p">,</span> <span class="nv">$seq_obj</span><span class="o">-&gt;</span><span class="nb">length</span><span class="p">,</span> <span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>$stream_obj 和get_Stream_by_query会比较陌生。需要提取多个序列信息时，可以使用这种数据流（stream）的形式。和get_Seq_by_id比较类似，只不过可以提取多个序列。</p>
+
+<p>注意上述代码是一步一步分开执行的：先是查询对象，然后传递给数据库对象，最后用一个循环来输出序列信息，循环内用的是序列对象。</p>
+
+<p>警告：一定要注意查询字符串的设置。现在核苷酸数据库非常庞大，如果返回的查询结果包含了非常多的序列的话，程序会长时间运行下去，甚至耗尽内存。可以通过设置[SLEN]来限制结果数量。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/bioperl-howto-create-seq-object/">Bioperl创建序列对象（Bioperl HOWTO翻译2）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-09-10T00:00:00+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/09/bioperl-howto-create-seq-object/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><h3>创建序列（序列对象）</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Creating_a_sequence.2C_and_an_Object" target="_blank">英文原文</a></p>
+
+<p>第一个脚本先来学习如何创建一个序列，准确的说是一个序列对象。Bioperl是“<a href="http://en.wikipedia.org/wiki/Object_oriented">面向对象</a>”方式的。至于为什么要用“面向对象”，Why introduce these odd or intrusive notions into software that should be biological or intuitive?（不会翻译）。原因在于模块化或者面向对象化会使得处理复杂数据的时候更灵活更简单。一旦越过了这个坎儿，你会发现使用“对象”是理所当然的。</p>
+
+<p>有一种简单的方式去理解“什么是对象”，对象就是一个装载数据的箱子。举一个典型的例子，一个生物学序列包含了不同类型数据（序列本身、序列标识和注释等等），这个序列就类似一个对象。</p>
+
+<p>在Bioperl中，所有的对象都是有特定的模块来创建的，如果要创建某个对象，必须先告诉Perl需要加载哪个模块。例如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/bin/perl -w</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>表示用Pel来加载“<a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>”模块，这个模块在电脑中是一个“&lt;bioperl module directory&gt;/Bio/Seq.pm”文件。<a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>模块可以用于创建一个<a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>对象。这个模块是Bioperl的一个核心模块。在Bioperl中，“Bio::Seq object”、“Sequence object”或者“Seq object”都是指的同一个意思，这个对象包含了一个生物学序列及其名称、标识符和属性。先来看如何创建一个简单的序列对象：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/bin/perl -w</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">seq</span><span class="o">=&gt;</span> <span class="s">&quot;aaaatgggggggggggccccgtt&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="o">-</span><span class="n">alphabet</span> <span class="o">=&gt;</span> <span class="err">‘</span><span class="n">dna</span><span class="err">’</span> <span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>变量$seq_obj就是一个简单的，包含一个序列的序列对象。另外也需要声明这个序列是DNA序列。（-alphabet可以是‘dna’、‘rna’或者‘protein’），如果不声明，Bioperl会猜测一个合理的序列类型。一般能猜测正确，但如果序列中有太多N或X表示未知序列的字符，Bioperl很有可能猜错从而导致更严重的问题。</p>
+
+<p>如前所示，可以自己创建一个对象，<a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>也可以通过读取特定格式的文件来自动创建对象。比如：序列比对结果、数据库记录以及<a href="http://en.wikipedia.org/wiki/BLAST">BLAST</a>结果文件。</p>
+
+<p>必须用new()方法来创建一个新的对象。“模块名称-&gt;方法名称new(一些参数名称=&gt;参数值)”，是Bioperl的标准语法格式。</p>
+
+<p>注：如果你有一些编程经验，你可能会知道“函数”或“子程序”的概念。在面向对象编程中，这个概念应该叫做“方法”。</p>
+
+<p>前面说过，对象就是一个装载数据的箱子，但不止如此，这个箱子还有其他功能。一个对象会有多个方法用于调用。例如，<a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>模块可以调用seq()方法来输出 <a href="http://search.cpan.org/perldoc?Bio::Seq">Bio::Seq</a>对象中的序列。举例说明：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/bin/perl -w</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">seq</span> <span class="o">=&gt;</span> <span class="s">&quot;aaaatgggggggggggccccgtt&quot;</span><span class="p">,</span> <span class="o">-</span><span class="n">alphabet</span> <span class="o">=&gt;</span> <span class="s">&#39;dna&#39;</span> <span class="p">);</span>
+</span><span class='line'><span class="k">print</span> <span class="nv">$seq_obj</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>这个脚本会在屏幕上输出“aaaatgggggggggggccccgtt”。-&gt;符号表示一个对象调用它的某个方法。</p>
+
+<p>再来举一个更实际点的例子。一个序列对象一般都要包含标识符、描述和序列。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/bin/perl -w</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="p">;</span>
+</span><span class='line'><span class="nv">$seq_obj</span> <span class="o">=</span> <span class="nn">Bio::</span><span class="n">Seq</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">seq</span> <span class="o">=&gt;</span> <span class="s">&quot;aaaatgggggggggggccccgtt&quot;</span><span class="p">,</span>
+</span><span class='line'>                          <span class="o">-</span><span class="n">display_id</span> <span class="o">=&gt;</span> <span class="s">&quot;#12345&quot;</span><span class="p">,</span>
+</span><span class='line'>                          <span class="o">-</span><span class="n">desc</span> <span class="o">=&gt;</span> <span class="s">&quot;example 1&quot;</span><span class="p">,</span>
+</span><span class='line'>                          <span class="o">-</span><span class="n">alphabet</span> <span class="o">=&gt;</span> <span class="s">&quot;dna&quot;</span> <span class="p">);</span>
+</span><span class='line'><span class="k">print</span> <span class="nv">$seq_obj</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+<p>其中aaaatgggggggggggccccgtt、 #12345和 example 1叫做“参数”。这个例子展示了如何将各类参数传递给new()方法。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/09/bioperl-howto-beginners/">Bioperl 入门（Bioperl HOWTO翻译1）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-09-10T00:00:00+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/09/bioperl-howto-beginners/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><h3>Beginners HOWTO</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners" target="_blank">英文原文</a>
+<h3>原作者</h3>
+<a href="http://bioperl.org/wiki/Brian_Osborne">Brian Osborne</a></p>
+
+<p><a href="mailto:briano@bioteam.net">briano at bioteam.net</a>
+<h3>版权</h3>
+原作者保留版权，基于 <a href="http://www.perl.com/pub/language/misc/Artistic.html">Perl Artistic License</a>协议可有限共享。
+<h3>摘要</h3>
+基于生物学者需要，此HOWTO文档主要是关于如何利用Bioperl进行脚本编程，来进行生物信息学方面的研究。Bioperl是开源的生物信息学工具箱，并且有独立的社区支持。Bioperl其实是一些Perl模块的集成，提供了生物信息学分析的Perl基本模块。虽然有简单的使用例子，但是没有针对具体需要的脚本例子。（译者注：HOWTO文档是基于具体任务的，对生物学者更有针对性。)
+<h3>入门简介</h3>
+如果你是在做分子生物学的研究，并且用一些常规的方法对基因和蛋白质序列进行分析。也许你想要把这些任务自动化，或者你只是想学一下生物信息学方面的编程技术。这个HOWTO正合你意。此文档会讲述一些Bioperl的常见应用，比如：利用<a href="http://en.wikipedia.org/wiki/BLAST">BLAST</a>进行序列分析，以及从公共数据库中提取序列。有时候会把很多不同的任务放在一起，这时候bioperl就显得非常强大高效。</p>
+
+<p>不可避免会有一些晦涩的编程术语。如果你对编程越了解越好。不太了解也不必担心，这里只是介绍一些基本的编程知识。另外会有一些模块化和面向对象编程的基础内容，如果你需要写一些复杂的脚本，这一点是必须要掌握的。</p>
+
+<p>当学习一门新技术的时候，所面临的挑战之一就是专业术语的学习。编程也不例外。耐心是最好的解决办法！你要知道，学计算机的再去学生物照样十分头疼，有木有！！！</p>
+
+<p>注：bioperl中有一个模块，<a href="http://search.cpan.org/perldoc?Bio::Perl">Bio::Perl</a>，适用于Bioperl新手入门。（译者注：把bioperl一些基本应用转化成函数的形式调用，而不是大量的模块，更易于新手理解。）但这个HOWTO文档并不介绍这个模块，因为这只是其中一个很小的模块，不是真正的面向对象的，且不具备扩展性。这里会主要介绍Bioperl的核心，以及如何举一反三利用好Bioperl。
+<h3>安装Bioperl</h3>
+<a href="http://www.bioperl.org/wiki/Installing_BioPerl">安装Bioperl</a>是首要任务。总是不断的有人问关于安装的问题。下面三点是问的最多的问题：
+<ol>
+	<li>在windows下，会出现“Error: Failed to download URL http://bioperl.org/DIST/GD.ppd”，或者“Error: Failed to download URL http://bioperl.org/DIST/GD.ppd”等错误信息。这说明有一些安装Bioperl必须的Perl模块没有被安装，你需要手动安装这些模块。详见“<a href="http://www.bioperl.org/wiki/Installing_Bioperl_on_Windows">在windows上安装Bioperl</a>”。</li>
+	<li>在Unix下，类似“Can&#8217;t locate &lt;some module&gt;.pm in @INC&#8230;”的错误信息说明这个模块没有安装。详见“<a href="http://www.bioperl.org/wiki/Installing_Bioperl_for_Unix">在Unix下安装Bioperl</a>”。</li>
+	<li>“Tests Failed”错误信息表明在安装过程中有些模块安装是测试不成功，可能会影响今后的使用。Bioperl大约有1一千多个模块，安装时会进行一万多个测试。（译者注：复杂性难以想象，很难避免出错。）一般这种情况出现在GD模块上，GD只和<a href="http://search.cpan.org/perldoc?Bio::Graphics">Bio::Graphics</a>相关，不影响其他的模块；<a href="http://en.wikipedia.org/wiki/XML">XML</a> parser也可能出现这种情况，但也只是影响到读取XML文件。如果要把所有模块安装成功，需要大量的工作。（译者注：新手勿入）</li>
+</ol>
+（译者注：将来会专门翻译“<a href="http://www.bioperl.org/wiki/Installing_BioPerl">安装bioperl</a>”、<a href="http://www.bioperl.org/wiki/Installing_Bioperl_on_Windows">在windows上安装Bioperl</a>”和“<a href="http://www.bioperl.org/wiki/Installing_Bioperl_for_Unix">在Unix下安装Bioperl</a>”。）
+<h3>获取帮助</h3>
+在安装和使用Bioperl过程中，出现问题是不可避免的。<a href="mailto:%E5%8F%AF%E4%BB%A5%E7%BB%99bioperl-l@bioperl.org">可以给bioperl-l@bioperl.org</a>邮件列表发邮件寻求帮助。有一批专业人员维护此邮件列表，并提供答复。在询问是，尽量提供详细的信息，这样他们才能有效的帮助你解决问题。</p>
+
+<p>需要提供的信息包括但不限于以下几点：</p>
+
+<p>1． 所使用的Bioperl版本号</p>
+
+<p>2． 操作系统</p>
+
+<p>3． 你的目的</p>
+
+<p>4． 代码</p>
+
+<p>5． 所有出现的错误信息</p>
+
+<p>总是会有人给bioperl-l发邮件抱怨自己的问题没有被回复。一般原因是因为没有提供以上的所有信息，通常是没有提供代码和错误信息。
+<h3>关于Perl</h3>
+如果想学习更多关于Perl的知识，下面列举了一些学习资源：
+<ol>
+	<li><a href="http://www.oreilly.com/catalog/lperl2/">Learning Perl</a>是最流行的perl入门书籍。（译者注：google之，很多免费下载链接，包括中文翻译版《perl语言入门》。）</li>
+	<li><a href="http://www.oreilly.com/catalog/perlnut2/">Perl in a Nutshell</a>也很好。提供的例子可能并不那么好，但覆盖了大量的内容。</li>
+	<li>Perl有自己的文档。试着在命令行中输入“perldoc perl”查看perl帮助文档。对于特定的模块，输入“perldoc &lt;模块名字&gt;”，可以查看关于此模块的帮助文档。举例说明：</li>
+</ol>
+<pre>perldoc Bio::SeqIO</pre>
+<h3>写脚本</h3>
+万事开头难。对初学者来说最困难的莫过于写个简单的脚本并运行成功。</p>
+
+<p>在Unix环境下，一般在<a href="http://en.wikipedia.org/wiki/Unix_shell">命令行（shell）</a>环境下工作。可在命令行中用这个命令查看Perl版本（译者注：windows下同样有效。以下命令除特殊说明外，默认在Unix系统下）：
+<pre>perl –v</pre>
+输出结果：
+<pre>This is perl, v5.10.0 built for cygwin-thread-multi-64int</pre></p>
+
+<p>Copyright 1987-2007, Larry Wall Perl may be copied only under the terms of<br />
+either the Artistic License or the GNU General Public License, which may be<br />
+found in the Perl 5 source kit.</p>
+
+<p>Complete documentation for Perl, including FAQ lists, should be found on this<br />
+system using &#8220;man perl&#8221; or &#8220;perldoc perl&#8221;.  If you have access to the Internet,<br />
+point your browser at http://www.perl.org/, the Perl Home Page.
+最好使用最新版本，5.4一下的版本可能会有些问题。查看Perl程序所在的位置
+<pre>which perl</pre>
+输出类似结果：
+<pre>/bin/perl</pre>
+知道perl的位置就可以编写脚本，在脚本中的第一行指定Perl所在位置，然后就可一通过Perl来运行此脚本。在Unix下，<a href="http://en.wikipedia.org/wiki/Emacs">emacs</a>和<a href="http://en.wikipedia.org/wiki/Vi">vi</a>都是比较强大的命令行文本编辑器，另外，<a href="http://en.wikipedia.org/wiki/Nano_(text_editor)">nano</a>或<a href="http://en.wikipedia.org/wiki/Pico_(text_editor)">pico</a>比较简单，容易上手。有些Unix系统可能没有自带这些编辑器，自行安装即可。Widows下记事本或者写字板都可。（译者注：Mac下推荐<a href="http://www.barebones.com/products/bbedit/">BBEdit</a>，windows下推荐<a href="http://notepad-plus-plus.org/">notepad++</a>，都有语法高亮等强大功能。）</p>
+
+<p>开始写脚本：
+<pre>emacs seqio.pl</pre>
+第一行中输入：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/bin/perl</span>
+</span></code></pre></td></tr></table></div></figure>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page9">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page7">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

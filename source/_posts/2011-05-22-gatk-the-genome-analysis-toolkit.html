@@ -1,0 +1,21 @@
+---
+layout: post
+title: ! 'GATK: The Genome Analysis Toolkit'
+categories:
+- Bioinformatics
+- NGS
+- Software
+tags:
+- GATK
+- NGS
+- SNP
+- Software
+- Variation Discovery
+published: true
+comments: true
+---
+<p>The <a title="GATK" href="http://www.broadinstitute.org/gsa/wiki/index.php/The_Genome_Analysis_Toolkit" target="_blank">GATK</a> is a structured software library that makes writing efficient analysis tools using next-generation sequencing data very easy, and second it's a suite of tools for working with human medical resequencing projects such as <a title="1000genomes" href="http://www.1000genomes.org/" target="_blank">1000 Genomes</a> and <a title="cancergenome" href="http://cancergenome.nih.gov/" target="_blank">The Cancer Genome Atlas</a>. These tools include things like a depth of coverage analyzers, a quality score recalibrator, a SNP/indel caller and a local realigner.</p>
+
+<p>We aim to work well with both samtools and Picard by providing complementary tools to those available in those two packages. Our SNP calling pipeline (Q score recalibration -&gt; multiple sequence realignment -&gt; snp/index calling) is a particular area of focus, and have been pushing to make these capabilities as general-purpose and powerful as possible. My group's mandate is to ensure the success of the human medical resequencing projects we've undertaken at the Broad over the next 2-3 years, which involves providing a robust, production-quality development library that underlies tools for common analysis problems (like SNP calling) as well as enabling exploratory research on NGS data.</p>
+
+<p>Take a look at <a title="File:CBBO 100709 v3.pptx.pdf" href="http://www.broadinstitute.org/gsa/wiki/index.php/File:CBBO_100709_v3.pptx.pdf">File:CBBO 100709 v3.pptx.pdf</a> to view a presentation that provides an introduction to some of the capabilities of the GATK and its application to the <a title="1000genomes" href="http://www.1000genomes.org/" target="_blank">1000 Genomes project</a>.</p>

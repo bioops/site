@@ -1,0 +1,388 @@
+---
+layout: post
+title: Get intron sizes from gff3 files using Perl
+categories:
+- Perl
+- Programming
+tags:
+- GFF3
+- Perl
+published: true
+comments: true
+---
+Normally, there is no 'intron' feature in gff3 files, but the information can be obtained by calculating the interval sizes between CDS regions. Here I wrote a simple perl script for getting intron sizes from gff3 files. The script can print out each intron sizes, one gene per line. You can customize the script based on your gff3 files or demands.</p>
+
+PS: I rank the exon positions before calculating the intron size to avoid the +/- strand issues
+
+``` perl get_intron_size.pl
+
+#!/usr/bin/perl
+use strict;
+use warnings;
+ 
+# usage: perl get_intron_size.pl gff3_file >output
+ 
+my $input=$ARGV[0];
+my ($eachline,@exons);
+my $first=0;
+open (IN, "<$input") or die ("no such file!");
+while(defined($eachline=<IN>)){
+  if($eachline=~/\tmRNA\t/){
+    $first++;
+    if($first != 1){
+      print_intron(@exons);
+      @exons=();
+    }
+  }elsif($eachline=~/\tCDS\t/){
+    my @eachline=split(/\t/,$eachline);
+    push (@exons, $eachline[3],$eachline[4]);
+  }
+}
+print_intron(@exons);
+ 
+sub print_intron{
+  my (@exons)=@_;
+  if(scalar(@exons)>2){
+    my @ordered_exons=sort {$a<=>$b} @exons;
+    for (my $i=1;$i<=scalar(@ordered_exons)-3;$i=$i+2){
+      my $each_intron_size=$ordered_exons[$i+1]-$ordered_exons[$i]-1;
+      print "$each_intron_size\t";
+    }
+  }else{print "0";}
+  print "\n";
+}
+
+```
+
+<<<<<<< HEAD:source/_posts/2012-11-28-intron-size-gff3-perl.html
+
+An example of gff3 file from soybean genome annotation:
+=======
+  <title><![CDATA[Category: Perl | Bioops]]></title>
+  <link href="http://bioops.info/category/perl/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Get Intron Sizes From Gff3 Files Using Perl]]></title>
+    <link href="http://bioops.info/2012/11/intron-size-gff3-perl/"/>
+    <updated>2012-11-28T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/11/intron-size-gff3-perl</id>
+    <content type="html"><![CDATA[<p>Normally, there is no ‘intron’ feature in gff3 files, but the information can be obtained by calculating the interval sizes between CDS regions. Here I wrote a simple perl script for getting intron sizes from gff3 files. The script can print out each intron sizes, one gene per line. You can customize the script based on your gff3 files or demands.&lt;/p&gt;</p>
+
+<p>PS: I rank the exon positions before calculating the intron size to avoid the +/- strand issues</p>
+
+<p>&#8220;` perl get_intron_size.pl</p>
+
+<h1 id="usrbinperl">!/usr/bin/perl</h1>
+<p>use strict;
+use warnings;</p>
+
+<h1 id="usage-perl-getintronsizepl-gff3file-output">usage: perl get_intron_size.pl gff3_file &gt;output</h1>
+
+<p>my $input=$ARGV[0];
+my ($eachline,@exons);
+my $first=0;
+open (IN, “&lt;$input”) or die (“no such file!”);
+while(defined($eachline=<IN>)){
+  if($eachline=~/\tmRNA\t/){
+    $first++;
+    if($first != 1){
+      print_intron(@exons);
+      @exons=();
+    }
+  }elsif($eachline=~/\tCDS\t/){
+    my @eachline=split(/\t/,$eachline);
+    push (@exons, $eachline[3],$eachline[4]);
+  }
+}
+print_intron(@exons);</IN></p>
+
+<p>sub print_intron{
+  my (@exons)=@_;
+  if(scalar(@exons)&gt;2){
+    my @ordered_exons=sort {$a&lt;=&gt;$b} @exons;
+    for (my $i=1;$i&lt;=scalar(@ordered_exons)-3;$i=$i+2){
+      my $each_intron_size=$ordered_exons[$i+1]-$ordered_exons[$i]-1;
+      print “$each_intron_size\t”;
+    }
+  }else{print “0”;}
+  print “\n”;
+}</p>
+
+<p>&#8220;`</p>
+
+<p>An example of gff3 file from soybean genome annotation:</p>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/perl/atom.xml
+<pre>##gff-version 3
+Gm01    phytozome8_0    gene    51481   61502   .       -       .       ID=Glyma01g00270;Name=Glyma01g00270
+Gm01    phytozome8_0    mRNA    51481   61502   .       -       .       ID=PAC:16242891;Name=Glyma01g00270.1;pacid=16242891;longest=1;Parent=Glyma01g00270
+Gm01    phytozome8_0    CDS     61437   61502   .       -       0       ID=PAC:16242891.CDS.1;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     61167   61305   .       -       0       ID=PAC:16242891.CDS.2;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     60722   60780   .       -       2       ID=PAC:16242891.CDS.3;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     60339   60533   .       -       0       ID=PAC:16242891.CDS.4;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     59699   59814   .       -       0       ID=PAC:16242891.CDS.5;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     59420   59547   .       -       1       ID=PAC:16242891.CDS.6;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     59176   59284   .       -       2       ID=PAC:16242891.CDS.7;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     56878   56879   .       -       1       ID=PAC:16242891.CDS.8;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     55013   55069   .       -       2       ID=PAC:16242891.CDS.9;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     54390   54500   .       -       2       ID=PAC:16242891.CDS.10;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     54218   54320   .       -       2       ID=PAC:16242891.CDS.11;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     53902   53966   .       -       1       ID=PAC:16242891.CDS.12;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     52608   52639   .       -       2       ID=PAC:16242891.CDS.13;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     52517   52571   .       -       0       ID=PAC:16242891.CDS.14;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     52362   52465   .       -       2       ID=PAC:16242891.CDS.15;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     51828   51925   .       -       0       ID=PAC:16242891.CDS.16;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     51481   51625   .       -       1       ID=PAC:16242891.CDS.17;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    gene    90693   95580   .       -       .       ID=Glyma01g00300;Name=Glyma01g00300
+Gm01    phytozome8_0    mRNA    90693   94401   .       -       .       ID=PAC:16242894;Name=Glyma01g00300.1;pacid=16242894;longest=1;Parent=Glyma01g00300
+Gm01    phytozome8_0    CDS     92970   94401   .       -       0       ID=PAC:16242894.CDS.1;Parent=PAC:16242894;pacid=16242894
+Gm01    phytozome8_0    CDS     92083   92084   .       -       2       ID=PAC:16242894.CDS.2;Parent=PAC:16242894;pacid=16242894
+Gm01    phytozome8_0    CDS     90693   90860   .       -       0       ID=PAC:16242894.CDS.3;Parent=PAC:16242894;pacid=16242894
+Gm01    phytozome8_0    mRNA    94388   95580   .       -       .       ID=PAC:16242895;Name=Glyma01g00300.2;pacid=16242895;longest=0;Parent=Glyma01g00300
+Gm01    phytozome8_0    CDS     95467   95469   .       -       0       ID=PAC:16242895.CDS.1;Parent=PAC:16242895;pacid=16242895
+Gm01    phytozome8_0    five_prime_UTR  95470   95580   .       -       .       ID=PAC:16242895.five_prime_UTR.1;Parent=PAC:16242895;pacid=16242895
+Gm01    phytozome8_0    CDS     95277   95356   .       -       0       ID=PAC:16242895.CDS.2;Parent=PAC:16242895;pacid=16242895
+Gm01    phytozome8_0    CDS     94388   94475   .       -       1       ID=PAC:16242895.CDS.3;Parent=PAC:16242895;pacid=16242895
+Gm01    phytozome8_0    gene    116300  127990  .       +       .       ID=Glyma01g00320;Name=Glyma01g00320
+Gm01    phytozome8_0    mRNA    116300  127990  .       +       .       ID=PAC:16242897;Name=Glyma01g00320.1;pacid=16242897;longest=1;Parent=Glyma01g00320
+Gm01    phytozome8_0    five_prime_UTR  116300  116467  .       +       .       ID=PAC:16242897.five_prime_UTR.1;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    CDS     116468  117077  .       +       0       ID=PAC:16242897.CDS.1;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    CDS     117156  118627  .       +       2       ID=PAC:16242897.CDS.2;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    CDS     125732  125982  .       +       0       ID=PAC:16242897.CDS.3;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    CDS     127537  127567  .       +       1       ID=PAC:16242897.CDS.4;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    three_prime_UTR 127568  127990  .       +       .       ID=PAC:16242897.three_prime_UTR.1;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    mRNA    116300  127990  .       +       .       ID=PAC:16242898;Name=Glyma01g00320.2;pacid=16242898;longest=0;Parent=Glyma01g00320
+Gm01    phytozome8_0    five_prime_UTR  116300  116467  .       +       .       ID=PAC:16242898.five_prime_UTR.1;Parent=PAC:16242898;pacid=16242898
+Gm01    phytozome8_0    CDS     116468  117077  .       +       0       ID=PAC:16242898.CDS.1;Parent=PAC:16242898;pacid=16242898
+Gm01    phytozome8_0    CDS     117156  118627  .       +       2       ID=PAC:16242898.CDS.2;Parent=PAC:16242898;pacid=16242898
+Gm01    phytozome8_0    CDS     127537  127707  .       +       0       ID=PAC:16242898.CDS.3;Parent=PAC:16242898;pacid=16242898
+Gm01    phytozome8_0    three_prime_UTR 127708  127990  .       +       .       ID=PAC:16242898.three_prime_UTR.1;Parent=PAC:16242898;pacid=16242898
+Gm01    phytozome8_0    mRNA    127557  127707  .       +       .       ID=PAC:16242899;Name=Glyma01g00320.4;pacid=16242899;longest=0;Parent=Glyma01g00320
+Gm01    phytozome8_0    CDS     127557  127707  .       +       1       ID=PAC:16242899.CDS.1;Parent=PAC:16242899;pacid=16242899
+<<<<<<< HEAD:source/_posts/2012-11-28-intron-size-gff3-perl.html
+Gm01    phytozome8_0    gene    170877  193446  .       +       .       ID=Glyma01g00380;Name=Glyma01g00380</pre></p>
+=======
+Gm01    phytozome8_0    gene    170877  193446  .       +       .       ID=Glyma01g00380;Name=Glyma01g00380</pre>
+<p>&lt;/p&gt;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Perl模拟随机漂变]]></title>
+    <link href="http://bioops.info/2011/11/perl-simulate-random-genetic-drift/"/>
+    <updated>2011-11-13T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/11/perl-simulate-random-genetic-drift</id>
+    <content type="html"><![CDATA[<p>&#8220;` perl simulate_genetic_drift.pl</p>
+
+<h1 id="section">旧文回收</h1>
+<p>#当时写的代码有点傻傻的</p>
+
+<h1 id="usrbinperl">!/usr/bin/perl</h1>
+<p>#—————————————————————————————
+#Author: me
+#Date: 2009-05-13 19:00
+#Version: 1.0
+#Project: random genetic drift
+#模拟随机漂变对某一群体等位基因频率的影响，只是简单写了一下核心的程序。
+#—————————————————————————————
+use strict;
+use warnings;
+srand(time | $$);                               #为随机数发生器设定种子
+my $a1percent;                                  #声明变量：
+my $i;my $j; my $a1sum; my $randomnum;
+my $generation; my $avegeneration;my $sumgeneration;
+my $fix1; my $fix2;
+for($i=0; $i&lt;10000; ++$i){                      #10000次重复
+    $a1percent=0.7;                             #设定等位基因a1初始频率为0.7
+    for($generation=0; 1;++$generation){        #模拟世代更替，记录a1或a2固定时经历的世代数（$generation）
+          if ($a1percent==0 or $a1percent==1){
+              last;                             #当a1固定或丢失的时候跳出世代更替的循环
+          }
+          $a1sum=0;
+          for ($j=0; $j&lt;20; ++$j){              #随机挑选20个配子作为下一代个体的组成
+                $randomnum=rand(1);
+                if ($randomnum&lt;=$a1percent){
+                    ++$a1sum;                   #记录挑选到a1基因的总数
+                }
+          }
+    $a1percent=$a1sum/20;                       #记录挑选到a1基因的频率
+   }
+   $sumgeneration+=$generation;                 #将每次a1或a2固定时经历世代数求和
+   if ($a1percent==1){                          #a1固定
+      ++$fix1;                                  #记录a1固定的次数
+   }else{                                       #a1丢失，a2固定
+      ++$fix2;                                  #记录a2固定的次数
+   }
+}
+$avegeneration=$sumgeneration/10000;
+$fix1=$fix1/10000;
+$fix2=$fix2/10000;
+print “a1或a2固定的平均世代数为: $avegeneration\n”;
+print “a1固定的概率为:$fix1\n”;
+print “a2固定的概率为:$fix2\n”;
+exit;</p>
+
+<p>&#8220;`</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[利用Perl将数据导入excel中]]></title>
+    <link href="http://bioops.info/2011/11/perl-parse-and-write-excel/"/>
+    <updated>2011-11-13T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/11/perl-parse-and-write-excel</id>
+    <content type="html"><![CDATA[<p>&#8220;` perl to_excel.pl</p>
+
+<h1 id="section">旧文回收</h1>
+<p>#将数据导入excel，再用excel处理基本是多此一举
+#且excel可以直接导入按一定规律排列的数据（如用tab分隔的数据）
+#留给有需要的人用吧</p>
+
+<p>use Spreadsheet::WriteExcel; #需要安装此模块
+use strict;</p>
+
+<h1 id="gethomoxls">新建一个工作簿，gethomo.xls</h1>
+<p>my $workbook = Spreadsheet::WriteExcel-&gt;new(“gethomo.xls”);</p>
+
+<h1 id="section-1">新建一个工作表</h1>
+<p>my $worksheet = $workbook-&gt;add_worksheet();</p>
+
+<h1 id="section-2">需要导入的数据</h1>
+<p>my $datafile=”gethomo.txt”;</p>
+
+<h1 id="section-3">打开数据文件</h1>
+<p>unless( open(GET_FILE_DATA, $datafile) ) {
+      print STDERR “Cannot open file &#8220;$filename&#8221;\n\n”;
+      exit;
+}
+my @input=<GET_FILE_DATA>;</GET_FILE_DATA></p>
+
+<h1 id="excel">写入excel</h1>
+<p>for (my $i=0;$i&lt;scalar @input;$i++){</p>
+
+<pre><code>   #按照输入文件内容的排列格式修改此行
+   my @input_row=split (/\t/, $input[$i]); 
+ 
+   for (my $j=0;$j&lt;scalar @input_row;$j++){
+          my $input_cell=$input_row[$j];
+ 
+          #在$i行$j列的单元格中写入数据.(注: 行列初始值为0)
+          unless ($input_cell=~/=/){$worksheet-&gt;write($i, $j, $input_cell);}
+   } } #打完收工
+</code></pre>
+
+<h1 id="excel-1">若要从excel中提取数据，</h1>
+<p>#则需要使用Spreadsheet::ParseExcel模块
+#常用的几条语句如下：
+my $parser=Spreadsheet::ParseExcel-&gt;new();
+my $workbook = $parser-&gt;Parse(‘RNA1.xls’);
+for my $worksheet ( $workbook-&gt;worksheets() ) {
+      my ( $row_min, $row_max ) = $worksheet-&gt;row_range();
+      my ( $col_min, $col_max ) = $worksheet-&gt;col_range();
+      for my $col ( $col_min .. $col_max ) {
+            #……
+       }
+}
+#关于更多用perl操作excel的方式和代码可以参考CPAN</p>
+
+<p>&#8220;`</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用Perl做频率分布图]]></title>
+    <link href="http://bioops.info/2011/10/perl-gd-graph-histogram/"/>
+    <updated>2011-10-09T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/10/perl-gd-graph-histogram</id>
+    <content type="html"><![CDATA[<p>&#8220;` perl hist.pl</p>
+
+<h1 id="section">需要安装相应模块</h1>
+<p>use GD::Graph::histogram;</p>
+
+<h1 id="reference">创建一个数组的reference</h1>
+<p>$data = [1,5,7,8,9,10,11,3,3,5,5,5,7,2,2];</p>
+
+<h1 id="section-1">创建图片对象</h1>
+<p>my $graph = new GD::Graph::histogram(400,600);</p>
+
+<h1 id="section-2">设置格式</h1>
+<p>$graph-&gt;set(
+    x_label         =&gt; ‘X Label’,
+    y_label         =&gt; ‘Count’,
+    title           =&gt; ‘A Simple Count Histogram Chart’,
+    x_labels_vertical =&gt; 1,
+    bar_spacing     =&gt; 0,
+    shadow_depth    =&gt; 1,
+    shadowclr       =&gt; ‘dred’,
+    transparent     =&gt; 0,
+)
+or warn $graph-&gt;error;</p>
+
+<h1 id="section-3">输出频率分布图到图片对象上</h1>
+<p>my $gd = $graph-&gt;plot($data) or die $graph-&gt;error;</p>
+
+<h1 id="section-4">打印到文件</h1>
+<p>open(IMG, ‘&gt;histogram.png’) or die $!;
+binmode IMG;
+print IMG $gd-&gt;png;
+close IMG;</p>
+
+<p>&#8220;`</p>
+
+<p>详见<a href="http://search.cpan.org/dist/GDGraph-histogram/lib/GD/Graph/histogram.pm" target="_blank">GD::Graph::histogram</a>。</p>
+
+<p>Perl做出来的图真是难看，跟R差太远了。</p>
+
+<p>我是用了大量perl script提取出了一些数据，只是想先看看数据的分布情况，不做拟合和后续统计分析，懒得写R script了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用perl模块迅速得到两数组的子集和并集]]></title>
+    <link href="http://bioops.info/2011/10/perl-list-compare/"/>
+    <updated>2011-10-08T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/10/perl-list-compare</id>
+    <content type="html"><![CDATA[<p>省得自己写代码，循环、遍历，纠结于各种算法的效率上。</p>
+
+<p>直接拿来主义，用已有的模块，<a href="http://search.cpan.org/~jkeenan/List-Compare-0.37/lib/List/Compare.pm" target="_blank">List::Compare</a>。</p>
+
+<p>既然发在CPAN上，估计是优化过的，而且反正perl的速度本来就不快，又只是自己用，简单易用省心，最好。</p>
+
+<p>&#8220;` perl listcomp.pl</p>
+
+<p>use List::Compare; #需要安装
+@Llist = qw(abel abel baker camera delta edward fargo golfer);
+@Rlist = qw(baker camera delta delta edward fargo golfer hilton);
+$lc = List::Compare-&gt;new(\@Llist, \@Rlist); #使用数组的reference</p>
+
+<p>@intersection = $lc-&gt;get_intersection; #子集
+@union = $lc-&gt;get_union; #并集</p>
+
+<p>print “@intersection\n@union\n”;</p>
+
+<p>&#8220;`</p>
+
+<p>List::Compare还有很多其他用法。</p>
+
+<p>比如，get_unique()，返回第一个数组特有的那些元素；</p>
+
+<p>而get_complement()，返回第二个数组特有的那些元素；</p>
+
+<p>以及get_symmetric_difference()，返回属于某一数组但不同时属于两个数组的那些元素。</p>
+
+<p>详见<a href="http://search.cpan.org/~jkeenan/List-Compare-0.37/lib/List/Compare.pm" target="_blank">List::Compare</a>。</p>
+]]></content>
+  </entry>
+  
+</feed>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/perl/atom.xml

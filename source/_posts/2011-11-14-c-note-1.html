@@ -1,0 +1,435 @@
+<<<<<<< HEAD:source/_posts/2011-11-14-c-note-1.html
+---
+layout: post
+title: C++ note 1
+categories:
+- C++
+- Programming
+tags:
+- C++
+- HOWTO
+- Note
+- Programming
+published: true
+comments: true
+---
+<p>可读性差，只留着自己用<br />
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: C++ | Bioops]]></title>
+  <link href="http://bioops.info/category/c-plus-plus/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[C++ Note 1]]></title>
+    <link href="http://bioops.info/2011/11/c-note-1/"/>
+    <updated>2011-11-14T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/11/c-note-1</id>
+    <content type="html"><![CDATA[<p>可读性差，只留着自己用<br />
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/c-plus-plus/atom.xml
+[cpp]<br />
+// my first program in C++</p>
+
+<p>/* my second program in C++<br />
+   with more comments */</p>
+
+<p>#include<br />
+using namespace std;</p>
+
+<p>int main ()<br />
+{
+  cout &lt;&lt; &quot;Hello World!&quot;;<br />
+  return 0;<br />
+}
+[/cpp]
+<table>
+<tbody>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Size*</th>
+<th>Range*</th>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>Character or small integer.</td>
+<td>1byte</td>
+<td>signed: -128 to 127<br />
+unsigned: 0 to 255</td>
+</tr>
+<tr>
+<td><code>short int</code> (<code>short</code>)</td>
+<td>Short Integer.</td>
+<td>2bytes</td>
+<td>signed: -32768 to 32767<br />
+unsigned: 0 to 65535</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td>Integer.</td>
+<td>4bytes</td>
+<td>signed: -2147483648 to 2147483647<br />
+unsigned: 0 to 4294967295</td>
+</tr>
+<tr>
+<td><code>long int</code> (<code>long</code>)</td>
+<td>Long integer.</td>
+<td>4bytes</td>
+<td>signed: -2147483648 to 2147483647<br />
+unsigned: 0 to 4294967295</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>Boolean value. It can take one of two values: true or false.</td>
+<td>1byte</td>
+<td><code>true</code> or <code>false</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>Floating point number.</td>
+<td>4bytes</td>
+<td>+/- 3.4e +/- 38 (~7 digits)</td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td>Double precision floating point number.</td>
+<td>8bytes</td>
+<td>+/- 1.7e +/- 308 (~15 digits)</td>
+</tr>
+<tr>
+<td><code>long double</code></td>
+<td>Long double precision floating point number.</td>
+<td>8bytes</td>
+<td>+/- 1.7e +/- 308 (~15 digits)</td>
+</tr>
+<tr>
+<td><code>wchar_t</code></td>
+<td>Wide character.</td>
+<td>2 <em>or</em> 4 bytes</td>
+<td>1 wide character</td>
+</tr>
+</tbody>
+</table></p>
+
+<p><table>
+<tbody>
+<tr>
+<td><code>\n</code></td>
+<td>newline</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>carriage return</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>tab</td>
+</tr>
+<tr>
+<td><code>\v</code></td>
+<td>vertical tab</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>backspace</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>form feed (page feed)</td>
+</tr>
+<tr>
+<td><code>\a</code></td>
+<td>alert (beep)</td>
+</tr>
+<tr>
+<td><code>\'</code></td>
+<td>single quote (<samp>&#8217;</samp>)</td>
+</tr>
+<tr>
+<td><code>\"</code></td>
+<td>double quote (<samp>&#8221;</samp>)</td>
+</tr>
+<tr>
+<td><code>\?</code></td>
+<td>question mark (<samp>?</samp>)</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>backslash (<samp>\</samp>)</td>
+</tr>
+</tbody>
+</table></p>
+
+<p>[cpp]<br />
+// In order to use a variable in C++<br />
+// we must first declare it specifying which data type we want it to be.<br />
+int a, b, c;</p>
+
+<p>// Signed types can represent both positive and negative values<br />
+//  whereas unsigned types can only represent positive values (and zero).<br />
+unsigned short int NumberOfSisters;<br />
+signed int MyAccountBalance;</p>
+
+<p>int a = 0;<br />
+int a (0);</p>
+
+<p>string mystring = &quot;This is a string&quot;;<br />
+string mystring (&quot;This is a string&quot;);</p>
+
+<p>// String literals can extend to more than a single line of code by<br />
+// putting a backslash sign (\) at the end of each unfinished line.<br />
+&quot;string expressed in \<br />
+two lines&quot; </p>
+
+<p>//does not require a semicolon (;)<br />
+#define PI 3.14159<br />
+<<<<<<< HEAD:source/_posts/2011-11-14-c-note-1.html
+#define NEWLINE '\n' </p>
+
+<p>const int pathwidth = 100;<br />
+const char tabulator = '\t';</p>
+=======
+#define NEWLINE &#8216;\n&#8217; </p>
+
+<p>const int pathwidth = 100;<br />
+const char tabulator = &#8216;\t&#8217;;</p>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/c-plus-plus/atom.xml
+
+<p>// +, -, *, /, %<br />
+// +=, -=, *=, /=, %=, &gt;&gt;=, &lt;&lt;=, &amp;=, ^=, |=<br />
+// ++, &#8211;<br />
+// ==, !=, &gt;, &lt;, &gt;=, &lt;=</p>
+
+<p>7==5 ? 4 : 3     // returns 3, since 7 is not equal to 5.<br />
+7==5+2 ? 4 : 3   // returns 4, since 7 is equal to 5+2.<br />
+5&gt;3 ? a : b      // returns the value of a, since 5 is greater than 3.<br />
+a&gt;b ? a : b      // returns whichever is greater, a or b. </p>
+
+<p>a = (b=3, b+2);<br />
+// Would first assign the value 3 to b, and then assign b+2 to variable a.<br />
+// variable a would contain the value 5 while variable b would contain value 3.</p>
+
+<p>// Bitwise Operators ( &amp;, |, ^, ~, &lt;&lt;, &gt;&gt; )</p>
+
+<p>int i;<br />
+float f = 3.14;<br />
+i = (int) f;<br />
+i = int ( f );</p>
+
+<p>//  returns the size in bytes of that type or object:<br />
+a = sizeof (char);</p>
+
+<p>cout &lt;&lt; &quot;Hello, I am &quot; &lt;&lt; age &lt;&lt; &quot; years old and my zipcode is &quot; &lt;&lt; zipcode;<br />
+// Hello, I am 24 years old and my zipcode is 90064 <br />
+cout &lt;&lt; &quot;First sentence.\n&quot;;<br />
+cout &lt;&lt; &quot;First sentence.&quot; &lt;&lt; endl;</p>
+
+<p>// Standard Input (cin).<br />
+int age;<br />
+cin &gt;&gt; age;</p>
+
+<p>// to request more than one datum input from the user: <br />
+cin &gt;&gt; a &gt;&gt; b;</p>
+
+<p>// In order to get entire lines, we can use the function getline,<br />
+// which is the more recommendable way to get user input with cin<br />
+#include &lt;iostream&gt;<br />
+#include &lt;string&gt;<br />
+using namespace std;</p>
+
+<p>int main ()<br />
+{
+  string mystr;<br />
+  cout &lt;&lt; &quot;What&#8217;s your name? &quot;;<br />
+  getline (cin, mystr);<br />
+  cout &lt;&lt; &quot;Hello &quot; &lt;&lt; mystr &lt;&lt; &quot;.\n&quot;;<br />
+  cout &lt;&lt; &quot;What is your favorite team? &quot;;<br />
+  getline (cin, mystr);<br />
+  cout &lt;&lt; &quot;I like &quot; &lt;&lt; mystr &lt;&lt; &quot; too!\n&quot;;<br />
+  return 0;<br />
+}</p>
+
+<p>// The standard header file &lt;sstream&gt; defines a class called stringstrea<br />
+// that allows a string-based object to be treated as a stream.<br />
+// This way we can perform extraction or insertion operations from/to strings, <br />
+// which is especially useful to convert strings to numerical values and vice versa.<br />
+// For example, if we want to extract an integer from a string we can write:<br />
+string mystr (&quot;1204&quot;);<br />
+int myint;<br />
+stringstream(mystr) &gt;&gt; myint;</p>
+
+<p>// stringstreams<br />
+#include &lt;iostream&gt;<br />
+#include &lt;string&gt;<br />
+#include &lt;sstream&gt;<br />
+using namespace std;</p>
+
+<p>int main ()<br />
+{
+  string mystr;<br />
+  float price=0;<br />
+  int quantity=0;</p>
+
+<p>  cout &lt;&lt; &quot;Enter price: &quot;;<br />
+  getline (cin,mystr);<br />
+  stringstream(mystr) &gt;&gt; price;<br />
+  cout &lt;&lt; &quot;Enter quantity: &quot;;<br />
+  getline (cin,mystr);<br />
+  stringstream(mystr) &gt;&gt; quantity;<br />
+  cout &lt;&lt; &quot;Total price: &quot; &lt;&lt; price*quantity &lt;&lt; endl;<br />
+  return 0;<br />
+}</p>
+
+<p>if (x == 100)<br />
+  cout &lt;&lt; &quot;x is 100&quot;;</p>
+
+<p>if (x == 100)<br />
+{
+   cout &lt;&lt; &quot;x is &quot;;<br />
+   cout &lt;&lt; x;<br />
+}</p>
+
+<p>if (x == 100)<br />
+  cout &lt;&lt; &quot;x is 100&quot;;<br />
+else<br />
+  cout &lt;&lt; &quot;x is not 100&quot;;</p>
+
+<p>if (x &gt; 0)<br />
+  cout &lt;&lt; &quot;x is positive&quot;;<br />
+else if (x &lt; 0)<br />
+  cout &lt;&lt; &quot;x is negative&quot;;<br />
+else<br />
+  cout &lt;&lt; &quot;x is 0&quot;;</p>
+
+<p>  while (n&gt;0) {<br />
+    cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+    &#8211;n;<br />
+  }</p>
+
+<p>do {<br />
+    cout &lt;&lt; &quot;Enter number (0 to end): &quot;;<br />
+    cin &gt;&gt; n;<br />
+    cout &lt;&lt; &quot;You entered: &quot; &lt;&lt; n &lt;&lt; &quot;\n&quot;;<br />
+  } while (n != 0);</p>
+
+<<<<<<< HEAD:source/_posts/2011-11-14-c-note-1.html
+<p>  for (int n=10; n&gt;0; n--) {<br />
+    cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+  }</p>
+
+<p>for ( n=0, i=100 ; n!=i ; n++, i-- )<br />
+=======
+<p>  for (int n=10; n&gt;0; n&#8211;) {<br />
+    cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+  }</p>
+
+<p>for ( n=0, i=100 ; n!=i ; n++, i&#8211; )<br />
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/c-plus-plus/atom.xml
+{
+   // whatever here&#8230;<br />
+}</p>
+
+<<<<<<< HEAD:source/_posts/2011-11-14-c-note-1.html
+<p> for (n=10; n&gt;0; n--)<br />
+=======
+<p> for (n=10; n&gt;0; n&#8211;)<br />
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/c-plus-plus/atom.xml
+  {<br />
+    cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+    if (n==3)<br />
+    {<br />
+      cout &lt;&lt; &quot;countdown aborted!&quot;;<br />
+      break;<br />
+    }<br />
+  }</p>
+
+<<<<<<< HEAD:source/_posts/2011-11-14-c-note-1.html
+<p> for (int n=10; n&gt;0; n--) {<br />
+=======
+<p> for (int n=10; n&gt;0; n&#8211;) {<br />
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/c-plus-plus/atom.xml
+    if (n==5) continue;<br />
+    cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+  }</p>
+
+<p> int n=10;<br />
+  loop:<br />
+  cout &lt;&lt; n &lt;&lt; &quot;, &quot;;<br />
+  n&#8211;;<br />
+  if (n&gt;0) goto loop;</p>
+
+<p>// exit is a function defined in the cstdlib library.<br />
+// to terminate the current program with a specific exit code. <br />
+void exit (int exitcode);</p>
+
+<p>// Functions<br />
+int addition (int a, int b)<br />
+{
+  int r;<br />
+  r=a+b;<br />
+  return (r);<br />
+}
+int main ()<br />
+{
+  int z;<br />
+  z = addition (5,3);<br />
+  cout &lt;&lt; &quot;The result is &quot; &lt;&lt; z;<br />
+  return 0;<br />
+}</p>
+
+<p>// void function example<br />
+void printmessage ()<br />
+{
+  cout &lt;&lt; &quot;I&#8217;m a function!&quot;;<br />
+}
+int main ()<br />
+{
+  printmessage ();<br />
+  // printmessage; wrong!!!<br />
+  return 0;<br />
+}</p>
+
+<p>[/cpp]</p>
+<<<<<<< HEAD:source/_posts/2011-11-14-c-note-1.html
+=======
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[C++ Hello World]]></title>
+    <link href="http://bioops.info/2011/11/c-hello-world/"/>
+    <updated>2011-11-13T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/11/c-hello-world</id>
+    <content type="html"><![CDATA[<p>write in file &#8220;hello.cpp&#8221;:</p>
+
+<p>&#8220;` cpp hello.cpp</p>
+
+<p>// my first program in C++</p>
+
+<h1 id="include-iostream">include <iostream>;</iostream></h1>
+<p>using namespace std;</p>
+
+<p>int main ()
+{ cout « “Hello World!”;
+return 0;
+}</p>
+
+<p>&#8220;`</p>
+
+<p>compile:
+<pre>g++ -o hello hello.cpp</pre></p>
+]]></content>
+  </entry>
+  
+</feed>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:category/c-plus-plus/atom.xml

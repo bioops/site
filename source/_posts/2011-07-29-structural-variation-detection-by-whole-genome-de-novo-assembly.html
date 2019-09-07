@@ -1,0 +1,33 @@
+---
+layout: post
+title: Structural variation detection by whole genome de novo assembly
+categories:
+- Bioinformatics
+- NGS
+- Paper
+tags:
+- Assembly
+- BGI
+- Bioinformatics
+- Nature
+- NGS
+- Structural Variation
+- Variation Discovery
+published: true
+comments: true
+---
+<p><a href="http://www.nature.com/nbt/journal/vaop/ncurrent/full/nbt.1904.html" target="_blank">Structural variation in two human genomes mapped at single-nucleotide resolution by whole genome de novo assembly</a></p>
+
+<p>Here we use whole-genome de novo assembly of second-generation sequencing reads to map structural variation (SV) in an Asian genome and an African genome. Our approach identifies small- and intermediate-size homozygous variants (1–50 kb) including insertions, deletions, inversions and their precise breakpoints, and in contrast to other methods, can resolve complex rearrangements. In total, we identified 277,243 SVs ranging in length from 1–23 kb. Validation using computational and experimental methods suggests that we achieve overall &lt;6% false-positive rate and &lt;10% false-negative rate in genomic regions that can be assembled, which outperforms other methods. Analysis of the SVs in the genomes of 106 individuals sequenced as part of the 1000 Genomes Project suggests that SVs account for a greater fraction of the diversity between individuals than do single-nucleotide polymorphisms (SNPs). These findings demonstrate that whole-genome de novo assembly is a feasible approach to deriving more comprehensive maps of genetic variation.</p>
+
+<p>BGI的文章。BGI，也就是华大，有钱的主，拿钱砸出来好多高IF的文章，此为其一。</p>
+
+<p>通过whole genome de novo assembly来确定Structural variation（SV）。</p>
+
+<p>用拼接好的scaffolds和human reference genome来比对。BGI利用<a href="http://genome.ucsc.edu/cgi-bin/hgBlat?command=start" target="_blank">BLAT</a>和<a href="http://www.bx.psu.edu/~rsharris/lastz/" target="_blank">LASTZ</a>，加上一些自己开发的脚本（scripts）建立了一个SV detection的流程（pipeline），叫做<a href="http://soap.genomics.org.cn/SOAPsv.html" target="_blank">SOAPsv</a>。这篇文章等于是这个pipeline的首次实践。</p>
+
+<p>验证（validation）是一个必要的程序，不像<a href="http://www.1000genomes.org/" target="_blank">千人基因组</a> （<a href="http://www.nature.com/nature/journal/v467/n7319/full/nature09534.html" target="_blank">paper</a>）用实验方法（wet），他们同时用了实验（wet）和电脑计算（dry）两种方法。关于computational方法，是用<a href="http://bio-bwa.sourceforge.net/" target="_blank">BWA</a>或者<a href="http://soap.genomics.org.cn/soapaligner.html" target="_blank">SOAPaligner</a>来把原始的reads align到reference genome上。为什么不能用这个align的结果来做SV detection呢？其他的软件基本都是这样做的。为了“创新”，另辟蹊径，用de novo assembly，但同时还需要align to reference，是不是有点走弯路？。另外一个疑问：如果align的结果和de novo assembly的序列不一样呢？</p>
+
+<p>也和另外两个软件做了比较，<a href="http://breakdancer.sourceforge.net/" target="_blank">BreakDancer</a> （<a href="http://www.nature.com/nmeth/journal/v6/n9/abs/nmeth.1363.html" target="_blank">paper</a>）和<a href="http://www.ebi.ac.uk/~kye/pindel/" target="_blank">Pinde</a>l （<a href="http://bioinformatics.oxfordjournals.org/content/25/21/2865.long" target="_blank">paper</a>），“据说”是比这两个软件的精确性要高。（“similar sensitivity but improved precision”）但是，为什么不和其他软件比较呢？</p>
+
+<p>最后要提另一篇重量级的文章：<a href="http://www.nature.com/nature/journal/v470/n7332/full/nature09708.html" target="_blank">Mapping copy number variation by population-scale genome sequencing</a>，使用了几乎所有的SV detection的软件，并实验验证，还探讨了一些SV发生机制。是一篇集大成的文章，需要仔细研究，有空写篇博客介绍一下。</p>

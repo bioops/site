@@ -1,0 +1,1157 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="BLAST (not BLAST+) provides an option for tabular output that is easily parsed. Use the -m 8 option for tabular output, or the -m 9 option to include &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/page11">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/notes-on-using-blast/">Notes on Using BLAST</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-22T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/notes-on-using-blast/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>BLAST (<strong>not BLAST+</strong>) provides an option for tabular output that is easily parsed. Use the -m 8 option for tabular output, or the -m 9 option to include headers.
+<pre>blastall -i input.fa -d /path/to/db.fa -p blastn -m 8</pre>
+Assumes that db.fa is in a directory that also has a correctly formatted database. This can be achieved by:
+<pre>formatdb -i db.fa -p F</pre>
+The fields for tabular BLAST output are:
+<div>
+<table>
+<tbody>
+<tr>
+<td>1</td>
+<td>Query</td>
+<td>The query sequence id</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Subject</td>
+<td>The matching subject sequence id</td>
+</tr>
+<tr>
+<td>3</td>
+<td>% id</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>alignment length</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>mistmatches</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>gap openings</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>q.start</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>q.end</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>s.start</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>s.end</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>e-value</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td>bit score</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+Parse the information:</p>
+
+<p>Python</p>
+
+<pre>
+for line in open(“myfile.blast”):
+(queryId, subjectId, percIdentity, alnLength, mismatchCount, gapOpenCount, queryStart, queryEnd, subjectStart, subjectEnd, eVal, bitScore) = line.split(“t”)
+</pre>
+
+<p>Perl</p>
+
+<pre>
+while (<>) {
+($queryId, $subjectId, $percIdentity, $alnLength, $mismatchCount, $gapOpenCount, $queryStart, $queryEnd, $subjectStart, $subjectEnd, $eVal, $bitScore) = split(/t/)
+}</pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/mcl-a-cluster-algorithm-for-graphs/">MCL - a Cluster Algorithm for Graphs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-22T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/mcl-a-cluster-algorithm-for-graphs/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The <strong><a href="http://www.micans.org/mcl/" target="_blank">MCL</a> </strong>can be used to cluster/group similar genes into gene families from BLAST (<strong>not BLAST+</strong>)  <a href="http://bioops.info/2011/03/notes-on-using-blast/" target="_blank">-m 8</a> output file.</p>
+
+<p><strong>TribeMCL is not available now.</strong></p>
+
+<p><a href="http://www.orthomcl.org/cgi-bin/OrthoMclWeb.cgi" target="_blank">OrthoMCL</a> is a more powerful software based on MCL for grouping orthologous protein sequences
+The <strong><a href="http://www.micans.org/mcl/" target="_blank">MCL</a> algorithm</strong> is short for the <strong>Markov Cluster Algorithm</strong>, a fast and scalable unsupervised cluster algorithm for networks (also known as <em>graphs</em>) based on simulation of (stochastic) flow in graphs. The algorithm was invented/<a href="http://www.micans.org/mcl/sec_discovery.html">discovered</a> by <a href="http://micans.org/stijn/" target="_blank">Stijn van Dongen</a> at the <a href="http://www.cwi.nl/" target="_parent">Centre for Mathematics and Computer Science</a> (also known as CWI) in the Netherlands. The PhD thesis <a href="http://www.micans.org/mcl/sec_thesisetc.html"><em>Graph clustering by flow simulation</em></a> is centered around this algorithm, the main topics being the mathematical theory behind it, its position in cluster analysis and graph clustering, issues concerning scalability, implementation, and benchmarking, and performance criteria for graph clustering in general. The work for this thesis was carried out under supervision of <a href="http://www.cwi.nl/~jve/" target="_parent">Jan van Eijck</a> and <a href="http://www.cwi.nl/~mich/" target="_parent">Michiel Hazewinkel</a>.
+<h3>Protocol: Clustering similarity graphs encoded in BLAST results</h3>
+First we create an ABC-formatted file using the external columnar BLAST format, which is assumed to be in a file called seq.cblast.
+<pre>cut -f 1,2,11 seq.cblast &gt; seq.abc</pre>
+The columnar format in the file seq.cblast has, for a given BLAST hit, the sequence labels in the first two columns and the asssociated E-value in column 11. It is parsed by the standard UNIX cut utility. The format must have been created with the BLAST -m8 option so that no comment lines are present. Alternatively these can be filtered out using grep.<br />
+The newly created seq.abc file is loaded by mcxload, which writes both a network file seq.mci and a dictionary file seq.tab.
+<pre>mcxload -abc seq.abc --stream-mirror --stream-neg-log10 -stream-tf 'ceil(200)' -o seq.mci -write-tab seq.tab</pre>
+The &#8211;stream-mirror option ensures that the resulting network will be undirected, as recommended when using mcl. Omitting this option would result in a directed network as BLAST E-values generally differ between two sequences. The default course of action for mcxload is to use the best value found between a pair of labels. The next option, &#8211;abc-neg-log10 tranforms the numerical values in the input (the BLAST E-values) by taking the logarithm in base 10 and subsequently negating the sign. Finally, the transformed values are capped so that any E-value below 1e-200 is set to a maximum allowed edge weight of 200.<br />
+To obtain clusterings from seq.mci and seq.tab one has two choices. The first is to generate an abstract clustering representation and from that obtain the label output, as follows. Below the -o option is not used, so mcl will create meaningful and unique output names by itself. The default way of doing this is to preprend the prefix out. and to append a suffix encoding the inflation value used, with inflation encoded using two digits of precision and the decimal separator removed.
+<pre>mcl seq.mci -I 1.4
+mcl seq.mci -I 2
+mcl seq.mci -I 4
+mcl seq.mci -I 6
+
+mcxdump -icl out.seq.mci.I14 -tabr seq.tab -o dump.seq.mci.I14
+mcxdump -icl out.seq.mci.I20 -tabr seq.tab -o dump.seq.mci.I20
+mcxdump -icl out.seq.mci.I40 -tabr seq.tab -o dump.seq.mci.I40
+mcxdump -icl out.seq.mci.I60 -tabr seq.tab -o dump.seq.mci.I60
+</pre>
+Now the file out.seq.tab.I14 and its associates can be used for example to compute the distances between the encoded clusterings with clm dist, to compute a set of strictly reconciled nested clusterings with clm order, or to compute an efficiency criterion with clm info.<br />
+Alternatively, label output can be obtained directly from mcl as follows.
+<pre>mcl seq.mci -I 1.4  -use-tab seq.tab
+mcl seq.mci -I 2  -use-tab seq.tab
+mcl seq.mci -I 4  -use-tab seq.tab
+mcl seq.mci -I 6  -use-tab seq.tab</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/mizbee-a-multiscale-synteny-browser/">MizBee: A Multiscale Synteny Browser</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-21T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/mizbee-a-multiscale-synteny-browser/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>multi-platform (based on java), user-friendly,  no requirements for installation and run, and more remarkably, easier than <a href="http://mkweb.bcgsc.ca/circos/" target="_blank">Circos</a>.</strong></p>
+<p><a href="http://www.cs.utah.edu/~miriah/mizbee/Overview.html" target="_blank">MizBee</a> is a multiscale synteny browser for exploring conservation relationships in comparative genomics data. Using side-by-side linked views, MizBee enables efficient data browsing across a range of scales, from the genome to the gene. The design of MizBee is grounded in perceptual principles, and includes several techniques such as edge bundling and layering to enhance visual cues about conservation relationships related to proximity, size, similarity, and orientation.</p>
+
+<p><img class="alignnone" title="mizbee" src="http://www.cs.utah.edu/~miriah/mizbee/Overview_files/fish_overview.jpg" alt="" width="550" height="355" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/i-adhore-detect-synteny-regions/">i-ADHoRe: Detect Synteny Regions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-21T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/i-adhore-detect-synteny-regions/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://bioinformatics.psb.ugent.be/software/details/i--ADHoRe" target="_blank">i-ADHoRe</a> is a highly sensitive software tool to detect degenerated homology relations within and between different genomes.</p>
+
+<p>The i-ADHoRe algorithm is based on the initial ADHoRe algorithm. After detecting initial pairs of colinear segments using the basic ADHoRe algorithm, these pairs are aligned to each other to form a profile that combines their gene order and content information. This profile is then used to detect additional homologous segments that show conserved gene order and content when compared to the profile rather than individual segments. If such an additional segment is discovered, it is included in the profile as well and the search is repeated until no additional segments can be found. All results are outputted in tab delimited text files.</p>
+
+<p><a href="http://bioinformatics.psb.ugent.be/webtools/i-adhore/licensing/" target="_blank">Download</a></p>
+
+<p>Simillion, C., Janssens, K., Sterck, L., Van de Peer, Y. (2008) i-ADHoRe 2.0: An improved tool to detect degenerated genomic homology using genomic profiles. Bioinformatics 24, 127-8. <a href="http://bioinformatics.oxfordjournals.org/content/24/1/127" target="_blank">doi</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/ubuntu-terminal-directory/">Ubuntu下终端路径只显示当前目录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-18T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/ubuntu-terminal-directory/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>.bashrc文件记录了用户终端配置</p>
+<pre>$: sudo vim ~/.bashrc
+</pre>
+<p>在文件中找到:</p>
+<p>if [ &#8220;$color_prompt &#8221; = yes ]; then</pre>
+<p>  PS1 =&#8217;${debian_chroot:+($debian_chroot)}[ 33[01;32m]u@h[ 33[00m]:[ 33[01;34m]<span style="color: #ff0000;">W</span> [ 33[00m]$ &#8217;</p>
+<p>else</p>
+<p>  PS1 =&#8217;${debian_chroot:+($debian_chroot)}u@h:<span style="color: #ff0000;">W</span> $ &#8217;</p>
+<p>将红色的w由小写改成大写，可以表示只显示当前目录名称</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/vim-commands/">Useful, Essential and Most Often Used Vim Commands</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-09T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/vim-commands/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>&lt; <strong>The list of Vim commands</strong> &gt;
+<div>
+<table border="1" cellspacing="0" cellpadding="5">
+<tbody>
+<tr>
+<td id="files" colspan="2"><em><strong>Working with files</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>:e filename</td>
+<td>Open a new file. You can use the Tab key for automatic file name completion, just like at the shell command prompt.</td>
+</tr>
+<tr>
+<td>:w filename</td>
+<td>Save changes to a file. If you don&#8217;t specify a file name, Vim saves as the file name you were editing. For saving the file under a different name, specify the file name.</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>Quit Vim. If you have unsaved changes, Vim refuses to exit.</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>Exit Vim without saving changes.</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>Write the file and exit.</td>
+</tr>
+<tr>
+<td>: x</td>
+<td>Almost the same as :wq, write the file and exit if you&#8217;ve made changes to the file. If you haven&#8217;t made any changes to the file, Vim exits without writing the file.</td>
+</tr>
+<tr>
+<td id="nav" colspan="2"><em><strong>Moving around in the file</strong></em></td>
+</tr>
+<tr>
+<td colspan="2">These Vim commands and keys work both in command mode and visual mode.</td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>j or Up Arrow</td>
+<td>Move the cursor up one line.</td>
+</tr>
+<tr>
+<td>k or Down Arrow</td>
+<td>Down one line.</td>
+</tr>
+<tr>
+<td>h or Left Arrow</td>
+<td>Left one character.</td>
+</tr>
+<tr>
+<td>l or Right Arrow</td>
+<td>Right one character.</td>
+</tr>
+<tr>
+<td>e</td>
+<td>To the end of a word.</td>
+</tr>
+<tr>
+<td>E</td>
+<td>To the end of a whitespace-delimited word.</td>
+</tr>
+<tr>
+<td>b</td>
+<td>To the beginning of a word.</td>
+</tr>
+<tr>
+<td>B</td>
+<td>To the beginning of a whitespace-delimited word.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>To the beginning of a line.</td>
+</tr>
+<tr>
+<td>^</td>
+<td>To the first non-whitespace character of a line.</td>
+</tr>
+<tr>
+<td>$</td>
+<td>To the end of a line.</td>
+</tr>
+<tr>
+<td>H</td>
+<td>To the first line of the screen.</td>
+</tr>
+<tr>
+<td>M</td>
+<td>To the middle line of the screen.</td>
+</tr>
+<tr>
+<td>L</td>
+<td>To the the last line of the screen.</td>
+</tr>
+<tr>
+<td>:<em>n</em></td>
+<td>Jump to line number <em>n</em>. For example, to jump to line 42, you&#8217;d type :42</td>
+</tr>
+<tr>
+<td id="insert" colspan="2"><em><strong>Inserting and overwriting text</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>i</td>
+<td>Insert before cursor.</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Insert to the start of the current line.</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Append after cursor.</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Append to the end of the current line.</td>
+</tr>
+<tr>
+<td>o</td>
+<td>Open a new line below and insert.</td>
+</tr>
+<tr>
+<td>O</td>
+<td>Open a new line above and insert.</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Change the rest of the current line.</td>
+</tr>
+<tr>
+<td>r</td>
+<td>Overwrite one character. After overwriting the single character, go back to command mode.</td>
+</tr>
+<tr>
+<td>R</td>
+<td>Enter insert mode but replace characters rather than inserting.</td>
+</tr>
+<tr>
+<td>The ESC key</td>
+<td>Exit insert/overwrite mode and go back to command mode.</td>
+</tr>
+<tr>
+<td id="delete" colspan="2"><em><strong>Deleting text</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>x</td>
+<td>Delete characters under the cursor.</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Delete characters before the cursor.</td>
+</tr>
+<tr>
+<td>dd or :d</td>
+<td>Delete the current line.</td>
+</tr>
+<tr>
+<td id="visual" colspan="2"><em><strong>Entering visual mode</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>v</td>
+<td>Start highlighting characters. Use the normal movement keys and commands to select text for highlighting.</td>
+</tr>
+<tr>
+<td>V</td>
+<td>Start highlighting lines.</td>
+</tr>
+<tr>
+<td>The ESC key</td>
+<td>Exit visual mode and return to command mode.</td>
+</tr>
+<tr>
+<td id="visualcom" colspan="2"><em><strong>Editing blocks of text</strong></em></td>
+</tr>
+<tr>
+<td colspan="2">Note: the Vim commands marked with (V) work in visual mode, when you&#8217;ve selected some text. The other commands work in the command mode, when you haven&#8217;t selected any text.</td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>~</td>
+<td>Change the case of characters. This works both in visual and command mode. In visual mode, change the case of highlighted characters. In command mode, change the case of the character uder cursor.</td>
+</tr>
+<tr>
+<td>&gt; (V)</td>
+<td>Shift right (indent).</td>
+</tr>
+<tr>
+<td>&lt; (V)</td>
+<td>Shift left (de-indent).</td>
+</tr>
+<tr>
+<td>c (V)</td>
+<td>Change the highlighted text.</td>
+</tr>
+<tr>
+<td>y (V)</td>
+<td>Yank the highlighted text. In Windows terms, &#8220;copy the selected text to clipboard.&#8221;</td>
+</tr>
+<tr>
+<td>d (V)</td>
+<td>Delete the highlighted text. In Windows terms, &#8220;cut the selected text to clipboard.&#8221;</td>
+</tr>
+<tr>
+<td>yy or :y or Y</td>
+<td>Yank the current line. You don&#8217;t need to highlight it first.</td>
+</tr>
+<tr>
+<td>dd or :d</td>
+<td>Delete the current line. Again, you don&#8217;t need to highlight it first.</td>
+</tr>
+<tr>
+<td>p</td>
+<td>Put the text you yanked or deleted. In Windows terms, &#8220;paste the contents of the clipboard&#8221;. Put characters after the cursor. Put lines below the current line.</td>
+</tr>
+<tr>
+<td>P</td>
+<td>Put characters before the cursor. Put lines above the current line.</td>
+</tr>
+<tr>
+<td id="ooopsie" colspan="2"><em><strong>Undo and redo</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>u</td>
+<td>Undo the last action.</td>
+</tr>
+<tr>
+<td>U</td>
+<td>Undo all the latest changes that were made to the current line.</td>
+</tr>
+<tr>
+<td>Ctrl + r</td>
+<td>Redo.</td>
+</tr>
+<tr>
+<td id="search" colspan="2"><em><strong>Search</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>/<em>pattern</em></td>
+<td>Search the file for <em>pattern</em>.</td>
+</tr>
+<tr>
+<td>n</td>
+<td>Scan for next search match in the same direction.</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Scan for next search match but opposite direction.</td>
+</tr>
+<tr>
+<td id="replace" colspan="2"><em><strong>Replace</strong></em></td>
+</tr>
+<tr>
+<td><em>Vim command</em></td>
+<td><em>Action</em></td>
+</tr>
+<tr>
+<td>:<em>r</em>s/<em>foo</em>/<em>bar</em>/<em>a</em></td>
+<td>Substitute <em>foo</em> with <em>bar</em>. <em>r</em> determines the range and <em>a</em> determines the arguments.</td>
+</tr>
+<tr>
+<td colspan="2">The range (<em>r</em>) can be</td>
+</tr>
+<tr>
+<td>nothing</td>
+<td>Work on current line only.</td>
+</tr>
+<tr>
+<td>number</td>
+<td>Work on the line whose number you give.</td>
+</tr>
+<tr>
+<td>%</td>
+<td>The whole file.</td>
+</tr>
+<tr>
+<td colspan="2">Arguments (<em>a</em>) can be</td>
+</tr>
+<tr>
+<td>g</td>
+<td>Replace all occurrences in the line. Without this, Vim replaces only the first occurrences in each line.</td>
+</tr>
+<tr>
+<td>i</td>
+<td>Ignore case for the search pattern.</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Don&#8217;t ignore case.</td>
+</tr>
+<tr>
+<td>c</td>
+<td>Confirm each substitution. You can type y to substitute this match, n to skip this match, a to substitute this and all the remaining matches (&#8220;Yes to all&#8221;), and q to quit substitution.</td>
+</tr>
+<tr>
+<td colspan="2">Examples</td>
+</tr>
+<tr>
+<td>:452s/<em>foo</em>/<em>bar</em>/</td>
+<td>Replace the first occurrence of the word <em>foo</em> with <em>bar</em> on line number 452.</td>
+</tr>
+<tr>
+<td>:s/<em>foo</em>/<em>bar</em>/g</td>
+<td>Replace every occurrence of the word <em>foo</em> with <em>bar</em> on current line.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/g</td>
+<td>Replace every occurrence of the word <em>foo</em> with <em>bar</em> in the whole file.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/gi</td>
+<td>The same as above, but ignore the case of the pattern you want to substitute. This replaces <em>foo</em>, <em>FOO</em>, <em>Foo</em>, and so on.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/gc</td>
+<td>Confirm every substitution.</td>
+</tr>
+<tr>
+<td>:%s/<em>foo</em>/<em>bar</em>/c</td>
+<td>For each line on the file, replace the first occurrence of <em>foo</em> with <em>bar</em> and confirm every substitution.</td>
+</tr>
+</tbody>
+</table>
+</div></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/parse-gff3-file/">Parse Gff3 File</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-08T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/parse-gff3-file/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Here is an example script of parsing gff3 file to get the cds sequences.</p>
+
+<p>The annotation of a reference genome usually is stored as a <a href="http://gmod.org/wiki/GFF3" target="_blank">gff3 format</a> file. Most of the time, the genome sequencing group would provide CDS sequences along with the reference genome. However, sometimes they have transcripts instead of CDS, or you want to get 3&#8217;-UTR region, or 500 bp upstream sequences from the coding regions. It&#8217;s a good idea to parse the gff3 files to get information you need.</p>
+
+<p>If you have any questions about the script or parsing gff3 file, leave a comment. Thank you!</p>
+
+<figure class='code'><figcaption><span>parse_gff3_cds.pl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl</span>
+</span><span class='line'><span class="c1"># parse_gff3.pl</span>
+</span><span class='line'><span class="c1"># get the cds sequences from gff3 file.</span>
+</span><span class='line'><span class="c1"># usage: perl parse_gff3_cds.pl gff3_input_file genome_sequence_directory &gt;output.txt</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="n">warnings</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::Tools::</span><span class="n">GFF</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="nn">Bio::DB::</span><span class="n">Fasta</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$gff3_file</span><span class="o">=</span><span class="nv">$ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>  <span class="c1">#gff3 input file</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$genome</span><span class="o">=</span><span class="nv">$ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">#genome sequence directory</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$gffio</span> <span class="o">=</span> <span class="nn">Bio::Tools::</span><span class="n">GFF</span> <span class="o">-&gt;</span> <span class="k">new</span><span class="p">(</span><span class="o">-</span><span class="n">file</span> <span class="o">=&gt;</span><span class="nv">$gff3_file</span> <span class="p">,</span> <span class="o">-</span><span class="n">gff_version</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">);</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$db</span>    <span class="o">=</span> <span class="nn">Bio::DB::</span><span class="n">Fasta</span>  <span class="o">-&gt;</span> <span class="k">new</span><span class="p">(</span><span class="nv">$genome</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$first</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$strand</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$seq</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="k">my</span> <span class="nv">$feature</span> <span class="o">=</span> <span class="nv">$gffio</span><span class="o">-&gt;</span><span class="n">next_feature</span><span class="p">())</span> <span class="p">{</span>
+</span><span class='line'><span class="c1"># Sometimes, the gff3 file format is a little with the standard format,</span>
+</span><span class='line'><span class="c1"># So that the keys of the hashes are different.</span>
+</span><span class='line'><span class="c1"># Use the following lines of masked code to see the keys of the hashes. Some Change may be needed.</span>
+</span><span class='line'><span class="c1">#  $i++;</span>
+</span><span class='line'><span class="c1">#  if ($i==2){</span>
+</span><span class='line'><span class="c1">#    my @a=keys %{$feature};</span>
+</span><span class='line'><span class="c1">#    print &quot;@a\n&quot;;</span>
+</span><span class='line'><span class="c1">#    my @b=keys %{$feature-&gt;{_location}};</span>
+</span><span class='line'><span class="c1">#    print &quot;@b\n&quot;;</span>
+</span><span class='line'><span class="c1">#    print &quot;$feature-&gt;{_primary_tag}\n&quot;;</span>
+</span><span class='line'><span class="c1">#  }</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nv">$feature</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">_primary_tag</span><span class="p">}</span><span class="o">=~</span><span class="sr">/mrna/i</span><span class="p">){</span>
+</span><span class='line'>    <span class="nv">$first</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nv">$first</span><span class="o">==</span><span class="mi">1</span><span class="p">){</span>
+</span><span class='line'>      <span class="nv">$seq</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="n">print_sequence</span><span class="p">(</span><span class="nv">$seq</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="nv">$strand</span><span class="p">);</span>
+</span><span class='line'>      <span class="nv">$seq</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;&gt;$feature-&gt;{_gsf_tag_hash}-&gt;{Name}-&gt;[0]|$feature-&gt;{_gsf_tag_hash}-&gt;{ID}-&gt;[0]\n&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span><span class="k">elsif</span><span class="p">(</span><span class="nv">$feature</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">_primary_tag</span><span class="p">}</span><span class="o">=~</span><span class="sr">/cds/i</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">$seq_temp</span><span class="o">=</span><span class="nv">$db</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">(</span><span class="nv">$feature</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">_gsf_seq_id</span><span class="p">},</span> <span class="nv">$feature</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">_location</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">_start</span><span class="p">}</span><span class="o">=&gt;</span><span class="nv">$feature</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">_location</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">_end</span><span class="p">});</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nv">$feature</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">_location</span><span class="p">}</span><span class="o">-&gt;</span><span class="p">{</span><span class="n">_strand</span><span class="p">}</span><span class="o">=~</span><span class="sr">/-/</span><span class="p">){</span>  <span class="c1"># to know the strand</span>
+</span><span class='line'>      <span class="nv">$seq</span><span class="o">=</span><span class="nv">$seq_temp</span><span class="o">.</span><span class="nv">$seq</span><span class="p">;</span>
+</span><span class='line'>      <span class="nv">$strand</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="nv">$seq</span><span class="o">.=</span><span class="nv">$seq_temp</span><span class="p">;</span>
+</span><span class='line'>      <span class="nv">$strand</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">print_sequence</span><span class="p">(</span><span class="nv">$seq</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="nv">$strand</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">$gffio</span><span class="o">-&gt;</span><span class="nb">close</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">sub </span><span class="nf">print_sequence</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">my</span><span class="p">(</span><span class="nv">$sequence</span><span class="p">,</span> <span class="nv">$length</span><span class="p">,</span><span class="nv">$strand</span><span class="p">)</span> <span class="o">=</span> <span class="nv">@_</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nv">$strand</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>  <span class="c1"># if the sequence is on the minus strand, get its reverse-complement counterpart</span>
+</span><span class='line'>    <span class="nv">$sequence</span><span class="o">=~</span><span class="nb">tr</span><span class="sr">/ACGTacgt/</span><span class="n">TGCAtgca</span><span class="o">/</span><span class="p">;</span>
+</span><span class='line'>    <span class="nv">$sequence</span><span class="o">=</span><span class="nb">reverse</span> <span class="nv">$sequence</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span> <span class="k">my</span> <span class="nv">$pos</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nv">$pos</span> <span class="o">&lt;</span> <span class="nb">length</span><span class="p">(</span><span class="nv">$sequence</span><span class="p">)</span> <span class="p">;</span> <span class="nv">$pos</span> <span class="o">+=</span> <span class="nv">$length</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$sequence</span><span class="p">,</span> <span class="nv">$pos</span><span class="p">,</span> <span class="nv">$length</span><span class="p">),</span><span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/shotgun-reads/">Shotgun Reads</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-07T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/shotgun-reads/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A <strong>read</strong> is a short sequence of DNA that has been taken directly from an organism&#8217;s genome. The procedure of <a title="Whole Genome Shotgun Assembly" href="http://www.broadinstitute.org/crd/wiki/index.php/Whole_Genome_Shotgun_Assembly">Whole Genome Shotgun Assembly</a> involves collecting large <a title="Libraries" href="http://www.broadinstitute.org/crd/wiki/index.php/Libraries">libraries</a> of reads and piecing them together to re-create a complete genome. Reads applied to Whole Genome Shotgun Assembly are called <strong>shotgun reads</strong>.</p>
+
+<p>Reads are created by laboratory <a title="Sequencing methods" href="http://www.broadinstitute.org/crd/wiki/index.php/Sequencing_methods">sequencing methods</a> such as <a title="Sanger sequencing" href="http://www.broadinstitute.org/crd/wiki/index.php/Sanger_sequencing">Sanger sequencing</a>; the method used affects the read&#8217;s length in bases, as well as its <a title="Quality scores" href="http://www.broadinstitute.org/crd/wiki/index.php/Quality_scores">quality scores</a>. For more information, see <a title="Sequencing" href="http://www.broadinstitute.org/crd/wiki/index.php/Sequencing">Sequencing</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/scaffold-or-supercontig/">Scaffold or Supercontig</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-07T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/scaffold-or-supercontig/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A scaffold is a portion of the genome sequence reconstructed from end-sequenced whole-genome shotgun clones. Scaffolds are composed of <a href="http://bioops.info/2011/03/contig/" target="_blank">contigs</a> and gaps.</p>
+
+<p>A contig is a contiguous length of genomic sequence in which the order of bases is known to a high confidence level. Gaps occur where reads from the two sequenced ends of at least one fragment overlap with other reads in two different contigs (as long as the arrangement is otherwise consistent with the contigs being adjacent). Since the lengths of the fragments are roughly known, the number of bases between contigs can be estimated.</p>
+
+<p>The goal of whole-genome shotgun assembly is to represent each genomic sequence in one scaffold; however, this is not always possible. One chromosome may be represented by many scaffolds (e.g., Chlamydomonas reinhardtii) or just a single scaffold (e.g., Human chromosome 19), depending on how completely the genome can be reconstructed, or assembled, from the available reads.  The relative locations of scaffolds in the genome are unknown.</p>
+
+<p>Scaffolds are normally numbered approximately from largest to smallest. Some scaffolds may ultimately be filtered out of the assembly, resulting in skipped scaffold numbers.</p>
+
+<p>In some cases, scaffolds can overlap. For example, in polymorphic genomes, regions with a high density of allelic differences between haplotypes may be split into separate sets of scaffolds, each representing one allele. Thus, a sequence that exists in only one location in the genome may appear on more than one scaffold.</p>
+
+<p><a href="http://bioops.info/images/uploads/2011/03/contigscaff2.gif"><img class="alignnone size-medium wp-image-207" title="contigscaff" src="http://bioops.info/images/uploads/2011/03/contigscaff2-300x189.gif" alt="" width="300" height="189" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/03/n50/">N50</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-07T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2011/03/n50/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>What does N50 mean? What is N50 or N90?</p>
+
+<p><strong>N50</strong> is a statistical measure of average length of a set of sequences. It is used widely in genomics, especially in reference to <a title="Contig" href="http://bioops.info/2011/03/contig/" target="_blank">contig</a> or <a title="Supercontig" href="http://www.broadinstitute.org/crd/wiki/index.php/Supercontig">supercontig</a> lengths within a <a title="Draft assembly" href="http://www.broadinstitute.org/crd/wiki/index.php/Draft_assembly">draft assembly</a>.</p>
+
+<p>N50 is defined as the contig length such that using equal or longer contigs produces half the bases of the genome. The N50 size is computed by sorting all contigs from largest to smallest and by determining the minimum set of contigs whose sizes total 50% of the entire genome.</p>
+
+<p>Alternative definition: Given a set of sequences of varying lengths, the N50 length is defined as the length N for which 50% of all bases in the sequences are in a sequence of length L &lt; N. This can be found mathematically as follows: Take a list L of positive integers. Create another list L&#8217; , which is identical to L, except that every element n in L has been replaced with n copies of itself. Then the median of L&#8217; is the N50 of L. For example: If L = {2, 2, 2, 3, 3, 4, 8, 8}, then L&#8217; consists of six 2&#8217;s, six 3&#8217;s, four 4&#8217;s, and sixteen 8&#8217;s; the N50 of L is the median of L&#8217; , which is 6.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page12">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page10">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

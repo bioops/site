@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ABySS: A Parallel Assembler for Short Read Sequence Data - Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="Abstract
+Widespread adoption of massively parallel deoxyribonucleic acid (DNA) sequencing instruments has prompted the recent development of de novo &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/2011/02/abyss-a-parallel-assembler-for-short-read-sequence-data">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">ABySS: A Parallel Assembler for Short Read Sequence Data</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><h2>Abstract</h2>
+Widespread adoption of massively parallel deoxyribonucleic acid (DNA) sequencing instruments has prompted the recent development of de novo short read assembly algorithms. A common shortcoming of the available tools is their inability to efficiently assemble vast amounts of data generated from large-scale sequencing projects, such as the sequencing of individual human genomes to catalog natural genetic variation. To address this limitation, we developed ABySS (Assembly By Short Sequences), a parallelized sequence assembler. As a demonstration of the capability of our software, we assembled 3.5 billion paired-end reads from the genome of an African male publicly released by Illumina, Inc. Approximately 2.76 million contigs &gt; or =100 base pairs (bp) in length were created with an N50 size of 1499 bp, representing 68% of the reference human genome. Analysis of these contigs identified polymorphic and novel sequences not present in the human reference assembly, which were validated by alignment to alternate human assemblies and to other primate genomes.</p>
+
+<p><strong><a href="http://www.ncbi.nlm.nih.gov/pubmed/19251739" target="_blank">PMID: 1925173</a></strong></p>
+
+<p><h1>ABySS README</h1></p>
+
+<p>ABySS - assemble short reads into contigs
+<h2>Compiling ABySS</h2>
+Compiling ABySS should be as easy as
+<pre>./configure &amp;&amp; make</pre>
+To install ABySS in a specified directory
+<pre>./configure --prefix=/opt/ABySS &amp;&amp; make &amp;&amp; sudo make install</pre>
+If you wish to build the parallel assembler with MPI support, MPI should be found in /usr/include and /usr/lib or its location specified to configure:
+<pre>./configure --with-mpi=/usr/lib/openmpi &amp;&amp; make</pre>
+ABySS should be built using Google sparsehash to reduce memory usage, although it will build without. Google sparsehash should be found in /usr/include or its location specified to configure:
+<pre>./configure CPPFLAGS=-I/usr/local/include</pre>
+The default maximum k-mer size is 64 and may be decreased to reduce memory usage or increased at compile time:
+<pre>./configure --enable-maxk=96 &amp;&amp; make</pre>
+To run ABySS, its binaries should be found in your PATH.
+<h2>Single-end assembly</h2>
+Assemble short reads in a file named reads.fa into contigs in a file named contigs.fa with the following command:
+<pre>ABYSS -k25 reads.fa -o contigs.fa</pre>
+where -k is an appropriate k-mer length. The only method to find the optimal value of k is to run multiple trials and inspect the results. The following shell snippet will assemble for every value of k from 20 to 40.
+<pre>for k in {20..40}; do
+    ABYSS -k$k reads.fa -o contigs-k$k.fa
+done</pre>
+The maximum value for k is 64. This limit may be changed at compile time using the &#8211;enable-maxk option of configure. It may be decreased to 32 to decrease memory usage, which is particularly useful for large parallel jobs, or increased to 96.
+<h2>Paired-end assembly</h2>
+To assemble paired short reads in a file named reads.fa into contigs in a file named paired-contigs.fa, run the command:
+<pre>abyss-pe k=25 n=10 in='reads1.fa reads2.fa' name=ecoli</pre>
+where <em>k</em> is the k-mer length as before. <em>n</em> is the minimum number of pairs needed to consider joining two contigs. The optimal value for n must be found by trial. <em>in</em> specifies the input files to read, which may be in FASTA, FASTQ, qseq or export format and compressed with gz, bz2 or xz. The assembled contigs will be stored in ${name}-contigs.fa.</p>
+
+<p>The suffix of the read identifier for a pair of reads must be one of &#8216;1&#8217; and &#8216;2&#8217;, or &#8216;A&#8217; and &#8216;B&#8217;, or &#8216;F&#8217; and &#8216;R&#8217;, or &#8216;F3&#8217; and &#8216;R3&#8217;, or &#8216;forward&#8217; and &#8216;reverse&#8217;. The reads may be interleaved in the same file or found in different files; however, interleaved mates will use less memory.</p>
+
+<p>abyss-pe is a driver script implemented as a Makefile and runs a single-end assembly, as described above, and the following commands, which must be found in your PATH:
+<ul>
+	<li>ABYSS - the single-end assembler</li>
+	<li>AdjList - finds overlaps of length k-1 between contigs</li>
+	<li>KAligner<strong>**</strong> - aligns reads to contigs</li>
+	<li>ParseAligns<strong>**</strong> - finds pairs of reads in alignments</li>
+	<li>DistanceEst<strong>**</strong> - estimates distances between contigs</li>
+	<li>Overlap - find overlaps between blunt contigs</li>
+	<li>SimpleGraph - finds paths between pairs of contigs</li>
+	<li>MergePaths - merges consistent paths</li>
+	<li>Consensus - for a colour-space assembly, convert the colour-space contigs to nucleotide contigs</li>
+</ul>
+<strong>**</strong> These steps can be run in parallel (see below)
+<h2>Paired-end assembly of multiple fragment libraries</h2>
+The distribution of fragment sizes of each library is calculated empirically by aligning paired reads to the contigs produced by the single-end assembler, and the distribution is stored in a file with the extension .hist, such as ecoli-4.hist. The N50 of the single-end assembly must be well over the fragment-size to obtain an accurate empirical distribution.</p>
+
+<p>Here&#8217;s an example scenario of assembling a data set with two different fragment libraries and single-end reads:</p>
+
+<p>Library lib1 has reads in two files, lib1_1.fa and lib1_2.fa. Library lib2 has reads in two files, lib2_1.fa and lib2_2.fa. Single-end reads are stored in two files se1.fa and se2.fa.</p>
+
+<p>The command line to assemble this example data set is&#8230;
+<pre>abyss-pe -j2 k=25 n=10 name=ecoli lib='lib1 lib2' 
+    lib1='lib1_1.fa lib1_2.fa' lib2='lib2_1.fa lib2_2.fa' 
+    se='se1.fa se2.fa'</pre>
+The paired-end assembly of lib1 and lib2 may be run in parallel by specifying the -j option of make to abyss-pe, which is implemented as a Makefile script. The -j option should be set to the number of libraries, but setting it higher will not cause any trouble.</p>
+
+<p>The empirical distribution of fragment sizes will be stored in two files named lib1-3.hist and lib2-3.hist. These files may be plotted to check that the empirical distribution agrees with the expected distribution. The assembled contigs will be stored in ${name}-contigs.fa.</p>
+
+<p>Reads without mates should be placed in a file specified by the `se&#8217; (single-end) parameter. Reads without mates in the paired-end files will slow down the paired-end assembler considerably during the ParseAligns stage.
+<h2>Parallel assembly</h2>
+The `np&#8217; option of abyss-pe specifies the number of processes to use for the ABYSS-P parallel MPI job. Without any MPI configuration, this will allow you to make use of multiple cores on a single machine. To use multiple machines for assembly, you must create a hostfile for mpirun, which is describe in the mpirun man page.</p>
+
+<p>The paired-end assembly runs on a single processor. For very large jobs, a good portion of the paired-end assembly (KAligner, ParseAligns, DistanceEst) may be run in parallel separate processes, but this process is not automated by the driver script abyss-pe.</p>
+
+<p>Open MPI integrates well with SGE (Sun Grid Engine). For example, to submit an array of jobs to assemble every odd value of k between 51 and 63 using 64 processes for each job:
+<pre>qsub -pe openmpi 64 -t 51-63:2 -N testing abyss-pe in=reads.fa n=10</pre>
+For more information on using SGE and qsub, please refer to the qsub manual page. Open MPI must have been compiled with support for SGE using the ./configure &#8211;with-sge option.
+<h2>See also</h2>
+Try `abyss &#8211;help&#8217; for more information on command line options, or see the manual page in the file `ABYSS.1&#8217;. Please refer to the mpirun manual page for information on configuring parallel jobs.</p>
+
+<p>Written by Jared Simpson and Shaun Jackman. Subscribe to the users&#8217; mailing list at <a title="http://www.bcgsc.ca/mailman/listinfo/abyss-users" rel="nofollow" href="http://www.bcgsc.ca/mailman/listinfo/abyss-users">http://www.bcgsc.ca/mailman/listinfo/abyss-users</a> Contact the users&#8217; mailing list at &lt;abyss-users@bcgsc.ca&gt; or the authors directly at &lt;abyss@bcgsc.ca&gt;.
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    <a href="https://plus.google.com/113645349664564078087" rel="author">Bioops</a>
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/bioinformatics/'>bioinformatics</a>, <a class='category' href='/category/ngs/'>ngs</a>, <a class='category' href='/category/software/'>software</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bioops.info/2011/02/abyss-a-parallel-assembler-for-short-read-sequence-data/" data-via="" data-counturl="http://bioops.info/2011/02/abyss-a-parallel-assembler-for-short-read-sequence-data/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-layout="button_count" data-send="false" data-width="300" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/2011/02/data-lost/" title="Next Post: data lost">data lost &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bioops.info/2011/02/abyss-a-parallel-assembler-for-short-read-sequence-data/';
+        var disqus_url = 'http://bioops.info/2011/02/abyss-a-parallel-assembler-for-short-read-sequence-data/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

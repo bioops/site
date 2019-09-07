@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[转]传说中的程序猿 - Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="原文链接 程序猿是一种近几十年来出现的新物种，是工业革命的产物。英文(Programmer Monkey)是一种非常特殊的、可以从事程序开发、维护的动物。一般分为程序设计猿和程序编码猿，但两者的界限并不非常清楚，都可以进行开发、维护工作，特别是在中国，而且最重要的一点，二者都是一种非常悲剧的存在 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/2011/11/%E8%BD%AC%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">[转]传说中的程序猿</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-11-06T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.cnblogs.com/God-froest/archive/2011/11/06/programMonkey.html" target="_blank">原文链接</a></p>
+
+<p><img class="alignright size-medium wp-image-797" style="border-style: initial; border-color: initial; color: #0000ee; text-decoration: underline;" title="programming monkey" src="http://bioops.info/images/uploads/2011/11/Screenshot-at-2011-11-06-213721-300x163.png" alt="" width="300" height="163" /></p>
+
+<p>程序猿是一种近几十年来出现的新物种，是工业革命的产物。<strong>英文</strong>(Programmer Monkey)是一种非常特殊的、可以从事程序开发、维护的动物。一般分为程序设计猿和程序编码猿，但两者的界限并不非常清楚，都可以进行开发、维护工作，特别是在中国，而且最重要的一点，二者都是一种非常悲剧的存在。
+<div><span style="color: #0000ee;"><span style="text-decoration: underline;">
+</span></span>他的特点是：对技术充满JI情（因为能够得到香蕉）将编程作为一种爱好（不一定，只有少数的程序猿有这一素质）</div></p>
+
+<p>如果你允许会滔滔不绝地跟你谈论技术（程序猿使用特殊的语言，别的人或猴子很难听懂）</p>
+
+<p>有过个人的开发经历（独立的寻找过香蕉或追寻母猿）</p>
+
+<p>坚持认为某种技术最好（程序猿都很固执）</p>
+
+<p>如果让他用他认为不好的技术他会非常别扭（同上）</p>
+
+<p>聪明、健谈、兴趣广泛（只限于NEET和有关宅话题）</p>
+
+<p>在大学和工作前就开始接触程序（程序猿从小就是程序猿了）</p>
+
+<p>总而言之，程序猿和它的一些同种族（如网管猿，技术猿）一样，都是人类用来帮助提高生产力的家畜，由于许多程序猿的智力很高，所以经常自己去寻找香蕉或妹子而无心工作，但这只是个别现象，总体来说程序猿是一种对人类很有用的动物，它们工作时很勤劳，而且不像 业务猿 那样喜欢跳奇怪的舞蹈（也叫增猿舞）吵的人们想鬼畜它，程序猿一般到了30岁左右就会进化成别的猿类（一般是管理猿），不过据报道，也有一些少数一生都是没有母猿的悲剧程序猿。</p>
+
+<p>程序猿是被诅咒的悲惨生物，它们受到的诅咒有：过度的劳作、永远不足的睡眠、低廉的收入等等……</p>
+
+<p>程序猿并不擅长战斗，它们生活中最主要的活动是——在树叶上打洞，然后将打洞的树叶放进一个木盒子里念咒语，并声称那些是能够提高族群的食物供给或提供其他神奇功能的伟大产品。但是，因为每个程序猿打洞的方式各不相同，他们之间也会经常爆发冲突，每个程序猿都声称自己所用的打洞方式是最好最先进，打出的洞是最美最华丽的，并不惜因此用打洞的树叶互相投掷。根据一些冒险者收集到的程序猿族群的资料，所谓的打洞方式，现在所知，有——西珈岬式、爪哇式、希沙埔式等等。不过，另人惊异的是，虽然每个程序猿所用的打洞方式都不同，但它们能用几乎所有的方式来给树叶打洞，来表达“你好，世界”的意思……</p>
+
+<p>因为长时间的不运动，程序猿的体力普遍低下，不擅长近战。不过，它们的高超智力弥补了这个缺陷。投掷打洞树叶是它们常用的攻击方式，而且，一如它们所宣称的一样，那些树叶有着一些神奇的功能——很多冒险者在受到树叶攻击后，虽然受伤并不严重，但都不同程度表现出反应迟缓、四肢不听指挥、眼前一片蓝色等症状，甚至于昏迷不醒。不过，好在这些症状都不致命，但是这足以保护程序猿远离冒险者的侵扰。</p>
+
+<p>程序猿只为了保护栖息地才会战斗，因此，一般冒险者都会绕开它们的地界。而且，由于程序猿的智力达到了能和冒险者交流的程度，甚至有的冒险者和程序猿族群建立了良好的关系，并且得到了它们的打洞树叶作为向族群提供食物的交换——只是这些礼物在冒险者手上远不如在程序猿手上可靠……</p>
+
+<p>诗歌歌颂：锄禾日当午，不如coding苦，对着C++，一调一下午； 锄禾日当午，不如coding苦，调了一下 午，Bug还得补; 锄禾日当午，不如coding苦，Bug刚补完，结构需重组； 锄禾日当午，哪有coding苦，Bug改不完，无言见列祖。</p>
+
+<p>日常行为特点：
+<h3><a name="5_1"></a>一、准备工作</h3>
+“工欲善其事必先利其器。”</p>
+
+<p>1.电脑不一定要配置高，但是双屏是必须的，越大越好，能一个横屏一个竖屏更好。一个用来查资料，一个用来写代码。总之要显得信息量很大，效率很高。</p>
+
+<p>2.椅子不一定要舒服，但是一定要可以半躺着。</p>
+
+<p>3.大量的便签，各种的颜色的，用来记录每天要完成的事务，多多益善。沿着电脑屏幕的边框，尽量贴满，显出有很多事情的样子。</p>
+
+<p>4.工具书，orelly的，机械工业，电子工业什么的都可以，能英文就英文，不行影印版的也可以，反正越厚越好，而且千万不要放在书架上，一定要堆在桌上，半打开状。
+<h3><a name="5_2"></a>二、从进门开始</h3>
+1.着装！着装！不管你是去实验室，或者去公司的大楼，在或者是小公司的民宅，或是自己创业的黑作坊；无论是春夏秋冬白天晚上刮风下雨电闪雷鸣台风龙卷风，一个装b的程序员都要十分在意自己着装！这里只提出参考建议。初级装：衬衣+牛仔裤+休闲鞋。中级装：T恤+宽松短裤+拖鞋。高级装：背心+宽松大花裤衩+人字拖。</p>
+
+<p>2.得体的举止。在走廊以及任何形式的过道里，一定要双手插兜，走得像个痞子，至少要看起来有点反社会，如若不行，可走文弱天才型geek路线。。</p>
+
+<p>3.如果有女性在你背后指指点点，小声嘀咕说这一定是一个技术男的时候，应该先低头，然后保持低头状态，缓缓回头，坏坏地蔑笑但是不要出声，然后快步前行。</p>
+
+<p>4.进门后，一定不要跟任何人打招呼，笔直走向自己的位置，最多路过打一杯咖啡，千万不要有多余的动作，显示出自己的专注与心无旁骛。
+<h3><a name="5_3"></a>三、坐下就不要再动了</h3>
+1.坐下以后，姿势需要略微后仰，能翘着二郎腿最好了，然后在后仰的情况下低着头，以便看到屏幕，然后千万就不要再动了。
+<div>　　2.粗暴地把电脑前的大堆书推开一个口，然后摘下电脑上的一个便签，看一眼，不过3秒，可以开始coding了。</div>
+3.能不用IDE就不要用，实在装不了，无论IDE是什么，一定要调成DOS那种黑色背景的。</p>
+
+<p>4.如果写前台界面，就不停地调试后台代码；如果写java，就在里面混编C；如果写C，就在里面混编汇编。不光要coding，还要时不时的翻出一本什么英文的书翻一翻，看不懂就看看插图，然后扔到面前假装懂了继续coding。</p>
+
+<p>5.什么看起来高端就用什么，不要管实用不实用。例如对C++：switch统统重构成多态；如果有指针，统统改成智能的；C++一定要自己写 template；数字是全部要替换成宏的名字能起多长就起多长；struct就不要出现了，如果出现，也一定要用__attriburte__修饰一下；运算都是位操作的；操作符都是重载的；网络都是并发缓冲线程池的；int只用int32_t声明的;继承不用普通的，什么多继承虚继承啊；helloworld也要写捕获异常的；后人一看代码，中间一堆关键字 extern,asm,auto,XXXXX_cast,volatile,explicit,register,template，让一般总在敲 int,if,else,for的小程序员顿时心生崇拜。</p>
+
+<p>6.注释？算了吧。只有两个路线可以选：一，变量名起得巨长无比，看代码就和读英文文章一样顺畅，根本不需要加注释。 二，代码无比晦涩，加不加注释根本无影响。</p>
+
+<p>7.千万不要用IM工具交流，千万不要问同事问题，显得自己没有水平，都是自己上网或者查书。</p>
+
+<p>8.无论是同事间开玩笑或者发生任何群体性时间，不要抬头，更不要东张西望，即使地震火灾，也一定要先提交代码再行离开。
+<h3><a name="5_4"></a>四、潇洒地离开</h3>
+1.人走，主机是千万千万不能关的，至少要跑个daily build，实在不行正在svn提交也勉强算过关。</p>
+
+<p>2.书应该已经又堆到屏幕前了，千万不要整理，明天再来推开。</p>
+
+<p>3.不强求最后一个走，但一定要所有的非程序员，什么市场啊前台啊pm啊都走光了，才可以走。</p>
+
+<p>4.走得时候一定要率性，千万不要收拾任何东西，站起来，出门，好的，就这样。</p>
+
+<p>5.如果今天一定要说句话的话，找到那个最苦逼的程序员，跟他说，你进度太慢了啊，不要老让我等你。</p>
+
+<p></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    <a href="https://plus.google.com/113645349664564078087" rel="author">Bioops</a>
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2011-11-06T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/life/'>life</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bioops.info/2011/11/%E8%BD%AC%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF/" data-via="" data-counturl="http://bioops.info/2011/11/%E8%BD%AC%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-layout="button_count" data-send="false" data-width="300" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/11/co-author-nat-biotechnol-pigeonpea-english/" title="Previous Post: [co-author] ICRISAT-led global team cracks pigeonpea genome">&laquo; [co-author] ICRISAT-led global team cracks pigeonpea genome</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/11/c-hello-world/" title="Next Post: C++ hello world">C++ hello world &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bioops.info/2011/11/%E8%BD%AC%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF/';
+        var disqus_url = 'http://bioops.info/2011/11/%E8%BD%AC%E4%BC%A0%E8%AF%B4%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E7%8C%BF/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

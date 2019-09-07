@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Mac | Bioops]]></title>
+  <link href="http://bioops.info/category/mac/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Steve Jobs (1955-2011)]]></title>
+    <link href="http://bioops.info/2011/10/steve-jobs-1955-2011/"/>
+    <updated>2011-10-05T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/10/steve-jobs-1955-2011</id>
+    <content type="html"><![CDATA[<p>Steve Jobs (1955-2011), &#8220;stay hungry, stay foolish.&#8221;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac下类似apt-get和yum的软件——macports]]></title>
+    <link href="http://bioops.info/2011/09/macports/"/>
+    <updated>2011-09-20T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/09/macports</id>
+    <content type="html"><![CDATA[<p>用惯了apt-get和yum，现在转到mac上，总想着sudo apt-get install一下安装某些软件。其实mac也有类似的软件，<a href="http://www.macports.org/" target="_blank">MacPorts</a>和<a href="http://www.finkproject.org/index.php" target="_blank">fink</a>。</p>
+
+<p>今天先介绍MacPorts。</p>
+
+<p>先安装xcode和X11，然后到<a href="http://www.macports.org/install.php" target="_blank">这里</a>下载.dmg。安装以后就可以在终端里类似apt-get那样安装软件了（包括GNU软件、开源软件等），如：
+<pre>sudo port install wget</pre>
+其他操作还有：
+<pre>
+sudo port selfupdate       #升级port
+sudo port sync             #同apt-get的update。
+port list                  #列出所有软件
+port search XXX            #查找XXX软件
+port deps XXX              #查看XXX软件的依赖
+sudo port install XXX      #安装XXX软件
+sudo port uninstall XXX    #卸载</pre>
+等。</p>
+
+<p>更多的细节可以在MacPorts官网获得。</p>
+]]></content>
+  </entry>
+  
+</feed>

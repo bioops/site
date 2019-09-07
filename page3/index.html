@@ -1,0 +1,1156 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="Normally, there is no 'intron' feature in gff3 files, but the information can be obtained by calculating the interval sizes between CDS regions. Here &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/page3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/11/intron-size-gff3-perl/">Get Intron Sizes From Gff3 Files Using Perl</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-11-28T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/11/intron-size-gff3-perl/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">Normally, there is no &#8216;intron&#8217; feature in gff3 files, but the information can be obtained by calculating the interval sizes between CDS regions. Here I wrote a simple perl script for getting intron sizes from gff3 files. The script can print out each intron sizes, one gene per line. You can customize the script based on your gff3 files or demands.</p>
+
+PS: I rank the exon positions before calculating the intron size to avoid the +/- strand issues
+
+<figure class='code'><figcaption><span>get_intron_size.pl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl</span>
+</span><span class='line'><span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+</span><span class='line'><span class="k">use</span> <span class="n">warnings</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># usage: perl get_intron_size.pl gff3_file &gt;output</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">my</span> <span class="nv">$input</span><span class="o">=</span><span class="nv">$ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class='line'><span class="k">my</span> <span class="p">(</span><span class="nv">$eachline</span><span class="p">,</span><span class="nv">@exons</span><span class="p">);</span>
+</span><span class='line'><span class="k">my</span> <span class="nv">$first</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="nb">open</span> <span class="p">(</span><span class="n">IN</span><span class="p">,</span> <span class="s">&quot;&lt;$input&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">die</span> <span class="p">(</span><span class="s">&quot;no such file!&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="nb">defined</span><span class="p">(</span><span class="nv">$eachline</span><span class="o">=</span><span class="sr">&lt;IN&gt;</span><span class="p">)){</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nv">$eachline</span><span class="o">=~</span><span class="sr">/\tmRNA\t/</span><span class="p">){</span>
+</span><span class='line'>    <span class="nv">$first</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nv">$first</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">){</span>
+</span><span class='line'>      <span class="n">print_intron</span><span class="p">(</span><span class="nv">@exons</span><span class="p">);</span>
+</span><span class='line'>      <span class="nv">@exons</span><span class="o">=</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span><span class="k">elsif</span><span class="p">(</span><span class="nv">$eachline</span><span class="o">=~</span><span class="sr">/\tCDS\t/</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">@eachline</span><span class="o">=</span><span class="nb">split</span><span class="p">(</span><span class="sr">/\t/</span><span class="p">,</span><span class="nv">$eachline</span><span class="p">);</span>
+</span><span class='line'>    <span class="nb">push</span> <span class="p">(</span><span class="nv">@exons</span><span class="p">,</span> <span class="nv">$eachline</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="nv">$eachline</span><span class="p">[</span><span class="mi">4</span><span class="p">]);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">print_intron</span><span class="p">(</span><span class="nv">@exons</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">sub </span><span class="nf">print_intron</span><span class="p">{</span>
+</span><span class='line'>  <span class="k">my</span> <span class="p">(</span><span class="nv">@exons</span><span class="p">)</span><span class="o">=</span><span class="nv">@_</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nb">scalar</span><span class="p">(</span><span class="nv">@exons</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">my</span> <span class="nv">@ordered_exons</span><span class="o">=</span><span class="nb">sort</span> <span class="p">{</span><span class="nv">$a</span><span class="sr">&lt;=&gt;</span><span class="nv">$b</span><span class="p">}</span> <span class="nv">@exons</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="k">my</span> <span class="nv">$i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="nv">$i</span><span class="o">&lt;=</span><span class="nb">scalar</span><span class="p">(</span><span class="nv">@ordered_exons</span><span class="p">)</span><span class="o">-</span><span class="mi">3</span><span class="p">;</span><span class="nv">$i</span><span class="o">=</span><span class="nv">$i</span><span class="o">+</span><span class="mi">2</span><span class="p">){</span>
+</span><span class='line'>      <span class="k">my</span> <span class="nv">$each_intron_size</span><span class="o">=</span><span class="nv">$ordered_exons</span><span class="p">[</span><span class="nv">$i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="nv">$ordered_exons</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">print</span> <span class="s">&quot;$each_intron_size\t&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="k">print</span> <span class="s">&quot;0&quot;</span><span class="p">;}</span>
+</span><span class='line'>  <span class="k">print</span> <span class="s">&quot;\n&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+An example of gff3 file from soybean genome annotation:
+<pre>##gff-version 3
+Gm01    phytozome8_0    gene    51481   61502   .       -       .       ID=Glyma01g00270;Name=Glyma01g00270
+Gm01    phytozome8_0    mRNA    51481   61502   .       -       .       ID=PAC:16242891;Name=Glyma01g00270.1;pacid=16242891;longest=1;Parent=Glyma01g00270
+Gm01    phytozome8_0    CDS     61437   61502   .       -       0       ID=PAC:16242891.CDS.1;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     61167   61305   .       -       0       ID=PAC:16242891.CDS.2;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     60722   60780   .       -       2       ID=PAC:16242891.CDS.3;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     60339   60533   .       -       0       ID=PAC:16242891.CDS.4;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     59699   59814   .       -       0       ID=PAC:16242891.CDS.5;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     59420   59547   .       -       1       ID=PAC:16242891.CDS.6;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     59176   59284   .       -       2       ID=PAC:16242891.CDS.7;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     56878   56879   .       -       1       ID=PAC:16242891.CDS.8;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     55013   55069   .       -       2       ID=PAC:16242891.CDS.9;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     54390   54500   .       -       2       ID=PAC:16242891.CDS.10;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     54218   54320   .       -       2       ID=PAC:16242891.CDS.11;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     53902   53966   .       -       1       ID=PAC:16242891.CDS.12;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     52608   52639   .       -       2       ID=PAC:16242891.CDS.13;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     52517   52571   .       -       0       ID=PAC:16242891.CDS.14;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     52362   52465   .       -       2       ID=PAC:16242891.CDS.15;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     51828   51925   .       -       0       ID=PAC:16242891.CDS.16;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    CDS     51481   51625   .       -       1       ID=PAC:16242891.CDS.17;Parent=PAC:16242891;pacid=16242891
+Gm01    phytozome8_0    gene    90693   95580   .       -       .       ID=Glyma01g00300;Name=Glyma01g00300
+Gm01    phytozome8_0    mRNA    90693   94401   .       -       .       ID=PAC:16242894;Name=Glyma01g00300.1;pacid=16242894;longest=1;Parent=Glyma01g00300
+Gm01    phytozome8_0    CDS     92970   94401   .       -       0       ID=PAC:16242894.CDS.1;Parent=PAC:16242894;pacid=16242894
+Gm01    phytozome8_0    CDS     92083   92084   .       -       2       ID=PAC:16242894.CDS.2;Parent=PAC:16242894;pacid=16242894
+Gm01    phytozome8_0    CDS     90693   90860   .       -       0       ID=PAC:16242894.CDS.3;Parent=PAC:16242894;pacid=16242894
+Gm01    phytozome8_0    mRNA    94388   95580   .       -       .       ID=PAC:16242895;Name=Glyma01g00300.2;pacid=16242895;longest=0;Parent=Glyma01g00300
+Gm01    phytozome8_0    CDS     95467   95469   .       -       0       ID=PAC:16242895.CDS.1;Parent=PAC:16242895;pacid=16242895
+Gm01    phytozome8_0    five_prime_UTR  95470   95580   .       -       .       ID=PAC:16242895.five_prime_UTR.1;Parent=PAC:16242895;pacid=16242895
+Gm01    phytozome8_0    CDS     95277   95356   .       -       0       ID=PAC:16242895.CDS.2;Parent=PAC:16242895;pacid=16242895
+Gm01    phytozome8_0    CDS     94388   94475   .       -       1       ID=PAC:16242895.CDS.3;Parent=PAC:16242895;pacid=16242895
+Gm01    phytozome8_0    gene    116300  127990  .       +       .       ID=Glyma01g00320;Name=Glyma01g00320
+Gm01    phytozome8_0    mRNA    116300  127990  .       +       .       ID=PAC:16242897;Name=Glyma01g00320.1;pacid=16242897;longest=1;Parent=Glyma01g00320
+Gm01    phytozome8_0    five_prime_UTR  116300  116467  .       +       .       ID=PAC:16242897.five_prime_UTR.1;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    CDS     116468  117077  .       +       0       ID=PAC:16242897.CDS.1;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    CDS     117156  118627  .       +       2       ID=PAC:16242897.CDS.2;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    CDS     125732  125982  .       +       0       ID=PAC:16242897.CDS.3;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    CDS     127537  127567  .       +       1       ID=PAC:16242897.CDS.4;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    three_prime_UTR 127568  127990  .       +       .       ID=PAC:16242897.three_prime_UTR.1;Parent=PAC:16242897;pacid=16242897
+Gm01    phytozome8_0    mRNA    116300  127990  .       +       .       ID=PAC:16242898;Name=Glyma01g00320.2;pacid=16242898;longest=0;Parent=Glyma01g00320
+Gm01    phytozome8_0    five_prime_UTR  116300  116467  .       +       .       ID=PAC:16242898.five_prime_UTR.1;Parent=PAC:16242898;pacid=16242898
+Gm01    phytozome8_0    CDS     116468  117077  .       +       0       ID=PAC:16242898.CDS.1;Parent=PAC:16242898;pacid=16242898
+Gm01    phytozome8_0    CDS     117156  118627  .       +       2       ID=PAC:16242898.CDS.2;Parent=PAC:16242898;pacid=16242898
+Gm01    phytozome8_0    CDS     127537  127707  .       +       0       ID=PAC:16242898.CDS.3;Parent=PAC:16242898;pacid=16242898
+Gm01    phytozome8_0    three_prime_UTR 127708  127990  .       +       .       ID=PAC:16242898.three_prime_UTR.1;Parent=PAC:16242898;pacid=16242898
+Gm01    phytozome8_0    mRNA    127557  127707  .       +       .       ID=PAC:16242899;Name=Glyma01g00320.4;pacid=16242899;longest=0;Parent=Glyma01g00320
+Gm01    phytozome8_0    CDS     127557  127707  .       +       1       ID=PAC:16242899.CDS.1;Parent=PAC:16242899;pacid=16242899
+Gm01    phytozome8_0    gene    170877  193446  .       +       .       ID=Glyma01g00380;Name=Glyma01g00380</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/11/local-ucsc-genome-browser/">Painful Experience on Building Local UCSC Genome Browser</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-11-21T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/11/local-ucsc-genome-browser/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I want to install a UCSC genome browser on my ubuntu workstation, to integrate and display the genomes , mostly plant genomes, with related annotations and NGS data, e.g. RNA-seq, methylation, SNPs, synteny, genome alignment, and etc.. There are also <a href="http://genomewiki.ucsc.edu/index.php/Other_genome_browsers" target="_blank">other genome browsers</a>, but UCSC is my favorite and can meet my needs.</p>
+
+<p>I spent a couple of workdays building from sources and adding custom genomes. The browser is based on mysql and apache which I don&#8217;t know much about, so It&#8217;s not surprising I encountered tons of problems. Thank google and other kind people who posted their experiences. I feel sorry that I cannot do the same thing as them, but at least I would like to share some resources and tips.</p>
+
+<p>1) Read the <a href="http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git;a=tree;f=src/product;hb=HEAD" target="_blank">README files</a> in the sources, and follow the instructions. (You&#8217;d better understand them.)</p>
+
+<p>2) The <a href="http://genomewiki.ucsc.edu/index.php/Main_Page" target="_blank">wiki site</a> is very helpfull.</p>
+
+<p>3) Other people&#8217;s experiences. (<a href="http://bergmanlab.smith.man.ac.uk/?p=1111" target="_blank">1</a> and <a href="http://enotacoes.wordpress.com/2009/09/03/installing-a-minimal-ucsc-mirror-in-ubuntu-jaunty-64-bits/" target="_blank">2</a>)</p>
+
+<p>4) If top bar is not showing, add the following code in apach2 conf file. (/etc/apache2/apache2.conf on my machine)
+<script src="https://gist.github.com/bioops/4946649.js"></script>
+5) Mysql loading local file issue in hgLOAD* scripts. I tried different solutions, but only one worked for me. I logged into mysql and run the loading command if the error appears.</p>
+
+<p>6) Stop mysql before rsync mysql files from UCSC server.</p>
+
+<p>7) Most mysql problems were caused by permission settings.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/11/stream-of-consciousness-creativity-research/">关于砖家叫兽和科研创新</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-11-18T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/11/stream-of-consciousness-creativity-research/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><sub>（注：这是几天前发在qq空间上的，以评论的方式，想一句写一句。在这里只做转发，保持原貌，只是少了时间戳。）</sub></p>
+
+<p>作为一个可能的下一代砖家叫兽，不得不考虑什么创新什么是科研这个早就被嚼烂的问题，旧瓶装新酒才能忽悠来名和利。</p>
+
+<p>。。。。。。</p>
+
+<p>看评论</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/08/ngs-qc-tools/">Next-generation Sequencing Quality Control Tools</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-08-21T00:00:00+00:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/08/ngs-qc-tools/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://hannonlab.cshl.edu/fastx_toolkit/" target="_blank"><strong>FASTX-Toolkit</strong></a>: The FASTX-Toolkit is a collection of command line tools for Short-Reads FASTA/ FASTQ files preprocessing, including:
+<ul>
+	<li>FASTQ-to-FASTA converter
+<div>Convert FASTQ files to FASTA files.</div></li>
+	<li>FASTQ Information
+<div>Chart Quality Statistics and Nucleotide Distribution</div></li>
+	<li>FASTQ/A Collapser
+<div>Collapsing identical sequences in a FASTQ/A file into a single sequence (while maintaining reads counts)</div></li>
+	<li>FASTQ/A Trimmer
+<div>Shortening reads in a FASTQ or FASTQ files (removing barcodes or noise).</div></li>
+	<li>FASTQ/A Renamer
+<div>Renames the sequence identifiers in FASTQ/A file.</div></li>
+	<li>FASTQ/A Clipper
+<div>Removing sequencing adapters / linkers</div></li>
+	<li>FASTQ/A Reverse-Complement
+<div>Producing the Reverse-complement of each sequence in a FASTQ/FASTA file.</div></li>
+	<li>FASTQ/A Barcode splitter
+<div>Splitting a FASTQ/FASTA files containning multiple samples</div></li>
+	<li>FASTA Formatter
+<div>changes the width of sequences line in a FASTA file</div></li>
+	<li>FASTA Nucleotide Changer
+<div>Convets FASTA sequences from/to RNA/DNA</div></li>
+	<li>FASTQ Quality Filter
+<div>Filters sequences based on quality</div></li>
+	<li>FASTQ Quality Trimmer
+<div>Trims (cuts) sequences based on quality</div></li>
+	<li>FASTQ Masker
+<div>Masks nucleotides with &#8216;N&#8217; (or other character) based on quality</div></li>
+</ul>
+<strong><a href="https://main.g2.bx.psu.edu/" target="_blank">Galaxy NGS QC and manipulation tools</a> (<a href="http://bioinformatics.oxfordjournals.org/content/26/14/1783.short" target="_blank">citation</a>)</strong>: Galaxy provides a tool suite that functions on all of the commonly known FASTQ format variants and provides a pipeline for manipulating next generation sequencing data taken from a sequencing machine all the way through the quality filtering steps.</p>
+
+<p><strong><a href="http://brainarray.mbni.med.umich.edu/brainarray/ngsqc/" target="_blank">NGSQC</a> (<a href="http://www.biomedcentral.com/1471-2164/11/S4/S7/" target="_blank">citation</a>)</strong>:The NGSQC pipeline provides a set of novel quality control measures for quickly detecting a wide variety of quality issues in deep sequencing data derived from two dimensional surfaces, regardless of the assay technology used. It also enables researchers to determine whether sequencing data related to their most interesting biological discoveries are caused by sequencing quality issues. NGSQC can help to ensure that biological conclusions, in particular those based on relatively rare sequences, are not caused by low quality sequencing.</p>
+
+<p><strong><a href="http://www.nipgr.res.in/ngsqctoolkit.html" target="_blank">NGS QC Toolkit</a> (<a href="http://www.plosone.org/article/info:doi/10.1371/journal.pone.0030619#abstract0" target="_blank">citation</a>)</strong>: A toolkit for the quality control (QC) of next generation sequencing (NGS) data. The toolkit comprises of user-friendly stand alone tools for quality control of the sequence data generated using Illumina and Roche 454 platforms with detailed results in the form of tables and graphs, and filtering of high-quality sequence data. It also includes few other tools, which are helpful in NGS data quality control and analysis.</p>
+
+<p><strong><a href="http://prinseq.sourceforge.net/" target="_blank">PRINSEQ</a> (<a href="http://bioinformatics.oxfordjournals.org/content/27/6/863" target="_blank">citation</a>)</strong>: PRINSEQ can be used to filter, reformat, or trim your genomic and metagenomic sequence data. It generates summary statistics of your sequences in graphical and tabular format. It is easily configurable and provides a user-friendly interface.</p>
+
+<p><strong><a href="http://solexaqa.sourceforge.net/" target="_blank">SolexaQA</a> (<a href="http://www.biomedcentral.com/1471-2105/11/485" target="_blank">citation</a>)</strong>: SolexaQA is a Perl-based software package that calculates quality statistics and creates visual representations of data quality from FASTQ files generated by Illumina second-generation sequencing technology (“Solexa”).</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/07/transfering-to-github/">Transfering to Github</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-26T00:00:00+00:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/07/transfering-to-github/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>受<a href="http://kyle.xlau.org/posts/blogging-like-a-hacker.html">《像黑客一样写博客》</a>的启发和<a href="http://www.soimort.org/tech-blog/2011/11/19/introduction-to-jekyll_zh.html">《像黑客一样写博客——Jekyll入门》</a>的技术指导，打算把<a href="http://bioops.info/">bioops</a>迁移到<a href="http://github.com/">github</a>上。不怎么懂github和jekyll。搞了半天，基本上follow <a href="http://jekyllbootstrap.com/">jekyllbootstrap</a>上的文档。模版用<a href="http://themes.jekyllbootstrap.com/preview/mark-reid/">make-reid</a>；代码高亮用<a href="https://code.google.com/p/google-code-prettify/">google-code-prettify</a>；参照<a href="http://wowubuntu.com/markdown/">Markdown语法说明</a>开始写博客。暂不打算整站迁移，先练练手。</p>
+
+<p><strong>补充：</strong>github+jekyll太nerdy了。现在的处理办法是两个都保留，但github只发原创，欢迎<a href="http://baihezimu.github.com/" target="_blank">访问</a>（<a href="http://baihezimu.github.com/atom.xml" target="_blank">RSS</a>）。</p>
+
+<p>大部分时间在折腾这个代码高亮，走了很多弯路，现将最后简易可行的方法记录如下：
+<ol>
+	<li>在<code>/_includes/themes/mark-reid/default.html</code>中的<code>&lt;/head&gt;</code>前加入</li>
+</ol><script src="https://gist.github.com/bioops/4946613.js"></script>
+	<li>在<code>&lt;body&gt;</code> tag中加入<code>onload="prettyPrint()"</code></li>
+	<li>在代码前后加<code>&lt;pre class="prettyprint"&gt;...&lt;/pre&gt;</code>标识高亮</li>
+	<li>貌似对javascript代码无效，总是出错。所以用<a href="https://gist.github.com">gist</a>代替（如上所示）。</li>
+
+
+<p>另外，按照<a href="https://github.com/mojombo/jekyll/wiki/Blog-Migrations">jekyll wiki</a>上迁移wordpress文档的时候在安装mysqlplus会报错
+<pre>ERROR:  Error installing mysqlplus:
+    ERROR: Failed to build gem native extension.
+
+        /usr/bin/ruby1.8 extconf.rb
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lm... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lz... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lsocket... no
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lnsl... yes
+checking for mysql_query() in -lmysqlclient... no
+checking for main() in -lmygcc... no
+checking for mysql_query() in -lmysqlclient... no
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file for more
+details.  You may need configuration options.
+
+Provided configuration options:
+    --with-opt-dir
+    --without-opt-dir
+    --with-opt-include
+    --without-opt-include=${opt-dir}/include
+    --with-opt-lib
+    --without-opt-lib=${opt-dir}/lib
+    --with-make-prog
+    --without-make-prog
+    --srcdir=.
+    --curdir
+    --ruby=/usr/bin/ruby1.8
+    --with-mysql-config
+    --without-mysql-config
+    --with-mysql-dir
+    --without-mysql-dir
+    --with-mysql-include
+    --without-mysql-include=${mysql-dir}/include
+    --with-mysql-lib
+    --without-mysql-lib=${mysql-dir}/lib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+    --with-mlib
+    --without-mlib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+    --with-zlib
+    --without-zlib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+    --with-socketlib
+    --without-socketlib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+    --with-nsllib
+    --without-nsllib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+    --with-mygcclib
+    --without-mygcclib
+    --with-mysqlclientlib
+    --without-mysqlclientlib
+
+Gem files will remain installed in /var/lib/gems/1.8/gems/mysqlplus-0.1.2 for inspection.
+Results logged to /var/lib/gems/1.8/gems/mysqlplus-0.1.2/ext/gem_make.out</pre>
+
+<p>解决办法参照<a href="https://github.com/lorensr/mysqlplus/tree/">https://github.com/lorensr/mysqlplus/tree/</a>及自己琢磨：
+<pre>sudo apt-get install libmysql++-dev
+sudo gem install hpricot</pre>
+转换成功后生成的是html文件，并且换行符显示的是^M（dos下的回车符），为了让转换后的文章正确分段，可先将html后缀变成md，然后批量去掉^M
+<pre>rename -v s/\.html/\.md/ *
+dos2unix *.md</pre></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/07/paper-a-whole-cell-computational-model-predicts-phenotype-from-genotype/">[Paper] a Whole-Cell Computational Model Predicts Phenotype From Genotype</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-24T00:00:00+00:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/07/paper-a-whole-cell-computational-model-predicts-phenotype-from-genotype/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.cell.com/abstract/S0092-8674%2812%2900776-3" target="_blank">http://www.cell.com/abstract/S0092-8674%2812%2900776-3</a>
+<h2>Highlights</h2>
+<ul>
+	<li>An entire organism is modeled in terms of its molecular components</li>
+	<li>Complex phenotypes can be modeled by integrating cell processes into a single model</li>
+	<li>Unobserved cellular behaviors are predicted by model of <em>M. genitalium</em></li>
+	<li>New biological processes and parameters are predicted by model of <em>M</em>. <em>genitalium</em></li>
+</ul>
+<h2>Summary</h2>
+Understanding how complex phenotypes arise from individual molecules and their interactions is a primary challenge in biology that computational approaches are poised to tackle. We report a whole-cell computational model of the life cycle of the human pathogen <em>Mycoplasma genitalium</em> that includes all of its molecular components and their interactions. An integrative approach to modeling that combines diverse mathematics enabled the simultaneous inclusion of fundamentally different cellular processes and experimental measurements. Our whole-cell model accounts for all annotated gene functions and was validated against a broad range of data. The model provides insights into many previously unobserved cellular behaviors, including in vivo rates of protein-DNA association and an inverse relationship between the durations of DNA replication initiation and replication. In addition, experimental analysis directed by model predictions identified previously undetected kinetic parameters and biological functions. We conclude that comprehensive whole-cell models can be used to facilitate biological discovery.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/07/tools-for-cross-species-biological-network-comparison/">Tools for Cross-species Biological Network Comparison</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-23T00:00:00+00:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/07/tools-for-cross-species-biological-network-comparison/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>GraphAlignment</strong>: GraphAlignment is an extension package for the R programming environment which provides functions for finding an alignment between two networks based on link and node similarity scores. This package implements the Bayesian scoring methods and the alignment algorithm introduced in the paper J. Berg and M. Lässig, <a href="http://www.pnas.org/cgi/content/full/103/29/10967">&#8220;Cross-species analysis of biological networks by Bayesian alignment&#8221;</a>, PNAS 103 (29), 10967-10972 (2006). Documentation and installation guide are available <a href="http://www.thp.uni-koeln.de/~berg/GraphAlignment/" target="_blank">here</a>.</p>
+
+<p><strong>PathBLAST</strong>: PathBLAST is a network alignment and search tool for comparing protein interaction networks across species to identify protein pathways and complexes that have been conserved by evolution. PathBLAST is now available at <a href="http://www.pathblast.org/" target="_blank">http://www.pathblast.org/</a> as a web-based query. (<a href="http://www.pathblast.org/docs/publications.html" target="_blank">publications</a>)</p>
+
+<p><strong>IsoRankN</strong>: IsoRankN (IsoRank-Nibble) is a global multiple-network alignment tool based on spectral clustering on the induced graph of pairwise alignment scores. IsoRankN outperforms existing algorithms for global network alignment in coverage and consistency on multiple alignments of the five available eukaryotic networks. Being based on spectral methods, IsoRankN is both error-tolerant and computationally efficient. More information is available <a href="http://groups.csail.mit.edu/cb/mna/" target="_blank">here</a>.</p>
+
+<p><strong>NetworkBLAST &amp; NetworkBLAST-M</strong>: NetworkBLAST analyzes protein interaction networks across species to infer protein complexes that are conserved in evolution.<br />
+For comparing multiple networks use <a href="http://www.cs.tau.ac.il/%7Ebnet/License-nbm.htm">Networkblast-M</a>; for an executable of NetworkBLAST please refer to <a href="http://www.cs.tau.ac.il/%7Ebnet/License.htm">here</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/07/revolution-r-enterprise/">Revolution R Enterprise</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-07-17T00:00:00+00:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/07/revolution-r-enterprise/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.revolutionanalytics.com/products/enterprise-performance.php" target="_blank">http://www.revolutionanalytics.com/products/enterprise-performance.php</a></p>
+
+<p><a href="http://www.revolutionanalytics.com/products/revolution-r.php" target="_blank">DOWNLOAD</a>
+<h2><strong>NEED MORE SPEED?</strong></h2>
+Benchmarks show Revolution R Enterprise is significantly faster than open source R for many real-world computations. Linked with high-performance multi-threaded math libraries, Revolution R Enterprise automatically reduces computation times when using multi-core and multi-processor hardware.
+<div /></p>
+
+<p>Quick Links:
+<ul>
+	<li><a href="http://www.revolutionanalytics.com/why-revolution-r/benchmarks.php">Revolutionary Performance — Speed Up Your Performance with Revolution R!</a></li>
+	<li><a href="http://info.revolutionanalytics.com/bigdata.html">Revolution R Enterprise &#8216;Big Data&#8217; Benchmarks Whitepaper</a></li>
+</ul>
+
+<h2>Take immediate advantage of:</h2>
+<ul>
+	<li>Significant speed enhancements over open source R.</li>
+	<li>64-Bit Scalability: Analyze larger data sets on 64-bit Windows and Linux systems.</li>
+	<li>Parallel Processing Power: Reduce computation time for simulations, optimizations, segmented data analysis and more.</li>
+</ul>
+<h2>Revolution R 5.0 Performance Benchmarks</h2>
+The benchmarks on this page demonstrate the performance of Revolution R 6.0 compared to the base version of R-2.14.2, available from<a href="http://www.r-project.org/"> the R Project</a>. The test system was an Intel® Xeon® Processor X3440 (2.53 GHz) with 8GB System RAM running 32-bit Windows Server 2008 R2 SP1.</p>
+
+<p>One of the differences between Revolution R products and base R is the ability to leverage multithreading and processor capabilities on all x86 platforms to increase performance. Thus, the more cores available to Revolution R, the higher your performance for many operations.</p>
+
+<p>Revolution Analytics has created these tests to simulate common real-world computations.
+<table width="100%" border="0" cellspacing="1" cellpadding="5">
+<tbody>
+<tr>
+<td bgcolor="#E9E9E9"></td>
+<td bgcolor="#CCDDFF"><strong>Base R 2.14.2</strong></td>
+<td bgcolor="#FFD9B3"><strong>Revolution R (1-core)</strong></td>
+<td bgcolor="#FFAC75"><strong>Revolution R (4-core)</strong></td>
+<td bgcolor="#E9E9E9"><strong>Speedup (4 core)</strong></td>
+</tr>
+<tr>
+<td bgcolor="#DDDDDD">Matrix Multiply</td>
+<td bgcolor="#B9CFFF">175.4 sec</td>
+<td bgcolor="#FFC58A">28.9 sec</td>
+<td bgcolor="#FF9751">9.3 sec</td>
+<td bgcolor="#DDDDDD">17.9x</td>
+</tr>
+<tr>
+<td bgcolor="#DDDDDD">Cholesky Factorization</td>
+<td bgcolor="#B9CFFF">25.5 sec</td>
+<td bgcolor="#FFC58A">4.6 sec</td>
+<td bgcolor="#FF9751">1.3 sec</td>
+<td bgcolor="#DDDDDD">18.7x</td>
+</tr>
+<tr>
+<td bgcolor="#DDDDDD">Singular Value Decomposition</td>
+<td bgcolor="#B9CFFF">58.7 sec</td>
+<td bgcolor="#FFC58A">16.8 sec</td>
+<td bgcolor="#FF9751">7.2 sec</td>
+<td bgcolor="#DDDDDD">7.1x</td>
+</tr>
+<tr>
+<td bgcolor="#DDDDDD">Principal Components Analysis</td>
+<td bgcolor="#B9CFFF">228.4 sec</td>
+<td bgcolor="#FFC58A">50.8 sec</td>
+<td bgcolor="#FF9751">19.4 sec</td>
+<td bgcolor="#DDDDDD">10.8x</td>
+</tr>
+<tr>
+<td bgcolor="#DDDDDD">Linear Discriminant Analysis</td>
+<td bgcolor="#B9CFFF">189.1 sec</td>
+<td bgcolor="#FFC58A">73.7 sec</td>
+<td bgcolor="#FF9751">52.3 sec</td>
+<td bgcolor="#DDDDDD">2.6x</td>
+</tr>
+</tbody>
+</table>
+Speedup = Slower time / Faster Time - 1</p>
+
+<p>More information:
+<ul>
+	<li><a href="http://www.revolutionanalytics.com/why-revolution-r/benchmarks.php">Additional benchmarks and details</a></li>
+</ul></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/06/weibo-archive-05062012-06212012/">微博存档05062012-06212012</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-06-22T00:00:00+00:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/06/weibo-archive-05062012-06212012/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Thu Jun 21 03:25:30 +0800 2012<br />
+Nobel fight over African HIV centre  http://t.cn/zWw5m7q</p>
+
+<p>Thu Jun 21 03:25:05 +0800 2012<br />
+Genomics: The breast cancer landscape  http://t.cn/zWw5nuU</p>
+
+<p>Thu Jun 21 03:24:06 +0800 2012<br />
+The landscape of cancer genes and mutational processes in breast cancer  http://t.cn/zWw5n65</p>
+
+<p>Thu Jun 21 03:22:23 +0800 2012<br />
+The genomic and transcriptomic architecture of 2,000 breast tumours reveals novel subgroups  http://t.cn/zWw5ECT</p>
+
+<p>Thu Jun 21 03:22:12 +0800 2012<br />
+Sequence analysis of mutations and translocations across breast cancer subtypes  http://t.cn/zWw5EKy</p>
+
+<p>Wed Jun 20 08:17:12 +0800 2012<br />
+An Update on Using Pacific Bio Sequences for Genome Assembly  Homologus  http://t.cn/zWZHLvc</p>
+
+<p>Wed Jun 20 04:51:59 +0800 2012<br />
+法国故意散步，想打西班牙？,又是法国对西班牙……一说起这个我就肝颤，2000的点球，2006的被逆转——除了02年冤死在棒子手上，这两场是人生看球最痛经历，没有之一……被最痛恨球队淘汰最喜欢球队的事情，不想再发生第三次了，板鸭会给力么？说实话，心里没底。</p>
+
+<p>Wed Jun 20 04:48:27 +0800 2012<br />
+皇马十一人全部进入淘汰赛。不过法国遭遇西班牙，全部十一人不可能同时出现在四强了。</p>
+
+<p>Wed Jun 20 04:40:46 +0800 2012<br />
+皇马十一人全部进入淘汰赛。不过本泽马走不远</p>
+
+<p>Wed Jun 20 01:40:48 +0800 2012<br />
+转发微博,抱歉，此微博不适宜对外公开。如需帮助，请联系客服。http://t.cn/z0D6ZaQ</p>
+
+<p>Tue Jun 19 23:02:12 +0800 2012<br />
+@ewanbirney For genomics lovers: Biology of Genomes 2013 is going from Tue May 7th to Sat May 11th CSHL. Save the date + your best genomics abstracts :)</p>
+
+<p>Tue Jun 19 20:50:09 +0800 2012<br />
+Cancer genomics: Indicators for drug response from sequencing  <a href="http://t.cn/zWZoWaU">http://t.cn/zWZoWaU</a></p>
+
+<p>Tue Jun 19 08:05:15 +0800 2012<br />
+complete list http://t.cn/zWzQ2EJ,国际超级电脑组织公布最新全球超级电脑500强名单，IBM最新研制的超级计算机“红杉”为美国夺得全球最快超级计算机宝座，其持续运算速度达每秒16324万亿次，峰值运算速度高达每秒20132万亿次，令其他计算机望尘莫及。中国超级电脑排名第五。http://t.cn/zWzDcuU</p>
+
+<p>Tue Jun 19 06:55:41 +0800 2012<br />
+Using Galaxy to Perform Large‐Scale Interactive Data Analyses - Current Protocols  http://t.cn/zWZv4bD</p>
+
+<p>Tue Jun 19 06:55:38 +0800 2012<br />
+Using Cloud Computing Infrastructure with CloudBioLinux, CloudMan, and Galaxy - Current Protocols  http://t.cn/zWZv4LY</p>
+
+<p>Fri Jun 15 02:50:02 +0800 2012<br />
+托雷斯！</p>
+
+<p>Thu Jun 14 23:02:21 +0800 2012<br />
+实例：Contrail - A de Bruijn Genome Assembler that uses Hadoop http://t.cn/zWhaImo,NOSQL Databases for Bioinformatics  http://t.cn/zWhaZtR</p>
+
+<p>Thu Jun 14 22:55:39 +0800 2012<br />
+NOSQL Databases for Bioinformatics  http://t.cn/zWhaZtR</p>
+
+<p>Thu Jun 14 22:33:35 +0800 2012<br />
+算法上的东西还是拼不过google,据媒体报道，3D地图推出后，不少开发者想要尝鲜进行试用，不料却发现苹果地图犯下了一些明显的错误。比如说，该地图应用因位置标记错误“引导”车主跳桥。而且，在苹果的3D地图中，亚洲和澳洲居然是被北冰洋隔开！辽阔的非洲大陆居然成了“北太平洋”，格陵兰岛成了印度洋！  http://t.cn/zWPrSGl</p>
+
+<p>Thu Jun 14 20:08:50 +0800 2012<br />
+//@基因组:[good]@土摩托: 吴孔明团队花了20多年的时间，研究了150万平方公里的农田，这才得出了上述结论。这篇文章刚刚发表在最新一期《Nature》上&#8230;。http://t.cn/zWhwlTv 补充一句：看到有些人质疑这个结论，可你难道没想过，你花一秒钟想出来的质疑，人家当然早就想到了。你太自信了。,《卫报》报道了中国农科院植保所所长吴孔明的最新研究，证明转基因Bt抗虫棉不但能杀死害虫，减少农药的使用，还能保护环境，让其他不能被Bt杀死的害虫的天敌们得以繁衍。http://t.cn/zWhwvf2 不少人指责我为孟山都说话，我的回答是：孟山都是一家环保企业，我为什么不能为它说话？</p>
+
+<p>Wed Jun 13 04:39:52 +0800 2012<br />
+谈“历史”没用，拳头才是硬货,【英国阿根廷争议岛屿将公投决定主权归属】福克兰群岛(阿根廷称马尔维纳斯群岛)政府12日宣布，该岛居民将在明年举行全民公投，以决定其主权归属，从而结束英、阿两国在其主权归属问题上的争议。英国首相卡梅伦称，英国政府将支持公投的结果，支持和捍卫岛民的选择。http://t.cn/zWPqoT7</p>
+
+<p>Tue Jun 12 04:06:55 +0800 2012<br />
+舍瓦牛逼！</p>
+
+<p>Tue Jun 12 03:57:56 +0800 2012<br />
+瑞典胜之不武</p>
+
+<p>Tue Jun 12 00:48:14 +0800 2012<br />
+英格兰难道就一直这样让法国放开攻么？</p>
+
+<p>Mon Jun 11 23:23:27 +0800 2012<br />
+Google 梦回大唐 奋力一战 | 谷奥——探寻谷歌的奥秘  http://t.cn/zWv9ePp  原文：http://t.cn/zWvipNo</p>
+
+<p>Mon Jun 11 21:20:46 +0800 2012<br />
+转发微博,《C++程序员的阅读清单》多读一些优秀的书籍，对于开发者稳固编程基础、提高编程技能有很大帮助。但是，大多时候，初学者不知道应该读什么书入门，有一定基础的开发者不知道如何进阶。本文总结了一个C++优秀书籍清单，希望能够为你带来一定的帮助……http://t.cn/zWvwYZl</p>
+
+<p>Sat Jun 09 01:28:10 +0800 2012<br />
+下半场风云突变</p>
+
+<p>Fri Jun 08 23:41:59 +0800 2012<br />
+ESPN终于转播足球了。可以在电视上看了！,2012年欧洲杯完全赛程，准备好过这个夏天……喜欢的朋友收藏吧~</p>
+
+<p>Fri Jun 08 23:03:03 +0800 2012<br />
+牛逼的flame病毒 http://t.cn/zOey5jv http://t.cn/zOFsvIv http://t.cn/zOFIcg1 http://t.cn/zOFjuvl</p>
+
+<p>Fri Jun 08 03:17:03 +0800 2012<br />
+Deciphering the plant splicing code  http://t.cn/zOFaRMT</p>
+
+<p>Fri Jun 08 01:56:26 +0800 2012<br />
+Lafayette is #2! America&#8217;s Brainiest Cities http://t.cn/zOFXgUP</p>
+
+<p>Thu Jun 07 20:37:40 +0800 2012<br />
+若发现有某种严重疾病的可能性,生还是不生? Sequencing the Unborn http://t.cn/zOFceD6</p>
+
+<p>Wed Jun 06 21:13:19 +0800 2012<br />
+Nothing worth doing is easy</p>
+
+<p>Wed Jun 06 10:59:09 +0800 2012<br />
+妙,【美不反对中国发布美城市空气质量数据 称未干涉中国内政】针对中国环保部指责外国使馆发布中国空气质量数据不合规定，美国国务院回应称，美国发布的数据只是为在中国的美国公民提供信息，没有干涉中国内政，因此不会停止发布。如果中国也发布美国城市空气质量数据，美国不反对。http://t.cn/zOkJ3lU</p>
+
+<p>Wed Jun 06 01:08:49 +0800 2012<br />
+奇文共赏,上月20日，沈阳皇姑区一名男子以切菜刀劫持路过女子，荷枪实弹的警察与男子对峙，因恐伤害人质不敢轻动。歹徒占据上风押着人质转移，发现一炸鸡柳的小摊碍事，他一脚踢飞。这下可惹祸了，愤怒的小贩手持大勺冲上去，当场将歹徒制服。[哈哈][哈哈]http://t.cn/zO3GYSh</p>
+
+<p>Tue Jun 05 08:36:25 +0800 2012<br />
+今天沪指跌的有水平！</p>
+
+<p>Mon Jun 04 23:59:03 +0800 2012<br />
+真后悔看了那个视频。,【加拿大杀害中国留学生嫌犯在德国被捕】加拿大“残肢邮寄案”嫌犯、29岁色情男星马尼奥塔今晚在德国柏林一家网吧被捕。马尼奥塔涉嫌将在蒙特利尔留学的33岁武汉学生林俊杀害并猥亵，整个过程被录像并上传网络，部分尸块还被邮寄至加拿大两大政党总部。http://t.cn/zODTgoi</p>
+
+<p>Mon Jun 04 04:34:46 +0800 2012<br />
+西班牙要变第二个法国么？,我开始担心今天的剧本要成＂吊丝的逆袭＂了。。。</p>
+
+<p>Sat Jun 02 00:39:41 +0800 2012<br />
+RIP,【视频：客车司机被飞来铁块击中忍痛停车救乘客】5月29日，浙江杭州长运快客公司有一辆客车从无锡返回杭州时候，在途中遭到对向车道突然飞来铁块的袭击，当事司机吴斌被迎面击中，但他并没有让客车失控而是忍痛将车停好确保车上24名乘客安全，而他自己因肝脏多处破裂献出生命。http://t.cn/zOeqEcO</p>
+
+<p>Fri Jun 01 21:58:21 +0800 2012<br />
+Next Steps in the Sequence: The Implications of Whole Genome Sequencing for Health in the UK (PHG Foundation, Cambridge, 2011)http://t.cn/zOeURjF @BGI华大基因 @王俊华大基因</p>
+
+<p>Fri Jun 01 21:55:40 +0800 2012<br />
+给全基因组测序浇点冷水，清醒一下。[Science: Policy Forum] Medicine: Whole-Genome Sequencing: The New Standard of Care?  http://t.cn/zOeUjL7</p>
+
+<p>Fri Jun 01 20:30:35 +0800 2012<br />
+转发微博。,抱歉，此微博不适宜对外公开。如需帮助，请联系客服。http://t.cn/z0D6ZaQ</p>
+
+<p>Fri Jun 01 12:15:07 +0800 2012<br />
+转发微博。,【BGI求贤令】加入我们，与华大共享未来!华大基因诚聘“药物基因组高级项目负责人”，请投递简历至：recruiting@genomics.org.cn 更多职位信息，敬请关注：http://t.cn/zOCnFgC [lb嘿嘿]</p>
+
+<p>Thu May 31 21:32:50 +0800 2012<br />
+RIP,【红学家周汝昌逝世,享年95岁】5月31日凌晨，著名红学家周汝昌先生于家中去世，终年95岁。周汝昌先生留有遗愿，要求子女不开追悼会，不设灵堂，让他安安静静地走。周汝昌一生有60多部学术著作问世，代表作《红楼梦新证》是近代红学研究的奠基之作。http://t.cn/zOg0YcA</p>
+
+<p>Thu May 31 02:15:33 +0800 2012<br />
+托雷斯后仰头球！</p>
+
+<p>Thu May 31 02:02:22 +0800 2012<br />
+文章配图都是怎么画出来的？,The tomato genome sequence provides insights into fleshy fruit evolution  http://t.cn/zOg5b1Y</p>
+
+<p>Thu May 31 01:53:56 +0800 2012<br />
+The tomato genome sequence provides insights into fleshy fruit evolution  http://t.cn/zOg5b1Y</p>
+
+<p>Wed May 30 22:38:51 +0800 2012<br />
+http://t.cn/zOgvmmt</p>
+
+<p>Wed May 30 09:49:39 +0800 2012<br />
+转发微博,【中国青年报：可怜之刃刺向可怜之胸】贵州德江县执法人员拆除违建被农妇刺死，记者调查发现该农妇今年27岁，随丈夫在外打工10年，在丈夫去年去世后回老家，花掉近10万积蓄修建两间平房，但因属违建被拆除。村民称她没有丈夫依靠，还要抚养刚9岁的女儿，房子没了，被逼入了绝境。http://t.cn/zOdm5S5</p>
+
+<p>Tue May 29 04:31:57 +0800 2012<br />
+转发微博,【阿扎尔宣布今夏加盟切尔西】http://t.cn/zOdVNC9 北京时间5月29日凌晨，法甲最佳球员比利时国脚阿扎尔个人推特正式宣布今夏将加盟新科欧冠冠军切尔西，这场旷日持久且引众豪门加入的转会大戏，随着阿扎尔的亲自宣布落下帷幕，法甲小天王将于今夏正式转战英超。</p>
+
+<p>Tue May 29 04:29:16 +0800 2012<br />
+LOL | How Not To Be A Bioinformatician  http://t.cn/zOdVnlW</p>
+
+<p>Tue May 29 00:55:40 +0800 2012<br />
+转发微博,等爸有钱了给你办美国户口&#8212;&#8212;&#8212;转自北京大学法学博士，中国政法大学法学民商经济法学院教师翟继光。亲爱的女儿：爸爸是个无能的人。很多事情都办不好，请你原谅。爸爸把你带到这个(详见长微博)</p>
+
+<p>Sat May 26 01:28:57 +0800 2012<br />
+BBC News - Station grabs SpaceX Dragon ship  http://t.cn/zOBSe7P</p>
+
+<p>Sat May 26 00:15:26 +0800 2012<br />
+Revolution Analytics - Commercial Software &amp; Support for the R Statistics Language  http://t.cn/hbqgZ1</p>
+
+<p>Fri May 25 07:27:52 +0800 2012<br />
+//@BGI华大基因: [围观]看测序仪器市场风云变幻[微风][浮云],#ICG-Europe# NGS &amp; 3GS comparison by Sanger. Ion Torrent performs better, Oxford Nanopore still promising [围观] @BGI华大基因</p>
+
+<p>Fri May 25 02:14:03 +0800 2012<br />
+a data-driven approach [Perspective] Cancer: Systems Biology, Metabolomics, and Cancer Metabolism  http://t.cn/zOB4tJj</p>
+
+<p>Fri May 25 02:11:11 +0800 2012<br />
+测序新趋势。[News Focus] The Biology of Genomes: Single-Cell Sequencing Tackles Basic and Biomedical Questions  http://t.cn/zOB4q7R</p>
+
+<p>Fri May 25 02:06:09 +0800 2012<br />
+牙齿变坏，是因为吃的太好了。[News Focus] Evolutionary Biology: An Evolutionary Theory of Dentistry  http://t.cn/zOB4Up1</p>
+
+<p>Fri May 25 00:43:02 +0800 2012<br />
+The Emergence of lncRNA  http://t.cn/zOBUh4S</p>
+
+<p>Thu May 24 21:35:41 +0800 2012<br />
+LOL,4月30日，有位朋友@ 我，大意说：“要是国内 IT 公司能像Google等奖励漏洞提交人，国内产品会更加牛叉”。今日很高兴在微博上看到有公司这样表姿态了，于是有白帽子跟进。据@Joey_Yin 微博显示，他提交了一个 XSS 漏洞，结果对方的奖励规则变了，XSS 漏洞不在奖励范围之内了。[衰] 请见大图。</p>
+
+<p>Thu May 24 10:51:59 +0800 2012<br />
+能完成这些就已经很＂出格＂了。几个人能做到。换一种角度看，这是一种幸福,#非诚勿扰语录#我相信每个人身边都会有这样的人：在学校念书的时候成绩很好、家庭环境很好、上了一好的中学又考了一好的大学，念了一个好的专业，毕业之后通过自己的努力或者家里关系，去了一个好单位，从来不做那些出格的事，如果不出意外的话，59岁就会退下来。你觉得这叫靠谱的人吗？——@孟非</p>
+
+<p>Thu May 24 10:03:39 +0800 2012<br />
+Amino acid coevolution induces an evolutionary Stokes shift http://t.cn/zO1QvRs</p>
+
+<p>Thu May 24 09:51:27 +0800 2012<br />
+google reader几天不看就堆积成山了。</p>
+
+<p>Thu May 24 08:32:58 +0800 2012<br />
+一个困扰众多大牛的问题，谁能给个准确的模型？Humans riddled with rare genetic variants http://t.cn/zO1Yce8</p>
+
+<p>Thu May 24 08:17:54 +0800 2012<br />
+2012 Next-Gen Sequencing Conferences http://t.cn/zO1jsMz</p>
+
+<p>Thu May 24 08:05:45 +0800 2012<br />
+黑色素瘤基因组http://t.cn/zO1jnHc</p>
+
+<p>Tue May 22 08:36:13 +0800 2012<br />
+也许是因为作者是EBI的吧，竟然能发到nature上。http://t.cn/zO3iRDg</p>
+
+<p>Sun May 20 02:05:01 +0800 2012<br />
+NYU的那个fellowship是临时给的还是有个固定名字来源的？连飞机票都报。</p>
+
+<p>Sat May 19 00:07:46 +0800 2012<br />
+转发微博,家宴，证明一下上得厅堂下得厨房，杀得了木马斗得了流氓。  @薛蛮子 ，等你那量@韩寒 身高的照片。我家墙上刻着韩少的印记，我证明他还不够精确，171.5。</p>
+
+<p>Fri May 18 21:31:02 +0800 2012<br />
+Cell: The Life History of 21 Breast Cancershttp://t.cn/zOmSHZ3 Mutational Processes Molding the Genomes of 21 Breast Cancers http://t.cn/zOmSHZu</p>
+
+<p>Fri May 18 09:00:12 +0800 2012<br />
+转发微博。,《X，你想怎样》——《赛德克.巴莱》，《复仇者联盟》⋯⋯几个电影的影评。博客链接http://t.cn/zOm6rkB</p>
+
+<p>Fri May 18 04:16:22 +0800 2012<br />
+占前排 ——看到韩寒的博文《影评一篇》有感而发的评论。http://t.cn/zOm6rkB</p>
+
+<p>Wed May 16 08:16:33 +0800 2012<br />
+转发微博,哈佛医学院遗传系的厕所标志很有特色[嘻嘻]。</p>
+
+<p>Wed May 16 06:39:32 +0800 2012<br />
+好文！   陈平原：中国大学唯哈佛剑桥马首是瞻 误尽苍生_资讯频道_凤凰网  http://t.cn/zOnXLaH</p>
+
+<p>Wed May 16 06:25:06 +0800 2012<br />
+转发微博,【坐在路边鼓掌的人】接到了女儿班主任的电话。首先得知，女儿的成绩，仍是中等。不过他说，有一件奇怪的事，他从教30年，第一次遇见。语文试卷上有一道附加题：你最欣赏班上的哪位同学，请说出理由。 除女儿之外，全班同学，竟然都写上了女儿的名字&#8230; 值得天下父母认真读一读的好文！ by@周伯通招聘</p>
+
+<p>Tue May 15 22:31:38 +0800 2012<br />
+转发微博,针对方舟子同学对韩寒同学不断挖墙角的行为。本人作出了一个重大决定。我决定与方舟子这位秃顶老男人结婚。用我的后半身来守住他。并在每晚面对方舟子的时候，把他想象成欧美高富帅年轻男。</p>
+
+<p>Tue May 15 21:20:39 +0800 2012<br />
+我手贱，点了恒大的比赛。</p>
+
+<p>Tue May 15 01:08:41 +0800 2012<br />
+Durbin写的，次品概率不大,我认为最好的一本生物信息书。</p>
+
+<p>Mon May 14 23:31:02 +0800 2012<br />
+有点像基因水平上的趋同进化。Parallel domestication of the Shattering1 genes in cereals : Nature Genetics : Nature Publishing Group  http://t.cn/zOEBl01</p>
+
+<p>Mon May 14 20:42:03 +0800 2012<br />
+BGI和UGA同时发布谷子基因组。对比一下！http://t.cn/zOEoM9Y http://t.cn/zOEn01Y @BGI华大基因</p>
+
+<p>Mon May 14 20:28:04 +0800 2012<br />
+谷子基因组，通讯作者是我的committee member。Reference genome sequence of the model plant Setaria : Nature Biotechnology : Nature Publishing Group  http://t.cn/zOEnH84</p>
+
+<p>Mon May 14 03:07:56 +0800 2012<br />
+解说真不错！ 一半狂欢一半落寞 曼城曼联争冠诠释足球魅力|英超联赛聚焦|英超_新浪视频  http://t.cn/zOEilxo</p>
+
+<p>Sun May 13 05:37:19 +0800 2012<br />
+转发微博,今天是母亲节，我终于完成了这幅创作了两年多的油画「母亲」。记得1979年，我考上大学时，曾向自己的母亲发誓：＂从今天开始，您就不要怕了，我一定要让您过上衣食无忧的生活，绝不能让您下半辈子再在街头流浪＂。应该说，我做到了。但今天我们敢对那些被冤的母亲说：我们一定要为您伸张正义吗？！</p>
+
+<p>Wed May 09 18:46:38 +0800 2012<br />
+转发微博。,2012年欧洲杯完全赛程，准备好过这个夏天……喜欢的朋友收藏吧~</p>
+
+<p>Wed May 09 16:15:25 +0800 2012<br />
+Nature: 染色体镶嵌性、年龄和癌症之间的关系 http://t.cn/zO8CACs</p>
+
+<p>Wed May 09 16:15:25 +0800 2012<br />
+String-graph based next-generation sequencing assemblers http://t.cn/zO8CANA</p>
+
+<p>Wed May 09 03:49:52 +0800 2012<br />
+卡罗尔也太贱了！</p>
+
+<p>Wed May 09 00:03:37 +0800 2012<br />
+String-graph based next-generation sequencing assembler | Bioops  http://t.cn/zO8cNFN</p>
+
+<p>Tue May 08 22:48:41 +0800 2012<br />
+Nature: 染色体镶嵌性、年龄和癌症之间的关系 | Bioops  http://t.cn/zO85uRu  评论：人体细胞复制不可靠。年老的人更容易得癌症。50岁是个坎儿。生孩子要趁早。</p>
+
+<p>Mon May 07 12:52:02 +0800 2012<br />
+难得的是来自媒体的微博。我转成图片，以防河蟹。</p>
+
+<p>Mon May 07 12:33:53 +0800 2012<br />
+恭喜！,是地，你们都猜对了！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/05/string-graph-based-next-generation-sequencing-assembler/">String-graph Based Next-generation Sequencing Assemblers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-05-08T00:00:00+00:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/05/string-graph-based-next-generation-sequencing-assembler/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Please read <a href="http://www.homolog.us/blogs/2012/02/11/string-graph-assembler/" target="_blank">this article</a> or the following linked papers for the reason using <a href="http://en.wikipedia.org/wiki/String_graph">string-graph</a> algorithm.</p>
+
+<p><a href="http://www.zbh.uni-hamburg.de/?id=349" target="_blank">Readjoiner</a> (<a href="http://www.biomedcentral.com/1471-2105/13/82/abstract" target="_blank">Gonnella and Kurtz 2012</a>) Readjoiner is a sequence assembler based on the assembly string graph framework (<a href="http://bioinformatics.oxfordjournals.org/content/21/suppl_2/ii79.abstract" target="_blank">Myers 2005</a>). It is faster and uses less memory than previous string graph-based assemblers.</p>
+
+<p><a href="https://github.com/jts/sga" target="_blank">SGA</a> (<a href="http://genome.cshlp.org/content/22/3/549" target="_blank">Simpson and Durbin 2012</a>) SGA is a de novo genome assembler based on the concept of string graphs. The major goal of SGA is to be very memory efficient, which is achieved by using a compressed representation of DNA sequence reads.</p>
+
+<p><a href="http://www.genomic.ch/edena.php" target="_blank">Edena</a> (<a href="http://genome.cshlp.org/content/18/5/802" target="_blank">Hernandez et al 2008</a>) The program is under development. Edena is based on the classical overlap layout assembly framework. In addition, it includes two features to improve the assembly of very short sequences: exact matching and detection of spurious reads.</p>
+
+<p><a href="http://www.engr.uconn.edu/~htd06001/assembler/" target="_blank">LEAP</a> (<a href="http://bioinformatics.oxfordjournals.org/content/27/14/1901.long" target="_blank">Dinh and Rajasekaran 2011</a>) LEAP incorporates a memory-efficient data structure for the overlap graph. This data structure requires only linear time to construct and and linear memory to store.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page4">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/page2">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

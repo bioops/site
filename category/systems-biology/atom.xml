@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Systems Biology | Bioops]]></title>
+  <link href="http://bioops.info/category/systems-biology/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Paper] a Whole-Cell Computational Model Predicts Phenotype From Genotype]]></title>
+    <link href="http://bioops.info/2012/07/paper-a-whole-cell-computational-model-predicts-phenotype-from-genotype/"/>
+    <updated>2012-07-24T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/07/paper-a-whole-cell-computational-model-predicts-phenotype-from-genotype</id>
+    <content type="html"><![CDATA[<p><a href="http://www.cell.com/abstract/S0092-8674%2812%2900776-3" target="_blank">http://www.cell.com/abstract/S0092-8674%2812%2900776-3</a>
+<h2>Highlights</h2>
+<ul>
+	<li>An entire organism is modeled in terms of its molecular components</li>
+	<li>Complex phenotypes can be modeled by integrating cell processes into a single model</li>
+	<li>Unobserved cellular behaviors are predicted by model of <em>M. genitalium</em></li>
+	<li>New biological processes and parameters are predicted by model of <em>M</em>. <em>genitalium</em></li>
+</ul>
+<h2>Summary</h2>
+Understanding how complex phenotypes arise from individual molecules and their interactions is a primary challenge in biology that computational approaches are poised to tackle. We report a whole-cell computational model of the life cycle of the human pathogen <em>Mycoplasma genitalium</em> that includes all of its molecular components and their interactions. An integrative approach to modeling that combines diverse mathematics enabled the simultaneous inclusion of fundamentally different cellular processes and experimental measurements. Our whole-cell model accounts for all annotated gene functions and was validated against a broad range of data. The model provides insights into many previously unobserved cellular behaviors, including in vivo rates of protein-DNA association and an inverse relationship between the durations of DNA replication initiation and replication. In addition, experimental analysis directed by model predictions identified previously undetected kinetic parameters and biological functions. We conclude that comprehensive whole-cell models can be used to facilitate biological discovery.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tools for Cross-species Biological Network Comparison]]></title>
+    <link href="http://bioops.info/2012/07/tools-for-cross-species-biological-network-comparison/"/>
+    <updated>2012-07-23T00:00:00+00:00</updated>
+    <id>http://bioops.info/2012/07/tools-for-cross-species-biological-network-comparison</id>
+    <content type="html"><![CDATA[<p><strong>GraphAlignment</strong>: GraphAlignment is an extension package for the R programming environment which provides functions for finding an alignment between two networks based on link and node similarity scores. This package implements the Bayesian scoring methods and the alignment algorithm introduced in the paper J. Berg and M. Lässig, <a href="http://www.pnas.org/cgi/content/full/103/29/10967">&#8220;Cross-species analysis of biological networks by Bayesian alignment&#8221;</a>, PNAS 103 (29), 10967-10972 (2006). Documentation and installation guide are available <a href="http://www.thp.uni-koeln.de/~berg/GraphAlignment/" target="_blank">here</a>.</p>
+
+<p><strong>PathBLAST</strong>: PathBLAST is a network alignment and search tool for comparing protein interaction networks across species to identify protein pathways and complexes that have been conserved by evolution. PathBLAST is now available at <a href="http://www.pathblast.org/" target="_blank">http://www.pathblast.org/</a> as a web-based query. (<a href="http://www.pathblast.org/docs/publications.html" target="_blank">publications</a>)</p>
+
+<p><strong>IsoRankN</strong>: IsoRankN (IsoRank-Nibble) is a global multiple-network alignment tool based on spectral clustering on the induced graph of pairwise alignment scores. IsoRankN outperforms existing algorithms for global network alignment in coverage and consistency on multiple alignments of the five available eukaryotic networks. Being based on spectral methods, IsoRankN is both error-tolerant and computationally efficient. More information is available <a href="http://groups.csail.mit.edu/cb/mna/" target="_blank">here</a>.</p>
+
+<p><strong>NetworkBLAST &amp; NetworkBLAST-M</strong>: NetworkBLAST analyzes protein interaction networks across species to infer protein complexes that are conserved in evolution.<br />
+For comparing multiple networks use <a href="http://www.cs.tau.ac.il/%7Ebnet/License-nbm.htm">Networkblast-M</a>; for an executable of NetworkBLAST please refer to <a href="http://www.cs.tau.ac.il/%7Ebnet/License.htm">here</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

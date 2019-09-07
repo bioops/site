@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Statistics | Bioops]]></title>
+  <link href="http://bioops.info/category/statistics/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Demo of Classification]]></title>
+    <link href="http://bioops.info/2015/02/demo-of-classification/"/>
+    <updated>2015-02-24T17:35:23+00:00</updated>
+    <id>http://bioops.info/2015/02/demo-of-classification</id>
+    <content type="html"><![CDATA[<p>R code demo of</p>
+
+<ol>
+  <li>Linear discriminant analysis (LDA)</li>
+  <li>Quadratic discriminant analysis (QDA)</li>
+  <li>k-nearest neighbor (KNN)</li>
+</ol>
+
+<p>&#8220;` R</p>
+
+<h1 id="read-data">read data</h1>
+<p>library(RCurl)
+data &lt;- getURL(“https://raw.githubusercontent.com/bioops/mis_scripts/master/statistics/data/admission.txt”)
+admission&lt;-read.table(text=data,header=T)
+admission$CLASS&lt;-as.factor(admission$CLASS)</p>
+
+<h1 id="scale-the-data">scale the data</h1>
+<p>admission$GMAT&lt;-scale(admission$GMAT)
+admission$GPA&lt;-scale(admission$GPA)</p>
+
+<h1 id="lda">(1) LDA</h1>
+<p>library(MASS)
+lda.fit&lt;-lda(CLASS~GMAT+GPA,data=admission)
+lda.pred&lt;-predict(lda.fit)
+# plot
+# different symbols represents true classifications
+# different colors are predicted classifications
+plot(admission[,1:2],col=lda.pred$class, pch=as.numeric(admission$CLASS),
+     xlab=”GPA”,ylab=”GMAT”,main=”LDA”)</p>
+
+<p>&#8220;`</p>
+
+<p><img src="http://bioops.info/images/uploads/2015/class1.png" alt="LDA" /></p>
+
+<p>&#8220;` R</p>
+
+<h1 id="qda">(2) QDA</h1>
+<p>qda.fit&lt;-qda(CLASS~GMAT+GPA,data=admission)
+qda.pred&lt;-predict(qda.fit)
+# plot
+# different symbols represents true classifications
+# different colors are predicted classifications
+plot(admission[,1:2],col=qda.pred$class, pch=as.numeric(admission$CLASS),
+     xlab=”GPA”,ylab=”GMAT”,main=”QDA”)</p>
+
+<p>&#8220;`</p>
+
+<p><img src="http://bioops.info/images/uploads/2015/class2.png" alt="QDA" /></p>
+
+<p>&#8220;` R</p>
+
+<p>library(class)</p>
+
+<h1 id="tune-parameter-using-cross-validation-cv">tune parameter using cross-validation (CV)</h1>
+<p>k&lt;-seq(1,15,1) # different k
+cv.err&lt;-NULL # cv error
+for (ki in k){
+  knn.pred.cv&lt;-knn.cv(admission[,1:2],admission[,3],k=ki)
+  cv.err&lt;-c(cv.err, mean(knn.pred.cv!=admission[,3]))
+}
+plot(k,cv.err, main=”CV error vs k”)</p>
+
+<h1 id="using-the-optimal-parameter">using the optimal parameter</h1>
+<p>knn.pred&lt;-knn(admission[,1:2],admission[,1:2], admission[,3],k=k[which.min(cv.err)])</p>
+
+<h1 id="plot">plot</h1>
+<p># different symbols represents true classifications
+# different colors are predicted classifications
+plot(admission[,1:2],col=knn.pred, pch=as.numeric(admission$CLASS),
+     xlab=”GPA”,ylab=”GMAT”,main=”KNN”)</p>
+
+<p>&#8220;`</p>
+
+<p><img src="http://bioops.info/images/uploads/2015/class3.png" alt="KNN" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Solving Bridge Regression Using Local Quadratic Approximation (LQA)]]></title>
+    <link href="http://bioops.info/2015/02/solving-bridge-regression-using-local-quadratic-approximation-lqa/"/>
+    <updated>2015-02-24T16:27:50+00:00</updated>
+    <id>http://bioops.info/2015/02/solving-bridge-regression-using-local-quadratic-approximation-lqa</id>
+    <content type="html"><![CDATA[<p>Bridge regression is a broad class of penalized regression, and can be used in high-dimensional regression problems.</p>
+
+<p>It includes the ridge (q=2) and lasso (q  =1) as special cases.</p>
+
+<p>More technical details can be found <a href="http://www.sciencedirect.com/science/article/pii/S0378375811001960">here</a>. Below R code demonstrates:</p>
+
+<ol>
+  <li>sovling bridge regression using local quadratic approximation (LQA) and Newton–Raphson algorithm.</li>
+  <li>simulation of tuning parameters using 50/50/200 observations (training/validation/testing).</li>
+</ol>
+
+<p>&#8220;` R
+# The function to solve bridge regression
+bridge&lt;-function(x, y, lambda, q=1, eta=0.001){
+  library(glmnet)
+  # use ridge coefficients as a starting value
+  beta.start&lt;-coef(glmnet(x, y, alpha=0, lambda=lambda, intercept=F))
+  beta.mat&lt;-matrix(NA,ncol=ncol(beta.start),nrow=nrow(beta.start)-1)</p>
+
+<p># take each lambda value in the grid
+  for(i in 1:length(grid)){
+    # initial beta without intercept
+    beta_prev&lt;-as.vector(beta.start[-1,i])
+    # initial converge
+    converge&lt;-10^10</p>
+
+<pre><code># iteration until converge or two many iterations
+iteration&lt;-0
+while(converge&gt;eta &amp;&amp; iteration&lt;=100){
+  iteration&lt;-iteration+1
+  # judge whether some beta is small enough
+  del&lt;-which(abs(beta_prev)&lt;eta)
+  
+  # if all coefficient are small enough then stop the iteration
+  if(length(del)==length(beta_prev)){
+    beta_prev[del]&lt;-0
+    converge&lt;-0
+    
+    # else if we need to remove some but not all of the coefficients  
+  }else if(length(del)&gt;0){
+    # set these beta to 0
+    beta_prev[del]&lt;-0
+    
+    # update design matrix x
+    x.new&lt;-x;x.new&lt;-x.new[,-del]
+    
+    # calculate the diagonal matrix involving penalty terms
+    # and the next beta
+    if(length(beta_prev)-length(del)==1){
+      diag&lt;-grid[i]*q*(abs(beta_prev[-del])^(q-2))/2
+    }else{
+      diag&lt;-diag(grid[i]*q*(abs(beta_prev[-del])^(q-2))/2)
+    }
+    
+    # next beta
+    beta_curr&lt;-beta_prev
+    beta_curr[-del]&lt;-solve(t(x.new)%*%x.new+diag)%*%t(x.new)%*%y
+    
+    # new converge value
+    converge&lt;-sum((beta_curr-beta_prev)^2)
+    # next iteration
+    beta_prev&lt;-beta_curr
+    
+    # if we don't need to remove the coefficients
+  }else{
+    x.new&lt;-x
+    diag&lt;-diag(grid[i]*q*(abs(beta_prev)^(q-2))/2)
+    # next beta
+    beta_curr&lt;-solve(t(x.new)%*%x.new+diag)%*%t(x.new)%*%y
+    
+    # new converge value
+    converge&lt;-sum((beta_curr-beta_prev)^2)
+    # next iteration
+    beta_prev&lt;-beta_curr
+    
+  }
+}
+
+beta.mat[,i]&lt;-beta_prev   }   colnames(beta.mat)&lt;-grid   return(beta.mat) }
+</code></pre>
+
+<h1 id="the-function-to-find-the-optimal-coefficients-set">The function to find the optimal coefficients set</h1>
+<p># that minimize mse of validation set
+bridge.opt&lt;-function(coef.matrix, newx, newy){
+  # calculate the mse
+  mse.validate&lt;-NULL
+  for(i in 1:ncol(coef.matrix)){
+    mse.validate&lt;-c(mse.validate, mean((newx%*%coef.matrix[,i]-newy)^2))
+  }
+  # find the optimal coefficients set
+  coef.opt&lt;-coef.matrix[,which.min(mse.validate)]
+  return(coef.opt)
+}</p>
+
+<h6 id="section">#</h6>
+<p># start simulation
+# For this simulation, create three data sets 
+# consisting of 50/50/200 observations (training/validation/testing).
+# Use validation data to select the tuning parameter (lambda).</p>
+
+<h1 id="q-settings">q settings</h1>
+<p>q_seq&lt;-c(0.1,0.5,1,2)
+# lambda grid
+grid=10^seq(10,-2,length=100)
+# training and testing set
+ntrain&lt;-50
+ntest&lt;-200
+# validation set size
+nvalidate&lt;-50</p>
+
+<h1 id="repeat-number">repeat number</h1>
+<p>repeatnum&lt;-100
+# initialize MSE
+MSE&lt;-matrix(NA, nrow=repeatnum,ncol=length(q_seq))
+colnames(MSE)&lt;-q_seq</p>
+
+<p>library(MASS)
+# the beta
+beta&lt;-matrix(c(3,1.5,0,0,2,0,0,0),ncol=1)
+# covariance matrix of X
+cov&lt;-matrix(NA,8,8)
+for (i in 1:8){
+  for (j in 1:8){
+    cov[i,j]&lt;-0.5^(abs(i-j))
+  }
+}</p>
+
+<p>for (i in 1:repeatnum){
+  # generate X
+  x.train&lt;-mvrnorm(n=ntrain,rep(0,8),cov)
+  x.test &lt;-mvrnorm(n=ntest,rep(0,8),cov)
+  x.validate &lt;-mvrnorm(n=nvalidate,rep(0,8),cov)
+  # generate error term
+  err.train&lt;-matrix(rnorm(n=ntrain,mean=0,sd=3),ncol=1)
+  err.test&lt;-matrix(rnorm(n=ntest,mean=0,sd=3),ncol=1)
+  err.validate&lt;-matrix(rnorm(n=nvalidate,mean=0,sd=3),ncol=1)
+  # calculate Y
+  y.train&lt;-x.train%<em>%beta+err.train
+  y.test&lt;-x.test%</em>%beta+err.test
+  y.validate&lt;-x.validate%*%beta+err.validate
+  # centralize Y and standardize X
+  y.train&lt;-scale(y.train,scale=F);y.test&lt;-scale(y.test,scale=F)
+  y.validate&lt;-scale(y.validate,scale=F)
+  x.train&lt;-scale(x.train);x.test&lt;-scale(x.test)
+  x.validate&lt;-scale(x.validate)</p>
+
+<p># run for each q
+  for(j in 1:length(q_seq)){</p>
+
+<pre><code># coefficients for trainning set
+bridge.train&lt;-bridge(x.train, y.train, grid, q=q_seq[j], eta=0.001)
+# find the optimal coefficients set that minimize mse of validation set
+coef.opt&lt;-bridge.opt(bridge.train, x.validate, y.validate)
+# MSE on the test set using the optimal model
+MSE[i,j]&lt;-mean((x.test%*%coef.opt-y.test)^2)   } }
+</code></pre>
+
+<h1 id="mean-of-mses-under-different-models">mean of MSEs under different models</h1>
+<p>apply(MSE,2,mean)
+# sd of MSEs under different models
+apply(MSE,2,sd)
+# boxplot of MSEs under different models
+boxplot(MSE, ylab=”MSE”, xlab=”q”)
+&#8220;`</p>
+
+<p><img src="http://bioops.info/images/uploads/2015/bridge.png" alt="bridge MSE plots" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Consistent Estimator of Bernouli Distribution]]></title>
+    <link href="http://bioops.info/2015/01/simulation-bernoulli-consitent-estimator/"/>
+    <updated>2015-01-04T01:53:14+00:00</updated>
+    <id>http://bioops.info/2015/01/simulation-bernoulli-consitent-estimator</id>
+    <content type="html"><![CDATA[<p>This is a simple post showing the basic knowledge of statistics, the consistency.</p>
+
+<p>For Bernoulli distribution, $ Y \sim B(n,p) $, $ \hat{p}=Y/n $ is a consistent estimator of $ p $, because:</p>
+
+<script type="math/tex; mode=display">% &lt;![CDATA[
+\lim_{n \to \infty} \left(p-\epsilon<\frac{Y}{n}<p+\epsilon\right)=1, %]]&gt;</script>
+
+<p>for any positive number $ \epsilon $.</p>
+
+<p>Here is the simulation to show the estimator is consitent.</p>
+
+<p>&#8220;` R</p>
+
+<h1 id="set-parameters">set parameters</h1>
+<p>n&lt;-1000;p&lt;-0.5;
+# n Bernoulli trails
+obs&lt;-rbinom(n,1,p)
+# estimate p on different number of trials.
+phat&lt;-cumsum(obs)/cumsum(rep(1,n))
+# the convergence plot
+plot(phat, type=”l”, xlab=”Trails”)
+abline(h=p)</p>
+
+<p>&#8220;`</p>
+
+<p><img src="http://bioops.info/images/uploads/2015/Rplot01.png" alt="convergence plot" /></p>
+
+<p>&#8220;` R</p>
+
+<h1 id="then-100-repetitions">then, 100 repetitions</h1>
+
+<h1 id="set-parameters-1">set parameters</h1>
+<p>n&lt;-1000;p&lt;-0.5;B&lt;-100;
+# n<em>B Bernoulli trails
+obs&lt;-rbinom(n</em>B,1,p)
+# convert n<em>B observations to a n</em>B matrix
+obs_mat&lt;-matrix(obs, nrow=n, ncol=B)
+# a function to estimate p on different number of trials
+est_p&lt;-function(x,n) cumsum(x)/cumsum(rep(1,n))
+# estimate p on different number of trials for each repetition
+phat_mat&lt;-apply(obs_mat,2, est_p, n=n)
+# the convergence plot with 100 repetitions
+matplot(phat_mat,type=”l”,lty=1,xlab=”Trials”,ylab=”phat”)</p>
+
+<p>&#8220;`</p>
+
+<p><img src="http://bioops.info/images/uploads/2015/Rplot02.png" alt="convergence plots" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Permutation Test for Principal Component Analysis]]></title>
+    <link href="http://bioops.info/2015/01/permutation-pca/"/>
+    <updated>2015-01-02T05:35:51+00:00</updated>
+    <id>http://bioops.info/2015/01/permutation-pca</id>
+    <content type="html"><![CDATA[<p>The procedure of permutation test for PCA is as follows:</p>
+
+<p>For each replicate,</p>
+
+<ol>
+  <li>
+    <p>Individually permute each column of the data matrix.</p>
+  </li>
+  <li>
+    <p>Conduct the PCA and find the proportion of variance explained by each of the components 1 to s. Store this information.</p>
+  </li>
+  <li>
+    <p>Repeat 1 and 2 R times.</p>
+  </li>
+</ol>
+
+<p>At the end of this we will have a matrix with R rows and s columns that contains the proportion of variance explained by each component for each replicate.</p>
+
+<p>Finally, compare the observed values from the original data to the set of values from the permutations in order to determine the approximate p-value.</p>
+
+<p>The R code:</p>
+
+<p>&#8220;` R pca_perm.R</p>
+
+<h1 id="the-fuction-to-assess-the-significance-of-the-principal-components">the fuction to assess the significance of the principal components.</h1>
+<p>sign.pc&lt;-function(x,R=1000,s=10, cor=T,…){
+  # run PCA
+  pc.out&lt;-princomp(x,cor=cor,…)
+  # the proportion of variance of each PC
+  pve=(pc.out$sdev^2/sum(pc.out$sdev^2))[1:s]</p>
+
+<p># a matrix with R rows and s columns that contains
+  # the proportion of variance explained by each pc
+  # for each randomization replicate.
+  pve.perm&lt;-matrix(NA,ncol=s,nrow=R)
+  for(i in 1:R){
+    # permutation each column
+    x.perm&lt;-apply(x,2,sample)
+    # run PCA
+    pc.perm.out&lt;-princomp(x.perm,cor=cor,…)
+    # the proportion of variance of each PC.perm
+    pve.perm[i,]=(pc.perm.out$sdev^2/sum(pc.perm.out$sdev^2))[1:s] 
+  }
+  # calcalute the p-values
+  pval&lt;-apply(t(pve.perm)&gt;pve,1,sum)/R
+  return(list(pve=pve,pval=pval))
+}</p>
+
+<h1 id="apply-the-function">apply the function</h1>
+<p>library(RCurl)
+data &lt;- getURL(“https://raw.githubusercontent.com/bioops/mis_scripts/master/statistics/data/pca.txt”)
+OCRdata &lt;- read.table(text = data, header=T,sep=”\t”)
+OCRdat&lt;-OCRdata[,-1] #leave out location id column
+sign.pc(OCRdat,cor=T)</p>
+
+<p>&#8220;`</p>
+
+<p>The result:</p>
+
+<pre>
+$pve
+    Comp.1     Comp.2     Comp.3     Comp.4     Comp.5     Comp.6     Comp.7     Comp.8 
+0.23129378 0.14864525 0.11552865 0.06741744 0.06274641 0.05858431 0.05033795 0.04484122 
+    Comp.9    Comp.10 
+0.03873311 0.03431297 
+
+$pval
+ [1] 0.000 0.000 0.000 1.000 1.000 0.996 1.000 1.000 1.000 1.000
+</pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Demo of Support Vector Machine]]></title>
+    <link href="http://bioops.info/2015/01/svm/"/>
+    <updated>2015-01-01T20:43:07+00:00</updated>
+    <id>http://bioops.info/2015/01/svm</id>
+    <content type="html"><![CDATA[<p>Demo of SVM</p>
+
+<p>&#8220;` R svm.R</p>
+
+<h1 id="load-library">load library</h1>
+<p>library(e1071)</p>
+
+<h1 id="simulate-x-and-y">simulate x and y</h1>
+<p>x1&lt;-rnorm(100);x2&lt;-rnorm(100)
+y&lt;-as.factor(ifelse(x1^2+x2^2&lt;=1.6,1,-1))
+dat3&lt;-data.frame(x1,x2,y)</p>
+
+<h1 id="a-tuning-parameters">(a) tuning parameters</h1>
+<p>cost&lt;-c(0.001, 0.01, 0.1, 1, 5, 10, 100)
+gamma&lt;-seq(0.1,1,0.1)
+tune.out&lt;-tune(svm, y~., data=dat3, kernel=”radial”,
+              ranges=list(cost=cost,gamma=gamma))
+bestmod&lt;-tune.out$best.model
+# the best model
+summary(bestmod)</p>
+
+<h1 id="b-test-set">(b) test set</h1>
+<p># simulate test set
+x1&lt;-rnorm(100);x2&lt;-rnorm(100)
+y&lt;-as.factor(ifelse(x1^2+x2^2&lt;=1.6,1,-1))
+dat3.test&lt;-data.frame(x1,x2,y)
+ypred&lt;-predict(bestmod,dat3.test)
+# the confusion matrix
+table(predict=ypred, truth=dat3.test$y)</p>
+
+<p>&#8220;`</p>
+]]></content>
+  </entry>
+  
+</feed>

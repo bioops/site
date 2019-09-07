@@ -1,0 +1,44 @@
+---
+layout: post
+title: 使用perl模块迅速得到两数组的子集和并集
+categories:
+- Perl
+- Programming
+tags:
+- Array
+- HOWTO
+- Perl
+- Perl module
+- Subset
+published: true
+comments: true
+---
+<p>省得自己写代码，循环、遍历，纠结于各种算法的效率上。</p>
+
+<p>直接拿来主义，用已有的模块，<a href="http://search.cpan.org/~jkeenan/List-Compare-0.37/lib/List/Compare.pm" target="_blank">List::Compare</a>。</p>
+
+<p>既然发在CPAN上，估计是优化过的，而且反正perl的速度本来就不快，又只是自己用，简单易用省心，最好。</p>
+
+``` perl listcomp.pl
+
+use List::Compare; #需要安装
+@Llist = qw(abel abel baker camera delta edward fargo golfer);
+@Rlist = qw(baker camera delta delta edward fargo golfer hilton);
+$lc = List::Compare->new(\@Llist, \@Rlist); #使用数组的reference
+ 
+@intersection = $lc->get_intersection; #子集
+@union = $lc->get_union; #并集
+ 
+print "@intersection\n@union\n";
+
+```
+
+<p>List::Compare还有很多其他用法。</p>
+
+<p>比如，get_unique()，返回第一个数组特有的那些元素；</p>
+
+<p>而get_complement()，返回第二个数组特有的那些元素；</p>
+
+<p>以及get_symmetric_difference()，返回属于某一数组但不同时属于两个数组的那些元素。</p>
+
+<p>详见<a href="http://search.cpan.org/~jkeenan/List-Compare-0.37/lib/List/Compare.pm" target="_blank">List::Compare</a>。</p>

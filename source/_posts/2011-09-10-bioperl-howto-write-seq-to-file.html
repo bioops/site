@@ -1,0 +1,58 @@
+---
+layout: post
+title: Bioperl输出序列文件（Bioperl HOWTO翻译3）
+categories:
+- Bioperl HOWTO翻译
+- Programming
+tags:
+- Bioperl
+- HOWTO
+- Perl
+- SeqIO
+- Translation
+published: true
+comments: true
+---
+<p><h3>输出序列文件</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Writing_a_sequence_to_a_file" target="_blank">英文原文</a></p>
+
+<p>下面将展示如何利用两个模块创建一个序列文件。上例中，已经有了一个序列对象$seq_obj，然后需要创建另一个用于读写文件的对象，SeqIO对象。IO表示Input-Output（输入输出）。<a href="http://search.cpan.org/perldoc?Bio::SeqIO">Bio::SeqIO</a>可用于读取和输出各种Bioperl支持的序列格式文件（支持的序列格式列表详见<a href="http://www.bioperl.org/wiki/HOWTO:SeqIO">SeqIO HOWTO</a>）。创建<a href="http://search.cpan.org/perldoc?Bio::SeqIO">Bio::SeqIO</a>对象和前述使用new()创建序列对象的方法类似，如下所示：</p>
+
+``` perl
+
+use Bio::SeqIO; 
+$seqio_obj = Bio::SeqIO->new(-file => '>sequence.fasta', -format => 'fasta' );
+
+```
+
+<p>注：在-file参数中，“&gt;”符号表示要创建一个名字为“sequence.fasta”的文件用于内容输出。这和一般Perl脚本中，使用函数open()来写文件也是用“&gt;”。（译者注：&lt; 输入、&gt; 输出）。在“-format”参数中声明序列格式是“fasta”，所以创建的会是一个<a href="http://www.bioperl.org/wiki/FASTA_sequence_format">fasta格式</a>的序列文件。</p>
+
+<p>现在来把刚才的两个例子放在一起：</p>
+
+``` perl
+
+#!/bin/perl -w
+use Bio::Seq;
+use Bio::SeqIO;
+$seq_obj = Bio::Seq->new(-seq => "aaaatgggggggggggccccgtt",                        
+                                           -display_id => "#12345",                        
+                                           -desc => "example 1",                        
+                                           -alphabet => "dna" );
+$seqio_obj = Bio::SeqIO->new(-file => '>sequence.fasta', -format => 'fasta' );
+$seqio_obj->write_seq($seq_obj);
+
+```
+
+<p>最后一行write_seq()是个新东西，是不？在这一行中，序列对象$seq_obj作为write_seq()的参数传递给了SeqIO对象。从另一个角度看，SeqIO对象能够识别并处理序列对象，并将此序列对象以<a href="http://www.bioperl.org/wiki/FASTA_sequence_format">fasta格式</a>输出到一个文件中。来试着运行一下这个脚本：
+<pre>perl seqio.pl</pre>
+在同一文件夹下会有一个新的文件，“sequence.fasta”，内容如下：
+<pre>&gt;#12345 example 1
+aaaatgggggggggggccccgtt</pre>
+SeqIO非常聪明，比如我们把-format参数设置为“genbank”，序列文件会变成这样：
+<pre>LOCUS       #12345                    23 bp    dna     linear   UNK
+DEFINITION  example 1
+ACCESSION   unknown
+FEATURES             Location/Qualifiers
+BASE COUNT        4 a      4 c     12 g      3 t
+ORIGIN       1 aaaatggggg ggggggcccc gtt
+//</pre></p>

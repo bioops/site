@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Os | Bioops]]></title>
+  <link href="http://bioops.info/category/os/atom.xml" rel="self"/>
+  <link href="http://bioops.info/"/>
+  <updated>2016-06-28T17:00:47+00:00</updated>
+  <id>http://bioops.info/</id>
+  <author>
+    <name><![CDATA[Bioops]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vi编辑器的属性设置]]></title>
+    <link href="http://bioops.info/2011/11/linux-vi-configure/"/>
+    <updated>2011-11-25T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/11/linux-vi-configure</id>
+    <content type="html"><![CDATA[<p>在当前用户目录下用vi新建并打开.vimrc文件</p>
+
+<p>vi ~/.vimrc</p>
+
+<pre>" 在文件中写入以下设置
+
+" 设置显示行号
+set nu
+
+" 设置tab的长度为4
+set tabstop=4 
+
+" 打开状态栏标尺
+set ruler
+
+" 突出当前行
+set cursorline
+
+" 自动语法高亮
+syntax on
+</pre>
+
+<p>保存退出后即可生效</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Shortcut Cheat Sheet]]></title>
+    <link href="http://bioops.info/2011/11/shortcut-cheat-sheet/"/>
+    <updated>2011-11-13T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/11/shortcut-cheat-sheet</id>
+    <content type="html"><![CDATA[<p><a href="http://bioops.info/images/uploads/2011/11/12UQ1920Y0-2Y45.png"><img class="alignnone size-medium wp-image-859" title="12UQ1920Y0-2Y45" src="http://bioops.info/images/uploads/2011/11/12UQ1920Y0-2Y45-300x211.png" alt="" width="300" height="211" /></a><a href="http://bioops.info/images/uploads/2011/11/bash_emacs.jpg"><img class="alignnone size-medium wp-image-860" title="bash_emacs" src="http://bioops.info/images/uploads/2011/11/bash_emacs-300x107.jpg" alt="" width="300" height="107" /></a>
+<a href="http://bioops.info/images/uploads/2011/11/bash_sheet.png"><img class="size-medium wp-image-861 alignnone" title="bash_sheet" src="http://bioops.info/images/uploads/2011/11/bash_sheet-300x225.png" alt="" width="300" height="225" /></a><a href="http://bioops.info/images/uploads/2011/11/regular-expressions-cheat-sheet-v1.png"><img class="alignnone size-medium wp-image-862" title="regular-expressions-cheat-sheet-v1" src="http://bioops.info/images/uploads/2011/11/regular-expressions-cheat-sheet-v1-220x300.png" alt="" width="220" height="300" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Steve Jobs (1955-2011)]]></title>
+    <link href="http://bioops.info/2011/10/steve-jobs-1955-2011/"/>
+    <updated>2011-10-05T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/10/steve-jobs-1955-2011</id>
+    <content type="html"><![CDATA[<p>Steve Jobs (1955-2011), &#8220;stay hungry, stay foolish.&#8221;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac下类似apt-get和yum的软件——macports]]></title>
+    <link href="http://bioops.info/2011/09/macports/"/>
+    <updated>2011-09-20T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/09/macports</id>
+    <content type="html"><![CDATA[<p>用惯了apt-get和yum，现在转到mac上，总想着sudo apt-get install一下安装某些软件。其实mac也有类似的软件，<a href="http://www.macports.org/" target="_blank">MacPorts</a>和<a href="http://www.finkproject.org/index.php" target="_blank">fink</a>。</p>
+
+<p>今天先介绍MacPorts。</p>
+
+<p>先安装xcode和X11，然后到<a href="http://www.macports.org/install.php" target="_blank">这里</a>下载.dmg。安装以后就可以在终端里类似apt-get那样安装软件了（包括GNU软件、开源软件等），如：
+<pre>sudo port install wget</pre>
+其他操作还有：
+<pre>
+sudo port selfupdate       #升级port
+sudo port sync             #同apt-get的update。
+port list                  #列出所有软件
+port search XXX            #查找XXX软件
+port deps XXX              #查看XXX软件的依赖
+sudo port install XXX      #安装XXX软件
+sudo port uninstall XXX    #卸载</pre>
+等。</p>
+
+<p>更多的细节可以在MacPorts官网获得。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[做生物信息常用到的linux命令]]></title>
+    <link href="http://bioops.info/2011/08/linux-command-bioinformatics/"/>
+    <updated>2011-08-27T00:00:00+00:00</updated>
+    <id>http://bioops.info/2011/08/linux-command-bioinformatics</id>
+    <content type="html"><![CDATA[<p>1，统计一个序列文件中的序列个数（grep用好了可以非常快捷方便地处理一些数据）
+<pre>grep -c '&gt;' seqfile</pre>
+2, 查看大文件头几行或最后几行
+<pre>head seqfile
+tail seqfile</pre>
+3，文件行数
+<pre>wc -l seqfile</pre>
+4，矩阵格式的文件，提取其中的某几列（例如<a href="http://www.pangloss.com/wiki/Blast" target="_blank">blast -m 8</a>）
+<pre> cut -f 1,2,11 seq.cblast &gt; seq.abc</pre>
+5，awk和sed</p>
+
+<p>先学的perl，后知道awk和sed，认识到很多事情用awk和sed解决比写perl脚本方便多了</p>
+
+<p>比如fastq转换fasta文件：
+<pre>awk ‘NR % 4 == 1 || NR % 4 == 2′ myfile.fastq | sed -e ‘s/@/&gt;/’ &gt; myfile.fasta</pre>
+6，screen管理远程任务，可以在远程会话断开后继续在后台运行，详见<a href="http://www.path8.net/tn/archives/3746" target="_blank">此文</a>。</p>
+
+<p>7，vi/vim就不必细说了，编程必备。(emacs党自动替换成emacs)</p>
+
+<p>8，暂时就这么多了。好长时间没做过东西了。等用到或者想到了再加。</p>
+]]></content>
+  </entry>
+  
+</feed>

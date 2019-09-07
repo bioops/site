@@ -1,0 +1,39 @@
+---
+layout: post
+title: "Demo of Support Vector Machine"
+date: 2015-01-01 15:43:07 -0500
+comments: true
+categories: [Programming, R, Statistics]
+---
+
+Demo of SVM
+
+``` R svm.R
+
+# load library
+library(e1071)
+
+# simulate x and y
+x1<-rnorm(100);x2<-rnorm(100)
+y<-as.factor(ifelse(x1^2+x2^2<=1.6,1,-1))
+dat3<-data.frame(x1,x2,y)
+
+# (a) tuning parameters
+cost<-c(0.001, 0.01, 0.1, 1, 5, 10, 100)
+gamma<-seq(0.1,1,0.1)
+tune.out<-tune(svm, y~., data=dat3, kernel="radial",
+              ranges=list(cost=cost,gamma=gamma))
+bestmod<-tune.out$best.model
+# the best model
+summary(bestmod)
+
+# (b) test set
+# simulate test set
+x1<-rnorm(100);x2<-rnorm(100)
+y<-as.factor(ifelse(x1^2+x2^2<=1.6,1,-1))
+dat3.test<-data.frame(x1,x2,y)
+ypred<-predict(bestmod,dat3.test)
+# the confusion matrix
+table(predict=ypred, truth=dat3.test$y)
+
+```

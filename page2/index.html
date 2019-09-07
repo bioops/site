@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="Daniela Witten，26岁当上assistant professor，被福布斯评为科学界30个30岁以下的牛人之一。父母都是普林斯顿的professor，姐姐是普林斯顿的assistant professor，她爸得过菲尔兹奖，老公是facebook的元老。 总结： &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/page2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/09/gossip/">八卦</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-17T12:48:00+00:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:48 pm</span></time>
+        
+         | <a href="/2013/09/gossip/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.biostat.washington.edu/~dwitten/">Daniela Witten</a>，26岁当上assistant professor，被福布斯评为科学界30个30岁以下的牛人<a href="http://www.forbes.com/special-report/2011/30-under30-12/30-under-30-12_science.html">之一</a>。<a href="http://en.wikipedia.org/wiki/Edward_Witten">父</a><a href="http://en.wikipedia.org/wiki/Chiara_Nappi">母</a>都是普林斯顿的professor，<a href="http://psych.princeton.edu/psychology/research/witten/index.php">姐姐</a>是普林斯顿的assistant professor，她爸得过菲尔兹奖，<a href="http://www.nytimes.com/2008/08/17/fashion/weddings/17WITTEN.html">老公</a>是facebook的元老。</p>
+
+<p>总结：科研是聪明且有钱人的游戏。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/08/lasso-related-links/">Lasso Related Links</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-08-17T20:18:00+00:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:18 pm</span></time>
+        
+         | <a href="/2013/08/lasso-related-links/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www-stat.stanford.edu/~tibs/lasso.html">The Lasso Page</a> is maintained by the inventor of lasso and provides most important references for lasso.</p>
+
+<p>The book <em>Elements of Statistical Learning</em> (<a href="http://www-stat.stanford.edu/~tibs/ElemStatLearn/index.html">pdf</a>) describes the lasso in detail.</p>
+
+<p>Lasso in R: <a href="http://cran.r-project.org/web/packages/lars/index.html">lars</a>: Least Angle Regression, Lasso and Forward Stagewise, and <a href="http://cran.r-project.org/web/packages/glmnet/index.html">glmnet</a>: Lasso and elastic-net regularized generalized linear models (Note: lars() function from the lars package is probably much slower than glmnet() from glmnet.)</p>
+
+<p><a href="http://pages.cs.wisc.edu/~shao/stat992/zou2006.pdf">The adaptive lasso paper</a></p>
+
+<p><a href="http://www4.stat.ncsu.edu/~boos/var.select/lasso.adaptive.html">Adaptive lasso in R</a><br />
+adaptive.lasso function in <a href="http://cran.r-project.org/web/packages/lqa/">lqa</a> package (Penalized Likelihood Inference for GLMs)<br />
+adalasso function in <a href="http://www.cran.r-project.org/web/packages/parcor/">parcor</a> package (Regularized estimation of partial correlation matrices)</p>
+
+<p><a href="http://www-stat.stanford.edu/~tibs/ftp/glasso-bio.pdf">The graphical lasso paper</a></p>
+
+<p><a href="http://cran.r-project.org/web/packages/glasso/">Graphical lasso in R</a> (glasso: Graphical lasso- estimation of Gaussian graphical models)</p>
+
+<p><a href="http://arxiv.org/abs/1111.0324">The joint graphical lasso paper</a></p>
+
+<p><a href="http://cran.r-project.org/web/packages/JGL/index.html">Joint graphical lasso in R</a> (JGL: Performs the Joint Graphical Lasso for sparse inverse covariance estimation on multiple classes)</p>
+
+<p><a href="http://arxiv.org/abs/1009.2300">The Bayesian adaptive lasso paper</a></p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/08/p-value-order-statistics/">R Function of Monte Carlo Simulation to Get the P-value From the Joint Cumulative Distribution of an N-dimensional Order Statistic</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-08-08T21:21:00+00:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:21 pm</span></time>
+        
+         | <a href="/2013/08/p-value-order-statistics/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I want to compute the P-value from the joint cumulative distribution of an
+n-dimensional <a href="http://en.wikipedia.org/wiki/Order_statistic">order statistic</a>.</p>
+
+<script type="math/tex; mode=display">P(r_1 r_2 ,..., r_n)=n! \int\limits_0^{r_1} \int\limits_{s_1}^{r_2} ... \int\limits_{s_{n-1}}^{r_n} ds_1ds_2...ds_n</script>
+
+<p>One efficient way is using the following recursive formula.</p>
+
+<script type="math/tex; mode=display">P(r_1 r_2 ,..., r_n)=\sum_{i=1}^{n} (r_{n-i+1}-r_{n-i}) P(r_i r_2 ,..., r_{n-i},r_{n-i+2} ,..., r_n)</script>
+
+<p><strong>However, the facts are (or would be):</strong></p>
+
+<ol>
+  <li>I am too stupid to write a recursive function.</li>
+  <li>I didn’t find the efficient formula at first.</li>
+  <li>In other cases, the efficient formula have not been derived yet, or too complicated to derive.</li>
+</ol>
+
+<p>In Statistics <a href="http://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo simulation</a> is a “quick” way to compute some complicated formulas. By saying “quick”, I mean I can see the results without knowing or deriving “ugly” Math formulas. It’s actually a very “slow” method in computing aspect.</p>
+
+<p>Anyway, the R function is here.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>P_order_stat.R</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="R"><span class="line"><span class="c1"># sub function of monte carlo simulation to get the p-value</span>
+</span><span class="line">P_order_stat <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>ranks<span class="p">)</span> <span class="p">{</span>
+</span><span class="line">  NumRep <span class="o">&lt;-</span> <span class="m">10000</span> <span class="c1"># number of replicates</span>
+</span><span class="line">  newvec <span class="o">&lt;-</span> <span class="kp">sort</span><span class="p">(</span>ranks<span class="p">)</span> <span class="c1"># sort the rank ratios</span>
+</span><span class="line">  pvalue <span class="o">&lt;-</span> <span class="m">0</span> <span class="c1"># inital pvalue</span>
+</span><span class="line">  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>NumRep<span class="p">){</span>
+</span><span class="line">
+</span><span class="line">      <span class="c1"># generate random uniform distributed data,</span>
+</span><span class="line">      <span class="c1"># and then sort the simulated rank ratios</span>
+</span><span class="line">      newx <span class="o">&lt;-</span> <span class="kp">sort</span><span class="p">(</span>runif<span class="p">(</span><span class="kp">length</span><span class="p">(</span>ranks<span class="p">),</span> min<span class="o">=</span><span class="m">0</span><span class="p">,</span> max<span class="o">=</span><span class="m">1</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line">      <span class="c1"># if all the simulated data is lower than the input,</span>
+</span><span class="line">      <span class="c1"># then sucess+1</span>
+</span><span class="line">      judge <span class="o">&lt;-</span> <span class="kp">sum</span><span class="p">(</span>newvec <span class="o">&gt;=</span> newx<span class="p">)</span>
+</span><span class="line">      <span class="kr">if</span> <span class="p">(</span>judge <span class="o">==</span> <span class="kp">length</span><span class="p">(</span>ranks<span class="p">))</span> pvalue<span class="o">&lt;-</span>pvalue<span class="m">+1</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  pvalue <span class="o">&lt;-</span> pvalue <span class="o">/</span> NumRep  <span class="c1"># get the p-value</span>
+</span><span class="line">  <span class="kr">return</span><span class="p">(</span>pvalue<span class="p">)</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/08/simulate-multivariate-normal/">Simulate Multivariate Normal Distribution Using R</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-08-08T20:38:00+00:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:38 pm</span></time>
+        
+         | <a href="/2013/08/simulate-multivariate-normal/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have been doing some research about co-expression network. “co-expression” means that genes have similar expression profiles across different conditions or tissues. In the network, genes are nodes, and “co-expression” relationship between two genes can be reprensented as edges. The co-expressed genes may involve in similar pathways or biological process.</p>
+
+<p>In a small part of my research, I am testing some algorithms to detect co-expression relationship. One way to test algorithm is simulation. In an ideal (simple) case, the expression values of two co-expressed genes can be considered as bivariate normal distributed. To generate expression values of such gene pair or a group of genes given a correlation coefficient, is just to simulate multivariate normal distribution. <a href="http://cran.r-project.org/web/packages/MASS/index.html">MASS</a> library in R has an function, <a href="http://stat.ethz.ch/R-manual/R-patched/library/MASS/html/mvrnorm.html">mvrnorm</a>, to do that, but it requires a covariance matrix.</p>
+
+<p>The function below is to firstly generate the covariance matrix in order to use the mvnorm function. Because we only know the correlation coefficient, i.e. co-expression relationship (degree), the mean and variance of each gene’s expression profile are random generated in the function. Then the matrix can be calulated as follows.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\mu=\left( 
+\begin{matrix}
+  \mu_x \\
+  \mu_y
+ \end{matrix}
+\right), \Sigma=\left( 
+\begin{matrix}
+  \sigma_x^2 & \rho \sigma_x \sigma_y \\
+  \sigma_x \sigma_y & \sigma_y^2
+ \end{matrix}
+\right) %]]></script>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>multi_norm.R</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+</pre></td><td class="code"><pre><code class="R"><span class="line"><span class="c1"># function to simulate multivariate normal distribution</span>
+</span><span class="line"><span class="c1"># given gene number, sample size and correlation coefficient</span>
+</span><span class="line">multi_norm <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>gene_num<span class="p">,</span>sample_num<span class="p">,</span>R<span class="p">)</span> <span class="p">{</span>
+</span><span class="line">  <span class="c1"># initial covariance matrix</span>
+</span><span class="line">  V <span class="o">&lt;-</span> <span class="kt">matrix</span><span class="p">(</span>data<span class="o">=</span><span class="kc">NA</span><span class="p">,</span> nrow<span class="o">=</span>gene_num<span class="p">,</span> ncol<span class="o">=</span>gene_num<span class="p">)</span>
+</span><span class="line">
+</span><span class="line">  <span class="c1"># mean for each gene</span>
+</span><span class="line">  meansmodule <span class="o">&lt;-</span> runif<span class="p">(</span>gene_num<span class="p">,</span> min<span class="o">=</span><span class="m">-3</span><span class="p">,</span> max<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+</span><span class="line">  <span class="c1"># variance for each gene</span>
+</span><span class="line">  varsmodule <span class="o">&lt;-</span> runif<span class="p">(</span>gene_num<span class="p">,</span> min<span class="o">=</span><span class="m">0</span><span class="p">,</span> max<span class="o">=</span><span class="m">5</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>gene_num<span class="p">)</span> <span class="p">{</span>
+</span><span class="line">  <span class="c1"># a two-level nested loop to generate covariance matrix</span>
+</span><span class="line">    <span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>gene_num<span class="p">)</span> <span class="p">{</span>
+</span><span class="line">      <span class="kr">if</span> <span class="p">(</span>i <span class="o">==</span> j<span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="c1"># covariances on the diagonal</span>
+</span><span class="line">        V<span class="p">[</span>i<span class="p">,</span>j<span class="p">]</span> <span class="o">&lt;-</span> varsmodule<span class="p">[</span>i<span class="p">]</span>
+</span><span class="line">      <span class="p">}</span> <span class="kr">else</span> <span class="p">{</span>
+</span><span class="line">        <span class="c1"># covariances</span>
+</span><span class="line">        V<span class="p">[</span>i<span class="p">,</span>j<span class="p">]</span> <span class="o">&lt;-</span> R <span class="o">*</span> <span class="kp">sqrt</span><span class="p">(</span>varsmodule<span class="p">[</span>i<span class="p">])</span> <span class="o">*</span> <span class="kp">sqrt</span><span class="p">(</span>varsmodule<span class="p">[</span>j<span class="p">])</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">  <span class="c1"># simulate multivariate normal distribution</span>
+</span><span class="line">  <span class="c1"># given means and covariance matrix</span>
+</span><span class="line">  X <span class="o">&lt;-</span> <span class="kp">t</span><span class="p">(</span>mvrnorm<span class="p">(</span>n <span class="o">=</span> sample_num<span class="p">,</span> meansmodule<span class="p">,</span> V<span class="p">))</span>
+</span><span class="line">
+</span><span class="line">  <span class="kr">return</span><span class="p">(</span>X<span class="p">)</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/08/warning/">Warning</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-08-07T14:19:00+00:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>2:19 pm</span></time>
+        
+         | <a href="/2013/08/warning/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A couple of months ago, I transfered the website engine from wordpress into Octopress. A lot of errors were found in previous posts due to format incompatibility, especially some perl scripts.</p>
+
+<p>Please read carefully before using any code or script, and leave a comment if you find some “terrible” error.</p>
+
+<p>Thank you!</p>
+
+<p>[update-2013-08-08] now only perl howto related posts</p>
+
+<p>[update-2015-01-01] All format issues are (putatively) resolved.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/05/final-transfer-to-github/">Final Transfer to Github</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-24T22:14:00+00:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:14 pm</span></time>
+        
+         | <a href="/2013/05/final-transfer-to-github/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I had been using 000webhost.com to host my website till several days ago when I noticed my website was suspendend for “violating 20%+ CPU usage limit for more than 1000 times.”</p>
+
+<p>The 000wbehost server is good and stable. Most importantly it’s free. Now, I have to transfter to another free and good web hosting service. Github is a good choice. But github does not support wordpress. I tried to transferr the website to github <a href="http://bioops.info/2012/07/transfering-to-github/">before</a>, but I am not comfortable to write blogs using Markdown.</p>
+
+<p>It’s difficult to find another free service supporting wordpress, and lots of people said the static blogging engine is much better than wordpress. Looks like I will stay here for a while.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/04/job-requirements-for-bioinformatician/">Common Job Requirements for Senior/mid-senior Bioinformatician and Computational Biologist</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-04-18T00:00:00+00:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2013/04/job-requirements-for-bioinformatician/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><ul>
+	<li>Degree: Phd (=MS+“n” years experience)</li>
+	<li>NGS data processing experience</li>
+	<li>Biology + Statistics knowledge</li>
+	<li>Programming: Statistics (R/Matlab/SAS), Script language (Python/Perl), OOP (C++/Java), Database (SQL)</li>
+	<li>Linux/Unix</li>
+	<li>Written and oral communication skills</li>
+</ul>
+(Note: Based on an incomplete and unprofessional survey on US job market in April 2013)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/03/ngs-startups/">NGS Startups</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-03-26T00:00:00+00:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2013/03/ngs-startups/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><h1><a href="https://www.23andme.com/" target="_blank">23andme</a></h1>
+<h3><a href="http://en.wikipedia.org/wiki/23andMe" target="_blank">Wiki</a>:</h3>
+23andMe is a privately held personal genomics and biotechnology company based in Mountain View, California that provides rapid genetic testing. The company is named for the 23 pairs of chromosomes in a normal human cell. Their personal genome test kit was named &#8220;Invention of the Year&#8221; by <em>Time</em> magazine in 2008.
+<h3><a href="https://www.23andme.com/about/jobs/" target="_blank">Jobs</a>:</h3>
+<strong>Engineering:</strong>
+HPC Systems Administrator<br />
+Senior Software Engineer<br />
+Software Engineer<br />
+Storage Systems Architect/Engineer
+<strong>Science:</strong>
+Backend Software Engineer<br />
+Health Content Scientist<br />
+Research Assistant<br />
+Scientist<br />
+Statistical Geneticist<br />
+Statistical Geneticist focusing on Parkinson&#8217;s Disease<br />
+Survey Methodologist<br />
+User Interface Designer
+<h1><a href="http://www.binatechnologies.com/" target="_blank">Bina</a></h1>
+<h3><a href="http://www.binatechnologies.com/company" target="_blank">About</a>:</h3>
+Bina is the big data science platform accelerating personalized medicine for researchers and clinicians requiring fast, accurate and scalable genomic analysis. The word &#8220;Bina&#8221; means &#8220;knowledge&#8221; or &#8220;insight&#8221;, translated from both Persian and Hebrew. We use cutting-edge big data technologies to dramatically reduce the amount of time and money required to process raw genetic data in order to generate insights for personalized medicine. Bina was started by a team of Stanford and Berkeley researchers and entrepreneurs, with the vision that whole genome sequencing (WGS) is just the beginning of a brighter future. Bina is accelerating personalized medicine, one genome at a time.
+<h3><a href="http://www.binatechnologies.com/company/joinus" target="_blank">Jobs:</a></h3>
+Big Data Software Architect<br />
+Senior Software Engineer<br />
+Senior Computational Biologist<br />
+Senior Data Scientist<br />
+Senior Applications Support Scientist<br />
+Senior Bioinformatics Scientist</p>
+
+<p><a href="http://techcrunch.com/2013/03/25/with-6-5m-in-tow-bina-technologies-wants-to-bring-big-data-insight-to-genomic-sequencing/" target="_blank">TechCrunch: With $6.25M In Tow, Bina Technologies Wants To Bring Big Data Insight To Genomic Sequencing</a></p>
+
+<p><strong><em>(to be continued)</em></strong></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/02/sequencing-cost/">Sequencing Cost (2013 Feb)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-02-20T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2013/02/sequencing-cost/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><div><section>
+<h2><a href="http://www.nature.com/news/gene-sequencing-leaves-the-laboratory-1.12454" target="_blank">Reasonably priced genomes</a></h2>
+<section></section><section>Although no reports of big innovations in DNA sequencing are expected at a major conference this week, the current cost and capabilities of the technology now make medical applications worthwhile.</section>
+<table>
+<thead>
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Machine cost</th>
+<th scope="col">Read length (bases)</th>
+<th scope="col">Cost per megabase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Illumina MiSeq</td>
+<td>US$125,000</td>
+<td>500</td>
+<td>14–70 cents</td>
+</tr>
+<tr>
+<td>Illumina HiSeq</td>
+<td>US$690,000</td>
+<td>300</td>
+<td>4–5 cents</td>
+</tr>
+<tr>
+<td>PacBio RS</td>
+<td>US$695,000</td>
+<td>4,575</td>
+<td>$2–17</td>
+</tr>
+<tr>
+<td>Ion Torrent PGM</td>
+<td>US$49,000</td>
+<td>400</td>
+<td>60 cents–$5</td>
+</tr>
+<tr>
+<td>Ion Torrent Proton</td>
+<td>US$224,000</td>
+<td>200</td>
+<td>1–9 cents</td>
+</tr>
+</tbody>
+</table>
+Source: The companies; Travis Glenn</section></div></p>
+
+<p>
+<div></div></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/11/the-end-of-the-world/">世界末日</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-11-30T00:00:00+00:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="/2012/11/the-end-of-the-world/#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>我特别希望世界末日是真的！<br />
+。。。。。。<br />
+看评论。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/page3">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/index.html">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

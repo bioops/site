@@ -1,0 +1,388 @@
+<<<<<<< HEAD:source/_posts/2011-02-17-software-packages-for-next-generation-sequence-analysis-from-seqanswers-com.html
+---
+layout: post
+title: Software packages for next generation sequence analysis (from seqanswers.com)
+categories:
+- Bioinformatics
+- NGS
+- Software
+tags:
+- Bioinformatics
+- Linux
+- NGS
+- Software
+published: true
+comments: true
+---
+<p>Thank those guys on seqanswers.com</p>
+=======
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Software Packages for Next Generation Sequence Analysis (From seqanswers.com) - Bioops</title>
+  <meta name="author" content="Bioops">
+
+  
+  <meta name="description" content="Thank those guys on seqanswers.com A reasonably thorough table of next-gen-seq software available in the commercial and public domain Integrated &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bioops.info/2011/02/software-packages-for-next-generation-sequence-analysis-from-seqanswers-com">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bioops" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21431888-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bioops</a></h1>
+  
+    <h2>Bioinformatics=(ACGAAG->AK)+(#!/bin/sh)+(P(A|B)=P(B|A)*P(A)/P(B))</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+<ul class="subscribe">
+  <li><a href="https://github.com/bioops" rel="subscribe-github" title="@bioops on GitHub"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 50,0 C 22.385714,0 0,22.385714 0,50 0,77.614286 22.385714,100 50,100 77.614286,100 100,77.614286 100,50 100,22.385714 77.614286,0 50,0 z m 29.692858,79.692858 c -3.859184,3.859182 -8.351022,6.887754 -13.35,9.00306 -1.27041,0.536736 -2.560204,1.009184 -3.867348,1.415306 v -7.493878 c 0,-3.938774 -1.35102,-6.835714 -4.053062,-8.690816 1.692858,-0.163264 3.24694,-0.390816 4.663266,-0.683672 1.416326,-0.292858 2.913266,-0.716328 4.491838,-1.27041 1.57857,-0.55408 2.994896,-1.213264 4.247958,-1.97755 1.253062,-0.765306 2.458164,-1.758164 3.613266,-2.978572 1.155102,-1.220408 2.12449,-2.604082 2.905102,-4.15 0.780612,-1.545918 1.4,-3.40204 1.855102,-5.566326 0.455102,-2.164286 0.683674,-4.54898 0.683674,-7.153062 0,-5.045918 -1.643878,-9.341836 -4.931634,-12.890816 C 77.44796,33.35 77.285714,29.10204 75.463266,24.512244 l -1.22143,-0.145918 c -0.845918,-0.09796 -2.368366,0.260204 -4.565306,1.07449 -2.196938,0.814286 -4.663264,2.14796 -7.396938,4.004082 -3.87449,-1.07449 -7.893878,-1.611224 -12.061224,-1.611224 -4.19898,0 -8.203062,0.536734 -12.012246,1.611224 -1.72449,-1.17245 -3.361224,-2.139796 -4.907142,-2.905102 C 31.753062,25.77449 30.516326,25.254082 29.587756,24.97653 28.660204,24.7 27.79796,24.528572 27,24.463266 c -0.79796,-0.0653 -1.310204,-0.08062 -1.537756,-0.04898 -0.22755,0.03164 -0.390816,0.0653 -0.487754,0.09796 -1.82347,4.62245 -1.985714,8.87143 -0.487756,12.743878 -3.287754,3.54796 -4.931632,7.844898 -4.931632,12.890816 0,2.604082 0.227552,4.988776 0.683674,7.153062 0.456122,2.164286 1.07449,4.020408 1.855102,5.566326 0.780612,1.545918 1.75,2.929592 2.905102,4.15 1.155102,1.220408 2.360204,2.213266 3.613264,2.978572 1.253062,0.766326 2.669388,1.42449 4.24796,1.97755 1.578572,0.554082 3.07551,0.976532 4.491836,1.27041 1.416328,0.292856 2.970408,0.521428 4.663266,0.683672 -2.669388,1.82347 -4.004082,4.720408 -4.004082,8.690816 v 7.639796 C 36.536734,89.818368 35.083674,89.3 33.656122,88.695918 c -4.99898,-2.115306 -9.490816,-5.143878 -13.35,-9.00306 -3.859184,-3.859184 -6.887754,-8.351022 -9.00306,-13.35 C 9.1163263,61.171428 8.0071428,55.67347 8.0071428,50 c 0,-5.67347 1.1091835,-11.171428 3.2969392,-16.342858 2.115306,-4.998978 5.143878,-9.490816 9.00306,-13.35 3.859184,-3.859182 8.351022,-6.887754 13.35,-9.00306 C 38.828572,9.1163266 44.32653,8.0071428 50,8.0071428 c 5.67347,0 11.171428,1.1091838 16.342858,3.2969392 5,2.115306 9.490816,5.143878 13.35,9.00306 3.859182,3.859184 6.887754,8.351022 9.00306,13.35 2.186736,5.17245 3.295918,10.67041 3.295918,16.342858 0,5.672448 -1.109182,11.171428 -3.296938,16.342858 -2.115306,4.998978 -5.143878,9.490816 -9.00204,13.35 l 0,0 z"></path></svg></a></li>
+</ul>
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="http://google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="bioops.info" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Software Packages for Next Generation Sequence Analysis (From seqanswers.com)</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Thank those guys on seqanswers.com</p>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:2011/02/software-packages-for-next-generation-sequence-analysis-from-seqanswers-com/index.html
+
+<p><span style="text-decoration:underline;"><strong>A reasonably thorough table of next-gen-seq software available in the commercial and public domain</strong></span></p>
+
+<p><strong>Integrated solutions</strong>
+* <a href="http://www.clcbio.com/index.php?id=1240" target="_blank">CLCbio Genomics Workbench</a> - <em>de novo</em> and reference assembly of Sanger, Roche FLX, Illumina, Helicos, and SOLiD data. Commercial next-gen-seq software that extends the CLCbio Main Workbench software. Includes SNP detection, CHiP-seq, browser and other features. Commercial. Windows, Mac OS X and Linux.<br />
+* <a href="http://g2.trac.bx.psu.edu/" target="_blank">Galaxy</a> - Galaxy = interactive and reproducible genomics. A job webportal.<br />
+* <a href="http://www.genomatix.de/products/index.html" target="_blank">Genomatix</a> - Integrated Solutions for Next Generation Sequencing data analysis.<br />
+* <a href="http://www.jmp.com/software/genomics/" target="_blank">JMP Genomics</a> - Next gen visualization and statistics tool from SAS. They are <a href="http://www.marketwatch.com/news/story/JMPR-Genomics-NCGR-Partnership-Foster/story.aspx?guid=%7B7AC9DE36-B6AA-4EDE-9CD5-633B29FE6154%7D" target="_blank">working with NCGR</a> to refine this tool and produce others.<br />
+* <a href="http://softgenetics.com/NextGENe.html" target="_blank">NextGENe</a> - <em>de novo</em> and reference assembly of Illumina, SOLiD and Roche FLX data. Uses a novel Condensation Assembly Tool approach where reads are joined via "anchors" into mini-contigs before assembly. Includes SNP detection, CHiP-seq, browser and other features. Commercial. Win or MacOS.<br />
+* <a href="http://www.dnastar.com/products/SMGA.php" target="_blank">SeqMan Genome Analyser</a> - Software for Next Generation sequence assembly of Illumina, Roche FLX and Sanger data integrating with Lasergene Sequence Analysis software for additional analysis and visualization capabilities. Can use a hybrid templated/de novo approach. Commercial. Win or Mac OS X.<br />
+* <a href="http://1001genomes.org/downloads/shore.html" target="_blank">SHORE</a> - SHORE, for Short Read, is a mapping and analysis pipeline for short DNA sequences produced on a Illumina Genome Analyzer. A suite created by the 1001 Genomes project. Source for POSIX.<br />
+* <a href="http://www.realtimegenomics.com/" target="_blank">SlimSearch</a> - Fledgling commercial product.</p>
+
+<p><strong>Align/Assemble to a reference</strong>
+* <a href="https://secure.genome.ucla.edu/index.php/BFAST" target="_blank">BFAST</a> - Blat-like Fast Accurate Search Tool. Written by Nils Homer, Stanley F. Nelson and Barry Merriman at UCLA.<br />
+* <a href="http://bowtie-bio.sourceforge.net/" target="_blank">Bowtie</a> - Ultrafast, memory-efficient short read aligner. It aligns short DNA sequences (reads) to the human genome at a rate of 25 million reads per hour on a typical workstation with 2 gigabytes of memory. Uses a Burrows-Wheeler-Transformed (BWT) index. <a href="http://seqanswers.com/forums/showthread.php?t=706" target="_blank">Link to discussion thread here</a>. Written by Ben Langmead and Cole Trapnell. Linux, Windows, and Mac OS X.<br />
+* <a href="http://maq.sourceforge.net/" target="_blank">BWA</a> - Heng Lee's BWT Alignment program - a progression from Maq. BWA is a fast light-weighted tool that aligns short sequences to a sequence database, such as the human reference genome. By default, BWA finds an alignment within edit distance 2 to the query sequence. C++ source.<br />
+* <a href="http://bioinfo.cgrb.oregonstate.edu/docs/solexa/" target="_blank">ELAND</a> - Efficient Large-Scale Alignment of Nucleotide Databases. Whole genome alignments to a reference genome. Written by Illumina author Anthony J. Cox for the Solexa 1G machine.<br />
+* <a href="http://www.ebi.ac.uk/~guy/exonerate/" target="_blank">Exonerate</a> - Various forms of pairwise alignment (including Smith-Waterman-Gotoh) of DNA/protein against a reference. Authors are Guy St C Slater and Ewan Birney from EMBL. C for POSIX.<br />
+* <a href="http://1001genomes.org/downloads/genomemapper.html" target="_blank">GenomeMapper</a> - GenomeMapper is a short read mapping tool designed for accurate read alignments. It quickly aligns millions of reads either with ungapped or gapped alignments. A tool created by the 1001 Genomes project. Source for POSIX.<br />
+* <a href="http://www.gene.com/share/gmap/" target="_blank">GMAP</a> - GMAP (Genomic Mapping and Alignment Program) for mRNA and EST Sequences. Developed by Thomas Wu and Colin Watanabe at Genentec. C/Perl for Unix.<br />
+* <a href="http://dna.cs.byu.edu/gnumap/" target="_blank">gnumap</a> - The Genomic Next-generation Universal MAPper (gnumap) is a program designed to accurately map sequence data obtained from next-generation sequencing machines (specifically that of Solexa/Illumina) back to a genome of any size. It seeks to align reads from nonunique repeats using statistics. From authors at Brigham Young University. C source/Unix.<br />
+* <a href="http://sourceforge.net/projects/maq/" target="_blank">MAQ</a> - Mapping and Assembly with Qualities (renamed from MAPASS2). Particularly designed for Illumina with preliminary functions to handle ABI SOLiD data. Written by Heng Li from the Sanger Centre. Features extensive supporting tools for DIP/SNP detection, etc. C++ source<br />
+* <a href="http://bioinformatics.bc.edu/marthlab/Mosaik" target="_blank">MOSAIK</a> - MOSAIK produces gapped alignments using the Smith-Waterman algorithm. Features a number of support tools. Support for Roche FLX, Illumina, SOLiD, and Helicos. Written by Michael Strömberg at Boston College. Win/Linux/MacOSX<br />
+* <a href="http://mrfast.sourceforge.net/" target="_blank">MrFAST and MrsFAST</a> - mrFAST &amp; mrsFAST are designed to map short reads generated with the Illumina platform to reference genome assemblies; in a fast and memory-efficient manner. Robust to INDELs and MrsFAST has a bisulphite mode. Authors are from the University of Washington. C as source.<br />
+* <a href="http://mummer.sourceforge.net/" target="_blank">MUMmer</a> - MUMmer is a modular system for the rapid whole genome alignment of finished or draft sequence. Released as a package providing an efficient suffix tree library, seed-and-extend alignment, SNP detection, repeat detection, and visualization tools. Version 3.0 was developed by Stefan Kurtz, Adam Phillippy, Arthur L Delcher, Michael Smoot, Martin Shumway, Corina Antonescu and Steven L Salzberg - most of whom are at The Institute for Genomic Research in Maryland, USA. POSIX OS required.<br />
+* <a href="http://www.novocraft.com/index.html" target="_blank">Novocraft</a> - Tools for reference alignment of paired-end and single-end Illumina reads. Uses a Needleman-Wunsch algorithm. Can support Bis-Seq. Commercial. Available free for evaluation, educational use and for use on open not-for-profit projects. Requires Linux or Mac OS X.<br />
+* <a href="http://pass.cribi.unipd.it/cgi-bin/pass.pl" target="_blank">PASS</a> - It supports Illumina, SOLiD and Roche-FLX data formats and allows the user to modulate very finely the sensitivity of the alignments. Spaced seed intial filter, then NW dynamic algorithm to a SW(like) local alignment. Authors are from CRIBI in Italy. Win/Linux.<br />
+* <a href="http://rulai.cshl.edu/rmap/" target="_blank">RMAP</a> - Assembles 20 - 64 bp Illumina reads to a FASTA reference genome. By Andrew D. Smith and Zhenyu Xuan at CSHL. (published in BMC Bioinformatics). POSIX OS required.<br />
+* <a href="http://biogibbs.stanford.edu/~jiangh/SeqMap/" target="_blank">SeqMap</a> - Supports up to 5 or more bp mismatches/INDELs. Highly tunable. Written by Hui Jiang from the Wong lab at Stanford. Builds available for most OS's.<br />
+* <a href="http://compbio.cs.toronto.edu/shrimp/" target="_blank">SHRiMP</a> - Assembles to a reference sequence. Developed with Applied Biosystem's colourspace genomic representation in mind. Authors are Michael Brudno and Stephen Rumble at the University of Toronto. POSIX.<br />
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/slider" target="_blank"><span style="text-decoration:underline;">Slider</span></a>- An application for the Illumina Sequence Analyzer output that uses the probability files instead of the sequence files as an input for alignment to a reference sequence or a set of reference sequences. Authors are from BCGSC. Paper is <a href="http://seqanswers.com/forums/showthread.php?t=740" target="_blank">here</a>.<br />
+* <a href="http://soap.genomics.org.cn/" target="_blank">SOAP</a> - SOAP (Short Oligonucleotide Alignment Program). A program for efficient gapped and ungapped alignment of short oligonucleotides onto reference sequences. The updated version uses a BWT. Can call SNPs and INDELs. Author is Ruiqiang Li at the Beijing Genomics Institute. C++, POSIX.<br />
+* <a href="http://www.sanger.ac.uk/Software/analysis/SSAHA/" target="_blank">SSAHA</a> - SSAHA (Sequence Search and Alignment by Hashing Algorithm) is a tool for rapidly finding near exact matches in DNA or protein databases using a hash table. Developed at the Sanger Centre by Zemin Ning, Anthony Cox and James Mullikin. C++ for Linux/Alpha.<br />
+* <a href="http://socs.biology.gatech.edu/" target="_blank">SOCS</a> - Aligns SOLiD data. SOCS is built on an iterative variation of the Rabin-Karp string search algorithm, which uses hashing to reduce the set of possible matches, drastically increasing search speed. Authors are Ondov B, Varadarajan A, Passalacqua KD and Bergman NH.<br />
+* <a href="http://bibiserv.techfak.uni-bielefeld.de/swift/welcome.html" target="_blank">SWIFT</a> - The SWIFT suit is a software collection for fast index-based sequence comparison. It contains: SWIFT — fast local alignment search, guaranteeing to find epsilon-matches between two sequences. SWIFT BALSAM — a very fast program to find semiglobal non-gapped alignments based on k-mer seeds. Authors are Kim Rasmussen (SWIFT) and Wolfgang Gerlach (SWIFT BALSAM)<br />
+* <a href="http://synasite.mgrc.com.my:8080/sxog/NewSXOligoSearch.php" target="_blank">SXOligoSearch</a> - SXOligoSearch is a commercial platform offered by the Malaysian based <a href="http://www.synamatix.com/" target="_blank">Synamatix</a>. Will align Illumina reads against a range of Refseq RNA or NCBI genome builds for a number of organisms. Web Portal. OS independent.<br />
+* <a href="http://www.vmatch.de/" target="_blank">Vmatch</a> - A versatile software tool for efficiently solving large scale sequence matching tasks. Vmatch subsumes the software tool REPuter, but is much more general, with a very flexible user interface, and improved space and time requirements. Essentially a large string matching toolbox. POSIX.<br />
+* <a href="http://www.bioinformaticssolutions.com/products/zoom/index.php" target="_blank">Zoom</a> - ZOOM (Zillions Of Oligos Mapped) is designed to map millions of short reads, emerged by next-generation sequencing technology, back to the reference genomes, and carry out post-analysis. ZOOM is developed to be highly accurate, flexible, and user-friendly with speed being a critical priority. Commercial. Supports Illumina and SOLiD data.</p>
+
+<p><strong><em>De novo</em> Align/Assemble</strong>
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/abyss" target="_blank">ABySS</a> - Assembly By Short Sequences. ABySS is a de novo sequence assembler that is designed for very short reads. The single-processor version is useful for assembling genomes up to 40-50 Mbases in size. The parallel version is implemented using MPI and is capable of assembling larger genomes. By Simpson JT and others at the Canada's Michael Smith Genome Sciences Centre. C++ as source.<br />
+* <a href="http://www.broad.mit.edu/science/programs/genome-biology/computational-rd/computational-research-and-development" target="_blank">ALLPATHS</a> - ALLPATHS: De novo assembly of whole-genome shotgun microreads. ALLPATHS is a whole genome shotgun assembler that can generate high quality assemblies from short reads. Assemblies are presented in a graph form that retains ambiguities, such as those arising from polymorphism, thereby providing information that has been absent from previous genome assemblies. Broad Institute.<br />
+* <a href="http://www.genomic.ch/edena.php" target="_blank">Edena</a> - Edena (Exact DE Novo Assembler) is an assembler dedicated to process the millions of very short reads produced by the Illumina Genome Analyzer. Edena is based on the traditional overlap layout paradigm. By D. Hernandez, P. François, L. Farinelli, M. Osteras, and J. Schrenzel. Linux/Win.<br />
+* <a href="http://euler-assembler.ucsd.edu/portal/" target="_blank">EULER-SR</a> - Short read <em>de novo</em> assembly. By Mark J. Chaisson and Pavel A. Pevzner from UCSD (published in Genome Research). Uses a de Bruijn graph approach.<br />
+* <a href="http://chevreux.org/projects_mira.html" target="_blank">MIRA2</a> - MIRA (Mimicking Intelligent Read Assembly) is able to perform true hybrid de-novo assemblies using reads gathered through 454 sequencing technology (GS20 or GS FLX). Compatible with 454, Solexa and Sanger data. Linux OS required.<br />
+* <a href="http://www.seqan.de/projects/consensus.html" target="_blank">SEQAN</a> - A Consistency-based Consensus Algorithm for De Novo and Reference-guided Sequence Assembly of Short Reads. By Tobias Rausch and others. C++, Linux/Win.<br />
+* <a href="http://sharcgs.molgen.mpg.de/" target="_blank">SHARCGS</a> - De novo assembly of short reads. Authors are Dohm JC, Lottaz C, Borodina T and Himmelbauer H. from the Max-Planck-Institute for Molecular Genetics.<br />
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/ssake" target="_blank">SSAKE</a> - The Short Sequence Assembly by K-mer search and 3' read Extension (SSAKE) is a genomics application for aggressively assembling millions of short nucleotide sequences by progressively searching for perfect 3'-most k-mers using a DNA prefix tree. Authors are René Warren, Granger Sutton, Steven Jones and Robert Holt from the Canada's Michael Smith Genome Sciences Centre. Perl/Linux.<br />
+* <a href="http://soap.genomics.org.cn/" target="_blank">SOAPdenovo</a> - Part of the SOAP suite. See above.<br />
+* <a href="https://sourceforge.net/projects/vcake" target="_blank">VCAKE</a> - De novo assembly of short reads with robust error correction. An improvement on early versions of SSAKE.<br />
+* <a href="http://www.ebi.ac.uk/~zerbino/velvet/" target="_blank">Velvet</a> - Velvet is a de novo genomic assembler specially designed for short read sequencing technologies, such as Solexa or 454. Need about 20-25X coverage and paired reads. Developed by Daniel Zerbino and Ewan Birney at the European Bioinformatics Institute (EMBL-EBI).</p>
+
+<p><strong>SNP/Indel Discovery</strong>
+* <a href="http://www.sanger.ac.uk/Software/analysis/ssahaSNP/" target="_blank">ssahaSNP</a> - ssahaSNP is a polymorphism detection tool. It detects homozygous SNPs and indels by aligning shotgun reads to the finished genome sequence. Highly repetitive elements are filtered out by ignoring those kmer words with high occurrence numbers. More tuned for ABI Sanger reads. Developers are Adam Spargo and Zemin Ning from the Sanger Centre. Compaq Alpha, Linux-64, Linux-32, Solaris and Mac<br />
+* <a href="http://bioinformatics.bc.edu/marthlab/PbShort" target="_blank">PolyBayesShort</a> - A re-incarnation of the PolyBayes SNP discovery tool developed by Gabor Marth at Washington University. This version is specifically optimized for the analysis of large numbers (millions) of high-throughput next-generation sequencer reads, aligned to whole chromosomes of model organism or mammalian genomes. Developers at Boston College. Linux-64 and Linux-32.<br />
+* <a href="http://bioinformatics.bc.edu/marthlab/PyroBayes" target="_blank">PyroBayes</a> - PyroBayes is a novel base caller for pyrosequences from the 454 Life Sciences sequencing machines. It was designed to assign more accurate base quality estimates to the 454 pyrosequences. Developers at Boston College.</p>
+
+<p><strong>Genome Annotation/Genome Browser/Alignment Viewer/Assembly Database</strong>
+* <a href="http://bioinformatics.bc.edu/marthlab/EagleView" target="_blank">EagleView</a> - An information-rich genome assembler viewer. EagleView can display a dozen different types of information including base quality and flowgram signal. Developers at Boston College.<br />
+* <a href="http://www.sanger.ac.uk/Software/analysis/lookseq/" target="_blank">LookSeq</a> - LookSeq is a web-based application for alignment visualization, browsing and analysis of genome sequence data. LookSeq supports multiple sequencing technologies, alignment sources, and viewing modes; low or high-depth read pileups; and easy visualization of putative single nucleotide and structural variation. From the Sanger Centre.<br />
+* <a href="http://evolution.sysu.edu.cn/mapview/" target="_blank">MapView</a> - MapView: visualization of short reads alignment on desktop computer. From the Evolutionary Genomics Lab at Sun-Yat Sen University, China. Linux.<br />
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/sam" target="_blank">SAM</a> - Sequence Assembly Manager. Whole Genome Assembly (WGA) Management and Visualization Tool. It provides a generic platform for manipulating, analyzing and viewing WGA data, regardless of input type. Developers are Rene Warren, Yaron Butterfield, Asim Siddiqui and Steven Jones at Canada's Michael Smith Genome Sciences Centre. MySQL backend and Perl-CGI web-based frontend/Linux.<br />
+* <a href="http://staden.sourceforge.net/" target="_blank">STADEN</a> - Includes GAP4. GAP5 once completed will handle next-gen sequencing data. A partially implemented test version is available <a href="https://sourceforge.net/project/show...kage_id=256957" target="_blank">here</a>
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/xmatchview" target="_blank">XMatchView</a> - A visual tool for analyzing cross_match alignments. Developed by Rene Warren and Steven Jones at Canada's Michael Smith Genome Sciences Centre. Python/Win or Linux.</p>
+
+<p><strong>Counting e.g. CHiP-Seq, Bis-Seq, CNV-Seq</strong>
+* <a href="http://epigenomics.mcdb.ucla.edu/BS-Seq/download.html" target="_blank">BS-Seq</a> - The source code and data for the "Shotgun Bisulphite Sequencing of the Arabidopsis Genome Reveals DNA Methylation Patterning" Nature paper by <a href="http://www.ncbi.nlm.nih.gov/sites/entrez?holding=&amp;db=pubmed&amp;cmd=search&amp;term=Shotgun%20Bisulphite%20Sequencing" target="_blank">Cokus et al.</a> (Steve Jacobsen's lab at UCLA). POSIX.<br />
+* <a href="http://woldlab.caltech.edu/chipseq/" target="_blank">CHiPSeq</a> - Program used by Johnson et al. (2007) in their Science publication<br />
+* <a href="http://tiger.dbs.nus.edu.sg/cnv-seq/" target="_blank">CNV-Seq</a> - CNV-seq, a new method to detect copy number variation using high-throughput sequencing. Chao Xie and Martti T Tammi at the National University of Singapore. Perl/R.<br />
+* <a href="http://www.bcgsc.ca/platform/bioinfo/software/findpeaks" target="_blank">FindPeaks</a> - perform analysis of ChIP-Seq experiments. It uses a naive algorithm for identifying regions of high coverage, which represent Chromatin Immunoprecipitation enrichment of sequence fragments, indicating the location of a bound protein of interest. Original algorithm by Matthew Bainbridge, in collaboration with Gordon Robertson. Current code and implementation by Anthony Fejes. Authors are from the Canada's Michael Smith Genome Sciences Centre. JAVA/OS independent. Latest versions available as part of the <a href="http://vancouvershortr.sourceforge.net/" target="_blank">Vancouver Short Read Analysis Package</a>
+* <a href="http://liulab.dfci.harvard.edu/MACS/" target="_blank">MACS</a> - Model-based Analysis for ChIP-Seq. MACS empirically models the length of the sequenced ChIP fragments, which tends to be shorter than sonication or library construction size estimates, and uses it to improve the spatial resolution of predicted binding sites. MACS also uses a dynamic Poisson distribution to effectively capture local biases in the genome sequence, allowing for more sensitive and robust prediction. Written by Yong Zhang and Tao Liu from Xiaole Shirley Liu's Lab.<br />
+* <a href="http://www.gersteinlab.org/proj/PeakSeq/" target="_blank">PeakSeq</a> - PeakSeq: Systematic Scoring of ChIP-Seq Experiments Relative to Controls. a two-pass approach for scoring ChIP-Seq data relative to controls. The first pass identifies putative binding sites and compensates for variation in the mappability of sequences across the genome. The second pass filters out sites that are not significantly enriched compared to the normalized input DNA and computes a precise enrichment and significance. By Rozowsky J et al. C/Perl.<br />
+* <a href="http://mendel.stanford.edu/sidowlab/downloads/quest/" target="_blank">QuEST</a> - Quantitative Enrichment of Sequence Tags. Sidow and Myers Labs at Stanford. From the 2008 publication <a href="http://www.ncbi.nlm.nih.gov/pubmed/18711362" target="_blank">Genome-wide analysis of transcription factor binding sites based on ChIP-Seq data</a>. (C++)<br />
+* <a href="http://dir.nhlbi.nih.gov/papers/lmi/epigenomes/sissrs/" target="_blank">SISSRs</a> - Site Identification from Short Sequence Reads. BED file input. Raja Jothi @ NIH. Perl.<br />
+**See also <a href="http://seqanswers.com/forums/showthread.php?t=742" target="_blank">this thread</a> for ChIP-Seq, until I get time to update this list.</p>
+
+<p><strong>Alternate Base Calling</strong>
+* <a href="http://svitsrv25.epfl.ch/R-doc/library/Rolexa/html/00Index.html" target="_blank">Rolexa</a> - R-based framework for base calling of Solexa data. Project <a href="http://www.biomedcentral.com/1471-2105/9/431" target="_blank">publication</a>
+* <a href="http://hannonlab.cshl.edu/Alta-Cyclic/main.html" target="_blank">Alta-cyclic</a> - "a novel Illumina Genome-Analyzer (Solexa) base caller"</p>
+
+<p><strong>Transcriptomics</strong>
+* <a href="http://woldlab.caltech.edu/rnaseq/" target="_blank">ERANGE</a> - Mapping and Quantifying Mammalian Transcriptomes by RNA-Seq. Supports Bowtie, BLAT and ELAND. From the Wold lab.<br />
+* <a href="http://www.genoscope.cns.fr/externe/gmorse/" target="_blank">G-Mo.R-Se</a> - G-Mo.R-Se is a method aimed at using RNA-Seq short reads to build de novo gene models. First, candidate exons are built directly from the positions of the reads mapped on the genome (without any ab initio assembly of the reads), and all the possible splice junctions between those exons are tested against unmapped reads. From CNS in France.<br />
+* <a href="http://evolution.sysu.edu.cn/english/software/mapnext.htm" target="_blank">MapNext</a> - MapNext: A software tool for spliced and unspliced alignments and SNP detection of short sequence reads. From the Evolutionary Genomics Lab at Sun-Yat Sen University, China.<br />
+* <a href="http://www.fml.tuebingen.mpg.de/raetsch/suppl/qpalma" target="_blank">QPalma</a> - Optimal Spliced Alignments of Short Sequence Reads. Authors are Fabio De Bona, Stephan Ossowski, Korbinian Schneeberger, and Gunnar Rätsch. A paper is <a href="http://www.fml.tuebingen.mpg.de/raetsch/suppl/qpalma/qpalma-final.pdf" target="_blank">available</a>.<br />
+* <a href="http://biogibbs.stanford.edu/~jiangh/rsat/" target="_blank">RSAT</a> - RSAT: RNA-Seq Analysis Tools. RNASAT is developed and maintained by Hui Jiang at Stanford University.<br />
+* <a href="http://tophat.cbcb.umd.edu/" target="_blank">TopHat</a> - TopHat is a fast splice junction mapper for RNA-Seq reads. It aligns RNA-Seq reads to mammalian-sized genomes using the ultra high-throughput short read aligner Bowtie, and then analyzes the mapping results to identify splice junctions between exons. TopHat is a collaborative effort between the University of Maryland and the University of California, Berkeley</p>
+<<<<<<< HEAD:source/_posts/2011-02-17-software-packages-for-next-generation-sequence-analysis-from-seqanswers-com.html
+=======
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    <a href="https://plus.google.com/113645349664564078087" rel="author">Bioops</a>
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2011-02-17T00:00:00+00:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:00 am</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/bioinformatics/'>bioinformatics</a>, <a class='category' href='/category/ngs/'>ngs</a>, <a class='category' href='/category/software/'>software</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://bioops.info/2011/02/software-packages-for-next-generation-sequence-analysis-from-seqanswers-com/" data-via="" data-counturl="http://bioops.info/2011/02/software-packages-for-next-generation-sequence-analysis-from-seqanswers-com/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-layout="button_count" data-send="false" data-width="300" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/02/perl-sorting-a-two-dimensional-array/" title="Previous Post: Perl: Sorting a Two-Dimensional Array">&laquo; Perl: Sorting a Two-Dimensional Array</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/02/synteny-relevant-links/" title="Next Post: Synteny relevant links">Synteny relevant links &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<p>
+  Copyright &copy; 2016 - Bioops -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'bioopsgithub';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bioops.info/2011/02/software-packages-for-next-generation-sequence-analysis-from-seqanswers-com/';
+        var disqus_url = 'http://bioops.info/2011/02/software-packages-for-next-generation-sequence-analysis-from-seqanswers-com/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
+>>>>>>> d80cd8fa3e1fb5461144707ba04f7385ec6726a7:2011/02/software-packages-for-next-generation-sequence-analysis-from-seqanswers-com/index.html

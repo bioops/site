@@ -1,0 +1,68 @@
+---
+layout: post
+title: 利用Biperl进行本地blast（Bioperl HOWTO翻译10）
+categories:
+- Bioperl HOWTO翻译
+- Programming
+tags:
+- Bioperl
+- Blast
+- HOWTO
+- Perl
+- Translation
+published: true
+comments: true
+---
+<p><h3>BLAST</h3>
+<a href="http://www.bioperl.org/wiki/HOWTO:Beginners#BLAST" target="_blank">英文原文</a></p>
+
+<p>（译者注：可以先参考这两篇文章：1）<a href="http://bioops.info/2011/02/windows-perl-blast/" target="_blank">本地blast</a>   2）<a href="http://bioops.info/2011/08/parse-blast/" target="_blank">perl脚本提取BLAST结果中的信息【以tblastn为例】</a> ）</p>
+
+<p>bioperl有很多序列分析软件的接口，这意味着可以用bioperl来运行其他序列分析程序，更确切地说，可以提取程序运行结果并进行分析。在这里让我们来用最常用的序列分析软件，BLAST，作举例说明。首先要获取并安装<a href="http://www.ncbi.nlm.nih.gov/blast/" target="_blank">BLAST</a> (<a href="ftp://ftp.ncbi.nlm.nih.gov/blast/" target="_blank">ftp</a>)。（译者注：BLAST+和BLAST有很大的不同，此文默认使用的是BLAST。）然后用formatdb将序列文件索引并生成的一个叫“db.fa”的数据库文件，然后再看下面的代码。</p>
+
+<p>和前面一样，我们要用一个模块，这次是<a title="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" href="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" rel="nofollow">Bio::Tools::Run::StandAloneBlast</a>。先创建一个BLAST对象，并用new()方法设定blastall的运行参数，然后以一个序列对象作为输入。程序运行后将结果输入到另一个“report”对象。</p>
+
+``` perl
+
+use Bio::Seq;
+use Bio::Tools::Run::StandAloneBlast;
+$blast_obj = Bio::Tools::Run::StandAloneBlast->new(-program  => 'blastn',
+                                                   -database => 'db.fa'));
+$seq_obj = Bio::Seq->new(-id  =>"test query",
+                         -seq =>"TTTAAATATATTTTGAAGTATAGATTATATGTT");
+$report_obj = $blast_obj->blastall($seq_obj);
+$result_obj = $report_obj->next_result;
+print $result_obj->num_hits;
+
+```
+
+<p>blastall()方法是核心，运行BLAST并提取运行结果。blastall生成的结果是一个“report”对象。利用这个对象，可以按照自己的需求访问或输出结果中的数据。report对象（$report_obj）和result对象（$result_obj）都来自SearchIO模块。后面的<a title="HOWTO:SearchIO" href="http://www.bioperl.org/wiki/HOWTO:SearchIO">SearchIO HOWTO</a>会更详细的介绍如何从这些对象中提取分析数据。</p>
+
+<p>这里给出一个用SearchIO从BLAST结果文件中提取所需结果的例子。（译者注：这里是先单独运行BLAST并生成一个结果文件，然后使用SearchIO从结果文件创建一个report对象，而上面例子是用bioperl运行BLAST后获取一个report对象。）</p>
+
+``` perl
+
+use Bio::SearchIO;
+$report_obj = new Bio::SearchIO(-format => 'blast',
+                                  -file   => 'report.bls');
+while( $result = $report_obj->next_result ) {
+    while( $hit = $result->next_hit ) {
+      while( $hsp = $hit->next_hsp ) {
+         if ( $hsp->percent_identity > 75 ) {
+           print "Hit\t", $hit->name, "\n",
+                   "Length\t", $hsp->length('total'),
+                   "\n", "Percent_id\t", $hsp->percent_identity, "\n";
+         }
+       }
+     }
+}
+
+```
+
+<p>此代码是提取大于75%一致性的HSP的信息。</p>
+
+<p>有时候使用<a title="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" href="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" rel="nofollow">Bio::Tools::Run::StandAloneBlast</a>的时候会出现一些错误。（译者注：后面的就不翻译了，主要是说使用bioperl调用BLAST等其他程序时会有可能出错之类。我的经验是，<a title="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" href="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" rel="nofollow">Bio::Tools::Run::StandAloneBlast</a>只适用于UNIX/LINUX系统下能直接在终端运行BLAST相关命令的情况（复制相关程序到/usr/bin/或设定PATH profile）。Windows下没成功经验，有兴趣的自己搜一下。建议不用Bioperl调用外部程序，可如上面第二个例子，先用blast生成结果，然后再用bioperl提取结果中想要的部分。）</p>
+
+<p>Sometimes you'll see errors when you try to use <a title="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" href="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" rel="nofollow">Bio::Tools::Run::StandAloneBlast</a> that have nothing to do with Bioperl. Make sure that <a title="wp:BLAST" href="http://en.wikipedia.org/wiki/BLAST">BLAST</a> is set up properly and running before you attempt to script it using <a title="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" href="http://search.cpan.org/perldoc?Bio::Tools::Run::StandAloneBlast" rel="nofollow">Bio::Tools::Run::StandAloneBlast</a>. There are some notes on setting up BLAST in the <a title="http://bioperl.open-bio.org/SRC/bioperl-live/INSTALL" href="http://bioperl.open-bio.org/SRC/bioperl-live/INSTALL" rel="nofollow">INSTALL</a> file.</p>
+
+<p>Bioperl enables you to run a wide variety of bioinformatics programs but in order to do so, in most cases, you will need to install the accessory bioperl-run package. In addition there is no guarantee that there is a corresponding parser for the program that you wish to run, but parsers have been built for the most popular programs. You can find the bioperl-run package on the download page.</p>

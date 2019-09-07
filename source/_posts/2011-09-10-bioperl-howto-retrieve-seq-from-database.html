@@ -1,0 +1,53 @@
+---
+layout: post
+title: Bioperl从网络数据库中提取一个序列（Bioperl HOWTO翻译5）
+categories:
+- Bioperl HOWTO翻译
+- Programming
+tags:
+- Bioperl
+- Genbank
+- HOWTO
+- Perl
+- Translation
+published: true
+comments: true
+---
+<p>从网络数据库中提取一个序列</p>
+
+<p><a href="http://www.bioperl.org/wiki/HOWTO:Beginners#Retrieving_a_sequence_from_a_database" target="_blank">英文原文</a></p>
+
+<p>Bioperl强大的功能之一就是可以从各种类型的资源中提取序列而不用考虑其格式，序列文件、网络数据库、本地数据库等。在此举例说明如何利用<a href="http://search.cpan.org/perldoc?Bio::DB::GenBank">Bio::DB::Genbank</a>模块从<a href="http://en.wikipedia.org/wiki/GenBank">Genbank</a>中提取一个序列条目。</p>
+
+<p>先声明要使用的模块：</p>
+
+``` perl
+
+use Bio::DB::GenBank;
+
+```
+
+<p>也可以从下列数据库中提取序列：<a title="wp:Swissprot" href="http://en.wikipedia.org/wiki/Swissprot">SwissProt</a> (<a title="http://search.cpan.org/perldoc?Bio::DB::SwissProt" href="http://search.cpan.org/perldoc?Bio::DB::SwissProt">Bio::DB::SwissProt</a>)、GenPept (<a title="http://search.cpan.org/perldoc?Bio::DB::GenPept" href="http://search.cpan.org/perldoc?Bio::DB::GenPept">Bio::DB::GenPept</a>)、 <a title="wp:EMBL" href="http://en.wikipedia.org/wiki/EMBL">EMBL</a> (<a title="http://search.cpan.org/perldoc?Bio::DB::EMBL" href="http://search.cpan.org/perldoc?Bio::DB::EMBL">Bio::DB::EMBL</a>)、SeqHound (<a title="http://search.cpan.org/perldoc?Bio::DB::SeqHound" href="http://search.cpan.org/perldoc?Bio::DB::SeqHound">Bio::DB::SeqHound</a>)、Entrez Gene (<a title="http://search.cpan.org/perldoc?Bio::DB::EntrezGene" href="http://search.cpan.org/perldoc?Bio::DB::EntrezGene">Bio::DB::EntrezGene</a>)、 RefSeq (<a title="http://search.cpan.org/perldoc?Bio::DB::RefSeq" href="http://search.cpan.org/perldoc?Bio::DB::RefSeq">Bio::DB::RefSeq</a>)等。</p>
+
+<p>然后创建一个对象：</p>
+
+``` perl
+
+use Bio::DB::GenBank;
+$db_obj = Bio::DB::GenBank->new;
+
+```
+
+<p>这里创建了一个“数据库对象”，但并没有任何参数。再来看数据库对象的一个有用的功能：</p>
+
+``` perl
+
+use Bio::DB::GenBank; 
+$db_obj = Bio::DB::GenBank->new;
+$seq_obj = $db_obj->get_Seq_by_id(2);
+
+```
+
+<p>get_Seq_by_id方法 识别Genbank的GI号。另外，get_Seq_by_acc 可识别accession号 (e.g. "A12345")，get_Seq_by_version可识别带版本号的accession号(e.g. "A12345.2")。相应的方法只能识别相应的条目标识号。</p>
+
+<p>Bioperl可以从数据库中提取一个或多个序列。但如果要提取大批量的序列时，要避免使用循环，否则NCBI会认为是滥用其服务资源而封掉使用者的IP。有其他很多更好更快的方法来大批量提取，例如，下载GenBank的某一部分数据（译者注：比如可以从NCBI ftp只下载人类的mRNA序列），然后从中直接提取需要的序列；或者使用格式化过的数据库（使用本地BLAST中formatdb格式化），然后用fastacmd（也在本地BLAST程序中）提取所需要的序列。</p>
